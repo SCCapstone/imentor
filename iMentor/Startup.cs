@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(iMentor.Startup))]

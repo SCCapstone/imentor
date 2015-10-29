@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace iMentor.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -24,6 +25,12 @@ namespace iMentor.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Secure()
+        {
+            ViewBag.Message = "Secure page.";
             return View();
         }
     }

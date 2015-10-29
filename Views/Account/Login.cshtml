@@ -1,0 +1,20 @@
+﻿@using iMentor.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<div class="row">
+    <div class="col-lg-12" style="text-align:center">
+        <img src="https://scontent-atl3-1.xx.fbcdn.net/hphotos-xfl1/v/t1.0-9/12039593_10207916122680757_4406267022292013043_n.jpg?oh=20ad5f4e1413aecfaffebcc2e1feb3b6&oe=56C8D4CF" alt="iMentor">
+    </div>
+    <div class="col-lg-12" style="text-align:center">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

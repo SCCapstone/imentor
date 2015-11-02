@@ -6,17 +6,11 @@ using System.Web.Mvc;
 
 namespace iMentor.Controllers
 {
-    [RequireHttps]
-    public class HomeController : Controller
+    public class StudentsController : Controller
     {
+        // GET: Students
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Secure()
-        {
-            ViewBag.Message = "Secure page.";
             return View();
         }
     }

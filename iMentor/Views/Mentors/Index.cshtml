@@ -1,9 +1,40 @@
 ﻿@{
     ViewBag.Title = "Mentors";
+    ViewBag.Message = "This is a test";
 }
 
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <div>
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="http://commonstake.com/default_profile.jpg" alt="Default">
+            </a>
+            <h4>Upload your profile picture</h4>
+            @using (Html.BeginForm("Index",
+                                    "Home",
+                                    FormMethod.Post,
+                                    new { enctype = "multipart/form-data" }))
+            {
+                <label for="file">Upload Image:</label>
+                <input type="file" name="file" id="file" /><br><br>
+                <input type="submit" value="Upload Image" />
+                <br><br>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Listings</div>
+
+    <!-- Table -->
+    <table class="table">
+        ...
+    </table>
 </div>

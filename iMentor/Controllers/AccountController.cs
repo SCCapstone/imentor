@@ -282,6 +282,12 @@ namespace iMentor.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
+        [AllowAnonymous]
+        public ActionResult ExternalLoginCallbackRedirect(string returnUrl)
+        {
+            return RedirectPermanent("/Account/ExternalLoginCallback");
+        }
+
         //
         // GET: /Account/SendCode
         [AllowAnonymous]

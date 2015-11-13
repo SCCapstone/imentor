@@ -1,25 +1,14 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@section scripts{
+    <script src="~/Modules/HomeClient.js"></script>
 }
 
 <div class="jumbotron">
     <p>iMentor</p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <p>David Thomas - Edited this page</p>
-    </div>
-    <div class="col-md-4">
-        <p>Ryan Labrador - Edited this page again!</p>
-    </div>
-    <div class="col-md-4">
-        <p>Michael Rickabaugh - Edited this page! Hooah!</p>
-    </div>
-    <div class="col-md-4">
-        <p>Janice Neighbor -edited this page!</p>
-    </div>
-    <div class="col-md-4">
-        <p></p>
+
+<div ng-app="HomeApp" class="container">
+    <div ng-controller="HomeController">
+        <p>{{userEmail}}</p>
     </div>
 </div>

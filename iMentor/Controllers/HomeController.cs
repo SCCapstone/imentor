@@ -19,5 +19,13 @@ namespace iMentor.Controllers
             ViewBag.Message = "Secure page.";
             return View();
         }
+
+        //Testing SQL -> AngularJS code
+        public String GetUser()
+        {
+            MAST2015_dbEntities e = new MAST2015_dbEntities();
+            AspNetUser tempUser = e.AspNetUsers.First();
+            return tempUser.Email;
+        }
     }
 }

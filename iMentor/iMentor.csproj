@@ -138,6 +138,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -205,13 +207,43 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>iMentorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>iMentorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>iMentorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>iMentorModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MentorsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>iMentorModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="iMentorModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>iMentorModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="iMentorModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>iMentorModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="iMentorModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>iMentorModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -228,6 +260,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="iMentorModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>iMentorModel.edmx</DependentUpon>
+      <LastGenOutput>iMentorModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="iMentorModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>iMentorModel.edmx</DependentUpon>
+      <LastGenOutput>iMentorModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modules\HomeClient.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -239,6 +282,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <EntityDeploy Include="iMentorModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>iMentorModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="iMentorModel.edmx.diagram">
+      <DependentUpon>iMentorModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\MAST.pubxml" />
     <None Include="Properties\PublishProfiles\MAST2015 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\MAST2015 - Web Deploy.pubxml" />
@@ -291,6 +341,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

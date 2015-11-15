@@ -292,6 +292,10 @@
     <None Include="Properties\PublishProfiles\MAST.pubxml" />
     <None Include="Properties\PublishProfiles\MAST2015 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\MAST2015 - Web Deploy.pubxml" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

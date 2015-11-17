@@ -1,7 +1,4 @@
-﻿@section scripts{
-<script src="~/Modules/HomeClient.js"></script>
-    }
-
+﻿<script src="~/Modules/HomeClient.js"></script>
 
 <div class="jumbotron">
     <p>iMentor</p>
@@ -10,9 +7,8 @@
 
 <div ng-app="HomeApp" class="container">
     <div ng-controller="HomeController">
-        <p>{{userEmail}}</p>
-            <p>{{message}}</p>
-        <p>1 + 2 = {{ 1 + 2 }}</p>
-     
+        <p>Database Access: {{userEmail}}</p>
+        <p>Message: {{message}}</p>
+        <p>Function test: 1 + 2 = {{ 1 + 2 }}</p>
     </div>
 </div>

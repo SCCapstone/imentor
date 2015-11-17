@@ -14,6 +14,13 @@ namespace iMentor.Controllers
             return View();
         }
 
+        //Testing SQL -> AngularJS code
+        public String GetMentor()
+        {
+            MAST2015_dbEntities e = new MAST2015_dbEntities();
+            AspNetUser tempUser = e.AspNetUsers.First();
+            return tempUser.Id;
+        }
     }
 
 

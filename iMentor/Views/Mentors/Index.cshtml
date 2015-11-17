@@ -1,21 +1,11 @@
-﻿@{
-    ViewBag.Title = "Mentors";
-    ViewBag.Message = "This is a test";
-}
+﻿<script src="~/Modules/MentorsClient.js"></script>
 
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<div>
-    <div class="row">
-        <div class="col-xs-6 col-md-3">
-           
-        </div>
-    </div>
+<div class="jumbotron">
+    <p>Mentors</p>
 </div>
 
-
-
-
-   
-
+<div ng-app="MentorsApp" class="container">
+    <div ng-controller="MentorsController">
+        <p>{{mentorId}}</p>
+    </div>
+</div>

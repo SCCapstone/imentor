@@ -1,5 +1,11 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿<script src="~/Modules/StudentsClient.js"></script>
 
+<div class="jumbotron">
+    <p>Students</p>
+</div>
 
+<div ng-app="StudentsApp" class="container">
+    <div ng-controller="StudentsController">
+        <p>{{studentId}}</p>
+    </div>
+</div>

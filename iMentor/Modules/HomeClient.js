@@ -2,7 +2,15 @@
 
 HomeApp.controller('HomeController', function ($scope, HomeService) {
  
-    getUser();
+    $scope.userEmail = getUser();
+    $scope.message = "Is that you, AngularJS?";
+
+
+    
+
+    //******************************//
+    //          Functions           //
+    //******************************//
     function getUser() {
         HomeService.getUser()
             .success(function (userEmail) {

@@ -1,15 +1,10 @@
-﻿@model iMentor.Models.IndexViewModel
-@{
-    ViewBag.Title = "Account";
-}
+﻿<script src="~/Modules/ManageClient.js"></script>
 
-<h2>@ViewBag.Title.</h2>
+<h2>Account</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        
-    </dl>
+<div ng-app="ManageApp" class="container">
+    <div ng-controller="ManageController">
+        <p>{{message}}</p>
+    </div>
 </div>
+

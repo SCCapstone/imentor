@@ -1,11 +1,5 @@
 ﻿var HomeApp = angular.module('HomeApp', [])
 
-HomeApp.controller('HomeController', function ($scope) {
-
-    $scope.message = "Welcome to the iMentor AngularJS home page!";
-
-});
-
 HomeApp.controller('HomeController', function ($scope, HomeService) {
  
     getUser();

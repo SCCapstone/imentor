@@ -1,14 +1,16 @@
 ﻿
    <script src="~/Modules/HomeClient.js"></script>
+<script src="Scripts/angular.min.js"></script>
 
 
-<div class="jumbotron">
-    <p>iMentor</p>
-</div>
 
-
-<div app="HomeApp" class="container">
-    <div controller="HomeController">
-        <p>{{userEmail}}</p>
+    <div class="jumbotron">
+        <p>iMentor</p>
     </div>
-</div>
+
+
+    <div ng-app="HomeApp" class="container">
+        <div controller="HomeController">
+            <p>{{userEmail}}</p>
+        </div>
+    </div>

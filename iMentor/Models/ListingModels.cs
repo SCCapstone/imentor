@@ -16,6 +16,6 @@ namespace iMentor.Models
         public string Description { get; set; }
         public string Mentor { get; set; }
         public string URL { get; set; }
-        public int Open { get; set; }
+        public string Open { get; set; }
     }
 }

@@ -23,6 +23,6 @@ namespace iMentor
         public string Description { get; set; }
         public string Mentor { get; set; }
         public string URL { get; set; }
-        public byte[] Open { get; set; }
+        public string Open { get; set; }
     }
 }

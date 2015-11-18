@@ -13,6 +13,7 @@
         <AssociationConnector Association="MAST2015_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="MAST2015_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="MAST2015_dbModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MAST2015_dbModel.Listing" Width="1.5" PointX="3.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

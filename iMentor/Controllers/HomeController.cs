@@ -9,9 +9,11 @@ namespace iMentor.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
+        private MAST2015_dbEntities db = new MAST2015_dbEntities();
+
         public ActionResult Index()
         {
-            return View();
+            return View(db.AspNetUsers.ToList());
         }
 
         public ActionResult Secure()
@@ -23,9 +25,9 @@ namespace iMentor.Controllers
         //Testing SQL -> AngularJS code
         public String GetUser()
         {
-            MAST2015_dbEntities e = new MAST2015_dbEntities();
-            AspNetUser tempUser = e.AspNetUsers.First();
-            return tempUser.Email;
+            return null;
         }
+
+       
     }
 }

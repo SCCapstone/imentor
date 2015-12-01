@@ -17,8 +17,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44300</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <ApplicationInsightsResourceId>/subscriptions/bd51f58a-353c-459f-a686-57756a9c9e91/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/iMentor</ApplicationInsightsResourceId>
     <UseGlobalApplicationHostFile />

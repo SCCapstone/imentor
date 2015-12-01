@@ -11,6 +11,8 @@ HomeApp.controller('HomeController', function ($scope, HomeService) {
     //******************************//
     //          Functions           //
     //******************************//
+    
+
     function getUser() {
         HomeService.getUser()
             .success(function (userEmail) {

@@ -1,8 +1,14 @@
-﻿using System;
+﻿using iMentor.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace iMentor.Controllers
 {
@@ -13,7 +19,7 @@ namespace iMentor.Controllers
 
         public ActionResult Index()
         {
-            return View(db.AspNetUsers.ToList());
+            return View();
         }
 
         public ActionResult Secure()
@@ -23,11 +29,23 @@ namespace iMentor.Controllers
         }
 
         //Testing SQL -> AngularJS code
-        public String GetUser()
+        public string GetUser()
         {
-            return null;
+           
+
+             AspNetUser tempUser = db.AspNetUsers.First();
+             return tempUser.Email;
+
+            //string currentUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            //return currentUser.Email;
+
         }
 
-       
+   
+
+  
+    
+
+
     }
 }

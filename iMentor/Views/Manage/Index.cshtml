@@ -1,10 +1,18 @@
-﻿<script src="~/Modules/ManageClient.js"></script>
+﻿@using Microsoft.AspNet.Identity
+
+
+<script src="~/Modules/ManageClient.js"></script>
 
 <h2>Account</h2>
 
 <div ng-app="ManageApp" class="container">
     <div ng-controller="ManageController">
-        <p>{{message}}</p>
+        <div>
+            @User.Identity.GetUserName()
+        </div>
+        <div>
+            
+        </div>
+
     </div>
 </div>
-

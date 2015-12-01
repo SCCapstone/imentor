@@ -17,6 +17,7 @@ namespace iMentor.Controllers
     {
         private MAST2015_dbEntities db = new MAST2015_dbEntities();
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -41,7 +42,7 @@ namespace iMentor.Controllers
 
         }
 
-   
+        
 
   
     

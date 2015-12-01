@@ -16,6 +16,7 @@ namespace iMentor.Controllers
         private MAST2015_dbEntities db = new MAST2015_dbEntities();
 
         // GET: Listings
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Listings.ToList());
@@ -37,6 +38,7 @@ namespace iMentor.Controllers
         }
 
         // GET: Listings/Create
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +49,7 @@ namespace iMentor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create([Bind(Include = "Id,Title,Start_Date,End_Date,Area,Frequency,Description,Mentor,URL,Open")] Listing listing)
         {
             if (ModelState.IsValid)
@@ -67,6 +70,7 @@ namespace iMentor.Controllers
         }
 
         // GET: Listings/Edit/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

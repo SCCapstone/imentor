@@ -22,10 +22,11 @@ namespace iMentor.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -50,6 +51,15 @@ namespace iMentor.Controllers
             {
                 _userManager = value;
             }
+        }
+        private ApplicationRoleManager roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return this.roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set { this.roleManager = value; }
         }
 
         //

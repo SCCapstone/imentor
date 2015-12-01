@@ -30,6 +30,7 @@ namespace iMentor.Controllers
         }
 
         //Testing SQL -> AngularJS code
+        [AllowAnonymous]
         public string GetUser()
         {
            

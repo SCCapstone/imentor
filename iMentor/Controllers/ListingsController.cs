@@ -102,6 +102,7 @@ namespace iMentor.Controllers
         }
 
         // GET: Listings/Delete/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

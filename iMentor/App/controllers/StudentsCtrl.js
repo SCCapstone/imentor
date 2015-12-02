@@ -1,4 +1,4 @@
-﻿StudentsApp.controller('StudentsController', function ($scope, StudentsService) {
+﻿app.controller('studentsCtrl', function ($scope, StudentsService) {
 
     $scope.studentId = getStudent();
 

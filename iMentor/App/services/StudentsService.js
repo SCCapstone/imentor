@@ -1,10 +1,10 @@
-﻿StudentsApp.factory('StudentsService', ['$http', function ($http) {
-    var StudentsService = {};
+﻿app.factory('studentsService', ['$http', function ($http) {
+    var studentsService = {};
 
-    StudentsService.getStudent = function () {
+    studentsService.getStudent = function () {
         return $http.get('/Students/GetStudents');
     };
 
-    return StudentsService;
+    return studentsService;
 
 }]);

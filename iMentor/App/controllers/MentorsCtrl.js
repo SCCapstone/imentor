@@ -1,4 +1,4 @@
-﻿MentorsApp.controller('MentorsController', function ($scope, MentorsService) {
+﻿app.controller('mentorsCtrl', function ($scope, MentorsService) {
 
     $scope.mentorId = getMentor();
 

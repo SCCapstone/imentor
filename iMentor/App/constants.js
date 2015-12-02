@@ -1,0 +1,1 @@
+﻿var SESSKEY_CURRUSER = "CurrUser";

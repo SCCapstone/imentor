@@ -1,25 +1,20 @@
-﻿HomeApp.controller('HomeController', function ($scope, HomeService) {
+﻿'use strict';
 
-    $scope.userEmail = getUser();
-    $scope.message = "Is that you, AngularJS?";
+app.controller('homeCtrl',
+    function ($scope, $rootScope, $location, $log, homeService) {
+        $scope.userEmail = getUser();
+        $scope.message = "Is that you, AngularJS?";
+
+        //******************************//
+        //          Functions           //
+        //******************************//
 
 
-
-
-    //******************************//
-    //          Functions           //
-    //******************************//
-
-
-    function getUser() {
-        HomeService.getUser()
-            .success(function (userEmail) {
-                $scope.userEmail = userEmail;
-                console.log($scope.userEmail);
-            })
-            .error(function (error) {
-                $scope.status = 'Unable to load user data: ' + error.message;
-                console.log($scope.status);
-            });
+        function getUser() {
+            homeService.getUser()
+                .success(function (userEmail) {
+                    $scope.userEmail = userEmail;
+                })
+        }
     }
-});
+);

@@ -1,4 +1,4 @@
-﻿ManageApp.controller('ManageController', function ($scope, ManageService) {
+﻿app.controller('manageCtrl', function ($scope, ManageService) {
 
     $scope.message = "Change your account settings";
 

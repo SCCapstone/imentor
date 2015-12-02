@@ -1,12 +1,4 @@
-﻿using iMentor.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -35,25 +27,11 @@ namespace iMentor.Controllers
             return View(roleNames);
         }
 
-        //Testing SQL -> AngularJS code
         [AllowAnonymous]
         public string GetUser()
         {
-           
-
-             AspNetUser tempUser = db.AspNetUsers.First();
-             return tempUser.Email;
-
-            //string currentUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            //return currentUser.Email;
-
+            AspNetUser tempUser = db.AspNetUsers.First();
+            return tempUser.UserName;
         }
-
-        
-
-  
-    
-
-
     }
 }

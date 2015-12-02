@@ -268,7 +268,6 @@
     <Content Include="App\controllers\ManageCtrl.js" />
     <Content Include="App\controllers\MentorsCtrl.js" />
     <Content Include="App\controllers\StudentsCtrl.js" />
-    <Content Include="App\services\HomeService.js" />
     <Content Include="App\services\ManageService.js" />
     <Content Include="App\services\MentorsService.js" />
     <Content Include="App\services\StudentsService.js" />

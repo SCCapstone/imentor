@@ -23,6 +23,7 @@ namespace iMentor.Controllers
         }
 
         // GET: Listings/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

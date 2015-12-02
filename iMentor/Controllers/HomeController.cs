@@ -29,6 +29,12 @@ namespace iMentor.Controllers
             return View();
         }
 
+        public ActionResult ShowUserRoles()
+        {
+            string[] roleNames = Roles.GetRolesForUser();
+            return View(roleNames);
+        }
+
         //Testing SQL -> AngularJS code
         [AllowAnonymous]
         public string GetUser()

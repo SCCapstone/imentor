@@ -225,8 +225,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MentorsController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>iMentorModel.tt</DependentUpon>
     </Compile>
@@ -251,11 +249,6 @@
     <Compile Include="Listing.cs">
       <DependentUpon>iMentorModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512012324528_Initial.cs" />
-    <Compile Include="Migrations\201512012324528_Initial.Designer.cs">
-      <DependentUpon>201512012324528_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListingModels.cs" />
@@ -366,9 +359,6 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Mentors\Index.cshtml" />
-    <Content Include="Views\Students\Index.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Listings\Create.cshtml" />
     <Content Include="Views\Listings\Delete.cshtml" />
     <Content Include="Views\Listings\Details.cshtml" />
@@ -384,11 +374,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512012324528_Initial.resx">
-      <DependentUpon>201512012324528_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

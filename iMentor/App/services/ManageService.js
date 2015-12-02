@@ -1,5 +1,7 @@
-﻿app.factory('manageService', function (apiService) {
-    var manageService = {};
+﻿ManageApp.factory('ManageService', ['$http', function ($http) {
+    var ManageService = {};
 
-    return manageService;
-});
+
+
+    return ManageService;
+}]);

@@ -1,10 +1,10 @@
-﻿app.factory('mentorsService', ['$http', function ($http) {
-    var mentorsService = {};
+﻿MentorsApp.factory('MentorsService', ['$http', function ($http) {
+    var MentorsService = {};
 
-    mentorsService.getMentor = function () {
+    MentorsService.getMentor = function () {
         return $http.get('/Mentors/GetMentor');
     };
 
-    return mentorsService;
+    return MentorsService;
 
 }]);

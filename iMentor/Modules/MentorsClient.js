@@ -1,5 +1,7 @@
-﻿MentorsApp.controller('MentorsController', function ($scope, MentorsService) {
+﻿var MentorsApp = angular.module('MentorsApp', [])
 
+MentorsApp.controller('MentorsController', function ($scope, MentorsService) {
+ 
     $scope.mentorId = getMentor();
 
 
@@ -18,3 +20,14 @@
             });
     }
 });
+ 
+MentorsApp.factory('MentorsService', ['$http', function ($http) {
+    var MentorsService = {};
+
+    MentorsService.getMentor = function () {
+        return $http.get('/Mentors/GetMentor');
+    };
+
+    return MentorsService;
+ 
+}]);

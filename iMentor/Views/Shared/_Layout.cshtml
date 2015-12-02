@@ -1,57 +1,55 @@
 ﻿<!DOCTYPE html>
-<html ng-app="app">
-
-    <head>
-        <title>iMentor</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-        <meta http-equiv="Pragma" content="no-cache" />
-
-        @Styles.Render("~/bundles/content")
-
-    </head>
-
-    <body ng-controller="indexCtrl" ng-cloak>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("iMentor", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Listings", "Index", "Listings")</li>
-                        <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title iMentor</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        var appInsights=window.appInsights||function(config){
+            function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+        }({
+            instrumentationKey:"56412eac-0649-4331-81f8-2ee8dae12c9e"
+        });
+        
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("iMentor", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+      
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Listings", "Index", "Listings")</li>
+                    <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
+    </div>
 
-            <div class="container body-content">
-                @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - iMentor</p>
-                </footer>
-            </div>
-        </div>
-
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/angular")
-        @Scripts.Render("~/bundles/app")
-        @Scripts.Render("~/bundles/appServices")
-        @Scripts.Render("~/bundles/appControllers")
-
-    </body>
-
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - iMentor</p>
+        </footer>
+    </div>
+</body>
 </html>

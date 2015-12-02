@@ -1,10 +1,12 @@
-﻿
+﻿<script src="~/Modules/HomeClient.js"></script>
+
 <div class="jumbotron">
     <p>iMentor</p>
 </div>
 
-<div ng-controller="homeCtrl" class="ngview-wrapper">
-    <div class="ngview-body" style="padding-top:25px">
+
+<div ng-app="HomeApp" class="container">
+    <div ng-controller="HomeController">
         <p>Database Access: {{userEmail}}</p>
         <p>Message: {{message}}</p>
         <p>Function test: 1 + 4 = {{ 1 + 4 }}</p>

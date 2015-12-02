@@ -1,15 +1,17 @@
-﻿HomeApp.controller('HomeController', function ($scope, HomeService) {
+﻿var HomeApp = angular.module('HomeApp', [])
 
+HomeApp.controller('HomeController', function ($scope, HomeService) {
+ 
     $scope.userEmail = getUser();
     $scope.message = "Is that you, AngularJS?";
 
 
-
+    
 
     //******************************//
     //          Functions           //
     //******************************//
-
+    
 
     function getUser() {
         HomeService.getUser()
@@ -23,3 +25,13 @@
             });
     }
 });
+ 
+HomeApp.factory('HomeService', ['$http', function ($http) {
+ 
+    var HomeService = {};
+    HomeService.getUser = function () {
+        return $http.get('/Home/GetUser');
+    };
+    return HomeService;
+ 
+}]);

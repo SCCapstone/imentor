@@ -1,5 +1,7 @@
-﻿StudentsApp.controller('StudentsController', function ($scope, StudentsService) {
+﻿var StudentsApp = angular.module('StudentsApp', [])
 
+StudentsApp.controller('StudentsController', function ($scope, StudentsService) {
+ 
     $scope.studentId = getStudent();
 
 
@@ -18,3 +20,14 @@
             });
     }
 });
+ 
+StudentsApp.factory('StudentsService', ['$http', function ($http) {
+    var StudentsService = {};
+
+    StudentsService.getStudent = function () {
+        return $http.get('/Students/GetStudents');
+    };
+
+    return StudentsService;
+ 
+}]);

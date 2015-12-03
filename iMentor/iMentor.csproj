@@ -294,6 +294,7 @@
       <DependentUpon>iMentorModel.edmx</DependentUpon>
       <LastGenOutput>iMentorModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Img\fire.gif" />
     <Content Include="Modules\HomeClient.js" />
     <Content Include="Modules\ManageClient.js" />
     <Content Include="Modules\MentorsClient.js" />

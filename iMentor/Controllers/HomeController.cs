@@ -39,21 +39,8 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         public string GetUser()
         {
-           
-
-             AspNetUser tempUser = db.AspNetUsers.First();
-             return tempUser.Email;
-
-            //string currentUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            //return currentUser.Email;
-
+             AspNetUser tempUser = db.AspNetUsers.FirstOrDefault();
+             return tempUser.UserName;
         }
-
-        
-
-  
-    
-
-
     }
 }

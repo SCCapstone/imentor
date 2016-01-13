@@ -7,13 +7,14 @@ using System.Web.Mvc;
 namespace iMentor.Controllers
 {
     [RequireHttps]
+    [RoutePrefix("api/Home")]
     public class HomeController : Controller
     {
         private MAST2015_dbEntities db = new MAST2015_dbEntities();
 
         public ActionResult Index()
         {
-            return View(db.AspNetUsers.ToList());
+            return View();
         }
 
         public ActionResult Secure()
@@ -23,11 +24,10 @@ namespace iMentor.Controllers
         }
 
         //Testing SQL -> AngularJS code
+        [HttpGet, Route("getuser")]
         public String GetUser()
         {
-            return null;
+            return db.AspNetUsers.First().Email;
         }
-
-       
     }
 }

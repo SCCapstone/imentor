@@ -27,17 +27,16 @@ app.controller('indexCtrl',
 
         $scope.goToHome = function () {
             
-            $location.path('/home');
-            console.log($location.path());
+            $location.path('/home/');
         };
 
-        $scope.goToManage = function () {
-            $location.path('/manage');
+        $scope.goToListings = function () {
+            $location.path('/listings/');
         };
 
         $scope.goToLogin = function ()
         {
-            $location.path('/Account/Login');
+            $location.path('/Account/Login/');
         }
     }
 );

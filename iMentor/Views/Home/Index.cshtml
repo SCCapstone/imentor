@@ -10,9 +10,6 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
 
-    <!-- load fontawesome via CDN-->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
-
     @Styles.Render("~/bundles/content")
 </head>
 <body ng-controller="indexCtrl" ng-cloak>
@@ -24,9 +21,9 @@
                 </div>
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-                    <li><a href="#listings"><i class="fa fa-list"></i>Listings</a></li>
-                    <li><a href="#roles"><i class="fa fa-users"></i>Roles</a></li>
+                    <li><a href="" ng-click="goToHome()"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                    <li><a href="" ng-click="goToListings()"><i class="glyphicon glyphicon-list-alt"></i> Listings</a></li>
+                    <li><a href="" ng-click="goToRoles()"><i class="glyphicon glyphicon-users"></i> Roles</a></li>
                 </ul>
             </div>
         </nav>

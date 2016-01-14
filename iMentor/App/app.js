@@ -1,4 +1,7 @@
-﻿var rootUrl = '/';
+﻿'use strict';
+
+
+var rootUrl = '/';
 
 var app = angular.module('app', [
     'ngRoute',
@@ -10,19 +13,19 @@ app.config(function ($routeProvider){
     $routeProvider
         .when('/', 
         { 
-            templateUrl: 'home/home', 
+            templateUrl: rootUrl + 'home/', 
             controller: 'homeCtrl' 
         })
 
         .when('/login', 
             {
-                templateUrl: '/login',
+                templateUrl: 'login/',
                 controller: 'loginCtrl'
             })
 
         .when('/listings',
         {
-            templateUrl: 'listings/index',
+            templateUrl: rootUrl + 'listings/index/',
             controller: 'listingsCtrl'
         })
 

@@ -267,6 +267,7 @@
     <Content Include="App\controllers\ListingsCtrl.js" />
     <Content Include="App\controllers\LoginCtrl.js" />
     <Content Include="App\controllers\Manage\ManageCtrl.js" />
+    <Content Include="App\directives\iMentorDirectives.js" />
     <Content Include="App\services\AccountService.js" />
     <Content Include="App\services\ApiService.js" />
     <Content Include="App\services\HomeService.js" />
@@ -1125,6 +1126,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Templates\ListingTile.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -33,8 +33,8 @@ namespace iMentor
             
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/App/constants.js",
-                 "~/App/app.js"
-                 ));
+                "~/App/app.js"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/appControllers")
                 .IncludeDirectory("~/App/Controllers", "*.js", true)

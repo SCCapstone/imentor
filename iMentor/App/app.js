@@ -1,57 +1,38 @@
 ﻿'use strict';
 
-var rootUrl = '/';
-
 var app = angular.module('app', [
     'ngRoute',
     'ngAnimate',
     'ui.bootstrap'
 ])
 
-app.config(function ($routeProvider){
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider)
+{
     $routeProvider
-        .when('/', 
-        { 
-            redirectTo: '/home'
-        })
-
-        .when('/home',
-        {
-            templateUrl: rootUrl + "home/listings",
-            controller: 'homeCtrl'
-        })
-
-        .when('/login', 
-            {
-                templateUrl: 'login/',
-                controller: 'loginCtrl'
-            })
-
-        .when('/listings',
-        {
-            templateUrl: rootUrl + 'listings/index/',
-            controller: 'listingsCtrl'
-        })
-
+        .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
+        .when('/Login', { templateUrl: 'login/', controller: 'loginCtrl' })
+        .when('/Listings', { templateUrl: 'home/listings', controller: 'listingsCtrl' })
         .otherwise({ redirectTo: '/' });
-});
 
-app.run([
-    '$rootScope', '$log', '$location',
-        function ($rootScope, $log, $location) {
+    $locationProvider.html5Mode(false).hashPrefix('!');
+}]);
+
+//app.run([
+//    '$rootScope', '$log', '$location',
+//        function ($rootScope, $log, $location) {
             
 
-            // Route change
-            $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
-                var locationPath = $location.path();
+//            // Route change
+//            $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
+//                var locationPath = $location.path();
 
-                $location.path('/');
+//                $location.path('/');
 
-                // Set the selected nav based on the url
-                $rootScope.selectedNav = getSelectedNav(locationPath);
-            });
-        }
-]);
+//                // Set the selected nav based on the url
+//                $rootScope.selectedNav = getSelectedNav(locationPath);
+//            });
+//        }
+//]);
 
 
 function getSelectedNav(url) {

@@ -25,18 +25,18 @@ app.controller('indexCtrl',
         // Navigation
         //---------------------------------------------------
 
-        $scope.goToHome = function () {
-            
-            $location.path('/home/');
+        $scope.goToHome = function ()
+        {
+            $location.path('/');
         };
 
         $scope.goToListings = function () {
-            $location.path('/listings/');
+            $location.path('/Listings');
         };
 
         $scope.goToLogin = function ()
         {
-            $location.path('/Account/Login/');
+            $location.path('/Account/Login');
         }
     }
 );

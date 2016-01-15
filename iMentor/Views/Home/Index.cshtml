@@ -1,45 +1,43 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html ng-app="app">
+    <head>
+        <title>iMentor</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
 
-<head>
-    <title>iMentor</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
+        @Styles.Render("~/bundles/content")
+    </head>
+    <body ng-controller="indexCtrl" ng-cloak>
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#/">iMentor</a>
+                    </div>
 
-    @Styles.Render("~/bundles/content")
-</head>
-<body ng-controller="indexCtrl" ng-cloak>
-    <header>
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">iMentor</a>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="" ng-click="goToHome()"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                        <li><a href="" ng-click="goToListings()"><i class="glyphicon glyphicon-list-alt"></i> Listings</a></li>
+                    </ul>
                 </div>
-
-                <ul class="nav navbar-nav navbar-left">
-                    <li><a href="" ng-click="goToHome()"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                    <li><a href="" ng-click="goToListings()"><i class="glyphicon glyphicon-list-alt"></i> Listings</a></li>
-                    <li><a href="" ng-click="goToRoles()"><i class="glyphicon glyphicon-users"></i> Roles</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
 
-    <div id="main-content">
-        <div ng-view></div>
-    </div>
+        <div id="main-content">
+            <div ng-view></div>
+        </div>
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/app")
-    @Scripts.Render("~/bundles/appServices")
-    @Scripts.Render("~/bundles/appControllers")
-</body>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/app")
+        @Scripts.Render("~/bundles/appServices")
+        @Scripts.Render("~/bundles/appControllers")
+    </body>
 </html>

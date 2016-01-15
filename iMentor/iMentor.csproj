@@ -264,7 +264,7 @@
     <Content Include="App\constants.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js" />
     <Content Include="App\controllers\IndexCtrl.js" />
-    <Content Include="App\controllers\ListingsCtrl.js" />
+    <Content Include="App\controllers\Home\ListingsCtrl.js" />
     <Content Include="App\controllers\LoginCtrl.js" />
     <Content Include="App\controllers\Manage\ManageCtrl.js" />
     <Content Include="App\directives\iMentorDirectives.js" />
@@ -272,7 +272,6 @@
     <Content Include="App\services\ApiService.js" />
     <Content Include="App\services\HomeService.js" />
     <Content Include="App\services\SecurityService.js" />
-    <Content Include="App\services\StudentService.js" />
     <Content Include="App\services\UrlService.js" />
     <Content Include="Content\bootstrap-theme.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1135,7 +1134,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\Listings.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -1152,6 +1150,8 @@
     <Content Include="Views\Listings\Index.cshtml" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Listings.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

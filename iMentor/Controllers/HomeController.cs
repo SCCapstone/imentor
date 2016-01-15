@@ -17,6 +17,16 @@ namespace iMentor.Controllers
             return View();
         }
 
+        public ActionResult Home()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Listings()
+        {
+            return PartialView();
+        }
+
         public ActionResult Secure()
         {
             ViewBag.Message = "Secure page.";

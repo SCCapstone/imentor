@@ -1,6 +1,5 @@
 ﻿'use strict';
 
-
 var rootUrl = '/';
 
 var app = angular.module('app', [
@@ -13,8 +12,13 @@ app.config(function ($routeProvider){
     $routeProvider
         .when('/', 
         { 
-            templateUrl: rootUrl + 'home/', 
-            controller: 'homeCtrl' 
+            redirectTo: '/home'
+        })
+
+        .when('/home',
+        {
+            templateUrl: rootUrl + "home/listings",
+            controller: 'homeCtrl'
         })
 
         .when('/login', 

@@ -271,7 +271,6 @@
     <Content Include="App\services\AccountService.js" />
     <Content Include="App\services\ApiService.js" />
     <Content Include="App\services\HomeService.js" />
-    <Content Include="App\services\ManageService.js" />
     <Content Include="App\services\SecurityService.js" />
     <Content Include="App\services\StudentService.js" />
     <Content Include="App\services\UrlService.js" />
@@ -1136,7 +1135,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Listings.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />

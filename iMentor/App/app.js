@@ -17,23 +17,6 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     $locationProvider.html5Mode(false).hashPrefix('!');
 }]);
 
-//app.run([
-//    '$rootScope', '$log', '$location',
-//        function ($rootScope, $log, $location) {
-            
-
-//            // Route change
-//            $rootScope.$on('$locationChangeStart', function (event, newUrl, oldUrl) {
-//                var locationPath = $location.path();
-
-//                $location.path('/');
-
-//                // Set the selected nav based on the url
-//                $rootScope.selectedNav = getSelectedNav(locationPath);
-//            });
-//        }
-//]);
-
 
 function getSelectedNav(url) {
     return '/';

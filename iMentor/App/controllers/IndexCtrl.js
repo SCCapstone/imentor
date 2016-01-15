@@ -36,7 +36,7 @@ app.controller('indexCtrl',
 
         $scope.goToLogin = function ()
         {
-            $location.path('/Account/Login');
+            $location.path('/Login');
         }
     }
 );

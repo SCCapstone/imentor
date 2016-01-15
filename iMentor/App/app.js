@@ -10,8 +10,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 {
     $routeProvider
         .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
-        .when('/Login', { templateUrl: 'login/', controller: 'loginCtrl' })
-        .when('/Listings', { templateUrl: 'home/listings', controller: 'listingsCtrl' })
+        .when('/Login', { templateUrl: 'account/login', controller: 'loginCtrl' })
+        .when('/Listings', { templateUrl: 'listings/index', controller: 'listingsCtrl' })
         .otherwise({ redirectTo: '/' });
 
     $locationProvider.html5Mode(false).hashPrefix('!');

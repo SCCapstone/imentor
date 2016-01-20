@@ -12,7 +12,7 @@
         @Styles.Render("~/bundles/content")
     </head>
     <body ng-controller="indexCtrl" ng-cloak>
-        <header>
+        <div id="main-header">
             <nav class="navbar navbar-default">
                 <div class="container">
                     <div class="navbar-header">
@@ -20,19 +20,24 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-left">
-                        <li><a href="" ng-click="goToHome()"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                        <li><a href="" ng-click="goToHome()"><i class="glyphicon glyphicon-home"></i> Home </a></li>
                         <li><a href="" ng-click="goToListings()"><i class="glyphicon glyphicon-list-alt"></i> Listings</a></li>
                     </ul>
 
                     @Html.Partial("_LoginPartial")
                 </div>
             </nav>
-        </header>
+        </div>
 
 
         <div id="main-content">
-            <div ng-view></div>
+            <div div style="width:100%" ng-view class="ngview-fade"></div>
         </div>
+
+
+        <footer class="container-fluid">
+            <p>Footer Text</p>
+        </footer>
 
 
         @Scripts.Render("~/bundles/jquery")

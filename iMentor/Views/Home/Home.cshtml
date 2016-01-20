@@ -1,5 +1,39 @@
 ﻿<div class="ngview-wrapper">
     <div class="ngview-body" style="padding-top:25px;">
-        <p>{{message}}</p>
+
+            <div class="container-fluid">
+                <div class="row content">
+
+                    <div class="col-sm-3">
+                        <!--Filters-->
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <input type="checkbox" ng-click="includeSubject('Math')" /> Math<br/>
+                                <input type="checkbox" ng-click="includeSubject('Science')" /> Science<br/>
+                                <input type="checkbox" ng-click="includeSubject('History')" /> History<br/>
+                                <input type="checkbox" ng-click="includeSubject('Reading')" /> Reading<br/>
+
+                                Filter dump: {{subjectsIncludes}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <!--Panels-->
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <ul>
+                                    <li ng-repeat="s in subjects | filter:subjectFilter">
+                                        {{s.name}}
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>

@@ -4,10 +4,10 @@ app.controller('homeCtrl',
     function ($scope, $rootScope, $location, $log, homeService)
     {
         $scope.subjects = [
-            { 'name': 'Math' },
-            { 'name': 'Science' },
-            { 'name': 'History' },
-            { 'name': 'Reading' }];
+            { 'subject': 'Math' },
+            { 'subject': 'Science' },
+            { 'subject': 'History' },
+            { 'subject': 'Reading' }];
 
         $scope.subjectsIncludes = [];
 
@@ -29,5 +29,15 @@ app.controller('homeCtrl',
 
             return subjects;
         }
+
+
+        $scope.selectListing = function (listing) {
+            $scope.showListingDetail(listing);
+        };
+
+        $scope.showListingDetail = function (listing) {
+            //Modal popup
+            console.log("Listing Information");
+        };
     }
 );

@@ -9,12 +9,13 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
 
-                                <input type="checkbox" ng-click="includeSubject('Math')" /> Math<br/>
-                                <input type="checkbox" ng-click="includeSubject('Science')" /> Science<br/>
-                                <input type="checkbox" ng-click="includeSubject('History')" /> History<br/>
-                                <input type="checkbox" ng-click="includeSubject('Reading')" /> Reading<br/>
-
-                                Filter dump: {{subjectsIncludes}}
+                                <div>
+                                    Subjects<br />
+                                    <input type="checkbox" ng-click="includeSubject('Math')" /> Math<br />
+                                    <input type="checkbox" ng-click="includeSubject('Science')" /> Science<br />
+                                    <input type="checkbox" ng-click="includeSubject('History')" /> History<br />
+                                    <input type="checkbox" ng-click="includeSubject('Reading')" /> Reading<br />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -24,11 +25,8 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
 
-                                <ul>
-                                    <li ng-repeat="s in subjects | filter:subjectFilter">
-                                        {{s.name}}
-                                    </li>
-                                </ul>
+                                <div ng-repeat="s in subjects | filter:subjectFilter" listing-tile listing="listing" ng-click="selectComponent(s)">
+                                </div>
 
                             </div>
                         </div>

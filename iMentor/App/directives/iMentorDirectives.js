@@ -1,5 +1,5 @@
 ﻿angular.module('iMentor.directives', [])
-    .directive('imListingTile', function ($rootScope) {
+    .directive('listingTile', function ($rootScope) {
         return {
             restrict: 'A',
 
@@ -10,7 +10,10 @@
             templateUrl: rootUrl + 'templates/ListingTile.html',
 
             link: function (scope, elem, attrs) {
+                scope.titleClass = '';
+                scope.title = null;
 
+                scope.title = listing.subject;
             }
         };
     })

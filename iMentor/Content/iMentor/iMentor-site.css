@@ -1,0 +1,101 @@
+﻿html, body {
+	height: 100%;
+	margin: 0px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.listing-tile {
+	float: left;
+	width: 175px;
+	height: 28px;
+	border-radius: 3px;
+	margin: 4px 14px 10px 0;
+	font-size: 11px;
+	background-color: #F5F7FF;
+}
+
+	.listing-tile:first-child {
+		margin-top: 8px;
+	}
+
+	.listing-tile:hover {
+		background-color: #EDF0FF;
+	}
+
+	.listing-tile:before {
+		margin: 4px 4px 4px 0;
+	}
+
+	.listing-tile:after {
+		margin: 4px 0 4px 4px;
+	}
+
+.listing-tile-content {
+	padding: 5px 5px 3px 5px;
+}
+
+.listing-tile-iconleft {
+	float: left;
+	margin-right: 6px;
+}
+
+.listing-tile-title {
+	float: left;
+	font-size: 12px;
+	width: 100px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: left;
+}
+
+	.listing-tile-title.disabled {
+		color: #777777;
+	}
+
+.listing-tile-tooltip {
+	font-size: 12px;
+	min-width: 100px;
+	max-width: 250px;
+}
+
+.listing-tile-tooltip-title {
+	white-space: nowrap;
+	overflow: hidden;
+	word-wrap: normal;
+	background: #FAFAFA;
+	border-bottom: 1px solid gainsboro;
+	height: 30px;
+	padding: 6px 8px;
+}
+
+.listing-tile-tooltip-body {
+	padding: 0 2px 8px;
+}
+
+.listing-tile-tooltip-row {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 8px 0 0 6px;
+}

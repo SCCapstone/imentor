@@ -1,4 +1,4 @@
-﻿@model IEnumerable<iMentor.Listing>
+﻿@model IEnumerable<iMentor.Models.ListingModels>
 
 @{
     ViewBag.Title = "Index";
@@ -15,10 +15,10 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Start_Date)
+            @Html.DisplayNameFor(model => model.StartDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.End_Date)
+            @Html.DisplayNameFor(model => model.EndDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Area)
@@ -26,15 +26,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Frequency)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Mentor)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.URL)
-        </th>*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Open)
         </th>
@@ -47,10 +47,10 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Start_Date)
+            @Html.DisplayFor(modelItem => item.StartDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.End_Date)
+            @Html.DisplayFor(modelItem => item.EndDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Area)
@@ -58,22 +58,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.Frequency)
         </td>
-        @*<td>
+        <td>
             @Html.DisplayFor(modelItem => item.Description)
-        </td>*@
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Mentor)
         </td>
-        @*<td>
+        <td>
             @Html.DisplayFor(modelItem => item.URL)
-        </td>*@
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Open)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

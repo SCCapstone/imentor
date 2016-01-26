@@ -30,5 +30,7 @@ namespace iMentor.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<iMentor.Models.ListingModels> ListingModels { get; set; }
     }
 }

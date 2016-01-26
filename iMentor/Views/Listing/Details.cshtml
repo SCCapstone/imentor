@@ -1,4 +1,4 @@
-﻿@model iMentor.Listing
+﻿@model iMentor.Models.ListingModels
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Listing</h4>
+    <h4>ListingModels</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,19 +19,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Start_Date)
+            @Html.DisplayNameFor(model => model.StartDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Start_Date)
+            @Html.DisplayFor(model => model.StartDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.End_Date)
+            @Html.DisplayNameFor(model => model.EndDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.End_Date)
+            @Html.DisplayFor(model => model.EndDate)
         </dd>
 
         <dt>
@@ -85,6 +85,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

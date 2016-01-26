@@ -10,7 +10,6 @@ namespace iMentor.Controllers
     [RoutePrefix("api/Home")]
     public class HomeController : Controller
     {
-        private MAST2015_dbEntities db = new MAST2015_dbEntities();
 
         public ActionResult Index()
         {
@@ -33,11 +32,5 @@ namespace iMentor.Controllers
             return View();
         }
 
-        //Testing SQL -> AngularJS code
-        [HttpGet, Route("getuser")]
-        public String GetUser()
-        {
-            return db.AspNetUsers.First().Email;
-        }
     }
 }

@@ -12,18 +12,18 @@ app.controller('homeCtrl',
         $scope.subjectsIncludes = [];
 
 
-        $scope.includeSubject = function (name) {
-            var i = $.inArray(name, $scope.subjectsIncludes);
+        $scope.includeSubject = function (subject) {
+            var i = $.inArray(subject, $scope.subjectsIncludes);
             if (i > -1) {
                 $scope.subjectsIncludes.splice(i, 1);
             } else {
-                $scope.subjectsIncludes.push(name);
+                $scope.subjectsIncludes.push(subject);
             }
         }
 
         $scope.subjectFilter = function (subjects) {
             if ($scope.subjectsIncludes.length > 0) {
-                if ($.inArray(subjects.name, $scope.subjectsIncludes) < 0)
+                if ($.inArray(subjects.subject, $scope.subjectsIncludes) < 0)
                     return;
             }
 

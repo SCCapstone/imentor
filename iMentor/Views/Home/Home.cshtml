@@ -25,7 +25,8 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
 
-                                <div ng-repeat="s in subjects | filter:subjectFilter" listing-tile listing="listing" ng-click="selectComponent(s)">
+                                <div ng-repeat="s in subjects | filter:subjectFilter" listing-tile listing="listing" ng-click="selectListing(s)">
+                                    {{s.subject}}
                                 </div>
 
                             </div>

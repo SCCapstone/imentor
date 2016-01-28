@@ -9,7 +9,7 @@ namespace iMentor.Models
 {
     public class ListingModels
     {
-        public int ListingID { get; set; }
+        public int ID { get; set; }
         public string Title { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }

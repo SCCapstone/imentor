@@ -11,16 +11,19 @@ namespace iMentor.Controllers
     public class HomeController : Controller
     {
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Home()
         {
             return PartialView();
         }
 
+        [AllowAnonymous]
         public ActionResult Listings()
         {
             return PartialView();

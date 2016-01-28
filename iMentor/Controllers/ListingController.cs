@@ -15,12 +15,14 @@ namespace iMentor.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Listing
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.ListingModels.ToList());
         }
 
         // GET: Listing/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace iMentor.Controllers
         }
 
         // GET: Listing/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace iMentor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Create([Bind(Include = "ID,Title,StartDate,EndDate,Area,Frequency,Description,Mentor,URL,Open")] ListingModels listingModels)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace iMentor.Controllers
         }
 
         // GET: Listing/Edit/5
+        [AllowAnonymous]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace iMentor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Edit([Bind(Include = "ID,Title,StartDate,EndDate,Area,Frequency,Description,Mentor,URL,Open")] ListingModels listingModels)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace iMentor.Controllers
         }
 
         // GET: Listing/Delete/5
+        [AllowAnonymous]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace iMentor.Controllers
         // POST: Listing/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult DeleteConfirmed(int id)
         {
             ListingModels listingModels = db.ListingModels.Find(id);

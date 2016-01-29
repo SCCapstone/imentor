@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iMentor", "iMentor\iMentor.csproj", "{0E3F7E99-8CA6-41A9-A21B-3CB9FA79EC52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{B083A05C-5BF6-4BBC-8947-FD8B253C57AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0E3F7E99-8CA6-41A9-A21B-3CB9FA79EC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3F7E99-8CA6-41A9-A21B-3CB9FA79EC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E3F7E99-8CA6-41A9-A21B-3CB9FA79EC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B083A05C-5BF6-4BBC-8947-FD8B253C57AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B083A05C-5BF6-4BBC-8947-FD8B253C57AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B083A05C-5BF6-4BBC-8947-FD8B253C57AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B083A05C-5BF6-4BBC-8947-FD8B253C57AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

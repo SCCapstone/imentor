@@ -11,6 +11,8 @@ app.controller('homeCtrl',
 
         $scope.subjectsIncludes = [];
 
+        $scope.imagePath = 'img/iMentor_lg.png';
+
 
         $scope.includeSubject = function (subject) {
             var i = $.inArray(subject, $scope.subjectsIncludes);

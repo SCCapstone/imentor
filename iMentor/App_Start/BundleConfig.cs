@@ -10,6 +10,7 @@ namespace iMentor
         {
             bundles.Add(new StyleBundle("~/bundles/content").IncludeDirectory("~/Content", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/iMentor").IncludeDirectory("~/Content/iMentor", "*.css", false));
+            bundles.Add(new StyleBundle("~/bundles/content/ngMaterial").IncludeDirectory("~/Scripts/node_modules/angular-material", "*.css", false));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js"));
@@ -26,8 +27,11 @@ namespace iMentor
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-animate.js",
+                "~/Scripts/node_modules/angular-aria/angular-aria.js",
                 "~/Scripts/angular-bootstrap.js",
                 "~/Scripts/angular-route.js",
+                "~/Scripts/angular-messages.js",
+                "~/Scripts/node_modules/angular-material/angular-material.js",
                 "~/Scripts/ng-grid.js",
                 "~/Scripts/ui-bootstrap-tpls-{version}.js"
                 ));

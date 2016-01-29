@@ -3,6 +3,8 @@
 var app = angular.module('app', [
     'ngRoute',
     'ngAnimate',
+    'ngMaterial',
+    'ngMessages',
     'ui.bootstrap'
 ])
 

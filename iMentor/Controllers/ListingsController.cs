@@ -10,19 +10,17 @@ using iMentor.Models;
 
 namespace iMentor.Controllers
 {
-    public class ListingController : Controller
+    public class ListingsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Listing
-        [AllowAnonymous]
+        // GET: Listings
         public ActionResult Index()
         {
             return View(db.ListingModels.ToList());
         }
 
-        // GET: Listing/Details/5
-        [AllowAnonymous]
+        // GET: Listings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,20 +35,18 @@ namespace iMentor.Controllers
             return View(listingModels);
         }
 
-        // GET: Listing/Create
-        [AllowAnonymous]
+        // GET: Listings/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Listing/Create
+        // POST: Listings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
-        public ActionResult Create([Bind(Include = "ID,Title,StartDate,EndDate,Area,Frequency,Description,Mentor,URL,Open")] ListingModels listingModels)
+        public ActionResult Create([Bind(Include = "ID,Title,StartDate,EndDate,Area,Frequency,Description,Mentor,Email,URL,Open")] ListingModels listingModels)
         {
             if (ModelState.IsValid)
             {
@@ -62,8 +58,7 @@ namespace iMentor.Controllers
             return View(listingModels);
         }
 
-        // GET: Listing/Edit/5
-        [AllowAnonymous]
+        // GET: Listings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,13 +73,12 @@ namespace iMentor.Controllers
             return View(listingModels);
         }
 
-        // POST: Listing/Edit/5
+        // POST: Listings/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
-        public ActionResult Edit([Bind(Include = "ID,Title,StartDate,EndDate,Area,Frequency,Description,Mentor,URL,Open")] ListingModels listingModels)
+        public ActionResult Edit([Bind(Include = "ID,Title,StartDate,EndDate,Area,Frequency,Description,Mentor,Email,URL,Open")] ListingModels listingModels)
         {
             if (ModelState.IsValid)
             {
@@ -95,8 +89,7 @@ namespace iMentor.Controllers
             return View(listingModels);
         }
 
-        // GET: Listing/Delete/5
-        [AllowAnonymous]
+        // GET: Listings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,10 +104,9 @@ namespace iMentor.Controllers
             return View(listingModels);
         }
 
-        // POST: Listing/Delete/5
+        // POST: Listings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
         public ActionResult DeleteConfirmed(int id)
         {
             ListingModels listingModels = db.ListingModels.Find(id);

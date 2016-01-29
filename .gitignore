@@ -211,3 +211,5 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 iMentor/Properties/PublishProfiles/MAST.pubxml
+iMentor/.bin/node.cmd
+iMentor/.bin/git.cmd

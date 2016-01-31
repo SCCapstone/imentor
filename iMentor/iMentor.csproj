@@ -255,6 +255,7 @@
     <Content Include=".bin\Google.GData.Extensions.dll" />
     <Content Include="App\app.js" />
     <Content Include="App\constants.js" />
+    <Content Include="App\controllers\Home\CalendarCtrl.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js" />
     <Content Include="App\controllers\IndexCtrl.js" />
     <Content Include="App\controllers\Home\ListingsCtrl.js" />
@@ -1668,6 +1669,7 @@
     <Content Include="Scripts\node-modules\angular\bower.json" />
     <Content Include="Scripts\node-modules\angular\package.json" />
     <Content Include="Scripts\node-modules\angular\README.md" />
+    <Content Include="Views\Home\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,6 +29,12 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
+        [AllowAnonymous]
+        public ActionResult Calendar()
+        {
+            return PartialView();
+        }
+
         public ActionResult Secure()
         {
             ViewBag.Message = "Secure page.";

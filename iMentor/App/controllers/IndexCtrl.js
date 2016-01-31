@@ -34,6 +34,11 @@ app.controller('indexCtrl',
             $location.path('/Listings');
         };
 
+        $scope.goToCalendar = function ()
+        {
+            $location.path('/Calendar');
+        }
+
         $scope.goToLogin = function ()
         {
             $location.path('/Login');

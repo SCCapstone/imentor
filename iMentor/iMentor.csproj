@@ -259,7 +259,7 @@
     <Content Include="App\controllers\Home\HomeCtrl.js" />
     <Content Include="App\controllers\IndexCtrl.js" />
     <Content Include="App\controllers\Home\ListingsCtrl.js" />
-    <Content Include="App\controllers\LoginCtrl.js" />
+    <Content Include="App\controllers\Home\LoginCtrl.js" />
     <Content Include="App\controllers\Manage\ManageCtrl.js" />
     <Content Include="App\directives\iMentorDirectives.js" />
     <Content Include="App\services\AccountService.js" />

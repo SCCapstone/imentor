@@ -1,5 +1,12 @@
 ﻿<div class="ngview-wrapper">
     <div class="ngview-body" style="padding-top:25px;">
         <p>{{message}}</p>
+
     </div>
+    <div ng-controller="calendarCtrl">
+
+        <button ng-click="handleAuthClick()">Authorize</button>
+        <script src="https://apis.google.com/js/client.js"></script>
+    </div>
+   
 </div>

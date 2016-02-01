@@ -12,7 +12,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 {
     $routeProvider
         .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
-        .when('/Login', { templateUrl: 'account/login', controller: 'loginCtrl' })
+        .when('/Login', { templateUrl: 'home/login', controller: 'loginCtrl' })
         .when('/Listings', { templateUrl: 'listings/index', controller: 'listingsCtrl' })
         .when('/Calendar', { templateUrl: 'home/calendar', controller: 'calendarCtrl' })
         .otherwise({ redirectTo: '/' });

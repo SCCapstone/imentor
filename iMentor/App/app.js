@@ -5,7 +5,8 @@ var app = angular.module('app', [
     'ngAnimate',
     'ngMaterial',
     'ngMessages',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'iMentor.directives'
 ])
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider)

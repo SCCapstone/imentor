@@ -284,6 +284,10 @@
     <Content Include="Global.asax" />
     <Content Include="Img\iMentor_lg.png" />
     <Content Include="Img\iMentor_sm.png" />
+    <Content Include="Img\Math.png" />
+    <Content Include="Img\Reading.png" />
+    <Content Include="Img\Science.png" />
+    <Content Include="Img\World.png" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1571,7 +1575,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Templates\ListingTile.html" />
+    <Content Include="Templates\ListingCard.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -45,6 +45,10 @@ namespace iMentor
                 .IncludeDirectory("~/App/Controllers", "*.js", true)
             );
 
+            bundles.Add(new ScriptBundle("~/bundles/appDirectives")
+                .IncludeDirectory("~/App/Directives", "*.js", true)
+            );
+
             bundles.Add(new ScriptBundle("~/bundles/appServices")
                 .IncludeDirectory("~/App/Services", "*.js", true)
             );

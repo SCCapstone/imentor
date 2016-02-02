@@ -25,8 +25,8 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
 
-                                <div ng-repeat="s in subjects | filter:subjectFilter" listing-tile listing="listing" ng-click="selectListing(s)">
-                                    <md-content class="md-padding" layout-xs="column" layout="row">
+                                <div ng-repeat="s in subjects | filter:subjectFilter" listing-card listing="s" ng-click="selectListing(s)">
+                                    @*<md-content class="md-padding" layout-xs="column" layout="row">
                                         <div flex-xs flex-gt-xs="50" layout="column">
                                             <md-card>
                                                 <md-card-title>
@@ -44,7 +44,7 @@
                                                 </md-card-actions>
                                             </md-card>
                                         </div>
-                                    </md-content>
+                                    </md-content>*@
                                 </div>
                             </div>
                         </div>

@@ -23,43 +23,43 @@ textarea {
     max-width: 280px;
 }
 
-
-.listing-tile {
-	float: left;
-	width: 175px;
-	height: 28px;
-	border-radius: 3px;
-	margin: 4px 14px 10px 0;
-	font-size: 11px;
-	background-color: #F5F7FF;
+#main-content {
+	height: 100%;
+	width: 1280px;
+    margin: 0 auto;
 }
 
-	.listing-tile:first-child {
+
+.listing-card {
+	font-size: 11px;
+}
+
+	.listing-card:first-child {
 		margin-top: 8px;
 	}
 
-	.listing-tile:hover {
+	.listing-card:hover {
 		background-color: #EDF0FF;
 	}
 
-	.listing-tile:before {
+	.listing-card:before {
 		margin: 4px 4px 4px 0;
 	}
 
-	.listing-tile:after {
+	.listing-card:after {
 		margin: 4px 0 4px 4px;
 	}
 
-.listing-tile-content {
+.listing-card-content {
 	padding: 5px 5px 3px 5px;
 }
 
-.listing-tile-iconleft {
+.listing-card-iconleft {
 	float: left;
 	margin-right: 6px;
 }
 
-.listing-tile-title {
+.listing-card-title {
 	float: left;
 	font-size: 12px;
 	width: 100px;
@@ -69,17 +69,17 @@ textarea {
 	text-align: left;
 }
 
-	.listing-tile-title.disabled {
+	.listing-card-title.disabled {
 		color: #777777;
 	}
 
-.listing-tile-tooltip {
+.listing-card-tooltip {
 	font-size: 12px;
 	min-width: 100px;
 	max-width: 250px;
 }
 
-.listing-tile-tooltip-title {
+.listing-card-tooltip-title {
 	white-space: nowrap;
 	overflow: hidden;
 	word-wrap: normal;
@@ -89,11 +89,11 @@ textarea {
 	padding: 6px 8px;
 }
 
-.listing-tile-tooltip-body {
+.listing-card-tooltip-body {
 	padding: 0 2px 8px;
 }
 
-.listing-tile-tooltip-row {
+.listing-card-tooltip-row {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;

@@ -5,6 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=9, chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -15,34 +16,36 @@
         @Styles.Render("~/bundles/content/ngMaterial")
     </head>
     <body ng-controller="indexCtrl" ng-cloak>
-        <div id="main-header" style="text-align:center;">
-            <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#/">iMentor</a>
+        <div id="main-header">
+            <div id="main-header" style="text-align:center;">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#/">iMentor</a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a href="" ng-click="goToHome()"><i class="glyphicon glyphicon-home"></i> Home </a></li>
+                            <li><a href="" ng-click="goToListings()"><i class="glyphicon glyphicon-list-alt"></i> Listings</a></li>
+                            <li><a href="" ng-click="goToCalendar()"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>
+                        </ul>
+
+                        @Html.Partial("_LoginPartial")
                     </div>
-
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a href="" ng-click="goToHome()"><i class="glyphicon glyphicon-home"></i> Home </a></li>
-                        <li><a href="" ng-click="goToListings()"><i class="glyphicon glyphicon-list-alt"></i> Listings</a></li>
-                        <li><a href="" ng-click="goToCalendar()"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>
-                    </ul>
-
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </nav>
-        </div>
-
-
-        <div id="main-content">
-            <div ng-view class="ngview-fade">
+                </nav>
             </div>
+
+
+            <div id="main-content">
+                <div ng-view class="ngview-fade">
+                </div>
+            </div>
+
+
+            <footer class="container-fluid">
+                <p>Footer Text</p>
+            </footer>
         </div>
-
-
-        <footer class="container-fluid">
-            <p>Footer Text</p>
-        </footer>
 
 
         @Scripts.Render("~/bundles/jquery")

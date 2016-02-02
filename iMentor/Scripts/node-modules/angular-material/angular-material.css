@@ -9353,13 +9353,13 @@ md-autocomplete {
   md-autocomplete[md-floating-label] {
     border-radius: 0;
     background: transparent;
-    height: auto; }
+    height: 100%; }
     md-autocomplete[md-floating-label] md-input-container {
       padding-bottom: 26px; }
       md-autocomplete[md-floating-label] md-input-container.md-input-has-messages {
         padding-bottom: 2px; }
     md-autocomplete[md-floating-label] md-autocomplete-wrap {
-      height: auto; }
+      height: 100%; }
     md-autocomplete[md-floating-label] button {
       position: absolute;
       top: auto;
@@ -9936,7 +9936,7 @@ md-card {
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
     width: 100%;
-    height: auto; }
+    height: 100%; }
   md-card md-card-title {
     padding: 24px 16px 16px;
     display: -webkit-flex;
@@ -10163,7 +10163,7 @@ md-checkbox {
       content: '';
       position: absolute;
       display: block;
-      height: auto;
+      height: 100%;
       left: 0;
       top: 0;
       right: 0;
@@ -10182,7 +10182,7 @@ md-checkbox {
       position: absolute;
       display: block;
       width: auto;
-      height: auto;
+      height: 100%;
       left: -15px;
       top: -15px;
       right: -15px;
@@ -10808,7 +10808,7 @@ md-fab-speed-dial {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    height: auto; }
+    height: 100%; }
     md-fab-speed-dial md-fab-actions .md-fab-action-item {
       transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2); }
   md-fab-speed-dial.md-down {
@@ -11714,7 +11714,7 @@ md-list-item, md-list-item .md-list-item-inner {
       -ms-flex-align: center;
           align-items: center;
   min-height: 48px;
-  height: auto; }
+  height: 100%; }
   md-list-item > div.md-primary > md-icon:not(.md-avatar-icon),
   md-list-item > div.md-secondary > md-icon:not(.md-avatar-icon),
   md-list-item > md-icon:first-child:not(.md-avatar-icon),
@@ -11863,7 +11863,7 @@ md-list-item.md-3-line > .md-no-style {
 
 md-list-item.md-2-line,
 md-list-item.md-2-line > .md-no-style {
-  height: auto;
+  height: 100%;
   min-height: 72px; }
   md-list-item.md-2-line.md-long-text,
   md-list-item.md-2-line > .md-no-style.md-long-text {
@@ -11885,7 +11885,7 @@ md-list-item.md-2-line > .md-no-style {
 
 md-list-item.md-3-line,
 md-list-item.md-3-line > .md-no-style {
-  height: auto;
+  height: 100%;
   min-height: 88px; }
   md-list-item.md-3-line.md-long-text,
   md-list-item.md-3-line > .md-no-style.md-long-text {
@@ -12002,7 +12002,7 @@ md-menu-item {
   padding: 8px 0; }
 
 md-toolbar .md-menu {
-  height: auto;
+  height: 100%;
   margin: auto;
   padding: 0; }
 
@@ -12036,7 +12036,7 @@ md-toolbar .md-menu {
 
 md-toolbar.md-menu-toolbar h2.md-toolbar-tools {
   line-height: 1rem;
-  height: auto;
+  height: 100%;
   padding: 28px;
   padding-bottom: 12px; }
 
@@ -12613,7 +12613,7 @@ md-radio-button {
       position: absolute;
       display: block;
       width: auto;
-      height: auto;
+      height: 100%;
       left: -15px;
       top: -15px;
       right: -15px;
@@ -12625,7 +12625,7 @@ md-radio-button {
       content: '';
       position: absolute;
       display: block;
-      height: auto;
+      height: 100%;
       left: 0;
       top: 0;
       right: 0;
@@ -13499,7 +13499,7 @@ md-switch {
       content: '';
       position: absolute;
       display: block;
-      height: auto;
+      height: 100%;
       left: 0;
       top: 0;
       right: 0;
@@ -13510,7 +13510,7 @@ md-switch {
       position: absolute;
       display: block;
       width: auto;
-      height: auto;
+      height: 100%;
       left: -20px;
       top: -20px;
       right: -20px;

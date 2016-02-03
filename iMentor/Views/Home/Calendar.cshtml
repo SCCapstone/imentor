@@ -1,22 +1,64 @@
-﻿<div class="ngview-wrapper">
-    <div class="ngview-body" style="padding-top:25px;">
-        <p>{{message}}</p>
+﻿<div class="container">
+    <h1>Bootstrap - Responsive Calendar Grid</h1>
+    <div class="grid-calendar">
+        <div class="row calendar-week-header">
+            <div class="col-xs-1 grid-cell"><div><div><span>S</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>M</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>T</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>W</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>T</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>F</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>S</span></div></div></div>
+        </div>
 
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell previous-month"><div><div><span>31</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>1</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>2</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>3</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>4</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>5</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>6</span></div></div></div>
+        </div>
+
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>7</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>8</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>9</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>10</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>11</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>12</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>13</span></div></div></div>
+        </div>
+
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>14</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>15</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>16</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>17</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>18</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>19</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>20</span></div></div></div>
+        </div>
+
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>21</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>22</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>23</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>24</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>25</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>26</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>27</span></div></div></div>
+        </div>
+
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>28</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>29</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>30</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>1</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>2</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>3</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>4</span></div></div></div>
+        </div>
     </div>
-    <div ng-controller="calendarCtrl">
-
-        <script src="https://apis.google.com/js/client.js"></script>
-        <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
-        <body>
-            <div id="authorize-div" style="display: none">
-                <span>Authorize access to Google Calendar API</span>
-                <!--Button for the user to click to initiate auth sequence -->
-                <button ng-click="handleAuthClick()">
-                    Authorize
-                </button>
-            </div>
-            <pre id="output"></pre>
-        </body>
-    </div>
-
 </div>

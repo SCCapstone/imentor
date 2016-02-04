@@ -285,9 +285,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Img\Icons\AddCircle_24px.svg" />
-    <Content Include="Img\Icons\AddCircle_18px.svg" />
-    <Content Include="Img\Icons\add_list.png" />
     <Content Include="Img\iMentor_lg.png" />
     <Content Include="Img\iMentor_sm.png" />
     <Content Include="Img\Math.png" />
@@ -350,9 +347,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include=".bin\git.cmd" />
-    <Content Include=".bin\node.cmd" />
-    <None Include="Properties\PublishProfiles\MAST2016.pubxml" />
+    <None Include="Properties\PublishProfiles\iMAST.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />

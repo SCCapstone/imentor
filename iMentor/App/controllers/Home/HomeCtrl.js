@@ -1,15 +1,16 @@
 ﻿'use strict';
 
 app.controller('homeCtrl',
-    function ($scope, $rootScope, $location, $log, homeService)
+    function ($scope, $rootScope, $location, $log, $modal, homeService, modalOptionService)
     {
         $scope.subjects = [
             { 'subject': 'Math' },
             { 'subject': 'Science' },
             { 'subject': 'History' },
             { 'subject': 'Reading' }];
-
         $scope.subjectsIncludes = [];
+
+
 
         $scope.includeSubject = function (subject) {
             var i = $.inArray(subject, $scope.subjectsIncludes);
@@ -30,13 +31,36 @@ app.controller('homeCtrl',
         }
 
 
+
+        $scope.createListing = function () {
+            $scope.showCreationModal();
+        }
+
+        $scope.showCreationModal = function()
+        {
+            var modalOptions = modalOptionService.optionsForListingCreation();
+            var modalInstance = $modal.open(modalOptions);
+
+            modalInstance.result.then(
+                null,
+                function cancel() {
+                    // No-op
+                });
+        }
+
         $scope.selectListing = function (listing) {
             $scope.showListingDetail(listing);
         };
 
         $scope.showListingDetail = function (listing) {
-            //Modal popup
-            console.log("Listing Information");
+            var modalOptions = modalOptionService.optionsForListingDetail(listing);
+            var modalInstance = $modal.open(modalOptions);
+
+            modalInstance.result.then(
+                null,
+                function cancel() {
+                    // No-op
+                });
         };
     }
 );

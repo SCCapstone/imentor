@@ -257,6 +257,8 @@
     <Content Include="App\constants.js" />
     <Content Include="App\controllers\Home\CalendarCtrl.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js" />
+    <Content Include="App\controllers\Home\Modals\ListingCreationCtrl.js" />
+    <Content Include="App\controllers\Home\Modals\ListingDetailCtrl.js" />
     <Content Include="App\controllers\IndexCtrl.js" />
     <Content Include="App\controllers\Home\ListingsCtrl.js" />
     <Content Include="App\controllers\Home\LoginCtrl.js" />
@@ -265,6 +267,7 @@
     <Content Include="App\services\AccountService.js" />
     <Content Include="App\services\ApiService.js" />
     <Content Include="App\services\HomeService.js" />
+    <Content Include="App\services\ModalOptionService.js" />
     <Content Include="App\services\SecurityService.js" />
     <Content Include="App\services\UrlService.js" />
     <Content Include="Content\bootstrap-theme.css">
@@ -282,6 +285,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Img\Icons\AddCircle_24px.svg" />
+    <Content Include="Img\Icons\AddCircle_18px.svg" />
+    <Content Include="Img\Icons\add_list.png" />
     <Content Include="Img\iMentor_lg.png" />
     <Content Include="Img\iMentor_sm.png" />
     <Content Include="Img\Math.png" />
@@ -1575,7 +1581,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Templates\ListingCreationModal.html" />
     <Content Include="Templates\ListingCard.html" />
+    <Content Include="Templates\ListingDetailModal.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -111,6 +111,58 @@ textarea {
 .floating-panel {
 	box-shadow: 0 2px 3px rgba(0,0,0,0.5);
 }
+
+
+.add-iconright
+{
+    position: absolute; 
+    right: 50px;
+    color: black;
+}
+
+.setColor { color: #f00; }
+.setColor:before { color: #f00; }
+.setColor:hover { color: #00f; }
+
+
+
+h1.panel-title {
+    font-size: xx-large
+}
+h2.panel-title {
+    font-size: x-large
+}
+h3.panel-title {
+    font-size: large
+}
+h4.panel-title {
+    font-size: medium
+}
+h5.panel-title {
+    font-size: small
+}
+h6.panel-title {
+    font-size: x-small
+} 
+
+
+.listingCreationModal .modal-dialog {
+	width: 750px;
+	border-radius: 6px;
+	border: 1px solid #CCC;
+	color: #000;
+	margin-top: 75px;
+}
+
+.listingCreationModal .modal-body {
+	border-radius: 6px;
+}
+
+.listingCreationModal .dtl-group {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
 /*
 //cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css
 */

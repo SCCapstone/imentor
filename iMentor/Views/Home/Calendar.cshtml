@@ -1,225 +1,64 @@
-﻿HTML  SCSS  JS  Result
-Edit on
-<div id="calendar-wrap">
-    <header>
-        <h1>August 2014</h1>
-    </header>
-    <div id="calendar">
-        <ul class="weekdays">
-            <li>Sunday</li>
-            <li>Monday</li>
-            <li>Tuesday</li>
-            <li>Wednesday</li>
-            <li>Thursday</li>
-            <li>Friday</li>
-            <li>Saturday</li>
-        </ul>
+﻿<div class="container">
+    <h1>Bootstrap - Responsive Calendar Grid</h1>
+    <div class="grid-calendar">
+        <div class="row calendar-week-header">
+            <div class="col-xs-1 grid-cell"><div><div><span>S</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>M</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>T</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>W</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>T</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>F</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>S</span></div></div></div>
+        </div>
 
-        <!-- Days from previous month -->
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell previous-month"><div><div><span>31</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>1</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>2</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>3</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>4</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>5</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>6</span></div></div></div>
+        </div>
 
-        <ul class="days">
-            <li class="day other-month">
-                <div class="date">27</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">28</div>
-                <div class="event">
-                    <div class="event-desc">
-                        HTML 5 lecture with Brad Traversy from Eduonix
-                    </div>
-                    <div class="event-time">
-                        1:00pm to 3:00pm
-                    </div>
-                </div>
-            </li>
-            <li class="day other-month">
-                <div class="date">29</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">30</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">31</div>
-            </li>
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>7</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>8</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>9</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>10</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>11</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>12</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>13</span></div></div></div>
+        </div>
 
-            <!-- Days in current month -->
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>14</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>15</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>16</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>17</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>18</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>19</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>20</span></div></div></div>
+        </div>
 
-            <li class="day">
-                <div class="date">1</div>
-            </li>
-            <li class="day">
-                <div class="date">2</div>
-                <div class="event">
-                    <div class="event-desc">
-                    
-                    </div>
-                    <div class="event-time">
-                        2:00pm to 5:00pm
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>21</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>22</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>23</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>24</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>25</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>26</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>27</span></div></div></div>
+        </div>
 
-        <!-- Row #2 -->
-
-        <ul class="days">
-            <li class="day">
-                <div class="date">3</div>
-            </li>
-            <li class="day">
-                <div class="date">4</div>
-            </li>
-            <li class="day">
-                <div class="date">5</div>
-            </li>
-            <li class="day">
-                <div class="date">6</div>
-            </li>
-            <li class="day">
-                <div class="date">7</div>
-                <div class="event">
-                    <div class="event-desc">
-                        Group Project meetup
-                    </div>
-                    <div class="event-time">
-                        6:00pm to 8:30pm
-                    </div>
-                </div>
-            </li>
-            <li class="day">
-                <div class="date">8</div>
-            </li>
-            <li class="day">
-                <div class="date">9</div>
-            </li>
-        </ul>
-
-        <!-- Row #3 -->
-
-        <ul class="days">
-            <li class="day">
-                <div class="date">10</div>
-            </li>
-            <li class="day">
-                <div class="date">11</div>
-            </li>
-            <li class="day">
-                <div class="date">12</div>
-            </li>
-            <li class="day">
-                <div class="date">13</div>
-            </li>
-            <li class="day">
-                <div class="date">14</div><div class="event">
-                    <div class="event-desc">
-                        Board Meeting
-                    </div>
-                    <div class="event-time">
-                        1:00pm to 3:00pm
-                    </div>
-                </div>
-            </li>
-            <li class="day">
-                <div class="date">15</div>
-            </li>
-            <li class="day">
-                <div class="date">16</div>
-            </li>
-        </ul>
-
-        <!-- Row #4 -->
-
-        <ul class="days">
-            <li class="day">
-                <div class="date">17</div>
-            </li>
-            <li class="day">
-                <div class="date">18</div>
-            </li>
-            <li class="day">
-                <div class="date">19</div>
-            </li>
-            <li class="day">
-                <div class="date">20</div>
-            </li>
-            <li class="day">
-                <div class="date">21</div>
-            </li>
-            <li class="day">
-                <div class="date">22</div>
-                <div class="event">
-                    <div class="event-desc">
-                        Conference call
-                    </div>
-                    <div class="event-time">
-                        9:00am to 12:00pm
-                    </div>
-                </div>
-            </li>
-            <li class="day">
-                <div class="date">23</div>
-            </li>
-        </ul>
-
-        <!-- Row #5 -->
-
-        <ul class="days">
-            <li class="day">
-                <div class="date">24</div>
-            </li>
-            <li class="day">
-                <div class="date">25</div>
-                <div class="event">
-                    <div class="event-desc">
-                        Conference Call
-                    </div>
-                    <div class="event-time">
-                        1:00pm to 3:00pm
-                    </div>
-                </div>
-            </li>
-            <li class="day">
-                <div class="date">26</div>
-            </li>
-            <li class="day">
-                <div class="date">27</div>
-            </li>
-            <li class="day">
-                <div class="date">28</div>
-            </li>
-            <li class="day">
-                <div class="date">29</div>
-            </li>
-            <li class="day">
-                <div class="date">30</div>
-            </li>
-        </ul>
-
-        <!-- Row #6 -->
-
-        <ul class="days">
-            <li class="day">
-                <div class="date">31</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">1</div> <!-- Next Month -->
-            </li>
-            <li class="day other-month">
-                <div class="date">2</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">3</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">4</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">5</div>
-            </li>
-            <li class="day other-month">
-                <div class="date">6</div>
-            </li>
-        </ul>
-
-    </div><!-- /. calendar -->
-</div><!-- /. wrap -->
+        <div class="row calendar-week">
+            <div class="col-xs-1 grid-cell"><div><div><span>28</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>29</span></div></div></div>
+            <div class="col-xs-1 grid-cell"><div><div><span>30</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>1</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>2</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>3</span></div></div></div>
+            <div class="col-xs-1 grid-cell next-month"><div><div><span>4</span></div></div></div>
+        </div>
+    </div>
+</div>

@@ -23,29 +23,19 @@
                     <div class="col-sm-9">
                         <!--Panels-->
                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h1 class="panel-title">
+                                    Listings
+                                    <a ng-click="createListing()" class="add-iconright setColor"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                                </h1>
+                            </div>
+
+
                             <div class="panel-body">
 
                                 <div ng-repeat="s in subjects | filter:subjectFilter" listing-card listing="s" ng-click="selectListing(s)">
-                                    @*<md-content class="md-padding" layout-xs="column" layout="row">
-                                        <div flex-xs flex-gt-xs="50" layout="column">
-                                            <md-card>
-                                                <md-card-title>
-                                                    <md-card-title-text>
-                                                        <span class="md-headline">{{s.subject}}</span>
-                                                        <span class="md-subhead">{{s.subject}}</span>
-                                                    </md-card-title-text>
-                                                    <md-card-title-media>
-                                                        <div class="md-media-sm card-media"><img ng-src="{{imagePath}}" class="md-card-image" alt="iMentor"></div>
-                                                    </md-card-title-media>
-                                                </md-card-title>
-                                                <md-card-actions layout="row" layout-align="end center">
-                                                    <md-button>Action 1</md-button>
-                                                    <md-button>Action 2</md-button>
-                                                </md-card-actions>
-                                            </md-card>
-                                        </div>
-                                    </md-content>*@
                                 </div>
+
                             </div>
                         </div>
                     </div>

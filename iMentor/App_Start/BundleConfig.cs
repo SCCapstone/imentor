@@ -11,6 +11,7 @@ namespace iMentor
             bundles.Add(new StyleBundle("~/bundles/content").IncludeDirectory("~/Content", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/iMentor").IncludeDirectory("~/Content/iMentor", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/ngMaterial").IncludeDirectory("~/Scripts/node-modules/angular-material", "*.css", false));
+            bundles.Add(new StyleBundle("~/bundles/content/fullcalendar").IncludeDirectory("~/Scripts/fullcalendar-2.6.0", "*.css", false));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js"));
@@ -35,7 +36,13 @@ namespace iMentor
                 "~/Scripts/ng-grid.js",
                 "~/Scripts/ui-bootstrap-tpls-{version}.js"
                 ));
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+                "~/Scripts/fullcalendar-2.6.0/lib/jquery.min.js",
+                "~/Scripts/fullcalendar-2.6.0/lib/moment.min.js",
+                "~/Scripts/fullcalendar-2.6.0/fullcalendar.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/App/constants.js",
                 "~/App/app.js"

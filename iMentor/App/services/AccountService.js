@@ -1,6 +1,7 @@
 ﻿'use strict';
 
-app.factory('accountService', function ($http, $q, $log, apiService) {
+app.factory('accountService', ['$http', '$q', 'apiService',
+function ($http, $q, apiService) {
     return {
         getCurrentUser: function () {
             var url = rootUrl + 'api/account/getCurrentUser';
@@ -12,4 +13,4 @@ app.factory('accountService', function ($http, $q, $log, apiService) {
             return apiService.httpGet(url, false);
         },
     };
-});
+}]);

@@ -1,10 +1,10 @@
 ﻿
-function listingDetailCtrl($scope, $modalInstance, listing) 
+function listingDetailCtrl($scope, $uibModalInstance, listing) 
 {
     $scope.title = listing.subject;
 
     $scope.ok = function ()
 	{
-		$modalInstance.dismiss();
+		$uibModalInstance.dismiss();
 	};
 }

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.factory('modalOptionService', function ($log) {
+app.factory('modalOptionService', function () {
     return {
         optionsForListingCreation: function () {
             return {

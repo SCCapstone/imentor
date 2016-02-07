@@ -1,7 +1,7 @@
 ﻿'use strict';
 
-app.controller('indexCtrl',
-    function IndexCtrl($scope, $rootScope, $window, $location, $modal, $route, $log, securityService) {
+app.controller('indexCtrl', [ '$scope', '$rootScope', '$location',
+    function IndexCtrl($scope, $rootScope, $location) {
         //---------------------------------------------------
         // $rootScope
         //---------------------------------------------------
@@ -13,13 +13,13 @@ app.controller('indexCtrl',
         // Auth calls
         //---------------------------------------------------
 
-        $scope.getIsAuthenticated = function () {
-            return securityService.isAuthenticated();
-        };
+        //$scope.getIsAuthenticated = function () {
+        //    return securityService.isAuthenticated();
+        //};
 
-        $scope.getCurrUser = function () {
-            return securityService.getCurrUser();
-        };
+        //$scope.getCurrUser = function () {
+        //    return securityService.getCurrUser();
+        //};
 
         //---------------------------------------------------
         // Navigation
@@ -44,4 +44,4 @@ app.controller('indexCtrl',
             $location.path('/Login');
         }
     }
-);
+]);

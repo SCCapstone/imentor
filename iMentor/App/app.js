@@ -1,11 +1,9 @@
 ﻿'use strict';
 
 var app = angular.module('app', [
-    'ngRoute',
-    'ngAnimate',
-    'ngMaterial',
-    'ngMessages',
     'ui.bootstrap',
+    'ngRoute',
+    
     'iMentor.directives'
 ])
 
@@ -20,8 +18,3 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
     $locationProvider.html5Mode(false).hashPrefix('!');
 }]);
-
-
-function getSelectedNav(url) {
-    return '/';
-}

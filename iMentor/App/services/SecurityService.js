@@ -1,5 +1,6 @@
 ﻿
-app.factory('securityService', function ($rootScope, $window, $q, $log, accountService)
+app.factory('securityService', [ '$rootScope', '$window', '$q', '$log', 'accountService',
+function ($rootScope, $window, $q, $log, accountService)
 {
 	var authComplete = false;
 	var passwordResetIsEnabled = null;
@@ -50,4 +51,4 @@ app.factory('securityService', function ($rootScope, $window, $q, $log, accountS
 			authComplete = false;
 		},
 	};
-});
+}]);

@@ -1,12 +1,13 @@
 ﻿'use strict';
 
-app.factory('homeService', function (apiService) {
+app.factory('homeService', ['apiService',
+function (apiService) {
 
     return{
         getUser: function(){
-            var url = rootUrl + 'api/Home/GetUser';
+            var url = 'api/Home/GetUser';
             return apiService.httpGet(url, false);
         }
     }
  
-});
+}]);

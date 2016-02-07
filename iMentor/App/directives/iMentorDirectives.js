@@ -1,5 +1,5 @@
 ﻿angular.module('iMentor.directives', [])
-    .directive('listingCard', function ($rootScope) {
+    .directive('listingCard', function () {
         return {
             restrict: 'A',
 

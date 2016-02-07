@@ -11,36 +11,32 @@ namespace iMentor
             bundles.Add(new StyleBundle("~/bundles/content").IncludeDirectory("~/Content", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/iMentor").IncludeDirectory("~/Content/iMentor", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/ngMaterial").IncludeDirectory("~/Scripts/node-modules/angular-material", "*.css", false));
-            bundles.Add(new StyleBundle("~/bundles/content/fullcalendar").IncludeDirectory("~/Scripts/fullcalendar-2.6.0", "*.css", false));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js"));
+                "~/Scripts/jquery-2.2.0.min.js")
+                );
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //    "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap")
-                .Include("~/Scripts/bootstrap.js", "~/Scripts/respond.js")
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                "~/Scripts/ui-bootstrap-tpls-{version}.min.js",
+                "~/Scripts/bootstrap.min.js", 
+                "~/Scripts/respond.js")
             );
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-animate.js",
-                "~/Scripts/node-modules/angular-aria/angular-aria.js",
-                "~/Scripts/angular-bootstrap.js",
+                "~/Scripts/angular-aria.js",
                 "~/Scripts/angular-route.js",
                 "~/Scripts/angular-messages.js",
+                "~/Scripts/angular-sanitize.js",
                 "~/Scripts/node-modules/angular-material/angular-material.js",
-                "~/Scripts/ng-grid.js",
-                "~/Scripts/ui-bootstrap-tpls-{version}.js"
-                ));
-
-            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
-                "~/Scripts/fullcalendar-2.6.0/lib/jquery.min.js",
-                "~/Scripts/fullcalendar-2.6.0/lib/moment.min.js",
-                "~/Scripts/fullcalendar-2.6.0/fullcalendar.js"
+                "~/Scripts/angular-ui/bootstrap.min.js",
+                "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(

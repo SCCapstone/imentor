@@ -1,13 +1,13 @@
 ﻿
 
-function listingCreationCtrl($scope, $modalInstance) 
+function listingCreationCtrl($scope, $uibModalInstance) 
 {
     $scope.ok = function ()
 	{
-		$modalInstance.close();
+		$uibModalInstance.close();
 	};
 
     $scope.close = function () {
-        $modalInstance.dismiss();
+        $uibModalInstance.dismiss();
     };
 }

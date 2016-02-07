@@ -1,5 +1,6 @@
 ﻿
-app.factory('apiService', function ($http, $q) {
+app.factory('apiService', ['$http', '$q',
+function ($http, $q) {
     return {
         httpGet: function (url, useCache) {
             var doCache = (typeof useCache !== "undefined") ? useCache : false;
@@ -19,4 +20,4 @@ app.factory('apiService', function ($http, $q) {
             return deferred.promise;
         },
     };
-});
+}]);

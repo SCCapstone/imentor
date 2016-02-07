@@ -1,8 +1,8 @@
 ﻿'use strict';
 
-app.controller('listingsCtrl',
-    function ListingsCtrl($scope, $rootScope, $location, $log) 
+app.controller('listingsCtrl', ['$scope',
+    function ListingsCtrl($scope) 
     {
         $scope.message = "Listings Page";
     }
-);
+]);

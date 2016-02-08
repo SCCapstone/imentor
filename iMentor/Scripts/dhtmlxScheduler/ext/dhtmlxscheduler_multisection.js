@@ -1,0 +1,21 @@
+/*
+@license
+dhtmlxScheduler.Net v.3.3.12 
+
+This software is covered by DHTMLX Evaluation License. Contact sales@dhtmlx.com to get Commercial or Enterprise license. Usage without proper license is prohibited.
+
+(c) Dinamenta, UAB.
+*/
+Scheduler.plugin(function(e){e.config.multisection=!0,e.config.multisection_shift_all=!0,e.config.section_delimiter=",",e.attachEvent("onSchedulerReady",function(){e._register_copies_array=function(e){for(var t=0;t<e.length;t++)this._register_copy(e[t])},e._register_copy=function(e){this._multisection_copies[e.id]||(this._multisection_copies[e.id]={});var t=e[this._get_section_property()],a=this._multisection_copies[e.id];a[t]||(a[t]=e)},e._get_copied_event=function(t,a){if(!this._multisection_copies[t])return null;
+
+if(this._multisection_copies[t][a])return this._multisection_copies[t][a];var n=this._multisection_copies[t];if(e._drag_event&&e._drag_event._orig_section&&n[e._drag_event._orig_section])return n[e._drag_event._orig_section];var i=1/0,r=null;for(var s in n)n[s]._sorder<i&&(r=n[s],i=n[s]._sorder);return r},e._clear_copied_events=function(){this._multisection_copies={}},e._restore_render_flags=function(t){for(var a=this._get_section_property(),n=0;n<t.length;n++){var i=t[n],r=e._get_copied_event(i.id,i[a]);
+
+if(r)for(var s in r)0===s.indexOf("_")&&(i[s]=r[s])}};var t=e._update_unit_section;e._update_unit_section=function(a){return e._update_sections(a,t)};var a=e._update_timeline_section;e._update_timeline_section=function(t){return e._update_sections(t,a)},e.isMultisectionEvent=function(e){if(e&&this._get_multisection_view()){var t=this._get_event_sections(e);return t.length>1}return!1},e._get_event_sections=function(e){var t=this._get_section_property(),a=e[t]||"";return this._parse_event_sections(a);
+
+},e._parse_event_sections=function(t){return t instanceof Array?t:t.toString().split(e.config.section_delimiter)},e._clear_copied_events(),e._split_events=function(t){var a=[],n=this._get_multisection_view(),i=this._get_section_property();if(n)for(var r=0;r<t.length;r++){var s=this._get_event_sections(t[r]);if(s.length>1){for(var d=0;d<s.length;d++)if("undefined"!=typeof n.order[s[d]]){var o=e._copy_event(t[r]);o[i]=s[d],a.push(o)}}else a.push(t[r])}else a=t;return a},e._get_multisection_view=function(){
+return this.config.multisection?e._get_section_view():!1};var n=e.get_visible_events;e.get_visible_events=function(e){this._clear_copied_events();var t=n.apply(this,arguments);if(this._get_multisection_view()){t=this._split_events(t);for(var a=0;a<t.length;a++)this.is_visible_events(t[a])||(t.splice(a,1),a--);this._register_copies_array(t)}return t},e._rendered_events={};var i=e.render_view_data;e.render_view_data=function(e,t){return this._get_multisection_view()&&e&&(e=this._split_events(e),this._restore_render_flags(e)),
+i.apply(this,[e,t])},e._update_sections=function(t,a){var n=t.view,i=t.event,r=t.pos;if(e.isMultisectionEvent(i)){if(e._drag_event._orig_section||(e._drag_event._orig_section=r.section),e._drag_event._orig_section!=r.section){var s=n.order[r.section]-n.order[e._drag_event._orig_section];if(s){var d=this._get_event_sections(i),o=[],_=!0;if(e.config.multisection_shift_all)for(var l=0;l<d.length;l++){var h=e._shift_sections(n,d[l],s);if(null===h){o=d,_=!1;break}o[l]=h}else for(var l=0;l<d.length;l++){
+if(d[l]==r.section){o=d,_=!1;break}if(d[l]==e._drag_event._orig_section){var h=e._shift_sections(n,d[l],s);if(null===h){o=d,_=!1;break}o[l]=h}else o[l]=d[l]}_&&(e._drag_event._orig_section=r.section),i[e._get_section_property()]=o.join(e.config.section_delimiter)}}}else a.apply(e,[t])},e._shift_sections=function(e,t,a){for(var n=null,i=e.y_unit||e.options,r=0;r<i.length;r++)if(i[r].key==t){n=r;break}var s=i[n+a];return s?s.key:null};var r=e._get_blocked_zones;e._get_blocked_zones=function(e,t,a,n,i){
+if(t&&this.config.multisection){t=this._parse_event_sections(t);for(var s=[],d=0;d<t.length;d++)s=s.concat(r.apply(this,[e,t[d],a,n,i]));return s}return r.apply(this,arguments)};var s=e._check_sections_collision;e._check_sections_collision=function(e,t){if(this.config.multisection&&this._get_section_view()){e=this._split_events([e]),t=this._split_events([t]);for(var a=!1,n=0,i=e.length;i>n&&!a;n++)for(var r=0,d=t.length;d>r;r++)if(s.apply(this,[e[n],t[r]])){a=!0;break}return a}return s.apply(this,arguments);
+
+}})});

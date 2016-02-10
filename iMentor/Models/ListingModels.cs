@@ -11,7 +11,10 @@ namespace iMentor.Models
     {
         public int ID { get; set; }
         public string Title { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM dd yyyy}")]
+        [DataType(DataType.Date)]
         public string StartDate { get; set; }
+        [DataType(DataType.Date)]
         public string EndDate { get; set; }
         public string Area { get; set; }
         public string Frequency { get; set; }

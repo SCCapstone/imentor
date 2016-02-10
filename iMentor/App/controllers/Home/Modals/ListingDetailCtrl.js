@@ -1,7 +1,7 @@
 ﻿
 function listingDetailCtrl($scope, $uibModalInstance, listing) 
 {
-    $scope.title = listing.subject;
+    $scope.title = listing.Area;
 
     $scope.ok = function ()
 	{

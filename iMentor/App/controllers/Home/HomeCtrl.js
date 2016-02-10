@@ -3,6 +3,7 @@
 app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionService',
     function HomeCtrl($scope, $uibModal, homeService, modalOptionService)
     {
+        $scope.listings = [];
         $scope.subjects = [
             { 'subject': 'Math' },
             { 'subject': 'Science' },
@@ -10,7 +11,6 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
             { 'subject': 'Reading' }];
         $scope.subjectsIncludes = [];
 
-        $scope.listings = [];
         getListings();
 
         $scope.includeSubject = function (subject) {

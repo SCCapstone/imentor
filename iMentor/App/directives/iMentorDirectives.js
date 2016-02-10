@@ -14,7 +14,9 @@
                 scope.title = null;
                 scope.imagePath = '';
 
-                scope.title = scope.listing.subject;
+                scope.title = scope.listing.Title;
+
+                console.log(scope.listing.Title);
 
                 scope.imagePath = getImage();
 

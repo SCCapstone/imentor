@@ -10,6 +10,9 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
             { 'subject': 'Reading' }];
         $scope.subjectsIncludes = [];
 
+        $scope.listings = null;
+        getListings();
+
         $scope.includeSubject = function (subject) {
             var i = $.inArray(subject, $scope.subjectsIncludes);
             if (i > -1) {
@@ -28,6 +31,17 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
             return subjects;
         }
 
+
+        function getListings() {
+            homeService.getListings()
+                .success(function (listings) {
+                    $scope.listings = listings;
+                    console.log("Listings: " + listings);
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to load listing data: ' + error.message;
+                });
+        }
 
 
         $scope.createListing = function () {

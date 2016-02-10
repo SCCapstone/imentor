@@ -14,8 +14,8 @@ namespace iMentor.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Title = c.String(),
-                        StartDate = c.String(),
-                        EndDate = c.String(),
+                        StartDate = c.DateTime(),
+                        EndDate = c.DateTime(),
                         Area = c.String(),
                         Frequency = c.String(),
                         Description = c.String(),

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using iMentor.Models;
+using iMentor.Entities;
 using System.Web.Mvc;
-using iMentor.Models;
+using System.Data.Entity;
 
 namespace iMentor.Controllers
 {
@@ -45,21 +46,19 @@ namespace iMentor.Controllers
         #endregion
 
 
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private iMAST_dbEntities db = new iMAST_dbEntities();
 
-        [Route ("getlistings")]
-        public List<ListingModel> GetListings()
+        public JsonResult GetListings()
         {
-            return db.ListingModels.ToList();
+            var result = db.ListingModels.ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-        [Route("getcount")]
+        
         public int GetCount()
         {
+            var listings = db.ListingModels.ToArray();
 
-            int count = db.ListingModels.Count();
-
-            return count;
+            return listings.Count();
         }
 
     }

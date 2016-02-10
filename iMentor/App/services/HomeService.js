@@ -13,7 +13,7 @@ function ($http, apiService) {
     var homeService = {};
 
     homeService.getListings = function () {
-        return $http.get('/home/getlistings');
+        return $http.get('/home/getListings');
     };
  
     return homeService;

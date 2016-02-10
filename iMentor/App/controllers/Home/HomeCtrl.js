@@ -10,7 +10,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
             { 'subject': 'Reading' }];
         $scope.subjectsIncludes = [];
 
-        $scope.listings = null;
+        $scope.listings = [];
         getListings();
 
         $scope.includeSubject = function (subject) {
@@ -36,7 +36,6 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
             homeService.getListings()
                 .success(function (listings) {
                     $scope.listings = listings;
-                    console.log("Listings: " + listings);
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;

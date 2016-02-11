@@ -4,31 +4,26 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
     function HomeCtrl($scope, $uibModal, homeService, modalOptionService)
     {
         $scope.listings = [];
-        $scope.subjects = [
-            { 'subject': 'Math' },
-            { 'subject': 'Science' },
-            { 'subject': 'History' },
-            { 'subject': 'Reading' }];
         $scope.subjectsIncludes = [];
 
         getListings();
 
-        $scope.includeSubject = function (subject) {
-            var i = $.inArray(subject, $scope.subjectsIncludes);
+        $scope.includeArea = function (listing) {
+            var i = $.inArray(listing, $scope.subjectsIncludes);
             if (i > -1) {
                 $scope.subjectsIncludes.splice(i, 1);
             } else {
-                $scope.subjectsIncludes.push(subject);
+                $scope.subjectsIncludes.push(listing);
             }
         }
 
-        $scope.subjectFilter = function (subjects) {
+        $scope.areaFilter = function (listings) {
             if ($scope.subjectsIncludes.length > 0) {
-                if ($.inArray(subjects.subject, $scope.subjectsIncludes) < 0)
+                if ($.inArray(listings.Area, $scope.subjectsIncludes) < 0)
                     return;
             }
 
-            return subjects;
+            return listings;
         }
 
 

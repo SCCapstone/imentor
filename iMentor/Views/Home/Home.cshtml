@@ -1,45 +1,43 @@
 ﻿<div class="ngview-wrapper">
     <div class="ngview-body" style="padding-top:25px;">
+        <div class="container-fluid">
+            <div class="row content">
 
-            <div class="container-fluid">
-                <div class="row content">
+                <div class="col-sm-3">
+                    <!--Filters-->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
 
-                    <div class="col-sm-3">
-                        <!--Filters-->
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-
-                                <div>
-                                    Subjects<br />
-                                    <input type="checkbox" ng-click="includeSubject('Math')" /> Math<br />
-                                    <input type="checkbox" ng-click="includeSubject('Science')" /> Science<br />
-                                    <input type="checkbox" ng-click="includeSubject('History')" /> History<br />
-                                    <input type="checkbox" ng-click="includeSubject('Reading')" /> Reading<br />
-                                </div>
+                            <div>
+                                Subjects<br />
+                                <input type="checkbox" ng-click="includeArea('Math')" /> Math<br />
+                                <input type="checkbox" ng-click="includeArea('Science')" /> Science<br />
+                                <input type="checkbox" ng-click="includeArea('History')" /> History<br />
+                                <input type="checkbox" ng-click="includeArea('Reading')" /> Reading<br />
+                                <input type="checkbox" ng-click="includeArea('Computer Science')" /> Computer Science<br />
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-sm-9">
-                        <!--Panels-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h1 class="panel-title">
-                                    Listings
-                                    <a ng-click="createListing()" class="add-iconright setColor"><span class="glyphicon glyphicon-plus-sign"></span></a>
-                                </h1>
-                            </div>
+                <div class="col-sm-9">
+                    <!--Listings-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h1 class="panel-title">
+                                Listings
+                                <a ng-click="createListing()" class="add-iconright setColor"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                            </h1>
+                        </div>
 
 
-                            <div class="panel-body">
-
-                                <div ng-repeat="s in listings | filter:subjectFilter" listing-card listing="s" ng-click="selectListing(s)">
-                                </div>
-
+                        <div class="panel-body">
+                            <div ng-repeat="s in listings | filter:areaFilter" listing-card listing="s" ng-click="selectListing(s)">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>

@@ -10,26 +10,24 @@
             templateUrl: '/templates/ListingCard.html',
 
             link: function (scope, elem, attrs) {
-                scope.titleClass = '';
-                scope.title = null;
                 scope.imagePath = '';
-
                 scope.title = scope.listing.Title;
+                
+                scope.area = scope.listing.Area;
 
-                console.log(scope.listing.Title);
 
                 scope.imagePath = getImage();
 
 
                 function getImage()
                 {
-                    if (scope.listing.area == 'Math')
+                    if (scope.listing.Area == 'Math')
                         return 'img/Math.png';
-                    else if (scope.listing.area == 'Science')
+                    else if (scope.listing.Area == 'Science')
                         return 'img/Science.png';
-                    else if (scope.listing.area == 'History')
+                    else if (scope.listing.Area == 'History')
                         return 'img/World.png';
-                    else if (scope.listing.area == 'Reading')
+                    else if (scope.listing.Area == 'Reading')
                         return 'img/Reading.png';
                 }
             }

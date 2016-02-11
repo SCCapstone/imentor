@@ -265,9 +265,6 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Calendar.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -295,10 +292,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".bin\Google.GData.AccessControl.DLL" />
-    <Content Include=".bin\Google.GData.Calendar.dll" />
-    <Content Include=".bin\Google.GData.Client.dll" />
-    <Content Include=".bin\Google.GData.Extensions.dll" />
     <Content Include="App\app.js" />
     <Content Include="App\constants.js" />
     <Content Include="App\controllers\Home\CalendarCtrl.js" />
@@ -1742,6 +1735,7 @@
     <Content Include="Views\Home\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".bin\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

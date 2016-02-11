@@ -1700,6 +1700,7 @@
     <Content Include="Views\Home\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".bin\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

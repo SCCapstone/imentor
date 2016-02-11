@@ -48,6 +48,7 @@ namespace iMentor.Controllers
 
         private iMAST_dbEntities db = new iMAST_dbEntities();
 
+        [AllowAnonymous]
         public JsonResult GetListings()
         {
             var result = db.ListingModels.ToList();

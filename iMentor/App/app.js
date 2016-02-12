@@ -3,7 +3,7 @@
 var app = angular.module('app', [
     'ui.bootstrap',
     'ngRoute',
-    
+    'ui.calendar',
     'iMentor.directives'
 ])
 

@@ -54,13 +54,5 @@ namespace iMentor.Controllers
             var result = db.ListingModels.ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        
-        public int GetCount()
-        {
-            var listings = db.ListingModels.ToArray();
-
-            return listings.Count();
-        }
-
     }
 }

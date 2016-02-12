@@ -283,6 +283,7 @@
   <ItemGroup>
     <Content Include="App\app.js" />
     <Content Include="App\constants.js" />
+    <Content Include="App\controllers\Home\CalendarCtrl.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js" />
     <Content Include="App\controllers\Home\Modals\ListingCreationCtrl.js" />
     <Content Include="App\controllers\Home\Modals\ListingDetailCtrl.js" />

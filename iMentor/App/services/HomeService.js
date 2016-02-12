@@ -1,21 +1,14 @@
-﻿'use strict';
+﻿
 
-app.factory('homeService', ['$http', 'apiService',
-function ($http, apiService) {
+app.factory('homeService', ['$http',
+    function ($http) {
 
-    //return{
-    //    getListings: function(){
-    //        var url = 'api/home/getlistings';
-    //        return apiService.httpGet(url, false);
-    //    }
-    //}
+        var homeService = {};
 
-    var homeService = {};
-
-    homeService.getListings = function () {
-        return $http.get('/home/getListings');
-    };
+        homeService.getListings = function () {
+            return $http.get('/home/getListings');
+        };
  
-    return homeService;
- 
-}]);
+        return homeService;
+    }
+]);

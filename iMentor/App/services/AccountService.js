@@ -1,16 +1,14 @@
-﻿'use strict';
+﻿
 
-app.factory('accountService', ['$http', '$q', 'apiService',
-function ($http, $q, apiService) {
-    return {
-        getCurrentUser: function () {
-            var url = rootUrl + 'api/account/getCurrentUser';
-            return apiService.httpGet(url, false);
-        },
+app.factory('accountService', ['$http',
+    function ($http) {
 
-        logout: function () {
-            var url = rootUrl + 'api/account/logout';
-            return apiService.httpGet(url, false);
-        },
-    };
-}]);
+        var accountService = {};
+
+        accountService.getCurrentUser = function () {
+            return $http.get('/account/getCurrentUser');
+        };
+ 
+        return accountService;
+    }
+]);

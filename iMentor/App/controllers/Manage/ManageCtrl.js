@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿
 
 app.controller('manageCtrl', function ($scope, $rootScope, manageService) {
  

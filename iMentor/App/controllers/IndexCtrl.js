@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿
 
 app.controller('indexCtrl', [ '$scope', '$rootScope', '$location',
     function IndexCtrl($scope, $rootScope, $location) {

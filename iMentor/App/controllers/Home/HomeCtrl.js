@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿
 
 app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionService',
     function HomeCtrl($scope, $uibModal, homeService, modalOptionService)

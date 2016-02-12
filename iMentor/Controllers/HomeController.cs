@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using iMentor.Models;
-using iMentor.Entities;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace iMentor.Controllers
 {

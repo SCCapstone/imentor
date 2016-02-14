@@ -19,7 +19,15 @@ namespace iMentor.Controllers
         {
             var currentUserName = User.Identity.GetUserName(); //Get current User's username
             var result = db.ListingModels.Where(x => x.Mentor.Equals(currentUserName)).ToList();
-            
+         
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getDateByListing()
+        {
+            var currentDate = GetListingsByCurrentUser(); //gets listings by user
+            var result = db.ListingModels.Where(x => x.StartDate.Equals(currentDate));
+
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

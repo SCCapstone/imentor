@@ -5,6 +5,7 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
 
         $scope.userListings = [];
         getListingsByCurrentUser();
+        //$scope.length2 = getListingsByCurrentUser().length;
 
         var events = [];
         /*
@@ -28,7 +29,7 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
 
         $scope.eventSources = [events];
         $scope.calOptions = {
-            editable: true,
+            eventStartEditable: true,
             header:{
                 left: 'prev',
                 center:'title',
@@ -48,6 +49,9 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
         }
+
+       
+     
 
     }
 ]);

@@ -32,10 +32,12 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
             header:{
                 left: 'prev',
                 center:'title',
-                right: 'next'
+                right: 'next',
+                prev: 'left-single-arrow',
+                next: 'right-single-arrow',
             }
         };
-
+        
 
         function getListingsByCurrentUser() {
             calendarService.getListingsByCurrentUser()

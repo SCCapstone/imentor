@@ -1,7 +1,7 @@
 ﻿
 <div class="ngview-wrapper">
     <div class="ngview-body" style="padding-top:25px;">
-  
+     
         <!-- For testing purposes -->
         <div ng-repeat="l in userListings">
             {{l.Title}} <button ng-click=""></button>
@@ -10,6 +10,6 @@
         <!-------------------------->
       
 
-            <div class='calendar' ui-calendar='calOptions' ng-model='eventSources'></div>
+            <div ui-calendar="uiConfig.calendar" ng-model='eventSources'></div>
         </div>
 </div>

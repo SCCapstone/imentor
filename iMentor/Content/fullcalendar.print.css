@@ -198,5 +198,18 @@ tbody,
 
 .fc-button-group,
 .fc button {
-	display: none; /* don't display any button-related controls */
+	/* force height to include the border and padding */
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	/* dimensions */
+	margin: 0;
+	height: 2.1em;
+	padding: 0 .6em;
+
+	/* text & cursor */
+	font-size: 1em; /* normalize */
+	white-space: nowrap;
+	cursor: pointer;
 }

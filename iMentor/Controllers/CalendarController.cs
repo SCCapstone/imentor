@@ -23,7 +23,7 @@ namespace iMentor.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult getDateByListing()
+        public JsonResult GetDateByListing()
         {
             var currentDate = GetListingsByCurrentUser(); //gets listings by user
             var result = db.ListingModels.Where(x => x.StartDate.Equals(currentDate));

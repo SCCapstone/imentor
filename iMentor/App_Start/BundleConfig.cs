@@ -8,16 +8,35 @@ namespace iMentor
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/bundles/content").IncludeDirectory("~/Content", "*.css", false));
-            bundles.Add(new StyleBundle("~/bundles/content/iMentor").IncludeDirectory("~/Content/iMentor", "*.css", false));
+          
+            bundles.Add(new StyleBundle("~/bundles/content").Include(
+                "~/Content/iMentor/iMentor-site.css",
+                "~/Content/bootstrap-theme.css",
+                "~/Content/bootstrap-theme.css.map",
+                "~/Content/bootstrap-theme.min.css",
+                "~/Content/bootstrap-theme.min.css.map",
+                "~/Content/bootstrap.css",
+                "~/Content/bootstrap.min.css",
+                "~/Content/bootstrap.css.map",
+                
+                "~/Content/fullcalendar.css",
+                "~/Content/fullcalendar.min.css",
+                "~/Content/ui-bootstrap-csp.css"
+
+                )
+
+                );
+           
+            //bundles.Add(new StyleBundle("~/bundles/content/iMentor").IncludeDirectory("~/Content/iMentor", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/ngMaterial").IncludeDirectory("~/Scripts/node-modules/angular-material", "*.css", false));
-            bundles.Add(new StyleBundle("~/bundles/content/themes").IncludeDirectory("~/Content/themes", "*.css", false));
-      
+            //bundles.Add(new StyleBundle("~/bundles/content/themes").IncludeDirectory("~/Content/themes", "*.css", false));
+           // bundles.Add(new StyleBundle("~/bundles/content").Include("~/Content/fullcalendar.print.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-2.2.0.min.js")
                 );
-
+            bundles.IgnoreList.Ignore("~/Content/fullcalendar.css");
+           
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -65,7 +84,7 @@ namespace iMentor
             );
             bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
               "~/Scripts/fullcalendar.min.js",
-              "~/Scripts/fullcalendar.js",
+             
               "~/Scripts/gcal.js")
           );
         }

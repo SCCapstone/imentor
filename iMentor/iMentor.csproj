@@ -47,10 +47,6 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DHTMLX, Version=3.3.5884.35946, Culture=neutral, PublicKeyToken=53f24791214eb8ac, processorArchitecture=MSIL">
-      <HintPath>..\packages\DHTMLX.Scheduler.NET.3.3.13.0\lib\DHTMLX.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>

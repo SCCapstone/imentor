@@ -378,11 +378,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Img\ComputerScience.png" />
     <Content Include="Img\iMentor_lg.png" />
     <Content Include="Img\iMentor_sm.png" />
     <Content Include="Img\Math.png" />
     <Content Include="Img\Reading.png" />
     <Content Include="Img\Science.png" />
+    <Content Include="Img\Unknown.png" />
     <Content Include="Img\World.png" />
     <Content Include="Models\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

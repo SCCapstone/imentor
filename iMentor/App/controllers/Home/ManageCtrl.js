@@ -1,8 +1,14 @@
 ﻿
 
-app.controller('manageCtrl', ['$scope',
-    function ManageCtrl($scope) 
+app.controller('manageCtrl', ['$scope', '$rootScope',
+    function ManageCtrl($scope, $rootScope) 
     {
-        
+        var listing = $rootScope.currentListing;
+        console.log(listing);
+
+        $scope.ok = function () 
+        {
+            $rootScope.currentListing = null;
+        };
     }
 ]);

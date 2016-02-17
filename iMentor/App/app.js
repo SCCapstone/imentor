@@ -18,3 +18,9 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
     $locationProvider.html5Mode(false).hashPrefix('!');
 }]);
+
+app.run(['$rootScope',
+    function($rootScope) {
+        $rootScope.currentListing = null;
+    }
+]);

@@ -296,12 +296,11 @@
     <Content Include="App\controllers\IndexCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\controllers\Home\ManageCtrl.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="App\controllers\Home\LoginCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\controllers\Manage\ManageListings.js" />
+    <Content Include="App\controllers\Manage\ManageUsers.js" />
     <Content Include="App\directives\iMentorDirectives.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1858,11 +1857,10 @@
     <Content Include="Views\Home\Calendar.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Home\Manage.cshtml" />
+    <Content Include="Views\Manage\ManageUsers.cshtml" />
+    <Content Include="Views\Manage\ManageListings.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Manage\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -11,8 +11,12 @@ app.controller('indexCtrl', [ '$scope', '$location',
             $location.path('/');
         };
 
-        $scope.goToManage = function () {
-            $location.path('/Manage');
+        $scope.goToManageUsers = function () {
+            $location.path('/ManageUsers');
+        };
+
+        $scope.goToManageListings = function () {
+            $location.path('/ManageListings');
         };
 
         $scope.goToCalendar = function ()

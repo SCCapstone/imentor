@@ -12,7 +12,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     $routeProvider
         .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
         .when('/Login', { templateUrl: 'Account/login', controller: 'loginCtrl' })
-        .when('/Manage', { templateUrl: 'home/manage', controller: 'manageCtrl' })
+        .when('/ManageUsers', { templateUrl: 'Manage/manageUsers', controller: 'manageUsersCtrl' })
+        .when('/ManageListings', { templateUrl: 'Manage/manageListings', controller: 'manageListingsCtrl' })
         .when('/Calendar', { templateUrl: 'home/calendar', controller: 'calendarCtrl' })
         .otherwise({ redirectTo: '/' });
 

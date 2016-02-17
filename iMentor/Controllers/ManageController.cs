@@ -8,5 +8,17 @@ namespace iMentor.Controllers
 {
     public class ManageController : Controller
     {
+
+        [AllowAnonymous]
+        public ActionResult ManageUsers()
+        {
+            return PartialView();
+        }
+
+        [AllowAnonymous]
+        public ActionResult ManageListings()
+        {
+            return PartialView();
+        }
     }
 }

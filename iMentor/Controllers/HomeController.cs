@@ -22,12 +22,6 @@ namespace iMentor.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Manage()
-        {
-            return PartialView();
-        }
-
-        [AllowAnonymous]
         public ActionResult Calendar()
         {
             return PartialView();

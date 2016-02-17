@@ -1,9 +1,10 @@
 ﻿
 function listingDetailCtrl($scope, $uibModalInstance, $location, $rootScope, listing)
 {
+    $rootScope.currentListing = listing;
     $scope.title = listing.Area;
     $scope.description = listing.Description;
-    $rootScope.currentListing = listing;
+
 
     $scope.ok = function ()
 	{
@@ -13,6 +14,6 @@ function listingDetailCtrl($scope, $uibModalInstance, $location, $rootScope, lis
     $scope.manage = function ()
 	{
 		$uibModalInstance.dismiss();
-        $location.path('/Manage');
+		$location.path('/ManageListings');
 	};
 }

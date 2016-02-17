@@ -1,14 +1,23 @@
 ﻿
 
 app.controller('calendarCtrl', ['$scope', 'calendarService', 
-    function CalenadarCtrl($scope, calendarService, uiCalendarConfig){
+    function CalendarCtrl($scope, calendarService, uiCalendarConfig){
 
-       var userListings = [];
-       var data = getListingsByCurrentUser();
+      var events = [];
+
+      getListingsByCurrentUser();
+      
+      for (var i = 0; i < userListings.length; i++)
+      {
+          events.push({title: userListings[i].Title, start: userListings[i].StartDate})
+      }
+ 
+
+      //var eventListLength = listings.length;
         //$scope.numberOfListings = data.length();
         //$scope.length2 = getListingsByCurrentUser().length;
 
-        var events = [];
+        //$scope.events = [];
         /*
         var events = [
                 {title: "Test", start: new Date (2016, 02, 11)}
@@ -25,10 +34,11 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
             events.push({title: tempTitle, start: tempDate})
         }
         */
-        events.push({ title: "Test", start: new Date(2016, 02, 11) });
-       userListings.push({ title: "new Testing", start: new Date(2016,2,16) });
+       // events.push({ title: "Test", start: new Date(2016, 02, 11) });
+       //userListings.push({ title: "new Testing", start: new Date(2016,2,16) });
 
-        $scope.eventSources = [userListings];
+       $scope.eventSources = [userListings];
+       var len = $scope.eventSources.length;
         $scope.uiConfig = {
             calendar: {
                 height: 900,

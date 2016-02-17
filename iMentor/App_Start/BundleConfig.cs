@@ -26,7 +26,23 @@ namespace iMentor
                 )
 
                 );
-           
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+               "~/Scripts/angular.js",
+               "~/Scripts/angular-animate.js",
+               "~/Scripts/angular-aria.js",
+               "~/Scripts/angular-route.js",
+               "~/Scripts/angular-messages.js",
+               "~/Scripts/angular-sanitize.js",
+               "~/Scripts/node-modules/angular-material/angular-material.js",
+               "~/Scripts/angular-ui/bootstrap.min.js",
+               "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
+               "~/Scripts/angular-ui-calendar/calendar.js"
+               ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                "~/Scripts/jquery-2.2.0.min.js")
+                );
             //bundles.Add(new StyleBundle("~/bundles/content/iMentor").IncludeDirectory("~/Content/iMentor", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/ngMaterial").IncludeDirectory("~/Scripts/node-modules/angular-material", "*.css", false));
             //bundles.Add(new StyleBundle("~/bundles/content/themes").IncludeDirectory("~/Content/themes", "*.css", false));
@@ -35,7 +51,7 @@ namespace iMentor
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-2.2.0.min.js")
                 );
-            bundles.IgnoreList.Ignore("~/Content/fullcalendar.css");
+            //bundles.IgnoreList.Ignore("~/Content/fullcalendar.css");
            
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -48,18 +64,7 @@ namespace iMentor
                 "~/Scripts/respond.js")
             );
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                "~/Scripts/angular.js",
-                "~/Scripts/angular-animate.js",
-                "~/Scripts/angular-aria.js",
-                "~/Scripts/angular-route.js",
-                "~/Scripts/angular-messages.js",
-                "~/Scripts/angular-sanitize.js",
-                "~/Scripts/node-modules/angular-material/angular-material.js",
-                "~/Scripts/angular-ui/bootstrap.min.js",
-                "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
-                "~/Scripts/angular-ui-calendar/calendar.js"
-                ));
+          
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/App/constants.js",

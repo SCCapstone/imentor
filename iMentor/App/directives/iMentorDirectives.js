@@ -29,6 +29,10 @@
                         return 'img/World.png';
                     else if (scope.listing.Area == 'Reading')
                         return 'img/Reading.png';
+                    else if(scope.listing.Area == 'Computer Science')
+                        return 'img/ComputerScience.png';
+                    else
+                        return 'img/Unknown.png';
                 }
             }
         };

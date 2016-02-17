@@ -22,7 +22,7 @@ namespace iMentor.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Listings()
+        public ActionResult Manage()
         {
             return PartialView();
         }

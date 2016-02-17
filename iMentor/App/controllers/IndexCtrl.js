@@ -1,26 +1,7 @@
 ﻿
 
-app.controller('indexCtrl', [ '$scope', '$rootScope', '$location',
-    function IndexCtrl($scope, $rootScope, $location) {
-        //---------------------------------------------------
-        // $rootScope
-        //---------------------------------------------------
-
-        $rootScope.selectedNav = null;
-
-
-        //---------------------------------------------------
-        // Auth calls
-        //---------------------------------------------------
-
-        //$scope.getIsAuthenticated = function () {
-        //    return securityService.isAuthenticated();
-        //};
-
-        //$scope.getCurrUser = function () {
-        //    return securityService.getCurrUser();
-        //};
-
+app.controller('indexCtrl', [ '$scope', '$location',
+    function IndexCtrl($scope, $location) {
         //---------------------------------------------------
         // Navigation
         //---------------------------------------------------
@@ -30,8 +11,8 @@ app.controller('indexCtrl', [ '$scope', '$rootScope', '$location',
             $location.path('/');
         };
 
-        $scope.goToListings = function () {
-            $location.path('/Listings');
+        $scope.goToManage = function () {
+            $location.path('/Manage');
         };
 
         $scope.goToCalendar = function ()

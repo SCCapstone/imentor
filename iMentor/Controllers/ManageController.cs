@@ -20,5 +20,17 @@ namespace iMentor.Controllers
         {
             return PartialView();
         }
+
+        [AllowAnonymous]
+        public ActionResult EditListing()
+        {
+            return PartialView();
+        }
+
+        [AllowAnonymous]
+        public ActionResult EditUserRole()
+        {
+            return PartialView();
+        }
     }
 }

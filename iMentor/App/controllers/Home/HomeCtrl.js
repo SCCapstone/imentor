@@ -1,13 +1,17 @@
 ﻿
 
-app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionService',
-    function HomeCtrl($scope, $uibModal, homeService, modalOptionService)
+app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', 'modalOptionService',
+    function HomeCtrl($scope, $uibModal, $location, homeService, modalOptionService)
     {
         $scope.listings = [];
         $scope.subjectsIncludes = [];
 
         getListings();
 
+
+        // ---------------------------------------------------------------
+        // Filters
+        // ---------------------------------------------------------------
         $scope.includeArea = function (listing) {
             var i = $.inArray(listing, $scope.subjectsIncludes);
             if (i > -1) {
@@ -27,6 +31,9 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
         }
 
 
+        // ---------------------------------------------------------------
+        // Load Database Listings
+        // ---------------------------------------------------------------
         function getListings() {
             homeService.getListings()
                 .success(function (listings) {
@@ -38,22 +45,18 @@ app.controller('homeCtrl', ['$scope', '$uibModal', 'homeService', 'modalOptionSe
         }
 
 
-        $scope.createListing = function () {
-            $scope.showCreationModal();
-        }
-
-        $scope.showCreationModal = function()
+        // ---------------------------------------------------------------
+        // Navigation
+        // ---------------------------------------------------------------
+        $scope.goToCreateListing = function()
         {
-            var modalOptions = modalOptionService.optionsForListingCreation();
-            var modalInstance = $uibModal.open(modalOptions);
-
-            modalInstance.result.then(
-                null,
-                function cancel() {
-                    // No-op
-                });
+            $location.path('/EditListing');
         }
 
+
+        // ---------------------------------------------------------------
+        // Modals
+        // ---------------------------------------------------------------
         $scope.selectListing = function (listing) {
             $scope.showListingDetail(listing);
         };

@@ -299,6 +299,8 @@
     <Content Include="App\controllers\Home\LoginCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\controllers\Manage\EditListingCtrl.js" />
+    <Content Include="App\controllers\Manage\EditUserRoleCtrl.js" />
     <Content Include="App\controllers\Manage\ManageListings.js" />
     <Content Include="App\controllers\Manage\ManageUsers.js" />
     <Content Include="App\directives\iMentorDirectives.js">
@@ -1865,7 +1867,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Manage\ManageListings.cshtml" />
-    <Content Include="Views\Manage\CreateListing.cshtml" />
+    <Content Include="Views\Manage\EditListing.cshtml" />
+    <Content Include="Views\Manage\EditUserRole.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

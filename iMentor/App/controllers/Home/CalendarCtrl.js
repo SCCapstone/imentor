@@ -3,20 +3,10 @@
 app.controller('calendarCtrl', ['$scope', 'calendarService', 
     function CalendarCtrl($scope, calendarService, uiCalendarConfig){
 
-    $scope.userListings= [];
-    $scope.events = [];
-    getListingsByCurrentUser();
-    console.log($scope.userListings);
-    console.log($scope.userListings.length);
+        $scope.userListings = [];
+        $scope.events = [];
 
-      for (var i = 0; i < $scope.userListings.length; i++)
-      {
-          events.push({title: userListings[i].Title, start: userListings[i].StartDate})
-      }
- 
-
-      
-      $scope.eventSources = [$scope.userListings];
+        $scope.eventSources = [$scope.userListings];
  
         $scope.uiConfig = {
             calendar: {
@@ -31,20 +21,25 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
                 }
             }
         };
-        
 
-        function getListingsByCurrentUser() {
+        $scope.$on('$viewContentLoaded', function () {
+            $scope.getListings();
+        });
+
+
+        $scope.getListings = function() {
             calendarService.getListingsByCurrentUser()
                 .success(function (listings) {
                     $scope.userListings = listings;
+
+                    for (var i = 0; i < listings.length; i++)
+                    {
+                        $scope.events.push({ title: listings[i].Title, start: listings[i].StartDate })
+                    }
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
         }
-
-       
-     
-
     }
 ]);

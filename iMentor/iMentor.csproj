@@ -339,6 +339,15 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\iMentor\iMentor-site.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -352,20 +361,17 @@
     <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1206,8 +1212,8 @@
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\lang-all.js" />
     <Content Include="Scripts\lang\ar-ma.js" />
     <Content Include="Scripts\lang\ar-sa.js" />
@@ -1740,6 +1746,7 @@
     <Content Include="Templates\ListingDetailModal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Manage\ManageUsers.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1857,8 +1864,8 @@
     <Content Include="Views\Home\Calendar.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Manage\ManageUsers.cshtml" />
     <Content Include="Views\Manage\ManageListings.cshtml" />
+    <Content Include="Views\Manage\CreateListing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,7 +1,8 @@
 ﻿
 
 app.factory('accountService', ['$http',
-    function ($http) {
+    function ($http) 
+    {
 
         var accountService = {};
 

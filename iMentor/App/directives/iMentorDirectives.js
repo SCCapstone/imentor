@@ -1,4 +1,4 @@
-﻿angular.module('iMentor.directives', [])
+﻿angular.module('iMentor.directives', ['ui.bootstrap'])
     .directive('listingCard', function () {
         return {
             restrict: 'A',

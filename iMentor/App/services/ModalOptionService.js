@@ -5,7 +5,7 @@ app.factory('modalOptionService', function () {
         optionsForListingCreation: function () {
             return {
                 templateUrl: '/Templates/ListingCreationModal.html',
-                controller: listingCreationCtrl,
+                controller: 'listingCreationCtrl',
                 backdrop: true,
                 windowClass: 'listingCreationModal',
             }
@@ -14,7 +14,7 @@ app.factory('modalOptionService', function () {
         optionsForListingDetail: function(listing) {
             return {
                 templateUrl: '/Templates/ListingDetailModal.html',
-                controller: listingDetailCtrl,
+                controller: 'listingDetailCtrl',
                 backdrop: true,
                 windowClass: 'listingDetailModal',
                 resolve: {

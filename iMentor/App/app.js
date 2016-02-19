@@ -1,14 +1,16 @@
 ﻿
 
 var app = angular.module('app', [
-    'ui.bootstrap',
     'ngRoute',
+    'ngTouch',
+    'ui.grid',
+    'ui.bootstrap',
     'ui.calendar',
     'iMentor.directives'
 ])
 
-app.config(['$routeProvider', '$locationProvider', 
-    function ($routeProvider, $locationProvider)
+app.config(['$routeProvider', '$locationProvider', '$httpProvider',
+    function ($routeProvider, $locationProvider, $httpProvider)
     {
         $routeProvider
             .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
@@ -17,12 +19,21 @@ app.config(['$routeProvider', '$locationProvider',
             .when('/ManageUsers', { templateUrl: 'Manage/manageUsers', controller: 'manageUsersCtrl' })
             .when('/ManageListings', { templateUrl: 'Manage/manageListings', controller: 'manageListingsCtrl' })
         
-            .when('/EditListing', { templateUrl: 'Manage/editListing', controller: 'editListingCtrl' })
+            .when('/EditListing/:listingId', { templateUrl: 'Manage/editListing', controller: 'editListingCtrl' })
             .when('/EditUserRole', { templateUrl: 'Manage/editUserRole', controller: 'editUserRoleCtrl' })
 
             .otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
+
+        // Globally turn off caching of all data calls
+        // Initialize headers
+        $httpProvider.defaults.headers.get = $httpProvider.defaults.headers.get || {};
+
+        // Set no cache items
+        $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Tue, 01 Jan 1980 1:00:00 GMT';
+        $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+        $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
     }
 ]);
 

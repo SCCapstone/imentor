@@ -1,8 +1,17 @@
 ﻿
 <div class="ngview-wrapper">
     <div class="ngview-body" style="padding-top:25px;">
-        Listing: {{currentListing.Title}}
+        <div class="ngview-header-left">
+            <div class="header-title">Listing Management</div>
+        </div>
+    </div>
 
-        <input class="btn btn-default btn-sm" ng-click="ok()" style="width: 75px;" value="Ok" />
+    <div class="ngview-body" style="padding-top:10px;">
+        <div class="row" style="padding-right: 20px;">
+            <div style="font-size:12px;">
+                <div im-btn icon="glyphicon glyphicon-plus" text="Add Listing" on-click="addListing" class="pull-right"></div>
+            </div>
+        </div>
+        <div ui-grid="gridOptions" class="im-grid"></div>
     </div>
 </div>

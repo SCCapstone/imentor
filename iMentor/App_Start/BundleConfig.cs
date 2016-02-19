@@ -18,14 +18,12 @@ namespace iMentor
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap.min.css",
                 "~/Content/bootstrap.css.map",
-                
+                "~/Content/ui-grid.css",
                 "~/Content/fullcalendar.css",
                 "~/Content/fullcalendar.min.css",
                 "~/Content/ui-bootstrap-csp.css"
+                ));
 
-                )
-
-                );
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                "~/Scripts/angular.js",
                "~/Scripts/angular-animate.js",
@@ -33,6 +31,8 @@ namespace iMentor
                "~/Scripts/angular-route.js",
                "~/Scripts/angular-messages.js",
                "~/Scripts/angular-sanitize.js",
+               "~/Scripts/angular-touch.js",
+               "~/Scripts/ui-grid.js",
                "~/Scripts/node-modules/angular-material/angular-material.js",
                "~/Scripts/angular-ui/bootstrap.min.js",
                "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
@@ -67,7 +67,7 @@ namespace iMentor
           
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                "~/App/constants.js",
+                "~/App/globals.js",
                 "~/App/app.js"
                 ));
 

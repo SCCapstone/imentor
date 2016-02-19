@@ -52,6 +52,38 @@ textarea {
   border-color: #e7e7e7;
 }
 
+.im-link {
+	cursor: pointer;
+}
+
+.im-link-hover:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.im-link-help a {
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 500;
+	font-size: 13px;
+	color: #237eb2;
+	margin-left: 5px;
+	margin-right: 2px;
+	margin-top: 6px;
+}
+
+.im-link-help i {
+	margin-right: 5px;
+}
+
+.im-link-help a:hover {
+	text-decoration: underline;
+}
+
+
+/*----------------------------------------
+/* ng-material cards
+/*----------------------------------------*/
 
 .listing-card {
 	font-size: 11px;
@@ -178,3 +210,286 @@ h6.panel-title {
 	padding-right: 5px;
 }
 
+/*----------------------------------------
+/* ng-view pages
+/*----------------------------------------*/
+
+.ngview-wrapper {
+	padding: 20px 20px 20px 20px;
+}
+
+.ngview-header {
+	font-weight: 300;
+	height: 30px;
+	margin: 4px 0 12px 0;
+	text-align: left;
+	/*border: 1px solid red;*/
+}
+
+.ngview-header-left {
+	display: inline-block;
+	float: left;
+}
+
+.ngview-header-right {
+	float: right !important;
+}
+
+.header-title {
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 300;
+	margin: 0 0 0 15px;
+	color: #3b3b3b;
+}
+
+.ngview-body {
+	padding: 5px 15px 20px 15px;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+	.ngview-body .im-btn {
+		font-size: 13px;
+		margin-left: 4px;
+	}
+
+	.ngview-body .im-toggle-btn {
+		font-size: 12px;
+	}
+
+	.ngview-body .im-toggle-btn-checked {
+		font-size: 12px;
+	}
+
+.icon-right {
+	display: inline-block;
+	float: right;
+	text-align: center;
+	color: #777;
+}
+
+.pagehead-btngroup {
+	padding: 0;
+	border: 0;
+}
+
+	.pagehead-btngroup .pagehead-btn {
+		margin-top: 2px;
+		padding: 0px 12px;
+		font-size: 15px;
+		color: #777;
+		background-color: transparent;
+		border: 0;
+		-webkit-box-shadow: inset 0 0px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, 0);
+		box-shadow: inset 0 0px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, 0);
+	}
+
+		.pagehead-btngroup .pagehead-btn:hover {
+			background: #e7e7e7;
+		}
+
+.pagehead-btn-group li a {
+	padding: 0px 5px;
+}
+
+
+
+/* ---------------------------------------------------------------------- */
+/*	Grids
+/* ---------------------------------------------------------------------- */
+.im-grid {
+	/*border: 1px solid #d4d4d4;*/
+	border: 0;
+	border-radius: 6px;
+	height: 500px;
+	/*margin: 15px;*/
+}
+
+.im-group-grid {
+	/*border: 1px solid #d4d4d4;*/
+	height: 375px;
+    overflow-x: hidden;
+    background-color: #f5f5f5;
+	/*margin: 15px;*/    
+}
+
+.im-group-grid-footer {
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background-color: #f5f5f5;    
+}
+
+.ngHeaderContainer {
+	background: #fff;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom: 1px solid #d4d4d4;
+	border-top: 1px solid #d4d4d4;
+}
+
+.ngCell {
+	line-height: 25px;
+	vertical-align: middle;
+}
+
+.ngRow {
+	display: table-row;
+	height: auto !important;
+	white-space: normal;
+	width: 100% !important;
+	/*position: static;*/
+}
+
+.ngVerticalBarVisible {
+	display: none;
+	height: 100% !important;
+}
+
+.ngVerticalBar {
+	display: none;
+	height: 100% !important;
+}
+
+.gridHeaderLeft {
+	font-size: 13px;
+	font-weight: 700;
+	background: #FFF;
+	text-align: left;
+	border-left: 1px solid #d4d4d4;
+	margin-left: -1px;
+}
+
+.gridHeaderCenter {
+	font-size: 13px;
+	font-weight: 700;
+	background: #FFF;
+	text-align: center;
+	border-left: 1px solid #d4d4d4;
+	margin-left: -1px;
+}
+
+.gridCellLeft {
+	text-align: left;
+	font-size: 12px;
+	font-weight: normal;
+	overflow: hidden;
+	white-space: nowrap;
+	/*height: auto;
+    overflow: visible;
+    white-space: normal;
+       width: auto;*/
+}
+
+.gridCellCenter {
+	text-align: center;
+	font-size: 12px;
+	font-weight: normal;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.gridCellCenterTooltip {
+	text-align: center;
+	font-size: 12px;
+	font-weight: normal;
+	overflow: visible;
+}
+
+.cell-icon {
+	color: #777;
+	text-align: center;
+	font-size: 15px;
+	padding-top: 5px;
+	overflow: hidden;
+}
+
+.tooltip-label {
+	text-align: right;
+	padding-right: 4px;
+}
+
+.tooltip-value {
+	text-align: left;
+}
+
+/*----------------------------------------*/
+/* Data Grids
+/*----------------------------------------*/
+
+.im-datagrid {
+	/*border: 1px solid silver;*/
+	border-radius: 6px;
+	/*margin: 25px 15px 15px 15px;*/
+	background: white;
+}
+
+/*CSS magic to remove the scrollbars from*/
+.im-datagrid-no-outline .ngHeaderContainer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.im-datagrid-no-scrollbars .ngViewport {
+    height: auto !important;
+}
+
+.im-datagrid-no-scrollbars .ngCanvas, .ngViewport, .ngRow, .ngFooterPanel, .ngTopPanel   {
+   width: 100% !important;
+}
+
+.im-datagrid-no-scrollbars .ngRow {
+   border-bottom:none !important;
+}
+
+/*----------------------------------------*/
+/* Flat button
+/*----------------------------------------*/
+
+.im-flat-button {
+	border: 1px solid transparent;
+	border-radius: 4px;
+	padding: 4px 2px 4px 6px;
+	cursor: pointer;
+}
+
+	.im-flat-button:hover {
+		border: 1px solid #ddd;
+		color: #333;
+	}
+
+	.im-flat-button:active {
+		box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+	}
+
+.im-flat-button-dis {
+	border: 1px solid transparent;
+	border-radius: 4px;
+	padding: 4px 2px 4px 6px;
+	cursor: default;
+	opacity: .5;
+}
+
+/*----------------------------------------*/
+/* im-btn
+/*----------------------------------------*/
+
+.im-btn {
+	margin-left: 4px;
+}
+
+.im-btn-text {
+	display: inline-block;
+	font-weight: 500;
+	font-size: 13px;
+	color: #237eb2;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: -2px;
+}

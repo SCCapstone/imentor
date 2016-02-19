@@ -1,4 +1,4 @@
-﻿angular.module('iMentor.directives', ['ui.bootstrap'])
+﻿angular.module('iMentor.directives', [])
     .directive('listingCard', function () {
         return {
             restrict: 'A',
@@ -36,6 +36,79 @@
                 }
             }
         };
+    })
+    .directive('imBtn', function () {
+        return {
+            restrict: 'A',
+
+            scope: {
+                iconClass: '=',
+                imDisabled: '=',
+                imShowTooltip: '=',
+                imTooltipText: '=',
+                onClick: '&'
+            },
+
+            templateUrl: 'templates/BtnDT.html',
+
+            link: function (scope, element, attrs) {
+                scope.imBtnIconClass = null;
+                scope.text = null;
+                scope.showIcon = true;
+                scope.imBtnClass = 'im-flat-button';
+                scope.clickEnabled = true;
+                scope.popoverText = null;
+
+                scope.$watch('iconClass', function (iconClass) {
+                    if (imIsDefined(iconClass)) {
+                        scope.imBtnIconClass = iconClass;
+                        scope.showIcon = true;
+                    }
+                });
+
+                scope.$watch('imShowTooltip', function (imShowTooltip) {
+                    showTooltip(imShowTooltip);
+                });
+
+                scope.$watch('imTooltipText', function (imTooltipText) {
+                    scope.popoverText = imTooltipText;
+                    showTooltip(scope.imShowTooltip);
+                });
+
+                function showTooltip(value) {
+                    if (imIsDefined(value) && value == true)
+                        scope.popoverText = scope.imTooltipText;
+                    else
+                        scope.popoverText = '';
+                }
+
+                scope.$watch('imDisabled', function (imDisabled) {
+                    if (imIsDefined(imDisabled) && imDisabled == true) {
+                        scope.imBtnClass = 'im-flat-button-dis';
+                    } else {
+                        scope.imBtnClass = 'im-flat-button';
+                    }
+                    scope.clickEnabled = !imDisabled;
+                });
+
+                if (imIsDefined(attrs.icon)) {
+                    scope.imBtnIconClass = attrs.icon;
+                    scope.showIcon = true;
+                };
+
+                if (imIsDefined(attrs.text))
+                    scope.text = attrs.text;
+
+                var onClickHandler = scope.onClick();
+
+                scope.click = function () {
+                    if (imIsDefined(onClickHandler)) {
+                        if (scope.clickEnabled)
+                            onClickHandler();
+                    }
+                };
+            }
+        }
     })
 ;
 

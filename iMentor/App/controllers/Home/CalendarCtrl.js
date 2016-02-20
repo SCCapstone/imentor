@@ -8,6 +8,8 @@ app.controller('calendarCtrl', ['$scope', 'calendarService', '$uibModal',
         var m = date.getMonth();
         var y = date.getFullYear();
 
+    
+
         $scope.events= [
            {title: 'All Day Event',start: new Date(y, m, 1)},
       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
@@ -32,7 +34,7 @@ app.controller('calendarCtrl', ['$scope', 'calendarService', '$uibModal',
                  eventClick:  function(event, jsEvent, view) {
             $('#modalTitle').html(event.title);
             $('#modalBody').html(event.description);
-            $('#eventUrl').attr('href',event.url);
+           
             $('#fullCalModal').modal();
         }
             }

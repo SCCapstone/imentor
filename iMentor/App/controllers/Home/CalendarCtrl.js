@@ -3,19 +3,10 @@
 app.controller('calendarCtrl', ['$scope', 'calendarService', 
     function CalendarCtrl($scope, calendarService, uiCalendarConfig){
 
-        $scope.userListings = [];
 
-        console.log("controller user listings" + $scope.userListings.length);
-        $scope.events = [];
-        $scope.eventSources = [
+      
 
-         '/calendar/getListingsByCurrentUser'
-        ];
-        console.log($scope.eventSources.length);
    
-        console.log("controller events length" + $scope.events.length);
-        //console.log("controller event sources" + $scope.eventSources.length);
- 
         $scope.uiConfig = {
             calendar: {
                 height: 900,
@@ -30,10 +21,7 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
             }
         };
 
-        $scope.$on('$viewContentLoaded', function () {
-            $scope.getListings();
-           });
-  
+        $scope.eventSources = [];
 
         $scope.getListings = function() {
             calendarService.getListingsByCurrentUser()

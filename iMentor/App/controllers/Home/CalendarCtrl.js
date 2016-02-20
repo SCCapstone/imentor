@@ -1,7 +1,7 @@
 ﻿
 
-app.controller('calendarCtrl', ['$scope', 'calendarService', 
-    function CalendarCtrl($scope, calendarService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', 'calendarService', '$uibModal',
+    function CalendarCtrl($scope,$uibModal, calendarService, uiCalendarConfig){
 
         var date = new Date();
         var d = date.getDate();
@@ -28,7 +28,13 @@ app.controller('calendarCtrl', ['$scope', 'calendarService',
                     center: 'title',
                     right: 'month,basicWeek,basicDay'
 
-                }
+                },
+                 eventClick:  function(event, jsEvent, view) {
+            $('#modalTitle').html(event.title);
+            $('#modalBody').html(event.description);
+           
+            $('#fullCalModal').modal();
+        }
             }
         };
 

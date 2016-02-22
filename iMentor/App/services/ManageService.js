@@ -29,6 +29,16 @@ app.factory('manageService', ['$http',
             return response;
         }
 
+        manageService.updateListing = function (listing) {
+            var response = $http({
+                method: "post",
+                url: "Manage/UpdateListing",
+                data: JSON.stringify(listing),
+                dataType: "json"
+            });
+            return response;
+        }
+
         manageService.getAspUsers = function () {
             return $http.get('/manage/getAspUsers');
         };

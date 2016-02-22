@@ -312,9 +312,6 @@
     <Content Include="App\controllers\Home\HomeCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\controllers\Home\Modals\ListingCreationCtrl.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="App\controllers\Home\Modals\ListingDetailCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1769,9 +1766,6 @@
     <Content Include="Templates\BtnDT.html" />
     <Content Include="Templates\DltBtn.html" />
     <Content Include="Templates\EditBtn.html" />
-    <Content Include="Templates\ListingCreationModal.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Templates\ListingCard.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

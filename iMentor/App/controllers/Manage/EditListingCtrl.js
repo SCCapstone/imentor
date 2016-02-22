@@ -56,8 +56,12 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
             if($scope.isNew)
             {
                 $scope.addListing();
-                $location.path("/ManageListings");
             }
+            else
+            {
+                $scope.updateListing();
+            }
+            $location.path("/ManageListings");
         }
 
         $scope.cancel = function () {
@@ -66,6 +70,12 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
 
         $scope.addListing = function () {
             manageService.addListing($scope.listing)
+                .success(function (response) {
+                });
+        }
+
+        $scope.updateListing = function () {
+            manageService.updateListing($scope.listing)
                 .success(function (response) {
                 });
         }

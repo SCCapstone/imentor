@@ -88,6 +88,34 @@ namespace iMentor.Controllers
             }
         }
 
+        public string UpdateListing(ListingModel listing)
+        {
+            if (listing != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    int no = Convert.ToInt32(listing.ID);
+                    var l = db.ListingModels.Where(x => x.ID == no).FirstOrDefault();
+                    l.Title = listing.Title;
+                    l.StartDate = listing.StartDate;
+                    l.EndDate = listing.EndDate;
+                    l.Area = listing.Area;
+                    l.Frequency = listing.Frequency;
+                    l.Description = listing.Description;
+                    l.Mentor = listing.Mentor;
+                    l.Email = listing.Email;
+                    l.URL = listing.URL;
+                    l.Open = listing.Open;
+                    db.SaveChanges();
+                    return "Listing Updated";
+                }
+            }
+            else
+            {
+                return "Invalid Listing";
+            }
+        }
+
 
 
         [System.Web.Mvc.AllowAnonymous]

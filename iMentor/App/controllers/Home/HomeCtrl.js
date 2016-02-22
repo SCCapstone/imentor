@@ -50,7 +50,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', '
         // ---------------------------------------------------------------
         $scope.goToCreateListing = function()
         {
-            $location.path('/EditListing');
+            $location.path("/EditListing/" + 0);
         }
 
 

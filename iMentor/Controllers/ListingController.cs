@@ -14,7 +14,7 @@ namespace iMentor.Controllers
 {
     public class ListingController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private iMAST_dbEntities db = new iMAST_dbEntities();
 
         // GET: api/Listing
         public IQueryable<ListingModel> GetListingModels()

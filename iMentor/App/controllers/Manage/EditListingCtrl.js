@@ -1,7 +1,13 @@
 ﻿
-app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', 'manageService',
-    function EditListingCtrl($scope, $rootScope, $routeParams, manageService) 
+app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'manageService',
+    function EditListingCtrl($scope, $rootScope, $routeParams, $location, manageService) 
     {
+        $scope.bools = ['True', 'False'];
+        $scope.selectedBool = null;
+
+        $scope.areas = ['Math', 'Science', 'History', 'Reading', 'Computer Science'];
+        $scope.selectedArea = null;
+
         var DEFAULT_PWD = '1234567890';
 
         $scope.usernamePattern = /^([A-Za-z0-9_-]){3,50}$/;
@@ -13,39 +19,68 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', 'mana
         var id = $scope.listingId;
         $scope.isNew = ($scope.listingId < 1);
         if (!$scope.isNew) {
-            getListingById(id);
-            $scope.password = DEFAULT_PWD;
-            $scope.confirmPassword = DEFAULT_PWD;
-        } else {
-            $scope.password = null;
-            $scope.confirmPassword = null;
+            getListings();
         }
 
         // ---------------------------------------------------------------
         // Load Database Listings
         // ---------------------------------------------------------------
-        function getListingById(id) {
-            manageService.getListingById(id)
-                .success(function (listing) {
-                    //for (var i = 0; i < listings.length; i++)
-                    //{
-                    //    if(listingId == 0)
-                    //    {
-                    //        $scope.listing = null;
-                    //    }
-                    //    else if(listings[i].ID == listingID)
-                    //    {
-                    //        $scope.listing = listings[i];
-                    //    }
-                    //}
-                    $scope.listing = listing;
-
-                    console.log(listing);
+        function getListings() {
+            manageService.getListings()
+                .success(function (listings) {
+                    for (var i = 0; i < listings.length; i++)
+                    {
+                        if(id == 0)
+                        {
+                            $scope.listing = null;
+                        }
+                        else if(listings[i].ID == id)
+                        {
+                            $scope.listing = listings[i];
+                            $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
+                            $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+                        }
+                    }
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
-                    console.log($scope.status);
                 });
+        }
+
+
+        // ---------------------------------------------------------------
+        // Functions
+        // ---------------------------------------------------------------
+
+        $scope.save = function() {
+            if($scope.isNew)
+            {
+                $scope.addListing();
+                $location.path("/ManageListings");
+            }
+        }
+
+        $scope.cancel = function () {
+            $location.path("/ManageListings");
+        }
+
+        $scope.addListing = function () {
+            manageService.addListing($scope.listing)
+                .success(function (response) {
+                });
+        }
+
+
+        // ---------------------------------------------------------------
+        // Drop Boxes
+        // ---------------------------------------------------------------
+
+        $scope.dropboxboolselected = function (item) {
+            $scope.selectedBool = item;
+        }
+
+        $scope.dropboxareaselected = function (item) {
+            $scope.selectedArea = item;
         }
     }
 ]);

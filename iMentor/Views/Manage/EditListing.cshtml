@@ -1,6 +1,117 @@
 ﻿
-<div class="ngview-wrapper">
-    <div class="ngview-body" style="padding-top:25px;">
-        
+<div class="ngview-wrapper" ng-class="cursorClass">
+    <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
+        <div class="ngview-header-left">
+            <div class="header-title">ListingDetails</div>
+        </div>
+    </div>
+
+
+    <div class="ngview-body" style="padding-top:20px;">
+        <div class="text-left" style="display:inline-block;">
+            <form name="listingForm" novalidate>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Title</div>
+                    <input type="text" ng-model="listing.Title" required ng-pattern="namePattern_100" name="title" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Start Date</div>
+                    <input type="text" ng-model="listing.StartDate" required name="startdate" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">End Date</div>
+                    <input type="text" ng-model="listing.EndDate" required name="enddate" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Area</div>
+
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {{selectedArea}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li ng-repeat="a in areas"><a ng-model="listing.Area" required name="area" ng-click="dropboxareaselected(a)">{{a}}</a></li>
+                        </ul>
+                    </div>
+
+                    @*<input type="text" ng-model="listing.Open" required name="open" class="form-control im-form-text" style="width:250px;" />
+                    <div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Frequency</div>
+                    <input type="text" ng-model="listing.Frequency" required name="frequency" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Description</div>
+                    <input type="text" ng-model="listing.Description" required name="description" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Mentor</div>
+                    <input type="text" ng-model="listing.Mentor" required name="mentor" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Teacher Email</div>
+                    <input type="text" ng-model="listing.Email" required ng-pattern="emailPattern" name="email" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
+                        <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                    </div>*@
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <div class="im-form-label" style="width:125px;">Open</div>
+
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {{selectedBool}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li ng-repeat="b in bools"><a ng-model="listing.Open" required name="open" ng-click="dropboxboolselected(b)">{{b}}</a></li>
+                            </ul>
+                    </div>
+
+                        @*<input type="text" ng-model="listing.Open" required name="open" class="form-control im-form-text" style="width:250px;" />
+                        <div style="float:left;width:30px;">
+                            <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+                        </div>*@
+                </div>
+
+
+                <div class="text-right">
+                    <div class="btn btn-sm btn-custom" ng-click="save()" style="margin-right:0px;width:75px;">Save</div>
+                    <div class="btn btn-sm btn-custom" ng-click="cancel()" style="width:75px;">Cancel</div>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>

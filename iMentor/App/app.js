@@ -20,7 +20,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
             .when('/ManageListings', { templateUrl: 'Manage/manageListings', controller: 'manageListingsCtrl' })
         
             .when('/EditListing/:listingId', { templateUrl: 'Manage/editListing', controller: 'editListingCtrl' })
-            .when('/EditUserRole', { templateUrl: 'Manage/editUserRole', controller: 'editUserRoleCtrl' })
+            .when('/EditUser/:userId', { templateUrl: 'Manage/editUser', controller: 'editUserCtrl' })
 
             .otherwise({ redirectTo: '/' });
 

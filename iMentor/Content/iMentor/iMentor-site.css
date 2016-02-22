@@ -493,3 +493,33 @@ h6.panel-title {
 	margin-right: 2px;
 	margin-top: -2px;
 }
+
+/*----------------------------------------*/
+/* Form Editing
+/*----------------------------------------*/
+
+.im-form-sectiontitle {
+    border-bottom: 1px solid #E2E2E2;
+    margin: 10px 0 16px 0;
+}
+
+.im-form-label{
+    float: left;
+    margin: 5px 10px 0 0;
+    text-align: right;
+    font-size: 13px;
+}
+
+.im-form-value{
+    float: left;
+    font-size: 13px;
+}
+
+.im-form-text{
+    float: left;
+    margin-bottom: 6px;
+}
+
+.im-validation-icon{
+    margin: 0 8px 0 6px;
+}

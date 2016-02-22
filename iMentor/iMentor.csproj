@@ -249,6 +249,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig2.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
@@ -324,7 +325,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App\controllers\Manage\EditListingCtrl.js" />
-    <Content Include="App\controllers\Manage\EditUserRoleCtrl.js" />
+    <Content Include="App\controllers\Manage\EditUserCtrl.js" />
     <Content Include="App\controllers\Manage\ManageListings.js" />
     <Content Include="App\controllers\Manage\ManageUsers.js" />
     <Content Include="App\directives\iMentorDirectives.js">
@@ -1766,6 +1767,7 @@
     <Content Include="Scripts\ui-grid.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\BtnDT.html" />
+    <Content Include="Templates\DltBtn.html" />
     <Content Include="Templates\EditBtn.html" />
     <Content Include="Templates\ListingCreationModal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1820,21 +1822,6 @@
     </Content>
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\Listings\Create.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Listings\Delete.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Listings\Details.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Listings\Edit.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Listings\Index.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Scripts\node-modules\angular-material\.npmignore" />
     <Content Include="Scripts\node-modules\angular-material\angular-material.scss" />
     <Content Include="Scripts\node-modules\angular-material\bower.json" />
@@ -1896,9 +1883,11 @@
     </Content>
     <Content Include="Views\Manage\ManageListings.cshtml" />
     <Content Include="Views\Manage\EditListing.cshtml" />
-    <Content Include="Views\Manage\EditUserRole.cshtml" />
+    <Content Include="Views\Manage\EditUser.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\User\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

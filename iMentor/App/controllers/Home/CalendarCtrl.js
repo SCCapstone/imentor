@@ -1,24 +1,13 @@
 ﻿
 
-app.controller('calendarCtrl', ['$scope', 'calendarService', '$uibModal',
-    function CalendarCtrl($scope,$uibModal, calendarService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', '$http', '$uibModal',
+    function CalendarCtrl($scope,$uibModal, $http, uiCalendarConfig){
 
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
-
-    
-
-        $scope.events= [
-           {title: 'All Day Event',start: new Date(y, m, 1)},
-      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-        ];
-
+        var currentView = "month";
    
         $scope.uiConfig = {
             calendar: {
@@ -40,23 +29,25 @@ app.controller('calendarCtrl', ['$scope', 'calendarService', '$uibModal',
             }
         };
 
-        $scope.eventSources = [$scope.events];
 
         $scope.getListings = function() {
-            calendarService.getListingsByCurrentUser()
-                .success(function (listings) {
-                    $scope.userListings = listings;
-                 
-                    for (var i = 0; i < $scope.userListings.length; i++)
-                    {
-                        console.log("For loop listing length"+$scope.userListings.length);
-                        $scope.events.push({ title: $scope.userListings[i].Title, start: $scope.userListings[i].StartDate })
-                        console.log("For loop events length" + $sccope.events.length);
-                    }
-                })
-                .error(function (error) {
-                    $scope.status = 'Unable to load listing data: ' + error.message;
-                });
+            console.log("Does this work?");
+            $http.get('/calendar/getListingsByCurrentUser').success(function (listings) {
+                console.log(listings);
+                for(var i = 0; i < listings.length; i++)
+                {
+                    $scope.events[i] = { id: listings[i].ID, title: listings[i].Title, start: new Date(listings[i].StartDate), end: new Date(listings[i].EndDate), allDay: false };
+                    console.log(listings);
+                    console.log(events.length);
+                }
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load listing data: ' + error.message;
+            });
+
+            console.log(events.length);
+            $scope.eventSources = [$scope.events];
+            console.log(eventSources.length);
         }
       
     }

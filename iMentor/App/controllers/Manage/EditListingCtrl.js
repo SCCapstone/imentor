@@ -52,16 +52,18 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         // Functions
         // ---------------------------------------------------------------
 
-        $scope.save = function() {
-            if($scope.isNew)
-            {
-                $scope.addListing();
+        $scope.save = function () {
+            if (!$scope.listingForm.open.$invalid && !$scope.listingForm.$pristine
+                && !$scope.listingForm.startDate.$invalid && !$scope.listingForm.endDate.$invalid
+                && !$scope.listingForm.title.$invalid && !$scope.listingForm.email.$invalid) {
+                if ($scope.isNew) {
+                    $scope.addListing();
+                }
+                else {
+                    $scope.updateListing();
+                }
+                $location.path("/ManageListings");
             }
-            else
-            {
-                $scope.updateListing();
-            }
-            $location.path("/ManageListings");
         }
 
         $scope.cancel = function () {

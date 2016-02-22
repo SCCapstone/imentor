@@ -38,7 +38,7 @@
                 <div class="form-group" style="clear:both">
                     <div class="im-form-label" style="width:125px;">Area</div>
 
-                    <div class="dropdown">
+                    @*<div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             {{selectedArea}}
                             <span class="caret"></span>
@@ -46,10 +46,10 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li ng-repeat="a in areas"><a ng-model="listing.Area" required name="area" ng-click="dropboxareaselected(a)">{{a}}</a></li>
                         </ul>
-                    </div>
+                    </div>*@
 
-                    @*<input type="text" ng-model="listing.Open" required name="open" class="form-control im-form-text" style="width:250px;" />
-                    <div style="float:left;width:30px;">
+                    <input type="text" ng-model="listing.Area" required name="area" class="form-control im-form-text" style="width:250px;" />
+                    @*<div style="float:left;width:30px;">
                         <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
                     </div>*@
                 </div>
@@ -89,7 +89,7 @@
                 <div class="form-group" style="clear:both">
                     <div class="im-form-label" style="width:125px;">Open</div>
 
-                    <div class="dropdown">
+                    @*<div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             {{selectedBool}}
                             <span class="caret"></span>
@@ -97,10 +97,10 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li ng-repeat="b in bools"><a ng-model="listing.Open" required name="open" ng-click="dropboxboolselected(b)">{{b}}</a></li>
                             </ul>
-                    </div>
+                    </div>*@
 
-                        @*<input type="text" ng-model="listing.Open" required name="open" class="form-control im-form-text" style="width:250px;" />
-                        <div style="float:left;width:30px;">
+                        <input type="text" ng-model="listing.Open" required name="open" class="form-control im-form-text" style="width:250px;" />
+                        @*<div style="float:left;width:30px;">
                             <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
                         </div>*@
                 </div>

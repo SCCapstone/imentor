@@ -241,21 +241,47 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\WebApiConfig2.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AspNetUsersController.cs" />
-    <Compile Include="Controllers\CalendarController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ListingController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Entities\Listing.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="App_Start\FilterConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Start\IdentityConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Start\Startup.Auth.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Start\WebApiConfig2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controllers\AspNetUsersController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controllers\CalendarController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controllers\ListingController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controllers\ManageController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Entities\Listing.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Entities\User.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,40 +290,53 @@
       <DependentUpon>201601281900295_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AccountViewModels.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\AspNetUserClaim.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\dbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\dbModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\dbModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IdentityModels.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Models\ListingModel.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -321,10 +360,18 @@
     <Content Include="App\controllers\Home\LoginCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\controllers\Manage\EditListingCtrl.js" />
-    <Content Include="App\controllers\Manage\EditUserCtrl.js" />
-    <Content Include="App\controllers\Manage\ManageListings.js" />
-    <Content Include="App\controllers\Manage\ManageUsers.js" />
+    <Content Include="App\controllers\Manage\EditListingCtrl.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\controllers\Manage\EditUserCtrl.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\controllers\Manage\ManageListings.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\controllers\Manage\ManageUsers.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="App\directives\iMentorDirectives.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -338,7 +385,9 @@
     <Content Include="App\services\HomeService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\services\ManageService.js" />
+    <Content Include="App\services\ManageService.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="App\services\ModalOptionService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -355,7 +404,9 @@
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
-    <Content Include="Content\iMentor\iMentor-site.css" />
+    <Content Include="Content\iMentor\iMentor-site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -394,7 +445,9 @@
     <Content Include="Content\ui-grid.min.css" />
     <Content Include="Content\ui-grid.svg" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Img\ComputerScience.png" />
     <Content Include="Img\iMentor_lg.png" />
@@ -408,21 +461,31 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Models\dbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
@@ -476,9 +539,11 @@
     <EntityDeploy Include="Models\dbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EntityDeploy>
     <Content Include="Models\dbModel.edmx.diagram">
       <DependentUpon>dbModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ui-grid.woff" />
     <Content Include="Content\ui-grid.ttf" />
@@ -1763,16 +1828,24 @@
     <Content Include="Scripts\ui-grid.js" />
     <Content Include="Scripts\ui-grid.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Templates\BtnDT.html" />
-    <Content Include="Templates\DltBtn.html" />
-    <Content Include="Templates\EditBtn.html" />
+    <Content Include="Templates\BtnDT.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\DltBtn.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\EditBtn.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\ListingCard.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\ListingDetailModal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Manage\ManageUsers.cshtml" />
+    <Content Include="Views\Manage\ManageUsers.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1875,9 +1948,15 @@
     <Content Include="Views\Home\Calendar.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Manage\ManageListings.cshtml" />
-    <Content Include="Views\Manage\EditListing.cshtml" />
-    <Content Include="Views\Manage\EditUser.cshtml" />
+    <Content Include="Views\Manage\ManageListings.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Manage\EditListing.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Manage\EditUser.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\User\" />

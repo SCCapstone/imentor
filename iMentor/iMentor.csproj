@@ -319,6 +319,7 @@
     <Content Include="App\controllers\Home\CalendarCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\controllers\Home\HangoutCtrl.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

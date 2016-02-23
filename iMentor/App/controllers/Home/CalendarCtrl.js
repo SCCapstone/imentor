@@ -27,7 +27,6 @@ app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService
                  eventClick:  function(event, jsEvent, view) {
             $('#modalTitle').html(event.title);
             $('#modalBody').html(event.description);
-           
             $('#fullCalModal').modal();
         }
             }

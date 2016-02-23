@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using iMentor.Models;
 using System.Web.Mvc;
-using iMentor.Entities;
 using Microsoft.AspNet.Identity;
-using System;
 
 namespace iMentor.Controllers
 {

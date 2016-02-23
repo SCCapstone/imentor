@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using iMentor.Controllers;
-using System.Web.Http;
 
 namespace iMentor.Controllers
 {
     [RequireHttps]
-    [System.Web.Mvc.RoutePrefix("api/manage")]
+    [RoutePrefix("api/manage")]
     public class ManageController : Controller
     {
         #region Views
@@ -41,7 +39,7 @@ namespace iMentor.Controllers
 
         private iMAST_dbEntities db = new iMAST_dbEntities();
 
-        [System.Web.Mvc.AllowAnonymous]
+        [AllowAnonymous]
         public JsonResult GetListings()
         {
             var listingsController = new ListingController();
@@ -51,7 +49,7 @@ namespace iMentor.Controllers
         }
 
 
-        [System.Web.Mvc.AllowAnonymous]
+        [AllowAnonymous]
         public string AddListing(ListingModel listing)
         {
             if (listing != null)
@@ -70,6 +68,7 @@ namespace iMentor.Controllers
             }
         }
 
+        [AllowAnonymous]
         public string DeleteListing(ListingModel listing)
         {
             if (listing != null)
@@ -88,6 +87,7 @@ namespace iMentor.Controllers
             }
         }
 
+        [AllowAnonymous]
         public string UpdateListing(ListingModel listing)
         {
             if (listing != null)
@@ -104,7 +104,7 @@ namespace iMentor.Controllers
                     l.Description = listing.Description;
                     l.Mentor = listing.Mentor;
                     l.Email = listing.Email;
-                    l.URL = listing.URL;
+                    l.HangoutUrl = listing.HangoutUrl;
                     l.Open = listing.Open;
                     db.SaveChanges();
                     return "Listing Updated";
@@ -118,16 +118,13 @@ namespace iMentor.Controllers
 
 
 
-        [System.Web.Mvc.AllowAnonymous]
+        [AllowAnonymous]
         public JsonResult GetAspUsers()
         {
-            var userController = new AspNetUsersController();
-            var users = userController.GetAspNetUsers();
-
-            return Json(users, JsonRequestBehavior.AllowGet);
+            return null;
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        [AllowAnonymous]
         public JsonResult GetUserById(string userId)
         {
             //var id = int.Parse(locationId);

@@ -14,6 +14,12 @@ namespace iMentor.Models
     
     public partial class ListingModel
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ListingModel()
+        {
+            this.AssignedListings = new HashSet<AssignedListing>();
+        }
+    
         public int ID { get; set; }
         public string Title { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
@@ -23,7 +29,10 @@ namespace iMentor.Models
         public string Description { get; set; }
         public string Mentor { get; set; }
         public string Email { get; set; }
-        public string URL { get; set; }
+        public string HangoutUrl { get; set; }
         public bool Open { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignedListing> AssignedListings { get; set; }
     }
 }

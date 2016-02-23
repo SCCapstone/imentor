@@ -12,18 +12,21 @@ namespace iMentor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRole
+    public partial class iMentorUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetRole()
+        public iMentorUser()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.AssignedListings = new HashSet<AssignedListing>();
         }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public int RoleId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<AssignedListing> AssignedListings { get; set; }
+        public virtual iMentorRole iMentorRole { get; set; }
     }
 }

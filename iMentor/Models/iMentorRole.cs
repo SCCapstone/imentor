@@ -12,13 +12,18 @@ namespace iMentor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaim
+    public partial class iMentorRole
     {
-        public int Id { get; set; }
-        public string UserId { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public iMentorRole()
+        {
+            this.iMentorUsers = new HashSet<iMentorUser>();
+        }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public int Id { get; set; }
+        public string RoleName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<iMentorUser> iMentorUsers { get; set; }
     }
 }

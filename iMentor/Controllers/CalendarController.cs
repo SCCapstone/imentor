@@ -15,6 +15,15 @@ namespace iMentor.Controllers
 
 
         [AllowAnonymous]
+        public JsonResult GetListings()
+        {
+            var listingsController = new ListingController();
+            var listings = listingsController.GetListingModels();
+
+            return Json(listings, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
         public JsonResult GetListingsByCurrentUser()
         {
             var currentUserName = User.Identity.GetUserName(); //Get current User's username

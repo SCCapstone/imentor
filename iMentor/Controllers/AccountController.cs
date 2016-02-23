@@ -163,7 +163,7 @@ namespace iMentor.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -378,6 +378,20 @@ namespace iMentor.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+
+                    //Create the iMentoUser entry
+                    using (iMAST_dbEntities db = new iMAST_dbEntities())
+                    {
+                        var imUser = new iMentorUser();
+
+                        imUser.UserName = user.UserName;
+                        imUser.Email = user.Email;
+                        imUser.RoleId = 1;
+
+                        db.iMentorUsers.Add(imUser);
+                        db.SaveChanges();
+                    }
+
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {

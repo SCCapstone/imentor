@@ -22,6 +22,12 @@ namespace iMentor.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return PartialView();
+        }
+
+        [AllowAnonymous]
         public ActionResult Calendar()
         {
             return PartialView();

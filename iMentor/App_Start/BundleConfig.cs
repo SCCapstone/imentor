@@ -34,6 +34,7 @@ namespace iMentor
                "~/Scripts/angular-touch.js",
                "~/Scripts/ui-grid.js",
                "~/Scripts/node-modules/angular-material/angular-material.js",
+               "~/Scripts/node-modules/angular-local-storage.min.js",
                "~/Scripts/angular-ui/bootstrap.min.js",
                "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
                "~/Scripts/angular-ui-calendar/calendar.js"

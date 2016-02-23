@@ -9,11 +9,11 @@ namespace iMentor
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Google API Sign-in",
-                url: "signin-google",
-                defaults: new { controller = "Account", action = "ExternalLoginCallbackRedirect" }
-            );
+            //routes.MapRoute(
+            //    name: "Google API Sign-in",
+            //    url: "signin-google",
+            //    defaults: new { controller = "AccountController", action = "ExternalLogin" }
+            //);
 
             routes.MapRoute(
                 name: "Default",

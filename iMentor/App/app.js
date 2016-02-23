@@ -6,6 +6,7 @@ var app = angular.module('app', [
     'ui.grid',
     'ui.bootstrap',
     'ui.calendar',
+    'LocalStorageModule',
     'iMentor.directives'
 ])
 
@@ -14,7 +15,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
     {
         $routeProvider
             .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
-            .when('/Login', { templateUrl: 'Account/login', controller: 'loginCtrl' })
+            .when('/Login', { templateUrl: 'home/login', controller: 'loginCtrl' })
             .when('/Calendar', { templateUrl: 'home/calendar', controller: 'calendarCtrl' })
             .when('/ManageUsers', { templateUrl: 'Manage/manageUsers', controller: 'manageUsersCtrl' })
             .when('/ManageListings', { templateUrl: 'Manage/manageListings', controller: 'manageListingsCtrl' })
@@ -42,3 +43,11 @@ app.run(['$rootScope',
         $rootScope.currentListing = null;
     }
 ]);
+
+
+var serviceBase = 'https://localhost:44300/';
+//var serviceBase = 'http://imast.azurewebsites.net/';
+app.constant('ngAuthSettings', {
+    apiServiceBaseUri: serviceBase,
+    clientId: 'ngAuthApp'
+});

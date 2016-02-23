@@ -59,11 +59,11 @@ namespace iMentor
             //   appId: "",
             //   appSecret: "");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "1086641013362-rj0u1ckimo3hs369gc8q40bvqs2d1rau.apps.googleusercontent.com",
-                ClientSecret = "sN9oU8mW3jP6qGDYGNMX2LS7"
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "1086641013362-rj0u1ckimo3hs369gc8q40bvqs2d1rau.apps.googleusercontent.com",
+            //    ClientSecret = "sN9oU8mW3jP6qGDYGNMX2LS7"
+            //});
         }
 
     }

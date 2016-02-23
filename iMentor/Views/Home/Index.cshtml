@@ -11,12 +11,9 @@
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
 
-        <meta name="google-signin-cookiepolicy" content="single_host_origin">
-
         @Styles.Render("~/bundles/content")
       
         @Styles.Render("~/bundles/content/ngMaterial")
-
     </head>
     <body ng-controller="indexCtrl" ng-cloak>
         <div>
@@ -46,11 +43,7 @@
                                 </li>
                             </ul>
 
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="" ng-click="goToManageUsers()" ng-show="true">Link</a></li>
-                                <li><a href="" ng-click="goToLogin()"><i class="glyphicon glyphicon-log-in"></i> Login </a></li>
-                            </ul>
+                            @Html.Partial("_LoginPartial")
                         </div>
                     </div>
                 </nav>

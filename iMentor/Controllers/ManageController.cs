@@ -119,9 +119,12 @@ namespace iMentor.Controllers
 
 
         [AllowAnonymous]
-        public JsonResult GetAspUsers()
+        public JsonResult GetUsers()
         {
-            return null;
+            var userController = new iMentorUsersController();
+            var users = userController.GetiMentorUsers();
+
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

@@ -3,7 +3,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
     function ManageUsersCtrl($scope, $rootScope, $location, manageService) 
     {
         $scope.currentUserIsAdmin = true;
-        getAspUsers();
+        getUsers();
 
         // ---------------------------------------------------------------
         // Grid
@@ -47,8 +47,8 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
         // ---------------------------------------------------------------
         // Load Users
         // ---------------------------------------------------------------
-        function getAspUsers() {
-            manageService.getAspUsers()
+        function getUsers() {
+            manageService.getUsers()
                 .success(function (users) {
                     $scope.users = users;
                 })

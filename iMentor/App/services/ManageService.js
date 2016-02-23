@@ -39,8 +39,8 @@ app.factory('manageService', ['$http',
             return response;
         }
 
-        manageService.getAspUsers = function () {
-            return $http.get('/manage/getAspUsers');
+        manageService.getUsers = function () {
+            return $http.get('/manage/getUsers');
         };
 
         manageService.getUserById = function(userId)

@@ -23,7 +23,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
                 field: ' ',
                 displayName: 'Edit',
                 width: '5%',
-                cellTemplate: 'Templates/EditBtn.html',
+                cellTemplate: 'Templates/EditListingBtn.html',
                 cellClass: 'gridCellCenter',
                 headerClass: 'gridHeaderCenter',
                 sortable: false

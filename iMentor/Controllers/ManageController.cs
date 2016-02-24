@@ -32,7 +32,7 @@ namespace iMentor.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
-        public ActionResult EditUserRole()
+        public ActionResult EditUser()
         {
             return PartialView();
         }
@@ -131,6 +131,7 @@ namespace iMentor.Controllers
                 foreach(iMentorUser user in iMentorUsers)
                 {
                     var u = new iMentorUserInfo();
+                    u.Id = user.Id;
                     u.UserName = user.UserName;
                     u.Email = user.Email;
                     u.RoleId = user.RoleId;
@@ -154,6 +155,31 @@ namespace iMentor.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public string UpdateUser(iMentorUserInfo user)
+        {
+            if (user != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    int no = Convert.ToInt32(user.Id);
+                    var u = db.iMentorUsers.Where(x => x.Id == no).FirstOrDefault();
+
+                    u.Id = user.Id;
+                    u.UserName = user.Email;
+                    u.Email = user.Email;
+                    u.RoleId = GetRoleIdByName(user.Role);
+
+                    db.SaveChanges();
+                    return "User Updated";
+                }
+            }
+            else
+            {
+                return "Invalid User";
+            }
+        }
+
 
         [AllowAnonymous]
         public JsonResult GetRoles()
@@ -173,6 +199,18 @@ namespace iMentor.Controllers
             {
                 var userRole = db.iMentorRoles.Where(x => x.Id == user.RoleId).FirstOrDefault();
                 var result = userRole.RoleName;
+
+                return result;
+            }
+        }
+
+        [AllowAnonymous]
+        public int GetRoleIdByName(string roleName)
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var role = db.iMentorRoles.Where(x => x.RoleName.Equals(roleName)).FirstOrDefault();
+                var result = role.Id;
 
                 return result;
             }

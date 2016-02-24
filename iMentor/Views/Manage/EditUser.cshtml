@@ -1,6 +1,38 @@
 ﻿
-<div class="ngview-wrapper">
-    <div class="ngview-body" style="padding-top:25px;">
+<div class="ngview-wrapper" ng-class="cursorClass">
+    <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
+        <div class="ngview-header-left">
+            <div class="header-title">User Details</div>
+        </div>
+        <div class="form-group" style="clear:both">
+            <div class="im-form-label" style="width:125px;font-size:14px;">{{user.UserName}}</div>
+        </div>
+    </div>
 
+
+    <div class="ngview-body" style="padding-top:20px;">
+        <div class="text-left" style="display:inline-block;">
+            <form name="userForm" novalidate>
+                <div class="im-form-label" style="width:25px;font-size:18px;">Role</div>
+
+                <div class="form-group">
+                    <div class="radio" style="margin-left:70px;" >
+                        <label><input type="radio" ng-model="user.Role" value="Student" name="role">Student</label>
+                        <label style="margin-left:34px;"><input type="radio"  ng-model="user.Role" value="Mentor" name="role">Mentor</label>
+                    </div>
+
+                    <div class="radio" style="margin-left:70px;">
+                        <label><input type="radio" ng-model="user.Role" value="Teacher" name="role">Teacher</label>
+                        <label style="margin-left:30px;"><input type="radio"  ng-model="user.Role" value="Administrator" name="role">Administrator</label>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <div class="btn btn-sm btn-custom" ng-click="save()" style="margin-right:0px;width:75px;">Save</div>
+                    <div class="btn btn-sm btn-custom" ng-click="cancel()" style="width:75px;">Cancel</div>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>

@@ -357,6 +357,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App\globals.js" />
+    <Content Include="App\hangout_guide.xml" />
     <Content Include="App\hangout_reference.xml" />
     <Content Include="App\services\AccountService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1963,7 +1964,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63690</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

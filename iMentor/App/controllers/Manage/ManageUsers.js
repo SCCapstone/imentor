@@ -1,6 +1,6 @@
 ﻿
-app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageService',
-    function ManageUsersCtrl($scope, $rootScope, $location, manageService) 
+app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'userService',
+    function ManageUsersCtrl($scope, $rootScope, $location, userService) 
     {
         $scope.currentUserIsAdmin = true;
         getUsers();
@@ -48,7 +48,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
         // Load Users
         // ---------------------------------------------------------------
         function getUsers() {
-            manageService.getUsers()
+            userService.getUsers()
                 .success(function (users) {
                     $scope.users = users;
                 })

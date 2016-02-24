@@ -38,18 +38,6 @@ app.factory('manageService', ['$http',
             });
             return response;
         }
-
-        manageService.getUsers = function () {
-            return $http.get('/manage/getUsers');
-        };
-
-        manageService.getUserById = function(userId)
-        {
-            return $http.get('/manage/getUserById', {
-                params: { userId: userId }
-            });
-        };
- 
         return manageService;
     }
 ]);

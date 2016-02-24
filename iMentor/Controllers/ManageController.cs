@@ -121,10 +121,10 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         public JsonResult GetUsers()
         {
-            var userController = new iMentorUsersController();
-            var users = userController.GetiMentorUsers();
+            var listingsController = new ListingController();
+            var listings = listingsController.GetListingModels();
 
-            return Json(users, JsonRequestBehavior.AllowGet);
+            return Json(listings, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

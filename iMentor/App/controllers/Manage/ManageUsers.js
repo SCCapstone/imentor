@@ -3,6 +3,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
     function ManageUsersCtrl($scope, $rootScope, $location, manageService) 
     {
         $scope.currentUserIsAdmin = true;
+        $scope.users = [];
         getUsers();
 
         // ---------------------------------------------------------------
@@ -14,7 +15,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
             { field: 'ID', displayName: 'Id', visible: false },
             { field: 'UserName', displayName: 'User Name', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Email', displayName: 'Email', width: '24%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'RoleId', displayName: 'Role', width: '24%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Role', displayName: 'Role', width: '24%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             {
                 field: ' ',
                 displayName: 'Edit',
@@ -51,28 +52,11 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
             manageService.getUsers()
                 .success(function (users) {
                     $scope.users = users;
-
-                    for(var i = 0; i < users.length; i++)
-                    {
-                        $scope.users[i].RoleId = getRoleByUser($scope.users[i]);
-                    }
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
         }
-
-        function getRoleByUser(user) {
-            manageService.getRoleByUser(user)
-                .success(function (role) {
-                console.log(role);
-                    return role;
-                })
-                .error(function (error) {
-                    $scope.status = 'Unable to load listing data: ' + error.message;
-                });
-        }
-
 
         // ---------------------------------------------------------------
         // Navigation

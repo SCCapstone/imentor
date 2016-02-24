@@ -1,4 +1,5 @@
 ﻿using iMentor.Models;
+using iMentor.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,9 +125,20 @@ namespace iMentor.Controllers
         {
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
-                var results = db.iMentorUsers.ToList();
+                var iMentorUsers = db.iMentorUsers.ToList();
+                List<iMentorUserInfo> users = new List<iMentorUserInfo>();
+                
+                foreach(iMentorUser user in iMentorUsers)
+                {
+                    var u = new iMentorUserInfo();
+                    u.UserName = user.UserName;
+                    u.Email = user.Email;
+                    u.RoleId = user.RoleId;
+                    u.Role = GetRoleByUser(user);
+                    users.Add(u);
+                }
 
-                return Json(results, JsonRequestBehavior.AllowGet);
+                return Json(users, JsonRequestBehavior.AllowGet);
             }
         }
 

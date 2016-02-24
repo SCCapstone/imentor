@@ -1,6 +1,6 @@
 ﻿
-app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'userService',
-    function ManageUsersCtrl($scope, $rootScope, $location, userService) 
+app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageService',
+    function ManageUsersCtrl($scope, $rootScope, $location, manageService) 
     {
         $scope.currentUserIsAdmin = true;
         getUsers();
@@ -45,17 +45,34 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'userSer
         };
 
         // ---------------------------------------------------------------
-        // Load Users
+        // Load Data
         // ---------------------------------------------------------------
         function getUsers() {
-            userService.getUsers()
+            manageService.getUsers()
                 .success(function (users) {
                     $scope.users = users;
+
+                    for(var i = 0; i < users.length; i++)
+                    {
+                        $scope.users[i].RoleId = getRoleByUser($scope.users[i]);
+                    }
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
         }
+
+        function getRoleByUser(user) {
+            manageService.getRoleByUser(user)
+                .success(function (role) {
+                console.log(role);
+                    return role;
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to load listing data: ' + error.message;
+                });
+        }
+
 
         // ---------------------------------------------------------------
         // Navigation

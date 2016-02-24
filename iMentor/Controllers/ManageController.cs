@@ -122,24 +122,48 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         public JsonResult GetUsers()
         {
-            //var results = db.iMentorRoles.FirstOrDefault();
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var results = db.iMentorUsers.ToList();
 
-            var listingsController = new iMentorUsersController();
-            var results = listingsController.GetiMentorUsers().ToList();
-
-            var r = Json(results, JsonRequestBehavior.AllowGet);
-
-            return r;
-            //return Json(results, JsonRequestBehavior.AllowGet);
+                return Json(results, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [AllowAnonymous]
         public JsonResult GetUserById(string userId)
         {
-            //var id = int.Parse(locationId);
-            //var result = db.ListingModels.Where(x => x.ID == id).FirstOrDefault();
-            var result = userId;
-            return Json(result, JsonRequestBehavior.AllowGet);
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var id = Convert.ToInt32(userId);
+                var result = db.iMentorUsers.Where(x => x.Id == id).FirstOrDefault();
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [AllowAnonymous]
+        public JsonResult GetRoles()
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var results = db.iMentorRoles.ToList();
+                
+                return Json(results, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [AllowAnonymous]
+        public string GetRoleByUser(iMentorUser user)
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var userRole = db.iMentorRoles.Where(x => x.Id == user.RoleId).FirstOrDefault();
+                var result = userRole.RoleName;
+
+                return result;
+            }
         }
     }
 }

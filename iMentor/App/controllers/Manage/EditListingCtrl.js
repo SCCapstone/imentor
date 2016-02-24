@@ -79,7 +79,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         $scope.updateListing = function () {
             manageService.updateListing($scope.listing)
                 .success(function (response) {
-                    console.log($scope.listing);
                 });
         }
 

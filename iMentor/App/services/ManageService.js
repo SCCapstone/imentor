@@ -38,6 +38,60 @@ app.factory('manageService', ['$http',
             });
             return response;
         }
+
+
+
+
+        manageService.getUsers = function () {
+            return $http.get('/manage/getUsers');
+        };
+
+        manageService.addUser = function (user) {
+            var response = $http({
+                method: "post",
+                url: "Manage/AddUser",
+                data: JSON.stringify(user),
+                dataType: "json"
+            });
+            return response;
+        }
+
+        manageService.deleteUser = function (user) {
+            var response = $http({
+                method: "post",
+                url: "Manage/DeleteUser",
+                data: JSON.stringify(user),
+                dataType: "json"
+            });
+            return response;
+        }
+
+        manageService.updateUser = function (user) {
+            var response = $http({
+                method: "post",
+                url: "Manage/UpdateUser",
+                data: JSON.stringify(user),
+                dataType: "json"
+            });
+            return response;
+        }
+
+
+
+        manageService.getRoles = function () {
+            return $http.get('/manage/getRoles');
+        };
+
+        manageService.getRoleByUser = function (user) {
+            var response = $http({
+                method: "get",
+                url: "Manage/GetRoleByUser",
+                data: JSON.stringify(user),
+                dataType: "json"
+            });
+            return response;
+        }
+
         return manageService;
     }
 ]);

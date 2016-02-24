@@ -45,7 +45,8 @@ namespace iMentor.Controllers
             var listingsController = new ListingController();
             var listings = listingsController.GetListingModels();
 
-            return Json(listings, JsonRequestBehavior.AllowGet);
+            var r = Json(listings, JsonRequestBehavior.AllowGet);
+            return r;
         }
 
 
@@ -121,10 +122,15 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         public JsonResult GetUsers()
         {
-            var listingsController = new ListingController();
-            var listings = listingsController.GetListingModels();
+            //var results = db.iMentorRoles.FirstOrDefault();
 
-            return Json(listings, JsonRequestBehavior.AllowGet);
+            var listingsController = new iMentorUsersController();
+            var results = listingsController.GetiMentorUsers().ToList();
+
+            var r = Json(results, JsonRequestBehavior.AllowGet);
+
+            return r;
+            //return Json(results, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]

@@ -6,11 +6,7 @@ app.factory('userService', ['$http',
         var userService = {};
 
         userService.getUsers = function () {
-            var response = $http({
-                method: "get",
-                url: "Manage/GetUser"
-            });
-            return response;
+            return $http.get('/manage/getUsers');
         };
 
 

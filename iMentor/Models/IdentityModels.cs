@@ -24,6 +24,7 @@ namespace iMentor.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public static ApplicationDbContext Create()
@@ -31,6 +32,6 @@ namespace iMentor.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<iMentor.Models.ListingModel> ListingModels { get; set; }
+        //public System.Data.Entity.DbSet<iMentor.Models.ListingModel> ListingModels { get; set; }
     }
 }

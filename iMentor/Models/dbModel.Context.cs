@@ -18,6 +18,7 @@ namespace iMentor.Models
         public iMAST_dbEntities()
             : base("name=iMAST_dbEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -24,6 +24,23 @@ app.factory('modalOptionService', function () {
                 }
             }
         },
+        
+        optionsForEventDetails: function (listing) {
+
+            return {
+
+                templateUrl: '/Templates/EventDetailsModal.html',
+                controller: 'eventDetailsCtrl',
+                backdrop: true,
+                windowClass: 'eventDetailsModal',
+                resolve: {
+                    listing: function () {
+                        return listing;
+                    }
+                }
+
+            }
+        }
 
     };
 });

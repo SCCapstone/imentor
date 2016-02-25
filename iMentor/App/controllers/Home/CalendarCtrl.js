@@ -1,7 +1,7 @@
 ﻿
 
-app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService', 'uiCalendarConfig',
-    function CalendarCtrl($scope, $uibModal, $http, calendarService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService', 'modalOptionService', 'uiCalendarConfig',
+    function CalendarCtrl($scope, $uibModal, $http, calendarService, modalOptionService, uiCalendarConfig){
 
         var date = new Date();
         var d = date.getDate();
@@ -25,9 +25,20 @@ app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService
 
                 },
                  eventClick:  function(event, jsEvent, view) {
-            $('#modalTitle').html(event.title);
-            $('#modalBody').html(event.description);
-            $('#fullCalModal').modal();
+         $scope.selectListing = function (listing) {
+            $scope.showListingDetail(listing);
+         };
+         $scope.showListingDetail = function (listing) {
+             var modalOptions = modalOptionService.optionsForEventDetails(listing);
+             var modalInstance = $uibModal.open(modalOptions);
+
+             modalInstance.result.then(
+                 null,
+                 function cancel() {
+                     // No-op
+                 });
+         };
+
         }
             }
         };

@@ -6,28 +6,10 @@
         <div ng-repeat="l in userListings">
             {{l.Title}}
         </div>
-        <!-------------------------->
-        <div id="fullCalModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                        <h4 id="modalTitle" class="modal-title"></h4>
-                    </div>
-                    <div id="modalBody" class="modal-body">
-                        <div class="g-hangout" data-render="createhangout"
-                             data-initial_apps="[{ app_id : '123456789012', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
-
-                        </div>
-                        </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                   
-                    </div>
+      
+      
                 </div>
             </div>
-        </div>
+      
 
             <div ui-calendar="uiConfig.calendar" ng-model="eventSources" ng-if="eventSources.length > 0"></div>
-        </div>
-</div>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace iMentor.Entities
 {
     [DataContract]
-    class iMentorUserInfo
+    public class iMentorUserInfo
     {
         [DataMember]
         public int Id { get; set; }

@@ -1818,10 +1818,11 @@
     <Content Include="Templates\DltBtn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\EditBtn.html">
+    <Content Include="Templates\EditListingBtn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\EventDetailsModal.html" />
+    <Content Include="Templates\EditUsersBtn.html" />
     <Content Include="Templates\ListingCard.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

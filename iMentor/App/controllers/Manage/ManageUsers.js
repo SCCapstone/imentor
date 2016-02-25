@@ -12,15 +12,16 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
         $scope.gridOptions = {
             data: "users",
             columnDefs: [
-            { field: 'ID', displayName: 'Id', visible: false },
-            { field: 'UserName', displayName: 'User Name', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Email', displayName: 'Email', width: '24%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Role', displayName: 'Role', width: '24%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Id', displayName: 'Id', visible: false },
+            { field: 'UserName', displayName: 'User Name', width: '250', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Email', displayName: 'Email', width:'250', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'RoleId', displayName: 'RoleId', visible: false },
+            { field: 'Role', displayName: 'Role', width: '183', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             {
                 field: ' ',
                 displayName: 'Edit',
-                width: '5%',
-                cellTemplate: 'Templates/EditBtn.html',
+                width: '100',
+                cellTemplate: 'Templates/EditUsersBtn.html',
                 cellClass: 'gridCellCenter',
                 headerClass: 'gridHeaderCenter',
                 sortable: false
@@ -46,7 +47,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
         };
 
         // ---------------------------------------------------------------
-        // Load Data
+        // Manage Users
         // ---------------------------------------------------------------
         function getUsers() {
             manageService.getUsers()
@@ -56,6 +57,11 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
+        }
+
+
+        $scope.refreshUsers = function () {
+            getUsers();
         }
 
         // ---------------------------------------------------------------

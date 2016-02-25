@@ -1,33 +1,51 @@
 ﻿
-app.controller('editUserCtrl', ['$scope', '$rootScope',
-    function EditUserCtrl($scope, $rootScope) 
+app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'manageService',
+    function EditUserCtrl($scope, $rootScope, $routeParams, $location, manageService) 
     {
+        $scope.user = {};
         $scope.userId = $routeParams.userId;
         var id = $scope.userId;
-        $scope.isNew = ($scope.userId < 1);
-        if (!$scope.isNew) {
-            getListingById(id);
-            $scope.password = DEFAULT_PWD;
-            $scope.confirmPassword = DEFAULT_PWD;
-        } else {
-            $scope.password = null;
-            $scope.confirmPassword = null;
-        }
+        getUsers();
 
         // ---------------------------------------------------------------
-        // Load Database Listings
+        // Load Database Users
         // ---------------------------------------------------------------
-        function getUserById(id) {
-            manageService.getUserById(id)
-                .success(function (listing) {
-                    $scope.listing = listing;
-
-                    console.log(listing);
+        function getUsers() {
+            manageService.getUsers()
+                .success(function (users) {
+                    for (var i = 0; i < users.length; i++)
+                    {
+                        if(users[i].Id == id)
+                        {
+                            $scope.user = users[i];
+                        }
+                    }
                 })
                 .error(function (error) {
-                    $scope.status = 'Unable to load listing data: ' + error.message;
-                    console.log($scope.status);
+                    $scope.status = 'Unable to load user data: ' + error.message;
                 });
         }
+
+
+        // ---------------------------------------------------------------
+        // Functions
+        // ---------------------------------------------------------------
+
+        $scope.save = function () {
+                $scope.updateUser();
+                
+                $location.path("/ManageUsers");
+        }
+
+        $scope.cancel = function () {
+            $location.path("/ManageUsers");
+        }
+
+        $scope.updateUser = function () {
+            manageService.updateUser($scope.user)
+                .success(function (response) {
+                });
+        }
+
     }
 ]);

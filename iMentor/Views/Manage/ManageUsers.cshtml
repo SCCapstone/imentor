@@ -7,6 +7,11 @@
     </div>
 
     <div class="ngview-body" style="padding-top:10px;">
-        <div ui-grid="gridOptions" class="im-grid"></div>
+        <div class="row" style="padding-right: 20px;">
+            <div style="font-size:12px;">
+                <div im-btn style="margin-right:400px;" icon="glyphicon glyphicon-refresh" text="" on-click="refreshUsers" class="pull-right"></div>
+            </div>
+        </div>
+        <div ui-grid="gridOptions"  class="im-grid-sm"></div>
     </div>
 </div>

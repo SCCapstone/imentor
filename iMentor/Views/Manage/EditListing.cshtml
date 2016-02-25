@@ -48,7 +48,9 @@
                             <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
                         </div>
                         <div class="col-sm-5" ng-show="user.RoleId <= 2" style="margin-bottom:6px;">
-                            <div im-btn ng-show="user.RoleId <= 2" icon="glyphicon glyphicon-facetime-video" style="width:150px;font-size:12px;background-color:forestgreen;color:white" text="Join Hangout" on-click=""></div>
+                            <button class="btn btn-default" ng-disabled="listing.HangoutUrl == null" ng-show="user.RoleId <= 2" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="">
+                                <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
+                            </button>
                         </div>
                         <!------------------------->
 

@@ -30,6 +30,29 @@ app.controller('hangoutCtrl', ['$scope',
 
         onApiReady = function () { };
             
+       var param = getParameters();
+       var now = new Date();
+
+       //gets hangout URL with users attending
+       var hangoutURL = gapi.hangout.getHangoutUrl();
+
+       var callbackUrl = 'register_hangout.json'
+
+       $.ajax({
+           url: callbackUrl,
+           dataType: 'json',
+           data: {
+               "hangoutUrl": hangoutUrl,
+               "topic": param["gd"]
+           }
+       }).done(function(data,status,xhr){
+
+           $('#msg').html(data.msg);
+       }).fail( function(xhr, status, error){
+           $('msg').html("There was a probem contacting the help desk. Please try again.");
+       });
+           
+
        
   
             }]);

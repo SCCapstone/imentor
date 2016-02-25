@@ -1838,6 +1838,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\Hangout.html" />
+    <Content Include="Templates\Privacy Policy.html" />
+    <Content Include="Templates\TOS.html" />
     <Content Include="Views\Manage\ManageUsers.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

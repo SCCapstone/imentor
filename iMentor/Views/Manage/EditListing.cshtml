@@ -1,8 +1,11 @@
 ﻿
 <div class="ngview-wrapper" ng-class="cursorClass">
     <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
-        <div class="ngview-header-left">
-            <div class="header-title">ListingDetails</div>
+        <div class="form-group" style="clear:both">
+            <div class="header-title"  style="width:1280px;font-size:20px;">
+                {{listing.Title}}
+                <div im-btn icon="glyphicon glyphicon-edit" style="margin-left:200px;font-size:12px;" text="" on-click="refreshListings" class="pull-right"></div>
+            </div>
         </div>
     </div>
 
@@ -10,6 +13,8 @@
     <div class="ngview-body" style="padding-top:20px;">
         <div class="text-left" style="display:inline-block;">
             <form name="listingForm" novalidate>
+
+
 
                 <div class="form-group" style="clear:both">
                     <div class="im-form-label" style="width:125px;">Title</div>

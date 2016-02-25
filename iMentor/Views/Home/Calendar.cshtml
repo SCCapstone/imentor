@@ -6,10 +6,12 @@
         <div ng-repeat="l in userListings">
             {{l.Title}}
         </div>
-      
-      
-                </div>
-            </div>
+
+        <div ui-calendar="uiConfig.calendar" ng-model="eventSources" ng-if="eventSources.length > 0"></div>
+
+
+    </div>
+</div>
       
 
-            <div ui-calendar="uiConfig.calendar" ng-model="eventSources" ng-if="eventSources.length > 0"></div>
+            

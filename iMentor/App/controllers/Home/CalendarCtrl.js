@@ -24,10 +24,12 @@ app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService
                     right: 'month,basicWeek,basicDay'
 
                 },
-                 eventClick:  function(event, jsEvent, view) {
+                eventClick: function (event, jsEvent, view) {
+
          $scope.selectListing = function (listing) {
             $scope.showListingDetail(listing);
          };
+
          $scope.showListingDetail = function (listing) {
              var modalOptions = modalOptionService.optionsForEventDetails(listing);
              var modalInstance = $uibModal.open(modalOptions);
@@ -57,7 +59,17 @@ app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService
                             title: listings[i].Title,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
-                            allDay: false
+                            url: "Templates/EventDetailsModal.cshtml",
+                            allDay: false,
+
+                            eventClick: function(event, jsEvent, view) {
+                                    //$('#modalTitle').html(listings[i].Title);
+                                //$('#modalBody').html(listing[i].Description);
+                                $("#eventInfo").html(listings[i].Description);
+                                $('#eventUrl').attr('href', event.url);
+                                $("#eventContent").dialog({ modal: true, title: listings[i].Title, width: 350 });
+                                    //$('#fullCalModal').modal();
+                            }
                         });
                     }
 

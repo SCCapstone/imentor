@@ -58,7 +58,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', '
         // Modals
         // ---------------------------------------------------------------
         $scope.selectListing = function (listing) {
-            $scope.showListingDetail(listing);
+             $location.path("/EditListing/" + listing.ID);
         };
 
         $scope.showListingDetail = function (listing) {

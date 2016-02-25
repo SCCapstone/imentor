@@ -2,7 +2,7 @@
 <div class="ngview-wrapper" ng-class="cursorClass">
     <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
         <div class="form-group" style="clear:both">
-            <div im-btn icon="glyphicon glyphicon-edit" style="width:150px;font-size:12px;" text="Toggle Edit Mode" on-click="toggleEditMode"></div>
+            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:150px;font-size:12px;" text="Toggle Edit Mode" on-click="toggleEditMode"></div>
         </div>
     </div>
 
@@ -35,8 +35,21 @@
                 <div class="col-sm-6">
                     <form name="listingForm" novalidate>
 
-                        <!-- HANGOUT BUTTON HERE -->
-                        <div class="g-hangout" data-render="createhangout"></div>
+                        <!-- Teacher Hangout Button -->
+                        <div class="col-sm-3" ng-show="user.RoleId == 3">
+                            <div class="im-form-label" style="width:125px;font-size:16px">Start Hangout:</div>
+                        </div>
+                        <div class="col-sm-5" ng-show="user.RoleId == 3" style="margin-bottom:6px;">
+                            <div  class="g-hangout" data-render="createhangout"></div>
+                        </div>
+                        <!------------------------->
+                        <!-- Student/Mentor Hangout Button -->
+                        <div class="col-sm-3" ng-show="user.RoleId <= 2">
+                            <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
+                        </div>
+                        <div class="col-sm-5" ng-show="user.RoleId <= 2" style="margin-bottom:6px;">
+                            <div im-btn ng-show="user.RoleId <= 2" icon="glyphicon glyphicon-facetime-video" style="width:150px;font-size:12px;background-color:forestgreen;color:white" text="Join Hangout" on-click=""></div>
+                        </div>
                         <!------------------------->
 
                         <div class="form-group" style="clear:both">

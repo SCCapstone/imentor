@@ -2,7 +2,8 @@
 app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'manageService',
     function EditListingCtrl($scope, $rootScope, $routeParams, $location, manageService) 
     {
-        $scope.editMode = true;
+        $scope.editMode = false;
+
         $scope.bools = ['True', 'False'];
         $scope.selectedBool = null;
 
@@ -18,6 +19,11 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
 
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
+
+
+        getCurrentUser();
+
+
         $scope.isNew = ($scope.listingId < 1);
         if (!$scope.isNew) {
             getListings();
@@ -42,6 +48,16 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
                             $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
                         }
                     }
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to load listing data: ' + error.message;
+                });
+        }
+
+        function getCurrentUser(){
+            manageService.getCurrentUser()
+                .success(function (user) {
+                    $scope.user = user;
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;

@@ -46,6 +46,10 @@ app.factory('manageService', ['$http',
             return $http.get('/manage/getUsers');
         };
 
+        manageService.getCurrentUser = function () {
+            return $http.get('/manage/getCurrentUser');
+        };
+
         manageService.addUser = function (user) {
             var response = $http({
                 method: "post",

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace iMentor.Controllers
 {
@@ -140,6 +141,26 @@ namespace iMentor.Controllers
                 }
 
                 return Json(users, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetCurrentUser()
+        {
+            var currentUserName = User.Identity.GetUserName(); //Get current User's username
+
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var iMentorUser = db.iMentorUsers.Where(x => x.UserName.Equals(currentUserName)).FirstOrDefault();
+                
+                var user = new iMentorUserInfo();
+                user.Id = iMentorUser.Id;
+                user.UserName = iMentorUser.UserName;
+                user.Email = iMentorUser.Email;
+                user.RoleId = iMentorUser.RoleId;
+                user.Role = GetRoleByUser(iMentorUser);
+
+                return Json(user, JsonRequestBehavior.AllowGet);
             }
         }
 

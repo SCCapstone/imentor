@@ -40,7 +40,6 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
 
 app.run(['$rootScope', 'editableOptions',
     function($rootScope, editableOptions) {
-        $rootScope.currentListing = null;
-         editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+        editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
     }
 ]);

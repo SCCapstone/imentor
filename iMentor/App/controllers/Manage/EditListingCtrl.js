@@ -2,6 +2,7 @@
 app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'manageService',
     function EditListingCtrl($scope, $rootScope, $routeParams, $location, manageService) 
     {
+        $scope.editMode = true;
         $scope.bools = ['True', 'False'];
         $scope.selectedBool = null;
 
@@ -53,7 +54,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         // ---------------------------------------------------------------
 
         $scope.save = function () {
-            if (!$scope.listingForm.open.$invalid && !$scope.listingForm.$pristine
+            if (!$scope.listingForm.open.$invalid
                 && !$scope.listingForm.startDate.$invalid && !$scope.listingForm.endDate.$invalid
                 && !$scope.listingForm.title.$invalid && !$scope.listingForm.email.$invalid) {
                 if ($scope.isNew) {
@@ -80,6 +81,10 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
             manageService.updateListing($scope.listing)
                 .success(function (response) {
                 });
+        }
+
+        $scope.toggleEditMode = function () {
+            $scope.editMode = !$scope.editMode;
         }
 
 

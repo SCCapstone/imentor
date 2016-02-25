@@ -33,6 +33,7 @@ namespace iMentor
                "~/Scripts/angular-sanitize.js",
                "~/Scripts/angular-touch.js",
                "~/Scripts/ui-grid.js",
+               "~/Scripts/xeditable.js",
                "~/Scripts/node-modules/angular-material/angular-material.js",
                "~/Scripts/angular-ui/bootstrap.min.js",
                "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",

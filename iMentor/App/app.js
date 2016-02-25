@@ -5,6 +5,7 @@ var app = angular.module('app', [
     'ngTouch',
     'ui.grid',
     'ui.bootstrap',
+    'xeditable',
     'ui.calendar',
     'iMentor.directives'
 ])
@@ -37,8 +38,9 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
     }
 ]);
 
-app.run(['$rootScope',
-    function($rootScope) {
+app.run(['$rootScope', 'editableOptions',
+    function($rootScope, editableOptions) {
         $rootScope.currentListing = null;
+         editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
     }
 ]);

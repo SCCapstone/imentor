@@ -40,7 +40,10 @@
                             <div class="im-form-label" style="width:125px;font-size:16px">Start Hangout:</div>
                         </div>
                         <div class="col-sm-5" ng-show="user.RoleId == 3" style="margin-bottom:6px;">
-                            <div  class="g-hangout" data-render="createhangout"></div>
+                            <script src="https://apis.google.com/js/platform.js" async defer></script>
+                            <div class="g-hangout" data-render="createhangout"
+                                 data-initial_apps="[{ app_id : '1086641013362',  'app_type' : 'ROOM_APP' }]">
+                            </div>
                         </div>
                         <!------------------------->
                         <!-- Student/Mentor Hangout Button -->

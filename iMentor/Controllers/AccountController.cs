@@ -379,17 +379,29 @@ namespace iMentor.Controllers
                 if (result.Succeeded)
                 {
 
-                    //Create the iMentoUser entry
+                    //Create the iMentorUser entry
                     using (iMAST_dbEntities db = new iMAST_dbEntities())
                     {
                         var imUser = new iMentorUser();
+                        bool userExists = false;
 
-                        imUser.UserName = user.UserName;
-                        imUser.Email = user.Email;
-                        imUser.RoleId = 1;
+                        foreach (iMentorUser u in db.iMentorUsers.ToList())
+                        {
+                            if (u.Email.Equals(user.Email))
+                            {
+                                userExists = true;
+                            }
+                        }
 
-                        db.iMentorUsers.Add(imUser);
-                        db.SaveChanges();
+                        if (!userExists)
+                        { 
+                            imUser.UserName = user.UserName;
+                            imUser.Email = user.Email;
+                            imUser.RoleId = 1;
+
+                            db.iMentorUsers.Add(imUser);
+                            db.SaveChanges();
+                        }
                     }
 
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);

@@ -204,15 +204,40 @@ namespace iMentor.Controllers
         {
             if (user != null)
             {
+                UpdateAspUser(user);
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
                     int no = Convert.ToInt32(user.Id);
                     var u = db.iMentorUsers.Where(x => x.Id == no).FirstOrDefault();
 
                     u.Id = user.Id;
-                    u.UserName = user.Email;
+                    u.UserName = user.UserName;
                     u.Email = user.Email;
                     u.RoleId = user.GetRoleIdByName(user.Role);
+
+                    db.SaveChanges();
+                    return "User Updated";
+                }
+            }
+            else
+            {
+                return "Invalid User";
+            }
+        }
+
+        [AllowAnonymous]
+        public string UpdateAspUser(iMentorUserInfo user)
+        {
+            if (user != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    var aspUser = db.AspNetUsers.Where(x => x.Email.Equals(user.Email)).FirstOrDefault();
+
+                    aspUser.UserName = user.UserName;
+                    aspUser.Email = user.Email;
+
+                    //User.Identity.Name = aspUser.UserName;
 
                     db.SaveChanges();
                     return "User Updated";

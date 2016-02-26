@@ -18,9 +18,10 @@
         logging in.
     </p>
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        <div class="im-form-label" style="width:150px;font-size:18px;">Deafult User Name:</div>
+
+        <div class="col-md-10" style="padding-bottom:5px;">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly=true})
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
     </div>

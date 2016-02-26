@@ -4,15 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7f606ef623fa4ec9b378af5b0bc038b8" Name="Diagram1">
-        <EntityTypeShape EntityType="iMAST_dbModel.AssignedListing" Width="1.5" PointX="7" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="iMAST_dbModel.iMentorRole" Width="1.5" PointX="2.875" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iMAST_dbModel.iMentorUser" Width="1.5" PointX="2.875" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="iMAST_dbModel.ListingModel" Width="1.5" PointX="5.125" PointY="1.875" IsExpanded="true" />
+      <Diagram DiagramId="297a04ff382c406f9e29d83606366cd9" Name="Diagram1">
+        <EntityTypeShape EntityType="iMAST_dbModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.AspNetRole" Width="1.5" PointX="7.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.AspNetUser" Width="1.5" PointX="10" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.AssignedListing" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.iMentorRole" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.iMentorUser" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.ListingModel" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="iMAST_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="iMAST_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="iMAST_dbModel.FK__AssignedL__Listi__2DE6D218" ManuallyRouted="false" />
         <AssociationConnector Association="iMAST_dbModel.FK__AssignedL__UserI__2A164134" ManuallyRouted="false" />
         <AssociationConnector Association="iMAST_dbModel.FK__iMentorUs__RoleI__2B0A656D" ManuallyRouted="false" />
         <AssociationConnector Association="iMAST_dbModel.FK__ListingMo__Teach__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="iMAST_dbModel.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

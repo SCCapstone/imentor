@@ -1,7 +1,7 @@
 ﻿
 
-app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService', 'modalOptionService', 'uiCalendarConfig',
-    function CalendarCtrl($scope, $uibModal, $http, calendarService, modalOptionService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', '$location', '$http', '$uibModal', 'calendarService', 'modalOptionService', 'uiCalendarConfig',
+    function CalendarCtrl($scope, $uibModal,$location, $http, calendarService, modalOptionService, uiCalendarConfig){
 
         var date = new Date();
         var d = date.getDate();
@@ -24,23 +24,8 @@ app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService
                     right: 'month,basicWeek,basicDay'
 
                 },
-                eventClick: function (event, jsEvent, view) {
-
-         $scope.selectListing = function (listing) {
-            $scope.showListingDetail(listing);
-         };
-
-         $scope.showListingDetail = function (listing) {
-             var modalOptions = modalOptionService.optionsForEventDetails(listing);
-             var modalInstance = $uibModal.open(modalOptions);
-
-             modalInstance.result.then(
-                 null,
-                 function cancel() {
-                     // No-op
-                 });
-         };
-
+                eventClick: function (event, jsEvent, view) {        
+                     $location.path("/EditListing/" +listingId);
         }
             }
         };
@@ -62,14 +47,14 @@ app.controller('calendarCtrl', ['$scope', '$http', '$uibModal', 'calendarService
                             url: "Templates/EventDetailsModal.cshtml",
                             allDay: false,
 
-                            eventClick: function(event, jsEvent, view) {
+                           /* eventClick: function(event, jsEvent, view) {
                                     //$('#modalTitle').html(listings[i].Title);
                                 //$('#modalBody').html(listing[i].Description);
                                 $("#eventInfo").html(listings[i].Description);
                                 $('#eventUrl').attr('href', event.url);
                                 $("#eventContent").dialog({ modal: true, title: listings[i].Title, width: 350 });
                                     //$('#fullCalModal').modal();
-                            }
+                            }*/
                         });
                     }
 

@@ -1,6 +1,8 @@
 ﻿
-app.controller('hangoutCtrl', ['$scope',
-    function($scope){
+app.controller('hangoutCtrl', ['$scope','manageService',
+    function($scope, manageService){
+
+        $scope.currentUserIsAdmin = true;
 
         $scope.getParameters = function(){
         
@@ -30,13 +32,13 @@ app.controller('hangoutCtrl', ['$scope',
 
         onApiReady = function () { };
             
-       var param = getParameters();
-       var now = new Date();
+       $scope.param = getParameters();
+       $scope.now = new Date();
 
        //gets hangout URL with users attending
-       var hangoutURL = gapi.hangout.getHangoutUrl();
+       $scope.hangoutURL = gapi.hangout.getHangoutUrl();
 
-       var callbackUrl = 'register_hangout.json'
+       $scope.callbackUrl = 'register_hangout.json'
 
        $.ajax({
            url: callbackUrl,

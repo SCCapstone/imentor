@@ -10,14 +10,15 @@
 
 
          hangoutService.addHangout = function (listing) {
-            var response = $http({
-                method: "post",
-                url: "Manage/UpdateListing",
-                data:"HangoutUrl":hangoutUrl,
+             var response = $http({
+                 method: "post",
+                 url: "Manage/UpdateListing",
+                 data: hangoutUrl,
                 dataType: "json"
             });
             return response;
-        };
+         };
+
 
      onClientReady = function() {
 

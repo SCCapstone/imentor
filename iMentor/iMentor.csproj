@@ -1823,6 +1823,7 @@
     <Content Include="Templates\BtnDT.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\contactus.html" />
     <Content Include="Templates\DltBtn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1831,6 +1832,7 @@
     </Content>
     <Content Include="Templates\EventDetailsModal.html" />
     <Content Include="Templates\EditUsersBtn.html" />
+    <Content Include="Templates\Hangout.xml" />
     <Content Include="Templates\ListingCard.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

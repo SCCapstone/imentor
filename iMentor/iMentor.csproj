@@ -551,6 +551,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\iMAST.pubxml" />
     <Content Include="Scripts\angular-moment.min.js.map" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -1299,6 +1300,9 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -1352,6 +1356,7 @@
     <Content Include="Scripts\lang\vi.js" />
     <Content Include="Scripts\lang\zh-cn.js" />
     <Content Include="Scripts\lang\zh-tw.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -1826,8 +1831,11 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.11.0.js" />
     <Content Include="Scripts\ui-grid.js" />
     <Content Include="Scripts\ui-grid.min.js" />
+    <Content Include="Scripts\xeditable.js" />
+    <Content Include="Scripts\xeditable.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\BtnDT.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1838,6 +1846,9 @@
     <Content Include="Templates\EditListingBtn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\EditUsersBtn.html" />
+    <Content Include="Templates\EventDetailsModal.html" />
+    <Content Include="Templates\Hangout.html" />
     <Content Include="Templates\ListingCard.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

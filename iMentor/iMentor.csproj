@@ -275,7 +275,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Entities\iMentorUserInfo.cs" />
-    <Compile Include="Entities\ListingInfo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,33 +283,40 @@
     </Compile>
     <Compile Include="Models\AssignedListing.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\dbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\dbModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\dbModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\IdentityModels.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\iMentorRole.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\iMentorUser.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Models\ListingModel.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -358,7 +364,6 @@
     <Content Include="App\services\CalendarService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\services\HangoutService.js" />
     <Content Include="App\services\HomeService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -423,7 +428,6 @@
     <Content Include="Content\ui-grid.css" />
     <Content Include="Content\ui-grid.min.css" />
     <Content Include="Content\ui-grid.svg" />
-    <Content Include="Content\xeditable.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -441,11 +445,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Models\dbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -520,9 +526,11 @@
     <EntityDeploy Include="Models\dbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EntityDeploy>
     <Content Include="Models\dbModel.edmx.diagram">
       <DependentUpon>dbModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\iMAST.pubxml" />
     <Content Include="Scripts\angular-moment.min.js.map" />
@@ -1795,11 +1803,6 @@
     <Content Include="Scripts\node-modules\angular-material\modules\js\whiteframe\whiteframe.js" />
     <Content Include="Scripts\node-modules\angular-material\modules\js\whiteframe\whiteframe.min.css" />
     <Content Include="Scripts\node-modules\angular-material\modules\js\whiteframe\whiteframe.min.js" />
-    <Content Include="Scripts\node-modules\textAngular-1.5.0\textAngular-rangy.min.js" />
-    <Content Include="Scripts\node-modules\textAngular-1.5.0\textAngular-sanitize.js" />
-    <Content Include="Content\textAngular.css" />
-    <Content Include="Scripts\node-modules\textAngular-1.5.0\textAngular.js" />
-    <Content Include="Scripts\node-modules\textAngular-1.5.0\textAngular.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\platform.js" />
     <Content Include="Scripts\respond.js" />
@@ -1808,30 +1811,22 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ui-grid.js" />
     <Content Include="Scripts\ui-grid.min.js" />
-    <Content Include="Scripts\xeditable.js" />
-    <Content Include="Scripts\xeditable.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\BtnDT.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\contactus.html" />
     <Content Include="Templates\DltBtn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\EditListingBtn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\EventDetailsModal.html" />
-    <Content Include="Templates\EditUsersBtn.html" />
-    <Content Include="Templates\Hangout.xml" />
     <Content Include="Templates\ListingCard.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\ListingDetailModal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\Privacy Policy.html" />
-    <Content Include="Templates\TOS.html" />
     <Content Include="Views\Manage\ManageUsers.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -3,6 +3,7 @@
     
      var hangoutService = {};
      var hangoutUrl = gapi.hangout.getHangoutUrl();
+       
 
         hangoutService.getListings = function () {
             return $http.get('/manage/getListings');

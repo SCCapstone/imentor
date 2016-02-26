@@ -1,6 +1,6 @@
 ﻿
-app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'manageService',
-    function EditListingCtrl($scope, $rootScope, $routeParams, $location, manageService) 
+app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'manageService', 'hangoutService',
+    function EditListingCtrl($scope, $rootScope, $routeParams, $location, manageService, hangoutService) 
     {
         $scope.editMode = false;
 
@@ -12,6 +12,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
 
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
+        $scope.listing.HangoutUrl = hangoutUrl;
 
 
         getCurrentUser();

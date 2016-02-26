@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4169dcd574ac45b29da8ee00b7c76ce5" Name="Diagram1">
-        <EntityTypeShape EntityType="iMAST_dbModel.AssignedListing" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="iMAST_dbModel.iMentorRole" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="iMAST_dbModel.iMentorUser" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="iMAST_dbModel.ListingModel" Width="1.5" PointX="5.5" PointY="3.5" IsExpanded="true" />
-        <AssociationConnector Association="iMAST_dbModel.FK__AssignedL__Listi__2180FB33" ManuallyRouted="false" />
-        <AssociationConnector Association="iMAST_dbModel.FK__AssignedL__UserI__22751F6C" ManuallyRouted="false" />
-        <AssociationConnector Association="iMAST_dbModel.FK__iMentorUs__RoleI__25518C17" ManuallyRouted="false" />
+      <Diagram DiagramId="7f606ef623fa4ec9b378af5b0bc038b8" Name="Diagram1">
+        <EntityTypeShape EntityType="iMAST_dbModel.AssignedListing" Width="1.5" PointX="7" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.iMentorRole" Width="1.5" PointX="2.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.iMentorUser" Width="1.5" PointX="2.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="iMAST_dbModel.ListingModel" Width="1.5" PointX="5.125" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="iMAST_dbModel.FK__AssignedL__Listi__2DE6D218" ManuallyRouted="false" />
+        <AssociationConnector Association="iMAST_dbModel.FK__AssignedL__UserI__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="iMAST_dbModel.FK__iMentorUs__RoleI__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="iMAST_dbModel.FK__ListingMo__Teach__2EDAF651" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,6 +18,7 @@ namespace iMentor.Models
         public iMentorUser()
         {
             this.AssignedListings = new HashSet<AssignedListing>();
+            this.ListingModels = new HashSet<ListingModel>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace iMentor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignedListing> AssignedListings { get; set; }
         public virtual iMentorRole iMentorRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ListingModel> ListingModels { get; set; }
     }
 }

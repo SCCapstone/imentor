@@ -10,13 +10,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         $scope.areas = ['Math', 'Science', 'History', 'Reading', 'Computer Science'];
         $scope.selectedArea = null;
 
-        var DEFAULT_PWD = '1234567890';
-
-        $scope.usernamePattern = /^([A-Za-z0-9_-]){3,50}$/;
-        $scope.passwordPattern = /^([\@A-Za-z0-9_-]){6,50}$/;
-        $scope.namePattern_100 = /^[A-Za-z0-9_-\s]{1,100}$/;
-        $scope.emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
 

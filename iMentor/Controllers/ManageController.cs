@@ -44,11 +44,33 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         public JsonResult GetListings()
         {
-            var listingsController = new ListingController();
-            var listings = listingsController.GetListingModels();
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var listingModels = db.ListingModels.ToList();
+                List<ListingInfo> listings = new List<ListingInfo>();
 
-            var r = Json(listings, JsonRequestBehavior.AllowGet);
-            return r;
+                foreach (ListingModel listing in listingModels)
+                {
+                    var l = new ListingInfo();
+                    l.ID = listing.ID;
+                    l.Title = listing.Title;
+                    l.StartDate = listing.StartDate;
+                    l.EndDate = listing.EndDate;
+                    l.Area = listing.Area;
+                    l.Frequency = listing.Frequency;
+                    l.Description = listing.Description;
+                    l.Mentor = listing.Mentor;
+                    l.Email = listing.Email;
+                    l.HangoutUrl = listing.HangoutUrl;
+                    l.TeacherId = listing.TeacherId;
+                    l.Open = listing.Open;
+                    l.Teacher = l.GetTeacherUserName(listing);
+
+                    listings.Add(l);
+                }
+
+                return Json(listings, JsonRequestBehavior.AllowGet);
+            }
         }
 
 
@@ -91,7 +113,7 @@ namespace iMentor.Controllers
         }
 
         [AllowAnonymous]
-        public string UpdateListing(ListingModel listing)
+        public string UpdateListing(ListingInfo listing)
         {
             if (listing != null)
             {
@@ -108,6 +130,7 @@ namespace iMentor.Controllers
                     l.Mentor = listing.Mentor;
                     l.Email = listing.Email;
                     l.HangoutUrl = listing.HangoutUrl;
+                    l.TeacherId = listing.GetTeacherIdByName(listing.Teacher);
                     l.Open = listing.Open;
                     db.SaveChanges();
                     return "Listing Updated";
@@ -119,8 +142,7 @@ namespace iMentor.Controllers
             }
         }
 
-
-
+        
         [AllowAnonymous]
         public JsonResult GetUsers()
         {
@@ -136,7 +158,8 @@ namespace iMentor.Controllers
                     u.UserName = user.UserName;
                     u.Email = user.Email;
                     u.RoleId = user.RoleId;
-                    u.Role = GetRoleByUser(user);
+                    u.Role = u.GetRoleByUser(user);
+
                     users.Add(u);
                 }
 
@@ -158,7 +181,7 @@ namespace iMentor.Controllers
                 user.UserName = iMentorUser.UserName;
                 user.Email = iMentorUser.Email;
                 user.RoleId = iMentorUser.RoleId;
-                user.Role = GetRoleByUser(iMentorUser);
+                user.Role = user.GetRoleByUser(iMentorUser);
 
                 return Json(user, JsonRequestBehavior.AllowGet);
             }
@@ -189,7 +212,7 @@ namespace iMentor.Controllers
                     u.Id = user.Id;
                     u.UserName = user.Email;
                     u.Email = user.Email;
-                    u.RoleId = GetRoleIdByName(user.Role);
+                    u.RoleId = user.GetRoleIdByName(user.Role);
 
                     db.SaveChanges();
                     return "User Updated";
@@ -210,30 +233,6 @@ namespace iMentor.Controllers
                 var results = db.iMentorRoles.ToList();
                 
                 return Json(results, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [AllowAnonymous]
-        public string GetRoleByUser(iMentorUser user)
-        {
-            using (iMAST_dbEntities db = new iMAST_dbEntities())
-            {
-                var userRole = db.iMentorRoles.Where(x => x.Id == user.RoleId).FirstOrDefault();
-                var result = userRole.RoleName;
-
-                return result;
-            }
-        }
-
-        [AllowAnonymous]
-        public int GetRoleIdByName(string roleName)
-        {
-            using (iMAST_dbEntities db = new iMAST_dbEntities())
-            {
-                var role = db.iMentorRoles.Where(x => x.RoleName.Equals(roleName)).FirstOrDefault();
-                var result = role.Id;
-
-                return result;
             }
         }
     }

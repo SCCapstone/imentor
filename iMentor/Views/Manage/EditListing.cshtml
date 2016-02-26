@@ -109,6 +109,14 @@
                         </div>
 
                         <div class="form-group" style="clear:both">
+                            <div class="im-form-label" style="width:125px;">Teacher</div>
+                            <input type="text" ng-model="listing.Teacher" name="teacher" class="form-control im-form-text" style="width:250px;" />
+                            @*<div style="float:left;width:30px;">
+                <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
+            </div>*@
+                        </div>
+
+                        <div class="form-group" style="clear:both">
                             <div class="im-form-label" style="width:125px;">Teacher Email</div>
                             <input type="text" ng-model="listing.Email" required ng-pattern="emailPattern" name="email" class="form-control im-form-text" style="width:250px;" />
                             @*<div style="float:left;width:30px;">

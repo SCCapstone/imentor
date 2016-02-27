@@ -172,16 +172,21 @@ namespace iMentor.Controllers
         {
             var currentUserName = User.Identity.GetUserName(); //Get current User's username
 
+           
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
                 var iMentorUser = db.iMentorUsers.Where(x => x.UserName.Equals(currentUserName)).FirstOrDefault();
                 
                 var user = new iMentorUserInfo();
-                user.Id = iMentorUser.Id;
-                user.UserName = iMentorUser.UserName;
-                user.Email = iMentorUser.Email;
-                user.RoleId = iMentorUser.RoleId;
-                user.Role = user.GetRoleByUser(iMentorUser);
+
+                if (iMentorUser != null)
+                {
+                    user.Id = iMentorUser.Id;
+                    user.UserName = iMentorUser.UserName;
+                    user.Email = iMentorUser.Email;
+                    user.RoleId = iMentorUser.RoleId;
+                    user.Role = user.GetRoleByUser(iMentorUser);
+                }
 
                 return Json(user, JsonRequestBehavior.AllowGet);
             }

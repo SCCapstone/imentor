@@ -44,7 +44,7 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarServic
                             title: listings[i].Title,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
-                            url: "EditListing/"+ listings[i],
+                            url: "/#!/EditListing/" + listings[i].ID,
                             allDay: false
 
                            /* eventClick: function(event, jsEvent, view) {

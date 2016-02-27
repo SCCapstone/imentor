@@ -101,9 +101,17 @@ namespace iMentor.Controllers
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
                     var l = db.ListingModels.Where(x => x.ID == listing.ID).FirstOrDefault();
-                    db.ListingModels.Remove(l);
-                    db.SaveChanges();
-                    return "Listing Deleted";
+
+                    if (l != null)
+                    {
+                        db.ListingModels.Remove(l);
+                        db.SaveChanges();
+                        return "Listing Deleted";
+                    }
+                    else
+                    {
+                        return "Invalid Listing";
+                    }
                 }
             }
             else
@@ -121,19 +129,27 @@ namespace iMentor.Controllers
                 {
                     int no = Convert.ToInt32(listing.ID);
                     var l = db.ListingModels.Where(x => x.ID == no).FirstOrDefault();
-                    l.Title = listing.Title;
-                    l.StartDate = listing.StartDate;
-                    l.EndDate = listing.EndDate;
-                    l.Area = listing.Area;
-                    l.Frequency = listing.Frequency;
-                    l.Description = listing.Description;
-                    l.Mentor = listing.Mentor;
-                    l.Email = listing.Email;
-                    l.HangoutUrl = listing.HangoutUrl;
-                    l.TeacherId = listing.GetTeacherIdByName(listing.Teacher);
-                    l.Open = listing.Open;
-                    db.SaveChanges();
-                    return "Listing Updated";
+
+                    if (l != null)
+                    {
+                        l.Title = listing.Title;
+                        l.StartDate = listing.StartDate;
+                        l.EndDate = listing.EndDate;
+                        l.Area = listing.Area;
+                        l.Frequency = listing.Frequency;
+                        l.Description = listing.Description;
+                        l.Mentor = listing.Mentor;
+                        l.Email = listing.Email;
+                        l.HangoutUrl = listing.HangoutUrl;
+                        l.TeacherId = listing.GetTeacherIdByName(listing.Teacher);
+                        l.Open = listing.Open;
+                        db.SaveChanges();
+                        return "Listing Updated";
+                    }
+                    else
+                    {
+                        return "Invalid Listing";
+                    }
                 }
             }
             else
@@ -149,11 +165,13 @@ namespace iMentor.Controllers
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
                 var iMentorUsers = db.iMentorUsers.ToList();
+
                 List<iMentorUserInfo> users = new List<iMentorUserInfo>();
                 
                 foreach(iMentorUser user in iMentorUsers)
                 {
                     var u = new iMentorUserInfo();
+                    
                     u.Id = user.Id;
                     u.UserName = user.UserName;
                     u.Email = user.Email;
@@ -215,13 +233,20 @@ namespace iMentor.Controllers
                     int no = Convert.ToInt32(user.Id);
                     var u = db.iMentorUsers.Where(x => x.Id == no).FirstOrDefault();
 
-                    u.Id = user.Id;
-                    u.UserName = user.UserName;
-                    u.Email = user.Email;
-                    u.RoleId = user.GetRoleIdByName(user.Role);
+                    if (u != null)
+                    { 
+                        u.Id = user.Id;
+                        u.UserName = user.UserName;
+                        u.Email = user.Email;
+                        u.RoleId = user.GetRoleIdByName(user.Role);
 
-                    db.SaveChanges();
-                    return "User Updated";
+                        db.SaveChanges();
+                        return "User Updated";
+                    }
+                    else
+                    {
+                        return "Invalid User";
+                    }
                 }
             }
             else
@@ -238,19 +263,26 @@ namespace iMentor.Controllers
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
                     var aspUser = db.AspNetUsers.Where(x => x.Email.Equals(user.Email)).FirstOrDefault();
+                    
+                    if(aspUser != null)
+                    {
+                        aspUser.UserName = user.UserName;
+                        aspUser.Email = user.Email;
+                        
+                        db.SaveChanges();
 
-                    aspUser.UserName = user.UserName;
-                    aspUser.Email = user.Email;
-
-                    //User.Identity.Name = aspUser.UserName;
-
-                    db.SaveChanges();
-                    return "User Updated";
+                        return "Asp User Updated";
+                    }
+                    else
+                    {
+                        return "Invalid Asp User";
+                    }
+                    
                 }
             }
             else
             {
-                return "Invalid User";
+                return "Invalid Asp User";
             }
         }
 

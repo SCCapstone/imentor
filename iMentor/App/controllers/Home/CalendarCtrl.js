@@ -1,7 +1,7 @@
 ﻿
 
-app.controller('calendarCtrl', ['$scope', '$location', '$http', '$uibModal', 'calendarService', 'modalOptionService', 'uiCalendarConfig',
-    function CalendarCtrl($scope, $uibModal,$location, $http, calendarService, modalOptionService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarService',  'uiCalendarConfig',
+    function CalendarCtrl($scope, $location, $http, calendarService, uiCalendarConfig){
 
         var date = new Date();
         var d = date.getDate();
@@ -25,7 +25,7 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http', '$uibModal', 'ca
 
                 },
                 eventClick: function (event, jsEvent, view) {        
-                     $location.path("/EditListing/" +listingId);
+                 
         }
             }
         };
@@ -44,8 +44,8 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http', '$uibModal', 'ca
                             title: listings[i].Title,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
-                            url: "Templates/EventDetailsModal.cshtml",
-                            allDay: false,
+                            url: "EditListing/"+ listings[i],
+                            allDay: false
 
                            /* eventClick: function(event, jsEvent, view) {
                                     //$('#modalTitle').html(listings[i].Title);

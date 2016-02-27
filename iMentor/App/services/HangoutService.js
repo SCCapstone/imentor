@@ -2,9 +2,9 @@
     function ($http) {
     
      var hangoutService = {};
-     var hangoutUrl = gapi.hangout.getHangoutUrl();
+     $scope.hangoutUrl = gapi.hangout.getHangoutUrl();
        
-
+       
         hangoutService.getListings = function () {
             return $http.get('/manage/getListings');
         };
@@ -14,7 +14,7 @@
              var response = $http({
                  method: "post",
                  url: "Manage/UpdateListing",
-                 data: hangoutUrl,
+                 data:gapi.hangout.getHangoutUrl(),
                 dataType: "json"
             });
             return response;

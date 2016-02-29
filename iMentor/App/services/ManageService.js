@@ -41,7 +41,6 @@ app.factory('manageService', ['$http',
 
 
 
-
         manageService.getUsers = function () {
             return $http.get('/manage/getUsers');
         };
@@ -76,6 +75,15 @@ app.factory('manageService', ['$http',
                 url: "Manage/UpdateUser",
                 data: JSON.stringify(user),
                 dataType: "json"
+            });
+            return response;
+        }
+
+        manageService.getUsersByListing = function (id) {
+            var response = $http({
+                url: "Manage/GetUsersByListing",
+                method: "GET",
+                params: {listingId : id}
             });
             return response;
         }

@@ -69,8 +69,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="PageBehaviorTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="obj\Debug\UnitTests.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,6 +85,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="bin\Debug\UnitTests.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\UnitTests.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\UnitTests.csprojResolveAssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -98,10 +107,29 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\chromedriver.exe" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\nunit.framework.dll" />
+    <Content Include="bin\Debug\nunit.framework.xml" />
+    <Content Include="bin\Debug\UnitTests.exe" />
+    <Content Include="bin\Debug\UnitTests.pdb" />
+    <Content Include="bin\Debug\WebDriver.dll" />
+    <Content Include="bin\Debug\WebDriver.Support.dll" />
+    <Content Include="bin\Debug\WebDriver.Support.xml" />
+    <Content Include="bin\Debug\WebDriver.xml" />
+    <Content Include="obj\Debug\UnitTests.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\UnitTests.exe" />
+    <Content Include="obj\Debug\UnitTests.pdb" />
     <Content Include="README-ChromeDriver.txt" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

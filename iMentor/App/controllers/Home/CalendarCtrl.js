@@ -1,4 +1,7 @@
 ﻿
+// ---------------------------------------------------------------
+// Calendar controller- sets up calendar to pull events from database
+// ---------------------------------------------------------------
 
 app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarService',  'uiCalendarConfig',
     function CalendarCtrl($scope, $location, $http, calendarService, uiCalendarConfig){
@@ -24,12 +27,16 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarServic
                     right: 'month,basicWeek,basicDay'
 
                 },
-                eventClick: function (event, jsEvent, view) {        
-                 
-        }
+         
             }
         };
 
+
+      
+// ---------------------------------------------------------------
+// Retrieves listings from database, populates calendar, on
+// event click redirects to listing detail page.
+// ---------------------------------------------------------------  
 
         function getListings() {
             calendarService.getListings()
@@ -47,14 +54,7 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarServic
                             url: "/#!/EditListing/" + listings[i].ID,
                             allDay: false
 
-                           /* eventClick: function(event, jsEvent, view) {
-                                    //$('#modalTitle').html(listings[i].Title);
-                                //$('#modalBody').html(listing[i].Description);
-                                $("#eventInfo").html(listings[i].Description);
-                                $('#eventUrl').attr('href', event.url);
-                                $("#eventContent").dialog({ modal: true, title: listings[i].Title, width: 350 });
-                                    //$('#fullCalModal').modal();
-                            }*/
+                     
                         });
                     }
 

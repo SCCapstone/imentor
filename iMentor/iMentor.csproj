@@ -405,6 +405,9 @@
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
+    <Content Include="Content\glDatePicker.darkneon.css" />
+    <Content Include="Content\glDatePicker.default.css" />
+    <Content Include="Content\glDatePicker.flatwhite.css" />
     <Content Include="Content\iMentor\iMentor-site.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -551,6 +554,8 @@
     </Content>
     <None Include="Properties\PublishProfiles\iMAST.pubxml" />
     <Content Include="Scripts\angular-moment.min.js.map" />
+    <Content Include="Scripts\glDatePicker.js" />
+    <Content Include="Scripts\glDatePicker.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />

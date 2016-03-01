@@ -3,15 +3,17 @@
 var app = angular.module('app', [
     'ngRoute',
     'ngTouch',
+    'ngMaterial',
+    'ngMessages',
     'ui.grid',
-    'ui.bootstrap',
     'xeditable',
+    'ui.bootstrap',
     'ui.calendar',
     'iMentor.directives'
 ])
 
-app.config(['$routeProvider', '$locationProvider', '$httpProvider',
-    function ($routeProvider, $locationProvider, $httpProvider)
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProvider',
+    function ($routeProvider, $locationProvider, $httpProvider, $mdIconProvider)
     {
         $routeProvider
             .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
@@ -35,6 +37,8 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
         $httpProvider.defaults.headers.get['If-Modified-Since'] = 'Tue, 01 Jan 1980 1:00:00 GMT';
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+
+        $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
     }
 ]);
 

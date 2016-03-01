@@ -64,6 +64,10 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarServic
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
         }
+
+        //
+        //
+        //
       
     }
 ]);

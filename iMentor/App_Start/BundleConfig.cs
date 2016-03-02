@@ -10,7 +10,7 @@ namespace iMentor
         {
           
             bundles.Add(new StyleBundle("~/bundles/content").Include(
-                "~/Content/iMentor/iMentor-site.css",
+                
                 "~/Content/bootstrap-theme.css",
                 "~/Content/bootstrap-theme.css.map",
                 "~/Content/bootstrap-theme.min.css",
@@ -21,7 +21,8 @@ namespace iMentor
                 "~/Content/ui-grid.css",
                 "~/Content/fullcalendar.css",
                 "~/Content/fullcalendar.min.css",
-                "~/Content/ui-bootstrap-csp.css"
+                "~/Content/ui-bootstrap-csp.css",
+                "~/Content/iMentor/iMentor-site.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(

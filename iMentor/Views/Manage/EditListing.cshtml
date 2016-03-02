@@ -4,164 +4,142 @@
     <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
         <div class="form-group" style="clear:both">
             <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:150px;font-size:12px;" text="Toggle Edit Mode" on-click="toggleEditMode"></div>
+
+
+
+
+            <div class="text-right">
+                <div class="btn btn-sm btn-custom" ng-click="save()" style="margin-right:0px;width:75px;">Save</div>
+                <div class="btn btn-sm btn-custom" ng-click="cancel()" style="width:75px;">Cancel</div>
+            </div>
         </div>
     </div>
+</div>
 
 
-    <div class="ngview-body" style="padding-top:20px;">
-        <div class="text-left" style="display:inline-block;">
+<div class="ngview-body" style="padding-top:20px;">
+    <div class="text-left" style="display:inline-block;">
+
+
+        <!-- Open/Closed-->
+        <div class="row">
+            <div class="col-sm-12">
+                <div style="font-size:16px;margin-top:3px;">
+                    <a href="#" ng-show="editMode" editable-checkbox="listing.Open" e-title="Listing Open">
+                        {{ listing.Open && "Listing Open" || "Listing Closed" }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--------------->
             
-            
-            
 
-            <div class="row content">
+        <div class="row content">
 
-                <div class="col-sm-6">
-                    <div class="panel panel-default" style="width:600px;">
-                        <div class="panel-body" >
-                            <div class="header-title">
-                                <div style="font-size:20px;">
-                                    <a href="#" ng-show="editMode" editable-text="listing.Title">{{ listing.Title || "Title" }}</a>
-                                </div>
-                                <div ng-show="!editMode" style="font-size:20px;">{{listing.Title}}</div>
+            <div class="col-sm-6">
+                <div class="panel panel-default" style="width:600px;">
+                    <div class="panel-body" >
+                        <div class="header-title">
+                            <div style="font-size:20px;">
+                                <a href="#" ng-show="editMode" editable-text="listing.Title">{{ listing.Title || "Title" }}</a>
                             </div>
-                            <hr />
-                            <div class="" >
-                                <div style="font-size:14px;">
-                                    <a href="#" ng-show="editMode" editable-textarea="listing.Description" e-rows="7" e-cols="40">{{ listing.Description || "Description" }}</a>
-                                </div>
-                                <div ng-show="!editMode" style="font-size:14px;">{{listing.Description}}</div>
+                            <div ng-show="!editMode" style="font-size:20px;">{{listing.Title}}</div>
+                        </div>
+                        <hr />
+                        <div class="" >
+                            <div style="font-size:14px;">
+                                <a href="#" ng-show="editMode" editable-textarea="listing.Description" e-rows="7" e-cols="40">{{ listing.Description || "Description" }}</a>
                             </div>
+                            <div ng-show="!editMode" style="font-size:14px;">{{listing.Description}}</div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-sm-6" style="width:600px;">
-                    <!-- Teacher Hangout Button -->
-                    <div class="col-sm-12">
-                        <div class="col-sm-4" ng-show="user.RoleId == 3">
-                            <div class="im-form-label" style="width:125px;font-size:16px">Start Hangout:</div>
-                        </div>
-                        <div class="col-sm-3" ng-show="user.RoleId == 3" style="margin-bottom:6px;">
-                            <div class="g-hangout" data-render="createhangout"
-                                 data-initial_apps="[{ app_id : '1086641013362', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
-                            </div>
-                        </div>
-                        <!------------------------->
-                        <!-- Student/Mentor Hangout Button -->
-                        <div class="col-sm-4" ng-show="user.RoleId <= 2 && user.RoleId > 0">
-                            <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
-                        </div>
-                        <div class="col-sm-3" ng-show="user.RoleId <= 2 && user.RoleId > 0" style="margin-bottom:6px;">
-                            <button class="btn btn-default" a href= "https://plus.google.com/hangouts/_" ng-disabled="listing.HangoutUrl == null" ng-show="user.RoleId <= 2" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="">
-                                <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
-                            </button>
+            <div class="col-sm-6" style="width:600px;">
+                <!-- Teacher Hangout Button -->
+                <div class="col-sm-12">
+                    <div class="col-sm-4" ng-show="user.RoleId == 3">
+                        <div class="im-form-label" style="width:125px;font-size:16px">Start Hangout:</div>
+                    </div>
+                    <div class="col-sm-3" ng-show="user.RoleId == 3" style="margin-bottom:6px;">
+                        <div class="g-hangout" data-render="createhangout"
+                                data-initial_apps="[{ app_id : '1086641013362', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
                         </div>
                     </div>
                     <!------------------------->
-                    <!-- Teacher Info -->
-                    <div class="row">
-                        <div class="col-sm-4" style="margin-left:100px;">
-                            <img ng-src="{{imagePath}}" class="img-responsive" style="" alt="" />
-                            <div class="carousel-caption thick">
-                                <div style="margin-right:90%;">
-                                    Teacher
-                                </div>
-                                <div style="font-size:12px;">
-                                    <a href="#" ng-show="editMode" editable-text="listing.Teacher">{{ listing.Teacher || "Teacher" }}</a>
-                                </div>
-                                <div ng-show="!editMode" style="font-size:12px;">{{listing.Teacher}}</div>
+                    <!-- Student/Mentor Hangout Button -->
+                    <div class="col-sm-4" ng-show="user.RoleId <= 2 && user.RoleId > 0">
+                        <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
+                    </div>
+                    <div class="col-sm-3" ng-show="user.RoleId <= 2 && user.RoleId > 0" style="margin-bottom:6px;">
+                        <button class="btn btn-default" a href= "https://plus.google.com/hangouts/_" ng-disabled="listing.HangoutUrl == null" ng-show="user.RoleId <= 2" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="">
+                            <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
+                        </button>
+                    </div>
+                </div>
+                <!------------------------->
+                <!-- Teacher Info -->
+                <div class="row">
+                    <div class="col-sm-4" style="margin-left:100px;">
+                        <img ng-src="{{imagePath}}" class="img-responsive" style="" alt="" />
+                        @*<div class="carousel-caption thick">
+                            <div style="margin-right:90%;">
+                                Teacher
                             </div>
+                            <div style="font-size:12px;">
+                                <a href="#" ng-show="editMode" editable-text="listing.Teacher">{{ listing.Teacher || "Teacher" }}</a>
+                            </div>
+                            <div ng-show="!editMode" style="font-size:12px;">{{listing.Teacher}}</div>
+                        </div>*@
+                    </div>
+                </div>
+                <!------------------>
+
+                <!-- Area Info -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="im-form-label" style="width:110px;"></div>
+                        <div style="font-size:16px;margin-top:3px;">
+                            <a href="#" ng-show="editMode" editable-select="listing.Area" e-ng-options="a.text as a.text for a in areas">
+                                {{ showAreas() }}
+                            </a>
+
+                            <div ng-show="!editMode">{{listing.Area}}</div>
                         </div>
                     </div>
-                    <!------------------>
+                </div>
+                <!--------------->
 
-                    <!-- Area Info -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="im-form-label" style="width:125px;">Area</div>
-                            <div style="font-size:16px;margin-top:3px;">
-                                <a href="#" ng-show="editMode" editable-select="listing.Area" e-ng-options="a.text as a.text for a in areas">
-                                    {{ showAreas() }}
-                                </a>
-
-                                <div ng-show="!editMode">{{listing.Area}}</div>
-                            </div>
+                <!-- Date Info -->
+                <div class="row">
+                    <div class="col-md-12" style="margin-left:25px;">
+                        <div style="font-size:16px;">
+                            <md-content>
+                                <md-datepicker ng-show="editMode" ng-model="listing.StartDate" md-placeholder="Start date"></md-datepicker>
+                                <md-datepicker ng-show="editMode" ng-model="listing.EndDate" md-placeholder="End date"></md-datepicker>
+                            </md-content>
+                            <md-content>
+                                <md-datepicker ng-show="!editMode" ng-model="listing.StartDate" md-placeholder="Start date" disabled></md-datepicker>
+                                <md-datepicker ng-show="!editMode" ng-model="listing.EndDate" md-placeholder="End date" disabled></md-datepicker>
+                            </md-content>
                         </div>
                     </div>
-                    <!--------------->
+                </div>
+                <!---------------->
 
-                    <!-- Date Info -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="im-form-label" style="width:125px;">Date</div>
-                            <div style="font-size:16px;">
-                                <md-content>
-                                    <md-datepicker ng-show="editMode" ng-model="listing.StartDate" md-placeholder="Start date"></md-datepicker>
-                                    <md-datepicker ng-show="editMode" ng-model="listing.EndDate" md-placeholder="End date"></md-datepicker>
-                                </md-content>
-                                <md-content>
-                                    <md-datepicker ng-show="!editMode" ng-model="listing.StartDate" md-placeholder="Start date" disabled></md-datepicker>
-                                    <md-datepicker ng-show="!editMode" ng-model="listing.EndDate" md-placeholder="End date" disabled></md-datepicker>
-                                </md-content>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-md-6" style="margin-left:50px;">
+                        <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2" 
+                                      md-row-height-gt-md="1:1" md-row-height="4:3" 
+                                      md-gutter="8px" md-gutter-gt-sm="4px">
+
+                            <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
+                                <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
+                                <md-grid-tile-footer><h3>{{listing.Teacher}}</h3></md-grid-tile-footer>
+                            </md-grid-tile>
+                        </md-grid-list>
                     </div>
-                    <!---------------->
-
-
-                    <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px">
-
-                        <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-class="tile.background">
-                            <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
-                            <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
-                        </md-grid-tile>
-                    </md-grid-list>
-                    
-
-
-                    <form name="listingForm" novalidate>
-                        <div class="form-group" style="clear:both">
-                            <div class="im-form-label" style="width:125px;">Frequency</div>
-                            <input type="text" ng-model="listing.Frequency" name="frequency" class="form-control im-form-text" style="width:250px;" />
-                            @*<div style="float:left;width:30px;">
-                                <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
-                            </div>*@
-                        </div>
-
-                        <div class="form-group" style="clear:both">
-                            <div class="im-form-label" style="width:125px;">Mentor</div>
-                            <input type="text" ng-model="listing.Mentor" name="mentor" class="form-control im-form-text" style="width:250px;" />
-                            @*<div style="float:left;width:30px;">
-                    <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
-                </div>*@
-                        </div>
-
-                        <div class="form-group" style="clear:both">
-                            <div class="im-form-label" style="width:125px;">Teacher Email</div>
-                            <input type="text" ng-model="listing.Email" required ng-pattern="emailPattern" name="email" class="form-control im-form-text" style="width:250px;" />
-                            @*<div style="float:left;width:30px;">
-                    <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
-                </div>*@
-                        </div>
-
-                        <div class="form-group" style="clear:both">
-                            <div class="im-form-label" style="width:125px;">Open</div>
-
-                            <input type="text" ng-model="listing.Open" required name="open" class="form-control im-form-text" style="width:250px;" />
-                            @*<div style="float:left;width:30px;">
-                                <i ng-show="listForm.title.$invalid && !listForm.title.$pristine" icon="glyphicon glyphicon-ban-circle" class="im-validation-icon" popover="Required. Max Length:100." popover-placement="top" popover-trigger="mouseenter" popover-popup-delay="100" xxtooltip-append-to-body="true"></i>
-                            </div>*@
-                        </div>
-
-
-                        <div class="col-sm-6">
-                            <div class="text-right">
-                                <div class="btn btn-sm btn-custom" ng-click="save()" style="margin-right:0px;width:75px;">Save</div>
-                                <div class="btn btn-sm btn-custom" ng-click="cancel()" style="width:75px;">Cancel</div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -17,8 +17,10 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         $scope.editMode = false;
         $scope.imagePath = null;
 
-        $scope.bools = ['True', 'False'];
-        $scope.selectedBool = null;
+        $scope.bools = [
+            { value: 1, text: 'True' },
+            { value: 2, text: 'False' }
+        ];
 
         //$scope.areas = ['Math', 'Science', 'History', 'Reading', 'Computer Science'];
         $scope.areas = [
@@ -28,7 +30,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
             { value: 4, text: 'Reading' },
             { value: 5, text: 'Computer Science' }
         ];
-        $scope.selectedArea = null;
 
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
@@ -118,9 +119,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         // ---------------------------------------------------------------
 
         $scope.save = function () {
-            if (!$scope.listingForm.open.$invalid
-                && !$scope.listingForm.startDate.$invalid && !$scope.listingForm.endDate.$invalid
-                && !$scope.listingForm.title.$invalid && !$scope.listingForm.email.$invalid) {
                 if ($scope.isNew) {
                     $scope.addListing();
                 }
@@ -128,7 +126,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
                     $scope.updateListing();
                 }
                 $location.path("/ManageListings");
-            }
         }
 
         $scope.cancel = function () {
@@ -234,34 +231,34 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
             title: "Svg-",
             background: ""
         });
-        function buildGridModel(tileTmpl){
-            var it, results = [ ];
-            for (var j=0; j<11; j++) {
-                it = angular.extend({},tileTmpl);
-                it.icon  = it.icon + (j+1);
-                it.title = it.title + (j+1);
-                it.span  = { row : 1, col : 1 };
-                switch(j+1) {
+        function buildGridModel(tileTmpl) {
+            var it, results = [];
+            for (var j = 0; j < 11; j++) {
+                it = angular.extend({}, tileTmpl);
+                it.icon = it.icon + (j + 1);
+                it.title = it.title + (j + 1);
+                it.span = { row: 1, col: 1 };
+                switch (j + 1) {
                     case 1:
-                        it.background = "red";
+                        it.background = "#FF8A80";
                         it.span.row = it.span.col = 2;
                         break;
-                    case 2: it.background = "green";         break;
-                    case 3: it.background = "darkBlue";      break;
+                    case 2: it.background = "#B9F6CA"; break;
+                    case 3: it.background = "#80D8FF"; break;
                     case 4:
-                        it.background = "blue";
+                        it.background = "#84FFFF";
                         it.span.col = 2;
                         break;
                     case 5:
-                        it.background = "yellow";
+                        it.background = "#FFFB91";
                         it.span.row = it.span.col = 2;
                         break;
-                    case 6: it.background = "pink";          break;
-                    case 7: it.background = "darkBlue";      break;
-                    case 8: it.background = "purple";        break;
-                    case 9: it.background = "deepBlue";      break;
-                    case 10: it.background = "lightPurple";  break;
-                    case 11: it.background = "yellow";       break;
+                    case 6: it.background = "#FF8A80"; break;
+                    case 7: it.background = "#80D8FF"; break;
+                    case 8: it.background = "#B388FF"; break;
+                    case 9: it.background = "#FFFFFF"; break;
+                    case 10: it.background = "#8C9EFF"; break;
+                    case 11: it.background = "#FFFF8D"; break;
                 }
                 results.push(it);
             }

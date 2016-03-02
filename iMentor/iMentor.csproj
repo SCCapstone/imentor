@@ -454,6 +454,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Img\ComputerScience.png" />
+    <Content Include="Img\Icon\avatar-icons.svg" />
     <Content Include="Img\iMentor_lg.png" />
     <Content Include="Img\iMentor_sm.png" />
     <Content Include="Img\Math.png" />

@@ -1,6 +1,7 @@
 ﻿
 
 var app = angular.module('app', [
+    'ngAnimate',
     'ngRoute',
     'ngTouch',
     'ngMaterial',
@@ -38,7 +39,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 
-        $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
+        $mdIconProvider.iconSet("avatar", 'Img/Icon/avatar-icons.svg', 128);
     }
 ]);
 

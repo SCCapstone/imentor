@@ -1,7 +1,7 @@
 ﻿
 
-app.factory('manageService', ['$http',
-    function ($http) {
+app.factory('manageService', ['$http', '$q',
+    function ($http, $q) {
 
         var manageService = {};
 
@@ -47,6 +47,18 @@ app.factory('manageService', ['$http',
 
         manageService.getCurrentUser = function () {
             return $http.get('/manage/getCurrentUser');
+        };
+
+        manageService.getStudents = function () {
+            return $http.get('/manage/getStudents');
+        };
+
+        manageService.getMentors = function () {
+            return $http.get('/manage/getMentors');
+        };
+
+        manageService.getTeacher = function () {
+            return $http.get('/manage/getTeachers');
         };
 
         manageService.addUser = function (user) {

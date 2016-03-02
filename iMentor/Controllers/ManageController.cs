@@ -162,27 +162,9 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         public JsonResult GetUsers()
         {
-            using (iMAST_dbEntities db = new iMAST_dbEntities())
-            {
-                var iMentorUsers = db.iMentorUsers.ToList();
+            List<iMentorUserInfo> users = GetAllUsers();
 
-                List<iMentorUserInfo> users = new List<iMentorUserInfo>();
-                
-                foreach(iMentorUser user in iMentorUsers)
-                {
-                    var u = new iMentorUserInfo();
-                    
-                    u.Id = user.Id;
-                    u.UserName = user.UserName;
-                    u.Email = user.Email;
-                    u.RoleId = user.RoleId;
-                    u.Role = u.GetRoleByUser(user);
-
-                    users.Add(u);
-                }
-
-                return Json(users, JsonRequestBehavior.AllowGet);
-            }
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]
@@ -313,6 +295,83 @@ namespace iMentor.Controllers
                 }
 
                 return Json(users, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetStudents()
+        {
+            List<iMentorUserInfo> allUsers = GetAllUsers();
+            List<iMentorUserInfo> students = new List<iMentorUserInfo>();
+
+            foreach (iMentorUserInfo user in allUsers)
+            {
+                if (user.RoleId == 1)
+                {
+                    students.Add(user);
+                }
+            }
+
+            return Json(students, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetMentors()
+        {
+            List<iMentorUserInfo> allUsers = GetAllUsers();
+            List<iMentorUserInfo> mentors = new List<iMentorUserInfo>();
+
+            foreach (iMentorUserInfo user in allUsers)
+            {
+                if(user.RoleId == 2)
+                {
+                    mentors.Add(user);
+                }
+            }
+
+            return Json(mentors, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetTeachers()
+        {
+            List<iMentorUserInfo> allUsers = GetAllUsers();
+            List<iMentorUserInfo> teachers = new List<iMentorUserInfo>();
+
+            foreach (iMentorUserInfo user in allUsers)
+            {
+                if (user.RoleId == 3)
+                {
+                    teachers.Add(user);
+                }
+            }
+
+            return Json(teachers, JsonRequestBehavior.AllowGet);
+        }
+
+        [AllowAnonymous]
+        public List<iMentorUserInfo> GetAllUsers()
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var iMentorUsers = db.iMentorUsers.ToList();
+
+                List<iMentorUserInfo> users = new List<iMentorUserInfo>();
+
+                foreach (iMentorUser user in iMentorUsers)
+                {
+                    var u = new iMentorUserInfo();
+
+                    u.Id = user.Id;
+                    u.UserName = user.UserName;
+                    u.Email = user.Email;
+                    u.RoleId = user.RoleId;
+                    u.Role = u.GetRoleByUser(user);
+
+                    users.Add(u);
+                }
+
+                return users;
             }
         }
 

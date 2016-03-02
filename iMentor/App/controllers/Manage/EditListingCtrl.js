@@ -1,6 +1,6 @@
 ﻿
-app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$filter', '$timeout', 'manageService', 
-    function EditListingCtrl($scope, $rootScope, $routeParams, $location, $filter, $timeout, manageService)
+app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$filter', '$timeout', 'manageService', 
+    function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $filter, $timeout, manageService)
     {
         $scope.picker = { opened: false };
 
@@ -85,6 +85,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
                             $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
                             $scope.imagePath = getImage();
                             getUsersByListing(id);
+                            getStudents();
+                            getMentors();
                         }
                     }
                 })
@@ -107,6 +109,26 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
             manageService.getCurrentUser()
                 .success(function (user) {
                     $scope.user = user;
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to load listing data: ' + error.message;
+                });
+        }
+
+        function getStudents() {
+            manageService.getStudents()
+                .success(function (students) {
+                    $scope.students = students;
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to load listing data: ' + error.message;
+                });
+        }
+
+        function getMentors() {
+            manageService.getMentors()
+                .success(function (mentors) {
+                    $scope.mentors = mentors;
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
@@ -155,7 +177,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
                 return ($scope.listing.Area && selected.length) ? selected[0].text : $scope.listing.Area;
             }
         };
-
          // ---------------------------------------------------------------
         // Hangouts
         // ---------------------------------------------------------------
@@ -225,12 +246,14 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         // ---------------------------------------------------------------
         // Grid list
         // ---------------------------------------------------------------
+        
 
         $scope.tiles = buildGridModel({
-            icon : "avatar:svg-",
+            icon: "avatar:svg-",
             title: "Svg-",
             background: ""
         });
+        
         function buildGridModel(tileTmpl) {
             var it, results = [];
             for (var j = 0; j < 11; j++) {

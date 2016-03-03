@@ -34,10 +34,11 @@
         </div>
         <!--------------->
             
+        
 
         <div class="row content">
 
-            <div class="col-sm-6">
+            <div class="col-sm-6" style="margin-left:100px;">
                 <div class="panel panel-default" style="width:600px;">
                     <div class="panel-body" >
                         <div class="header-title">
@@ -57,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6" style="width:600px;">
+            <div class="col-sm-6" style="width:500px;">
                 <!-- Teacher Hangout Button -->
                 <div class="col-sm-12">
                     <div class="col-sm-4" ng-show="user.RoleId == 3">
@@ -99,9 +100,8 @@
 
                 <!-- Area Info -->
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="im-form-label" style="width:110px;"></div>
-                        <div style="font-size:16px;margin-top:3px;">
+                    <div class="col-sm-9">
+                        <div style="font-size:16px;margin-top:3px;text-align:center;">
                             <a href="#" ng-show="editMode" editable-select="listing.Area" e-ng-options="a.text as a.text for a in areas">
                                 {{ showAreas() }}
                             </a>
@@ -114,13 +114,12 @@
 
                 <!-- Date Info -->
                 <div class="row">
-                    <div class="col-md-12" style="margin-left:25px;">
-                        <div style="font-size:16px;">
+                    <div class="col-md-11" style="text-align:center;">
+                        <div style="font-size:18px;">
                             <md-content>
                                 <md-datepicker ng-show="editMode" ng-model="listing.StartDate" md-placeholder="Start date"></md-datepicker>
                                 <md-datepicker ng-show="editMode" ng-model="listing.EndDate" md-placeholder="End date"></md-datepicker>
-                            </md-content>
-                            <md-content>
+                            
                                 <md-datepicker ng-show="!editMode" ng-model="listing.StartDate" md-placeholder="Start date" disabled></md-datepicker>
                                 <md-datepicker ng-show="!editMode" ng-model="listing.EndDate" md-placeholder="End date" disabled></md-datepicker>
                             </md-content>
@@ -130,7 +129,7 @@
                 <!---------------->
 
                 <div class="row">
-                    <div class="col-md-6" style="margin-left:50px;">
+                    <div class="col-md-7" style="margin-left:50px;">
                         <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2" 
                                       md-row-height-gt-md="1:1" md-row-height="4:3" 
                                       md-gutter="8px" md-gutter-gt-sm="4px">
@@ -139,6 +138,7 @@
                                 <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
                                 <md-grid-tile-footer><h3>{{listing.Teacher}}</h3></md-grid-tile-footer>
                             </md-grid-tile>
+
                         </md-grid-list>
                     </div>
                 </div>

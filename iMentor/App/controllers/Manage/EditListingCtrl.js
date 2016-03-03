@@ -1,6 +1,6 @@
 ﻿
-app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$filter', '$timeout', 'manageService', 
-    function EditListingCtrl($scope, $rootScope, $routeParams, $location, $filter, $timeout, manageService)
+app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$filter', '$timeout', 'manageService', 
+    function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $filter, $timeout, manageService)
     {
         $scope.picker = { opened: false };
 
@@ -42,6 +42,9 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         $scope.isNew = ($scope.listingId < 1);
         if (!$scope.isNew) {
             getListings();
+            getUsersByListing($scope.listingId);
+            getStudents();
+            getMentors();
         }
 
         
@@ -69,50 +72,75 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         // ---------------------------------------------------------------
         // Load Database Listings
         // ---------------------------------------------------------------
-        function getListings() {
-            manageService.getListings()
-                .success(function (listings) {
-                    for (var i = 0; i < listings.length; i++)
+        function getListings(){
+            manageService.getListings().then(
+                    function success(listings)
                     {
-                        if(id == 0)
+                	    for (var i = 0; i < listings.length; i++)
                         {
-                            $scope.listing = null;
+                            if(id == 0)
+                            {
+                                $scope.listing = null;
+                            }
+                            else if(listings[i].ID == id)
+                            {
+                                $scope.listing = listings[i];
+                                $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
+                                $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+                                $scope.imagePath = getImage();
+                            }
                         }
-                        else if(listings[i].ID == id)
-                        {
-                            $scope.listing = listings[i];
-                            $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
-                            $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
-                            $scope.imagePath = getImage();
-                            getUsersByListing(id);
-                        }
+                    },
+                    function fail(reason)
+                    {
+                	    console.log("Unable to load listing: " + reason);
                     }
-                })
-                .error(function (error) {
-                    $scope.status = 'Unable to load listing data: ' + error.message;
-                });
+                );
         }
 
         function getUsersByListing(listingId){
-            manageService.getUsersByListing(listingId)
-                .success(function (assignedUsers) {
-                    $scope.assignedUsers = assignedUsers;
-                })
-                .error(function (error) {
-                    $scope.status = 'Unable to load listing data: ' + error.message;
-                });
+            manageService.getUsersByListing(listingId).then(
+                function success(assignedUsers){
+                	$scope.assignedUsers = assignedUsers;
+                },
+                function fail(reason){
+                	console.log("Unable to load users: " + reason);
+                }
+            );
         }
 
         function getCurrentUser(){
-            manageService.getCurrentUser()
-                .success(function (user) {
-                    $scope.user = user;
-                })
-                .error(function (error) {
-                    $scope.status = 'Unable to load listing data: ' + error.message;
-                });
+            manageService.getCurrentUser().then(
+                function success(user){
+                	$scope.user = user;
+                },
+                function fail(reason){
+                	console.log("Unable to load current user: " + reason);
+                }
+            );
         }
 
+        function getStudents(){
+            manageService.getStudents().then(
+                function success(students){
+                	$scope.students = students;
+                },
+                function fail(reason){
+                	console.log("Unable to load students: " + reason);
+                }
+            );
+        }
+
+        function getMentors(){
+            manageService.getMentors().then(
+                function success(mentors){
+                	$scope.mentors = mentors;
+                },
+                function fail(reason){
+                	console.log("Unable to load mentors: " + reason);
+                }
+            );
+        }
 
         // ---------------------------------------------------------------
         // Functions
@@ -155,7 +183,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
                 return ($scope.listing.Area && selected.length) ? selected[0].text : $scope.listing.Area;
             }
         };
-
          // ---------------------------------------------------------------
         // Hangouts
         // ---------------------------------------------------------------
@@ -177,12 +204,14 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$routeParams', '$loc
         // ---------------------------------------------------------------
         // Grid list
         // ---------------------------------------------------------------
+        
 
         $scope.tiles = buildGridModel({
-            icon : "avatar:svg-",
+            icon: "avatar:svg-",
             title: "Svg-",
             background: ""
         });
+        
         function buildGridModel(tileTmpl) {
             var it, results = [];
             for (var j = 0; j < 11; j++) {

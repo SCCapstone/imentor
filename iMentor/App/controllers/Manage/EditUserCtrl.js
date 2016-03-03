@@ -11,8 +11,8 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
         // Load Database Users
         // ---------------------------------------------------------------
         function getUsers() {
-            manageService.getUsers()
-                .success(function (users) {
+            manageService.getUsers().then(
+                function success(users) {
                     for (var i = 0; i < users.length; i++)
                     {
                         if(users[i].Id == id)
@@ -20,10 +20,11 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
                             $scope.user = users[i];
                         }
                     }
-                })
-                .error(function (error) {
+                },
+                function error (error) {
                     $scope.status = 'Unable to load user data: ' + error.message;
-                });
+                }
+            );
         }
 
 
@@ -42,9 +43,10 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
         }
 
         $scope.updateUser = function () {
-            manageService.updateUser($scope.user)
-                .success(function (response) {
-                });
+            manageService.updateUser($scope.user).then(
+                function success(response) {
+                }
+            );
         }
 
     }

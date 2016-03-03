@@ -1,52 +1,64 @@
 ﻿
 
-app.factory('manageService', ['$http',
-    function ($http) {
+app.factory('manageService', ['$http', '$q', 'apiService',
+    function ($http, $q, apiService) {
 
         var manageService = {};
 
         manageService.getListings = function () {
-            return $http.get('/manage/getListings');
+            var url = '/manage/getListings';
+
+            return apiService.httpGet(url, false);
         };
 
         manageService.addListing = function (listing) {
-            var response = $http({
-                method: "post",
-                url: "Manage/AddListing",
-                data: JSON.stringify(listing),
-                dataType: "json"
-            });
-            return response;
+            var url = 'Manage/AddListing';
+
+            return apiService.httpPost(url, listing);
         }
 
         manageService.deleteListing = function (listing) {
-            var response = $http({
-                method: "post",
-                url: "Manage/DeleteListing",
-                data: JSON.stringify(listing),
-                dataType: "json"
-            });
-            return response;
+            var url = 'Manage/DeleteListing';
+
+            return apiService.httpPost(url, listing);
         }
 
         manageService.updateListing = function (listing) {
-            var response = $http({
-                method: "post",
-                url: "Manage/UpdateListing",
-                data: JSON.stringify(listing),
-                dataType: "json"
-            });
-            return response;
+            var url = 'Manage/UpdateListing';
+
+            return apiService.httpPost(url, listing);
         }
 
 
 
         manageService.getUsers = function () {
-            return $http.get('/manage/getUsers');
+            var url = '/manage/getUsers';
+
+            return apiService.httpGet(url, false);
         };
 
         manageService.getCurrentUser = function () {
-            return $http.get('/manage/getCurrentUser');
+            var url = '/manage/getCurrentUser';
+
+            return apiService.httpGet(url, false);
+        };
+
+        manageService.getStudents = function () {
+            var url = '/manage/getStudents';
+
+            return apiService.httpGet(url, false);
+        };
+
+        manageService.getMentors = function () {
+            var url = '/manage/getMentors';
+
+            return apiService.httpGet(url, false);
+        };
+
+        manageService.getTeacher = function () {
+            var url = '/manage/getTeachers';
+
+            return apiService.httpGet(url, false);
         };
 
         manageService.addUser = function (user) {
@@ -70,22 +82,15 @@ app.factory('manageService', ['$http',
         }
 
         manageService.updateUser = function (user) {
-            var response = $http({
-                method: "post",
-                url: "Manage/UpdateUser",
-                data: JSON.stringify(user),
-                dataType: "json"
-            });
-            return response;
+            var url = 'Manage/UpdateUser';
+
+            return apiService.httpPost(url, user);
         }
 
-        manageService.getUsersByListing = function (id) {
-            var response = $http({
-                url: "Manage/GetUsersByListing",
-                method: "GET",
-                params: {listingId : id}
-            });
-            return response;
+        manageService.getUsersByListing = function (data) {
+            var url = 'manage/getUsersByListing';
+
+            return apiService.httpGetData(url, data);
         }
 
 

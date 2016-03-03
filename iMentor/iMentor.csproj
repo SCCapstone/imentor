@@ -377,6 +377,7 @@
     <Content Include="App\services\AccountService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\services\ApiService.js" />
     <Content Include="App\services\CalendarService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

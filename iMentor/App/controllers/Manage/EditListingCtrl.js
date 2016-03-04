@@ -199,6 +199,12 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             }
         };
 
+        $scope.deleteParticipant = function (tile) {
+            if ($scope.editMode) {
+                console.log("Delete: " + tile.title);
+            }
+            
+        }
 
         // ---------------------------------------------------------------
         // Hangouts
@@ -267,9 +273,10 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         function buildGridModel(tileTmpl) {
             if ($scope.assignedUsers != undefined) {
 
+                //Sort participants by Teacher -> Mentor -> Student
                 for (var x = $scope.assignedUsers.length - 1; x >= 0; x--) {
                     for (var y = 1; y <= x; y++){
-                        if ($scope.assignedUsers[y - 1].RoleId < $scope.assignedUsers[y]) {
+                        if ($scope.assignedUsers[y - 1].RoleId < $scope.assignedUsers[y].RoleId) {
                             var temp = $scope.assignedUsers[y - 1];
                             $scope.assignedUsers[y - 1] = $scope.assignedUsers[y];
                             $scope.assignedUsers[y] = temp;

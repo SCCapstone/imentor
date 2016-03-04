@@ -1880,6 +1880,7 @@
     <Content Include="Templates\ListingDetailModal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Manage\hangout.xml" />
     <Content Include="Views\Manage\ManageUsers.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

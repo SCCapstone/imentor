@@ -33,7 +33,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
-        //$scope.listing.HangoutUrl = hangoutUrl;
+      
 
 
         getCurrentUser();
@@ -204,6 +204,47 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         // Hangouts
         // ---------------------------------------------------------------
    
+        $scope.onClientReady = function(){
+	gapi.hangout.onApiReady.add(function(e){
+		if(e.isApiReady){
+			onApiReady();
+		}
+	});
+}
+
+        $scope.onApiReady = function () {
+
+            
+            function getListings(){
+            manageService.getListings().then(
+                    function success(listings)
+                    {
+                	    for (var i = 0; i < listings.length; i++)
+                        {
+                            if(id == 0)
+                            {
+                                $scope.listing = null;
+                            }
+                            else if(listings[i].ID == id)
+                            {
+                                $scope.listing = listings[i];
+                               $scope.listing.HangoutUrl = gapi.hangout.getHangoutUrl();
+                            }
+                        }
+                    },
+                    function fail(reason)
+                    {
+                	    console.log("Unable to load listing: " + reason);
+                    }
+                );
+        }
+            
+            $scope.updateListing();
+
+
+            
+        
+        };
 
         // ---------------------------------------------------------------
         // Drop Boxes

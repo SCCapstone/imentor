@@ -42,9 +42,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         $scope.isNew = ($scope.listingId < 1);
         if (!$scope.isNew) {
             getListings();
-            getUsersByListing($scope.listingId);
-            getStudents();
-            getMentors();
+            
         }
 
         
@@ -70,13 +68,13 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         }
 
         // ---------------------------------------------------------------
-        // Load Database Listings
+        // Service Calls
         // ---------------------------------------------------------------
         function getListings(){
             manageService.getListings().then(
                     function success(listings)
                     {
-                	    for (var i = 0; i < listings.length; i++)
+                        for (var i = 0; i < listings.length; i++)
                         {
                             if(id == 0)
                             {
@@ -88,12 +86,15 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                                 $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                                 $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
                                 $scope.imagePath = getImage();
+                                getUsersByListing($scope.listingId);
+                                getStudents();
+                                getMentors();
                             }
                         }
                     },
                     function fail(reason)
                     {
-                	    console.log("Unable to load listing: " + reason);
+                        console.log("Unable to load listing: " + reason);
                     }
                 );
         }
@@ -101,10 +102,15 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         function getUsersByListing(listingId){
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
-                	$scope.assignedUsers = assignedUsers;
+                    $scope.assignedUsers = assignedUsers;
+                    $scope.tiles = buildGridModel({
+                        icon: "avatar:svg-",
+                        title: "Svg-",
+                        background: ""
+                    });
                 },
                 function fail(reason){
-                	console.log("Unable to load users: " + reason);
+                    console.log("Unable to load users: " + reason);
                 }
             );
         }
@@ -112,10 +118,10 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         function getCurrentUser(){
             manageService.getCurrentUser().then(
                 function success(user){
-                	$scope.user = user;
+                    $scope.user = user;
                 },
                 function fail(reason){
-                	console.log("Unable to load current user: " + reason);
+                    console.log("Unable to load current user: " + reason);
                 }
             );
         }
@@ -123,10 +129,10 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         function getStudents(){
             manageService.getStudents().then(
                 function success(students){
-                	$scope.students = students;
+                    $scope.students = students;
                 },
                 function fail(reason){
-                	console.log("Unable to load students: " + reason);
+                    console.log("Unable to load students: " + reason);
                 }
             );
         }
@@ -134,10 +140,10 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         function getMentors(){
             manageService.getMentors().then(
                 function success(mentors){
-                	$scope.mentors = mentors;
+                    $scope.mentors = mentors;
                 },
                 function fail(reason){
-                	console.log("Unable to load mentors: " + reason);
+                    console.log("Unable to load mentors: " + reason);
                 }
             );
         }
@@ -145,15 +151,24 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         // ---------------------------------------------------------------
         // Functions
         // ---------------------------------------------------------------
+        function CompareForSort(first, second)
+        {
+            if (first.RoleId == second.RoleId)
+                return 0;
+            if (first.RoleId > second.RoledId)
+                return 1;
+            else
+                return -1; 
+        }
 
         $scope.save = function () {
-                if ($scope.isNew) {
-                    $scope.addListing();
-                }
-                else {
-                    $scope.updateListing();
-                }
-                $location.path("/ManageListings");
+            if ($scope.isNew) {
+                $scope.addListing();
+            }
+            else {
+                $scope.updateListing();
+            }
+            $location.path("/ManageListings");
         }
 
         $scope.cancel = function () {
@@ -183,7 +198,9 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 return ($scope.listing.Area && selected.length) ? selected[0].text : $scope.listing.Area;
             }
         };
-         // ---------------------------------------------------------------
+
+
+        // ---------------------------------------------------------------
         // Hangouts
         // ---------------------------------------------------------------
    
@@ -247,44 +264,46 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         // ---------------------------------------------------------------
         
 
-        $scope.tiles = buildGridModel({
-            icon: "avatar:svg-",
-            title: "Svg-",
-            background: ""
-        });
-        
         function buildGridModel(tileTmpl) {
-            var it, results = [];
-            for (var j = 0; j < 11; j++) {
-                it = angular.extend({}, tileTmpl);
-                it.icon = it.icon + (j + 1);
-                it.title = it.title + (j + 1);
-                it.span = { row: 1, col: 1 };
-                switch (j + 1) {
-                    case 1:
-                        it.background = "#FF8A80";
-                        it.span.row = it.span.col = 2;
-                        break;
-                    case 2: it.background = "#B9F6CA"; break;
-                    case 3: it.background = "#80D8FF"; break;
-                    case 4:
-                        it.background = "#84FFFF";
-                        it.span.col = 2;
-                        break;
-                    case 5:
-                        it.background = "#FFFB91";
-                        it.span.row = it.span.col = 2;
-                        break;
-                    case 6: it.background = "#FF8A80"; break;
-                    case 7: it.background = "#80D8FF"; break;
-                    case 8: it.background = "#B388FF"; break;
-                    case 9: it.background = "#FFFFFF"; break;
-                    case 10: it.background = "#8C9EFF"; break;
-                    case 11: it.background = "#FFFF8D"; break;
+            if ($scope.assignedUsers != undefined) {
+
+                for (var x = $scope.assignedUsers.length - 1; x >= 0; x--) {
+                    for (var y = 1; y <= x; y++){
+                        if ($scope.assignedUsers[y - 1].RoleId < $scope.assignedUsers[y]) {
+                            var temp = $scope.assignedUsers[y - 1];
+                            $scope.assignedUsers[y - 1] = $scope.assignedUsers[y];
+                            $scope.assignedUsers[y] = temp;
+                        }
+                    }
                 }
-                results.push(it);
+
+                var it, results = [];
+                for (var i = 0; i < $scope.assignedUsers.length; i++) {
+
+                    it = angular.extend({}, tileTmpl);
+                    it.icon = it.icon + (i + 1);
+                    it.title = $scope.assignedUsers[i].UserName;
+                    it.span = { row: 1, col: 1 };
+
+                    switch ($scope.assignedUsers[i].RoleId) {
+                        case 1:
+                            it.background = "#80D8FF";
+                            break;
+                        case 2: 
+                            it.background = "#84FFFF";
+                            it.span.col = 2;
+                            break;
+                        case 3:
+                            it.background = "#FF8A80";
+                            it.span.row = it.span.col = 2;
+                            break;
+                        case 4: it.background = "#B9F6CA"; break;
+                    }
+
+                    results.push(it);
+                }
+                return results;
             }
-            return results;
         }
     }
 ]);

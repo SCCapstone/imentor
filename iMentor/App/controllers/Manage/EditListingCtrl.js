@@ -33,15 +33,15 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
       
-
-
+        
         getCurrentUser();
-
 
         $scope.isNew = ($scope.listingId < 1);
         if (!$scope.isNew) {
             getListings();
-            
+        }
+        else{
+            newListing();
         }
 
         
@@ -92,6 +92,49 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                                 getAssignments();
                             }
                         }
+                    },
+                    function fail(reason)
+                    {
+                        console.log("Unable to load listing: " + reason);
+                    }
+                );
+        }
+
+        function newListing(){
+            manageService.getListings().then(
+                    function success(listings)
+                    {
+                        $scope.listing = listings[0];
+
+                        $scope.listing.ID = 0;
+                        $scope.listing.Title = "*New Title*";
+                        $scope.listing.StartDate = new Date();
+                        $scope.listing.EndDate = new Date();
+                        $scope.listing.Area = "*Choose Subject*";
+                        $scope.listing.Frequency = "";
+                        $scope.listing.Description = "*New Description*";
+                        $scope.listing.Mentor = "";
+                        $scope.listing.Email = "";
+                        $scope.listing.HangoutUrl = "";
+
+                        if($scope.currentUser != null){
+                            $scope.listing.TeacherId = "";
+                        }
+                        else{
+                            $scope.listing.Teacher = "";
+                        }
+
+                        $scope.listing.Open = true;
+
+                        $scope.imagePath = getImage();
+                        
+                        getStudents();
+                        getMentors();
+                        getUsers();
+                        getAssignments();
+                        addTeacher();
+
+                        console.log($scope.listing);
                     },
                     function fail(reason)
                     {
@@ -195,6 +238,44 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 return -1; 
         }
 
+        function getDate(){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd='0'+dd
+            } 
+
+            if(mm<10) {
+                mm='0'+mm
+            } 
+
+            //today = mm+'/'+dd+'/'+yyyy;
+
+            return new Date(dd, mm, yyyy);
+        }
+
+        function addTeacher(){
+            if ($scope.assignments != null && $scope.user != null) {
+                var assignment = $scope.assignments[0];
+
+                assignment.UserId = $scope.user.Id;
+                assignment.ListingId = listing.ID;
+
+
+                manageService.addParticipant(assignment).then(
+                    function success(response){
+                        console.log("Teacher added: " + assignment); 
+                    },
+                    function error(response){
+                        console.log(response);
+                    }
+                );
+            }
+        }
+
         $scope.save = function () {
             if ($scope.isNew) {
                 $scope.addListing();
@@ -210,15 +291,17 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         }
 
         $scope.addListing = function () {
-            manageService.addListing($scope.listing)
-                .success(function (response) {
-                });
+            manageService.addListing($scope.listing).then(
+                function success(response){
+                }
+            );
         }
 
         $scope.updateListing = function () {
-            manageService.updateListing($scope.listing)
-                .success(function (response) {
-                });
+            manageService.updateListing($scope.listing).then(
+                function success(response){
+                }
+            );
         }
 
         $scope.toggleEditMode = function () {

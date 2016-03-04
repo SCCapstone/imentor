@@ -49,10 +49,7 @@ namespace iMentor
             bundles.Add(new StyleBundle("~/bundles/content/ngMaterial").IncludeDirectory("~/Scripts/node-modules/angular-material", "*.css", false));
             //bundles.Add(new StyleBundle("~/bundles/content/themes").IncludeDirectory("~/Content/themes", "*.css", false));
            // bundles.Add(new StyleBundle("~/bundles/content").Include("~/Content/fullcalendar.print.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-2.2.0.min.js")
-                );
+           
             //bundles.IgnoreList.Ignore("~/Content/fullcalendar.css");
            
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -91,7 +88,7 @@ namespace iMentor
             );
             bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
               "~/Scripts/fullcalendar.min.js",
-             
+             "~/Scripts/fullcalendar.js",
               "~/Scripts/gcal.js")
           );
         

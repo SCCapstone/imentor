@@ -1,6 +1,6 @@
 ﻿
-app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$filter', '$timeout', 'manageService', 
-    function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $filter, $timeout, manageService)
+app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', 'manageService',  'modalOptionService',
+    function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, manageService, modalOptionService)
     {
         $scope.picker = { opened: false };
 
@@ -22,7 +22,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             { value: 2, text: 'False' }
         ];
 
-        //$scope.areas = ['Math', 'Science', 'History', 'Reading', 'Computer Science'];
         $scope.areas = [
             { value: 1, text: 'Math' },
             { value: 2, text: 'Science' },
@@ -89,6 +88,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                                 getUsersByListing($scope.listingId);
                                 getStudents();
                                 getMentors();
+                                getUsers();
+                                getAssignments();
                             }
                         }
                     },
@@ -113,6 +114,17 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     console.log("Unable to load users: " + reason);
                 }
             );
+        }
+
+        function getUsers() {
+            manageService.getUsers().then(
+                function success(users) {
+                    $scope.users = users;
+                },
+                function error(error) {
+
+                }
+            )
         }
 
         function getCurrentUser(){
@@ -144,6 +156,28 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 },
                 function fail(reason){
                     console.log("Unable to load mentors: " + reason);
+                }
+            );
+        }
+
+        function getAssignments() {
+            manageService.getAssignments().then(
+                function success(assignments){
+                    $scope.assignments = assignments;
+                },
+                function error(error) {
+
+                }
+            )
+        }
+
+        function removeParticipants(assignment) {
+            manageService.removeParticipant(assignment).then(
+                function success(response) {
+                    getUsersByListing($scope.listingId);
+                },
+                function error(error) {
+
                 }
             );
         }
@@ -201,10 +235,47 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
         $scope.deleteParticipant = function (tile) {
             if ($scope.editMode) {
-                console.log("Delete: " + tile.title);
+                if ($scope.assignments != null && $scope.users != null && $scope.listing != null) {
+                    var assignment = null;
+                    var user = null;
+
+                    //get user for its Id
+                    for(var i = 0; i < $scope.users.length; i++){
+                        if($scope.users[i].UserName.localeCompare(tile.title) == 0){
+                            user = $scope.users[i];
+                        }
+                    }
+
+                    //find assignment 
+                    if (user != null) {
+                        for (var i = 0; i < $scope.assignments.length; i++) {
+                            if ($scope.assignments[i].ListingId == $scope.listing.ID && $scope.assignments[i].UserId == user.Id) {
+                                assignment = $scope.assignments[i];
+                            }
+                        }
+                    }
+
+                    removeParticipants(assignment);
+                }
             }
-            
         }
+
+        $scope.addParticipants = function () {
+            if($scope.students != null && $scope.listing != null){
+                $scope.showAddParticipantsModal($scope.students, $scope.listing);
+            }
+        }
+
+        $scope.showAddParticipantsModal = function (students, listing) {
+            var modalOptions = modalOptionService.optionsForAddParticipants(students, listing);
+            var modalInstance = $uibModal.open(modalOptions);
+
+            modalInstance.result.then(
+                null,
+                function cancel() {
+                    // No-op
+                });
+        };
 
         // ---------------------------------------------------------------
         // Hangouts
@@ -252,18 +323,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         
         };
 
-        // ---------------------------------------------------------------
-        // Drop Boxes
-        // ---------------------------------------------------------------
-
-        $scope.dropboxboolselected = function (item) {
-            $scope.selectedBool = item;
-        }
-
-        $scope.dropboxareaselected = function (item) {
-            $scope.selectedArea = item;
-        }
-
 
         // ---------------------------------------------------------------
         // Grid list
@@ -309,6 +368,16 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
                     results.push(it);
                 }
+
+                //Add the "Add Participant" tile
+                it = angular.extend({}, tileTmpl);
+                it.icon = 1;
+                it.title = "Add Participant";
+                it.span = { row: 1, col: 1 };
+                it.background = "#80D8FF"
+
+                results.push(it);
+
                 return results;
             }
         }

@@ -348,6 +348,7 @@
     <Content Include="App\controllers\Home\HomeCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\controllers\Home\Modals\AddParticipantsCtrl.js" />
     <Content Include="App\controllers\Home\Modals\EventDetailsCtrl.js" />
     <Content Include="App\controllers\Home\Modals\ListingDetailCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1862,6 +1863,7 @@
     <Content Include="Scripts\xeditable.js" />
     <Content Include="Scripts\xeditable.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Templates\AddParticipantsModal.html" />
     <Content Include="Templates\BtnDT.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

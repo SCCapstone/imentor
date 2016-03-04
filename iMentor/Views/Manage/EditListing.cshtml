@@ -137,8 +137,11 @@
                             <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
                                 <md-icon md-svg-icon="{{tile.icon}}" ></md-icon>
                                 <md-grid-tile-header ng-show="editMode" >
-                                    <div layout="row" layout-align="end center"> Delete
+                                    <div ng-show="tile.title != 'Add Participant'" layout="row" layout-align="end center"> Delete
                                         <i ng-click="deleteParticipant(tile)" class="glyphicon glyphicon-remove"></i> 
+                                    </div>
+                                    <div ng-show="tile.title == 'Add Participant'" layout="row" layout-align="end center">Add 
+                                        <i ng-click="addParticipants()" class="glyphicon glyphicon-plus"></i>
                                     </div>
                                 </md-grid-tile-header>
                                 <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>

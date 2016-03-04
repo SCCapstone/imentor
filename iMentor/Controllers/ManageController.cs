@@ -375,6 +375,63 @@ namespace iMentor.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public string AddParticipant(AssignedListing assignment)
+        {
+            if (assignment != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    db.AssignedListings.Add(assignment);
+                    db.SaveChanges();
+
+                    return "Assignment Added";
+                }
+            }
+            else
+            {
+                return "Invalid Assignment";
+            }
+        }
+
+        [AllowAnonymous]
+        public string RemoveParticipant(AssignedListing assignment)
+        {
+            if (assignment != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    var a = db.AssignedListings.Where(x => x.Id == assignment.Id).FirstOrDefault();
+
+                    if (a != null)
+                    {
+                        db.AssignedListings.Remove(a);
+                        db.SaveChanges();
+                        return "Assignment Removed";
+                    }
+                    else
+                    {
+                        return "Invalid Assignment";
+                    }
+                }
+            }
+            else
+            {
+                return "Invalid Assignment";
+            }
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetAssignments()
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var assignments = db.AssignedListings.ToList();
+                
+                return Json(assignments, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
         [AllowAnonymous]
         public JsonResult GetRoles()

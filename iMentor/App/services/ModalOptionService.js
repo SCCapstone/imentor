@@ -3,6 +3,23 @@
 app.factory('modalOptionService', function () {
     return {
     
+        optionsForAddParticipants: function(users, listing) {
+            return {
+                templateUrl: '/Templates/AddParticipantsModal.html',
+                controller: 'addParticipantsCtrl',
+                backdrop: true,
+                windowClass: 'addParticipantsModal',
+                resolve: {
+                    users: function() {
+                        return users;
+                    },
+                    listing: function() {
+                        return listing;
+                    }
+                }
+            }
+        },
+
         optionsForListingDetail: function(listing) {
             return {
                 templateUrl: '/Templates/ListingDetailModal.html',

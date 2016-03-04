@@ -93,6 +93,24 @@ app.factory('manageService', ['$http', '$q', 'apiService',
             return apiService.httpGetData(url, data);
         }
 
+        manageService.removeParticipant = function (assigment) {
+            var url = 'manage/removeParticipant';
+            
+            return apiService.httpPost(url, assigment);
+        }
+
+        manageService.addParticipant = function (assigment) {
+            var url = 'manage/addParticipant';
+            
+            return apiService.httpPost(url, assigment);
+        }
+
+        manageService.getAssignments = function(){
+            var url = 'manage/getAssignments';
+
+            return apiService.httpGet(url, false);
+        }
+
 
 
         manageService.getRoles = function () {
@@ -108,6 +126,8 @@ app.factory('manageService', ['$http', '$q', 'apiService',
             });
             return response;
         }
+
+        
 
         return manageService;
     }

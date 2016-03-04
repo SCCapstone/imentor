@@ -135,8 +135,8 @@
                                       md-gutter="8px" md-gutter-gt-sm="4px">
 
                             <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
-                                <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
-                                <md-grid-tile-footer><h3>{{listing.Teacher}}</h3></md-grid-tile-footer>
+                                <md-icon md-svg-icon="{{tile.icon}}" ></md-icon>
+                                <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
                             </md-grid-tile>
 
                         </md-grid-list>

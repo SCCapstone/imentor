@@ -34,7 +34,7 @@
 
 
                         <div class="panel-body">
-                            <div ng-repeat="s in listings | filter:areaFilter" listing-card listing="s" ng-click="selectListing(s)">
+                            <div ng-animate="'animate'" ng-repeat="s in listings | filter:areaFilter" listing-card listing="s" ng-click="selectListing(s)">
                             </div>
                         </div>
                     </div>

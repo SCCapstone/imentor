@@ -88,7 +88,7 @@ namespace iMentor
             );
             bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
               "~/Scripts/fullcalendar.min.js",
-             "~/Scripts/fullcalendar.js",
+             
               "~/Scripts/gcal.js")
           );
         

@@ -20,7 +20,7 @@ namespace UnitTests
         public void HomepageLoads_CalendarIsReachable()
         {
             // Instantiate a new web driver to run the test
-             IWebDriver driver = new ChromeDriver(@"C:\Users\Mike\Downloads");
+             IWebDriver driver = new ChromeDriver();
 
             // Trying to work around specifying a path that only works on my local machine
             // IWebDriver driver = new ChromeDriver(@".\bin\Debug");
@@ -36,6 +36,45 @@ namespace UnitTests
             // Our home page is the Listings page. Test that it has loaded by comparing the title element to "Listings"
             String PrimaryHeader = driver.FindElement(By.ClassName("panel-title")).Text;
             Assert.AreEqual("Listings", PrimaryHeader);
+
+            // Our home page also has a collection of filters. Test that they have loaded by checking their text tags.
+            // Retrieve the concatenated raw text and initialize placeholder variables.
+            String tempString = "";
+            int shift = 0;
+            String FilterHeader = driver.FindElement(By.ClassName("panel-body")).Text;
+
+            // Each text tag is a substring in the concatenated text. Retrieve each substring.
+            String FilterTitle = FilterHeader.Substring(shift, "Subjects".Length);
+            tempString = FilterTitle;
+            shift = shift + tempString.Length + 2;
+
+            String FilterMath = FilterHeader.Substring(shift, "Math".Length);
+            tempString = FilterMath;
+            shift = shift + tempString.Length + 2;
+
+            String FilterScience = FilterHeader.Substring(shift, "Science".Length);
+            tempString = FilterScience;
+            shift = shift + tempString.Length + 2;
+
+            String FilterHistory = FilterHeader.Substring(shift, "History".Length);
+            tempString = FilterHistory;
+            shift = shift + tempString.Length + 2;
+
+            String FilterReading = FilterHeader.Substring(shift, "Reading".Length);
+            tempString = FilterReading;
+            shift = shift + tempString.Length + 2;
+
+            String FilterCompSci = FilterHeader.Substring(shift, "Computer Science".Length);
+            tempString = FilterCompSci;
+            shift = shift + tempString.Length + 2;
+
+            // Assert that all the text tags are correct.
+            Assert.AreEqual("Subjects", FilterTitle);
+            Assert.AreEqual("Math", FilterMath);
+            Assert.AreEqual("Science", FilterScience);
+            Assert.AreEqual("History", FilterHistory);
+            Assert.AreEqual("Reading", FilterReading);
+            Assert.AreEqual("Computer Science", FilterCompSci);
 
             // Next we find the Calendar Button and click it to navigate to the Calendar
             IWebElement CalendarButton = driver.FindElement(By.ClassName("glyphicon-calendar"));

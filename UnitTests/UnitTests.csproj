@@ -119,6 +119,7 @@
     <Content Include="bin\Debug\WebDriver.Support.dll" />
     <Content Include="bin\Debug\WebDriver.Support.xml" />
     <Content Include="bin\Debug\WebDriver.xml" />
+    <Content Include="chromedriver.exe" />
     <Content Include="obj\Debug\UnitTests.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\UnitTests.exe" />
     <Content Include="obj\Debug\UnitTests.pdb" />

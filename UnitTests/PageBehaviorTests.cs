@@ -22,9 +22,6 @@ namespace UnitTests
             // Instantiate a new web driver to run the test
              IWebDriver driver = new ChromeDriver();
 
-            // Trying to work around specifying a path that only works on my local machine
-            // IWebDriver driver = new ChromeDriver(@".\bin\Debug");
-
             // Instruct the driver to throw an error if it has to wait more than 5 seconds for retrieval, then go to URL
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
             driver.Navigate().GoToUrl("https://imast.azurewebsites.net");
@@ -83,11 +80,91 @@ namespace UnitTests
             // To verify that the calendar loaded, we check the "today button"
             String Today = driver.FindElement(By.ClassName("fc-today-button")).Text;
             Assert.AreEqual("today", Today);
+
+            // Also verify the other calendar buttons, month, week, and day.
+            String Month = driver.FindElement(By.ClassName("fc-month-button")).Text;
+            Assert.AreEqual("month", Month);
+
+            String Week = driver.FindElement(By.ClassName("fc-basicWeek-button")).Text;
+            Assert.AreEqual("week", Week);
+
+            String Day = driver.FindElement(By.ClassName("fc-basicDay-button")).Text;
+            Assert.AreEqual("day", Day);
             
             // End the test by closing the browser
             driver.Close();
         }
 
+        [TestMethod]
+
+        public void HomepageLoads_ManageUsersIsReachable()
+        {
+            // Instantiate a new web driver to run the test
+            IWebDriver driver = new ChromeDriver();
+
+            // Instruct the driver to throw an error if it has to wait more than 5 seconds for retrieval, then go to URL
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+            driver.Navigate().GoToUrl("https://imast.azurewebsites.net");
+
+            // To verify that the homepage is online and reachable, we save the url after navigating and check it
+            String HomeUrl = driver.Url;
+            Assert.AreEqual("https://imast.azurewebsites.net/#!/", HomeUrl);
+
+            // Then we need to toggle the Manage Dropdown Menu.
+            IWebElement ManageDropDown = driver.FindElement(By.ClassName("dropdown-toggle"));
+            ManageDropDown.Click();
+
+            // Next we find the Users Button inside the Manage Dropdown Menu and click it to navigate to the User Management Table
+            IWebElement ManageUsersButton = driver.FindElement(By.ClassName("glyphicon-user"));
+            ManageUsersButton.Click();
+
+            // To verify that the User Management Table loaded, we check the Header.
+            String UserManagement = driver.FindElement(By.ClassName("header-title")).Text;
+            Assert.AreEqual("User Management", UserManagement);
+
+            // Also check the refresh button. A user should be able to click it.
+            IWebElement RefreshTable = driver.FindElement(By.ClassName("glyphicon-refresh"));
+            RefreshTable.Click();
+
+            // The table itself has 4 attributes. We check that the User Name Header has loaded.
+            String UserName = driver.FindElement(By.ClassName("ui-grid-header-cell-label")).Text;
+            Assert.AreEqual("User Name", UserName);
+
+            // End the test by closing the browser.
+            driver.Close();
+
+        }
+
+        [TestMethod]
+
+        public void HomepageLoads_ManageListingsIsReachable()
+        {
+            // Instantiate a new web driver to run the test
+            IWebDriver driver = new ChromeDriver();
+
+            // Instruct the driver to throw an error if it has to wait more than 5 seconds for retrieval, then go to URL
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+            driver.Navigate().GoToUrl("https://imast.azurewebsites.net");
+
+            // To verify that the homepage is online and reachable, we save the url after navigating and check it
+            String HomeUrl = driver.Url;
+            Assert.AreEqual("https://imast.azurewebsites.net/#!/", HomeUrl);
+
+            // Then we need to toggle the Manage Dropdown Menu.
+            IWebElement ManageDropDown = driver.FindElement(By.ClassName("dropdown-toggle"));
+            ManageDropDown.Click();
+
+            // Next we find the Listings Button inside the Manage Dropdown Menu and click it to navigate to the Listing Management Table
+            IWebElement ManageUsersButton = driver.FindElement(By.ClassName("glyphicon-th-list"));
+            ManageUsersButton.Click();
+
+            // To verify that the User Management Table loaded, we check the Header.
+            String ListingManagement = driver.FindElement(By.ClassName("header-title")).Text;
+            Assert.AreEqual("Listing Management", ListingManagement);
+
+            // End the test by closing the browser
+            driver.Close();
+        }
 
     }
 }

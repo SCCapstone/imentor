@@ -157,7 +157,6 @@ namespace iMentor.Controllers
                 return "Invalid Listing";
             }
         }
-
         
         [AllowAnonymous]
         public JsonResult GetUsers()
@@ -442,6 +441,21 @@ namespace iMentor.Controllers
                 
                 return Json(results, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        //FOR UNIT TESTING PURPOSES ONLY!
+
+        [AllowAnonymous]
+        public ListingModel ReturnLastAddedListing()
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    var lastAdded = (from n in db.ListingModels
+                                     orderby n.ID descending
+                                     select n).FirstOrDefault();
+                    return lastAdded;
+
+                }
         }
     }
 }

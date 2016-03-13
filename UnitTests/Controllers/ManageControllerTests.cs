@@ -164,9 +164,9 @@ namespace iMentor.Controllers.Tests
             //Check that the UpdateUser function completed successfully
             Assert.AreEqual(controller.UpdateUser(userInfo), "User Updated");
 
+            //Check that the user was actually updated in the database
             iMentorUser userUpdated = controller.ReturnLastAddedUser();
 
-            //Check that the user was updated in the database
             Assert.IsTrue(  userUpdated.Id         == userInfo.Id          &&
                             userUpdated.UserName   == userInfo.UserName    &&
                             userUpdated.Email      == userInfo.Email       &&
@@ -191,9 +191,9 @@ namespace iMentor.Controllers.Tests
             //Check that the UpdateAspUser function completed successfully
             Assert.AreEqual(controller.UpdateAspUser(userInfo), "Asp User Updated");
 
+            //Check that the asp user was actually updated in the database
             AspNetUser userUpdated = controller.ReturnAspUser(user.Email);
 
-            //Check that the asp user was updated in the database
             Assert.IsTrue(  userUpdated.UserName    == userInfo.UserName    &&
                             userUpdated.Email       == userInfo.Email);
 
@@ -236,19 +236,50 @@ namespace iMentor.Controllers.Tests
         [TestMethod()]
         public void AddParticipantTest()
         {
-            Assert.Fail();
-        }
+            ManageController controller = new ManageController();
+            AssignedListing test = new AssignedListing();
 
-        [TestMethod()]
-        public void RemoveParticipantTest()
-        {
-            Assert.Fail();
+            test.ListingId  = 1;
+            test.UserId     = 5;
+
+            //Check that the AddParticipant function completed successfully
+            Assert.AreEqual(controller.AddParticipant(test), "Assignment Added");
+
+            //Check that the assignment was acutally added to the database
+            AssignedListing lastAdded = controller.ReturnLastAddedAssignment();
+
+            Assert.IsTrue(  lastAdded.ListingId == test.ListingId    &&
+                            lastAdded.UserId    == test.UserId);
+
+
         }
 
         [TestMethod()]
         public void GetAssignmentsTest()
         {
             Assert.Fail();
+        }
+
+        //*This test has a potential to fail even though it is successful.
+        [TestMethod()]
+        public void RemoveParticipantTest()
+        {
+            ManageController controller = new ManageController();
+
+            //Deleting the assignment that was added in previous test
+            AssignedListing test = controller.ReturnLastAddedAssignment();
+
+            //Check that the RemoveParticipant function completed successfully
+            Assert.AreEqual(controller.RemoveParticipant(test), "Assignment Removed");
+
+            //Check that the assignment was actually deleted from the database
+            AssignedListing lastAdded = controller.ReturnLastAddedAssignment();
+
+            //*This assert may fail even though the assignment was removed
+            Assert.IsFalse( lastAdded.ListingId == test.ListingId   &&
+                            lastAdded.UserId    == test.UserId);
+
+
         }
 
         [TestMethod()]

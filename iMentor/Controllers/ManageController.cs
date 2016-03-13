@@ -481,5 +481,18 @@ namespace iMentor.Controllers
 
             }
         }
+
+        [AllowAnonymous]
+        public AssignedListing ReturnLastAddedAssignment()
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var lastAdded = (from n in db.AssignedListings
+                                 orderby n.Id descending
+                                 select n).FirstOrDefault();
+                return lastAdded;
+
+            }
+        }
     }
 }

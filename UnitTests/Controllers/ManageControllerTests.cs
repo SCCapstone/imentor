@@ -36,10 +36,10 @@ namespace iMentor.Controllers.Tests
             listing.TeacherId   = 5;
             listing.Open        = false;
 
-            //The AddListing function completed successfully
+            //Check that the AddListing function completed successfully
             Assert.AreEqual(controller.AddListing(listing),"Listing Added");
 
-            //The listing was actually added to the database
+            //Check that the listing was actually added to the database
             ListingModel lastAdded = controller.ReturnLastAddedListing();
 
             Assert.IsTrue( listing.Title       == lastAdded.Title          &&
@@ -77,23 +77,29 @@ namespace iMentor.Controllers.Tests
             listing.Open        = listingModel.Open;
             listing.Teacher     = "labradoe@gmail.com";
 
-            //The UpdateListing function completed successfully
+            //Check that the UpdateListing function completed successfully
             Assert.AreEqual(controller.UpdateListing(listing), "Listing Updated");
 
-            //The listing was actually updated in the database
+            //Check that the listing was actually updated in the database
             ListingModel lastAdded = controller.ReturnLastAddedListing();
 
-            Assert.IsTrue( listing.Title        == lastAdded.Title &&
-                           listing.StartDate    == lastAdded.StartDate &&
-                           listing.EndDate      == lastAdded.EndDate &&
-                           listing.Area         == lastAdded.Area &&
-                           listing.Frequency    == lastAdded.Frequency &&
-                           listing.Description  == lastAdded.Description &&
-                           listing.Mentor       == lastAdded.Mentor &&
-                           listing.Email        == lastAdded.Email &&
-                           listing.HangoutUrl   == lastAdded.HangoutUrl &&
-                           listing.TeacherId    == lastAdded.TeacherId &&
+            Assert.IsTrue( listing.Title        == lastAdded.Title          &&
+                           listing.StartDate    == lastAdded.StartDate      &&
+                           listing.EndDate      == lastAdded.EndDate        &&
+                           listing.Area         == lastAdded.Area           &&
+                           listing.Frequency    == lastAdded.Frequency      &&
+                           listing.Description  == lastAdded.Description    &&
+                           listing.Mentor       == lastAdded.Mentor         &&
+                           listing.Email        == lastAdded.Email          &&
+                           listing.HangoutUrl   == lastAdded.HangoutUrl     &&
+                           listing.TeacherId    == lastAdded.TeacherId      &&
                            listing.Open         == lastAdded.Open);
+        }
+
+        [TestMethod()]
+        public void GetListingsTest()
+        {
+            Assert.Fail();
         }
 
         [TestMethod()]
@@ -104,29 +110,23 @@ namespace iMentor.Controllers.Tests
             //Deleting the listing added in the previous test
             ListingModel listing = controller.ReturnLastAddedListing();
 
-            //The DeleteListing function completed successfully
+            //Check that the DeleteListing function completed successfully
             Assert.AreEqual(controller.DeleteListing(listing),"Listing Deleted");
 
-            //The listing was actually deleted from the database
+            //Check that the listing was actually deleted from the database
             ListingModel lastAdded = controller.ReturnLastAddedListing();
 
-            Assert.IsFalse(listing.Title        == lastAdded.Title &&
-                           listing.StartDate    == lastAdded.StartDate &&
-                           listing.EndDate      == lastAdded.EndDate &&
-                           listing.Area         == lastAdded.Area &&
-                           listing.Frequency    == lastAdded.Frequency &&
-                           listing.Description  == lastAdded.Description &&
-                           listing.Mentor       == lastAdded.Mentor &&
-                           listing.Email        == lastAdded.Email &&
-                           listing.HangoutUrl   == lastAdded.HangoutUrl &&
-                           listing.TeacherId    == lastAdded.TeacherId &&
+            Assert.IsFalse(listing.Title        == lastAdded.Title          &&
+                           listing.StartDate    == lastAdded.StartDate      &&
+                           listing.EndDate      == lastAdded.EndDate        &&
+                           listing.Area         == lastAdded.Area           &&
+                           listing.Frequency    == lastAdded.Frequency      &&
+                           listing.Description  == lastAdded.Description    &&
+                           listing.Mentor       == lastAdded.Mentor         &&
+                           listing.Email        == lastAdded.Email          &&
+                           listing.HangoutUrl   == lastAdded.HangoutUrl     &&
+                           listing.TeacherId    == lastAdded.TeacherId      &&
                            listing.Open         == lastAdded.Open);
-
-        }
-
-        [TestMethod()]
-        public void GetListingsTest()
-        {
 
         }
 
@@ -151,13 +151,56 @@ namespace iMentor.Controllers.Tests
         [TestMethod()]
         public void UpdateUserTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+            iMentorUser user = controller.ReturnLastAddedUser();
+            iMentorUserInfo userInfo = new iMentorUserInfo();
+
+            userInfo.Id         = user.Id;
+            userInfo.UserName   = "Unit testing was here";
+            userInfo.Email      = user.Email;
+            userInfo.RoleId     = user.RoleId;
+            userInfo.Role       = userInfo.GetRoleByUser(user);
+
+            //Check that the UpdateUser function completed successfully
+            Assert.AreEqual(controller.UpdateUser(userInfo), "User Updated");
+
+            iMentorUser userUpdated = controller.ReturnLastAddedUser();
+
+            //Check that the user was updated in the database
+            Assert.IsTrue(  userUpdated.Id         == userInfo.Id          &&
+                            userUpdated.UserName   == userInfo.UserName    &&
+                            userUpdated.Email      == userInfo.Email       &&
+                            userUpdated.RoleId     == userInfo.RoleId);
+
+            //Clean up
+            userInfo.UserName   = user.UserName;
+            controller.UpdateUser(userInfo);
+
         }
 
         [TestMethod()]
         public void UpdateAspUserTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+            iMentorUser user = controller.ReturnLastAddedUser();
+            iMentorUserInfo userInfo = new iMentorUserInfo();
+
+            userInfo.UserName = "Unit testing was here";
+            userInfo.Email = user.Email;
+
+            //Check that the UpdateAspUser function completed successfully
+            Assert.AreEqual(controller.UpdateAspUser(userInfo), "Asp User Updated");
+
+            AspNetUser userUpdated = controller.ReturnAspUser(user.Email);
+
+            //Check that the asp user was updated in the database
+            Assert.IsTrue(  userUpdated.UserName    == userInfo.UserName    &&
+                            userUpdated.Email       == userInfo.Email);
+
+            //Clean up
+            userInfo.UserName = user.UserName;
+            controller.UpdateAspUser(userInfo);
+
         }
 
         [TestMethod()]

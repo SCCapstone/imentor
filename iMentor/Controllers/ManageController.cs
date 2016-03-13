@@ -443,7 +443,7 @@ namespace iMentor.Controllers
             }
         }
 
-        //FOR UNIT TESTING PURPOSES ONLY!
+//******************* FOR UNIT TESTING PURPOSES ONLY! *******************\\
 
         [AllowAnonymous]
         public ListingModel ReturnLastAddedListing()
@@ -456,6 +456,30 @@ namespace iMentor.Controllers
                     return lastAdded;
 
                 }
+        }
+
+        [AllowAnonymous]
+        public iMentorUser ReturnLastAddedUser()
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var lastAdded = (from n in db.iMentorUsers
+                                 orderby n.Id descending
+                                 select n).FirstOrDefault();
+                return lastAdded;
+
+            }
+        }
+
+        [AllowAnonymous]
+        public AspNetUser ReturnAspUser(string email)
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var user = db.AspNetUsers.Where(x => x.Email == email).FirstOrDefault();
+                return user;
+
+            }
         }
     }
 }

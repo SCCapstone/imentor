@@ -65,6 +65,17 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$location', '$q',  'man
               
         }
 
+          function getCurrentUser(){
+            manageService.getCurrentUser().then(
+                function success(user){
+                    $scope.user = user;
+                },
+                function fail(reason){
+                    console.log("Unable to load current user: " + reason);
+                }
+            );
+        }
+
        
 
         //

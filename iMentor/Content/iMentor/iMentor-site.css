@@ -204,7 +204,7 @@ h6.panel-title {
 } 
 
 
-.listingCreationModal .modal-dialog {
+.addParticipantsModal .modal-dialog {
 	width: 750px;
 	border-radius: 6px;
 	border: 1px solid #CCC;
@@ -212,11 +212,13 @@ h6.panel-title {
 	margin-top: 75px;
 }
 
-.listingCreationModal .modal-body {
+.addParticipantsModal .modal-body {
 	border-radius: 6px;
+    max-height:400px;
+    overflow-y:auto;
 }
 
-.listingCreationModal .dtl-group {
+.addParticipantsModal .dtl-group {
 	padding-left: 5px;
 	padding-right: 5px;
 }
@@ -326,8 +328,15 @@ h6.panel-title {
 im-grid-studentParticipant {
     border: 0;
 	border-radius: 6px;
-	height: 200px;
-    width: 400px;
+	height: 100px;
+    width: 200px;
+}
+
+im-grid-mentorParticipant {
+    border: 0;
+	border-radius: 6px;
+	height: 100px;
+    width: 200px;
 }
 
 .im-group-grid {

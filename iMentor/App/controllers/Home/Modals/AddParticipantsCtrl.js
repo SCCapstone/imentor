@@ -2,15 +2,14 @@
 app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', 'manageService', 'students', 'mentors', 'listing',
     function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, manageService, students, mentors, listing)
     {
-        getAssignments();
-        $scope.students = students;
-        $scope.mentors = mentors;
+        init();
+        
 
 
         // ---------------------------------------------------------------
         // Grid
         // ---------------------------------------------------------------
-        $scope.gridOptions = {
+        $scope.gridOptionsStudents = {
             data: "students",
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
@@ -21,6 +20,27 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             enableCellSelection: true,
             rowHeight: 25
         };
+
+        $scope.gridOptionsMentors = {
+            data: "mentors",
+            columnDefs: [
+            { field: 'Id', displayName: 'Id', visible: false },
+            { field: 'UserName', displayName: 'User Name', width: '50%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Email', displayName: 'Email', width: '50%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            ],
+            enableSorting: true,
+            enableCellSelection: true,
+            rowHeight: 25
+        };
+
+        // ---------------------------------------------------------------
+        // initialize
+        // ---------------------------------------------------------------
+        function init() {
+            getAssignments();
+            $scope.students = students;
+            $scope.mentors = mentors;
+        }
 
 
         function getAssignments() {

@@ -61,16 +61,16 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
         // Manage Listings
         // ---------------------------------------------------------------
         function getListings() {
-            manageService.getListings()
-                .success(function (listings) {
+            manageService.getListings().then(
+                function success(listings) {
                     for (var i = 0; i < listings.length; i++) {
                         listings[i].StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                         listings[i].EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
                     }
 
                     $scope.listings = listings;
-                })
-                .error(function (error) {
+                },
+                function error(error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
         }

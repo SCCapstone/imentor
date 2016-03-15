@@ -323,6 +323,13 @@ h6.panel-title {
     width: 800px;
 }
 
+im-grid-studentParticipant {
+    border: 0;
+	border-radius: 6px;
+	height: 200px;
+    width: 400px;
+}
+
 .im-group-grid {
 	height: 375px;
     overflow-x: hidden;

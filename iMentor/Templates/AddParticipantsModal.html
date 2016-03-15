@@ -1,17 +1,19 @@
 ﻿
-<div class="modal-content" style="height:300px;">
+<div class="modal-content" style="height:600px;">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Add Participants</h4>
     </div>
     <div class="modal-body">
-        <select ng-model="selectParticipant">
+        <!--<select ng-model="selectParticipant">
             <option value="0" label="Please Select"></option>
-            <option ng-repeat="user in users" value="{{user.UserName}}"
-                    ng-selected="{{ user.Selected == true }}">
-                {{user.UserName}}
+            <option ng-repeat="student in students" value="{{student.UserName}}"
+                    ng-selected="{{ student.Selected == true }}">
+                {{student.UserName}}
             </option>
-        </select>
+        </select>-->
+
+        <div ui-grid="gridOptions" class="im-grid-studentParticipant"></div>
     </div>
     <div class="modal-footer">
         <input class="btn btn-default btn-sm" ng-click="save()" style="width: 75px;" value="Save" />

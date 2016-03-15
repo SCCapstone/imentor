@@ -1,10 +1,26 @@
 ﻿
-app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', 'manageService', 'users', 'listing',
-    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, manageService, users, listing)
+app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', 'manageService', 'students', 'mentors', 'listing',
+    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, manageService, students, mentors, listing)
     {
         getAssignments();
-        $scope.users = users;
-        console.log($scope.users);
+        $scope.students = students;
+        $scope.mentors = mentors;
+
+
+        // ---------------------------------------------------------------
+        // Grid
+        // ---------------------------------------------------------------
+        $scope.gridOptions = {
+            data: "students",
+            columnDefs: [
+            { field: 'Id', displayName: 'Id', visible: false },
+            { field: 'UserName', displayName: 'User Name', width: '50%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Email', displayName: 'Email', width:'50%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            ],
+            enableSorting: true,
+            enableCellSelection: true,
+            rowHeight: 25
+        };
 
 
         function getAssignments() {
@@ -29,14 +45,12 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             if ($scope.assignments != null) {
                 var assignment = $scope.assignments[0];
 
-                for (var i = 0; i < users.length; i++) {
-                    if (users[i].UserName.localeCompare($scope.selectParticipant) == 0) {
-                        assignment.UserId = users[i].Id;
+                for (var i = 0; i < students.length; i++) {
+                    if (students[i].UserName.localeCompare($scope.selectParticipant) == 0) {
+                        assignment.UserId = students[i].Id;
                     }
                 }
                 assignment.ListingId = listing.ID;
-
-                console.log(assignment);
 
                 manageService.addParticipant(assignment);
 

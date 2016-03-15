@@ -261,9 +261,6 @@
     <Compile Include="Controllers\AccountController.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Controllers\CalendarController.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Controllers\HomeController.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -379,9 +376,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App\services\ApiService.js" />
-    <Content Include="App\services\CalendarService.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="App\services\HangoutService.js" />
     <Content Include="App\services\HomeService.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

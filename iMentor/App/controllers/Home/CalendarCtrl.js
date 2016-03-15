@@ -3,8 +3,8 @@
 // Calendar controller- sets up calendar to pull events from database
 // ---------------------------------------------------------------
 
-app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarService',  'uiCalendarConfig',
-    function CalendarCtrl($scope, $location, $http, calendarService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', '$rootScope', '$location', '$q',  'manageService',  'uiCalendarConfig',
+    function CalendarCtrl($scope,$rootScope, $location, $q, manageService, uiCalendarConfig){
 
         var date = new Date();
         var d = date.getDate();
@@ -39,10 +39,12 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarServic
 // ---------------------------------------------------------------  
 
         function getListings() {
-            calendarService.getListings()
-                .success(function (listings) {
+            manageService.getListings()
+                .then(function success(listings) {
                     for(var i = 0; i < listings.length; i++)
                     {
+                        
+                        
                         var startDate = new Date(moment(new Date(parseInt(listings[i].StartDate.substr(6)))).format('YYYY/MM/DD'));
                         var endDate = new Date(moment(new Date(parseInt(listings[i].EndDate.substr(6)))).format('YYYY/MM/DD'));
 
@@ -60,10 +62,10 @@ app.controller('calendarCtrl', ['$scope', '$location', '$http',  'calendarServic
 
                     $scope.eventSources = [$scope.events];
                 })
-                .error(function (error) {
-                    $scope.status = 'Unable to load listing data: ' + error.message;
-                });
+              
         }
+
+       
 
         //
         //

@@ -345,12 +345,12 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
         $scope.addParticipants = function () {
             if($scope.students != null && $scope.listing != null){
-                $scope.showAddParticipantsModal($scope.students, $scope.listing);
+                $scope.showAddParticipantsModal($scope.students, $scope.mentors, $scope.listing, $scope.assignments);
             }
         }
 
-        $scope.showAddParticipantsModal = function (students, listing) {
-            var modalOptions = modalOptionService.optionsForAddParticipants(students, listing);
+        $scope.showAddParticipantsModal = function (students, mentors, listing, assignments) {
+            var modalOptions = modalOptionService.optionsForAddParticipants(students, mentors, listing, assignments);
             var modalInstance = $uibModal.open(modalOptions);
 
             modalInstance.result.then(

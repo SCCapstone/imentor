@@ -3,18 +3,24 @@
 app.factory('modalOptionService', function () {
     return {
     
-        optionsForAddParticipants: function(users, listing) {
+        optionsForAddParticipants: function(students, mentors, listing, assignments) {
             return {
                 templateUrl: '/Templates/AddParticipantsModal.html',
                 controller: 'addParticipantsCtrl',
                 backdrop: true,
                 windowClass: 'addParticipantsModal',
                 resolve: {
-                    users: function() {
-                        return users;
+                    students: function() {
+                        return students;
+                    },
+                    mentors: function() {
+                        return mentors;
                     },
                     listing: function() {
                         return listing;
+                    },
+                    assignments: function() {
+                        return assignments;
                     }
                 }
             }

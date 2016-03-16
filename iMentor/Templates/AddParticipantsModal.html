@@ -1,18 +1,31 @@
 ﻿
-<div class="modal-content" style="height:300px;">
+<div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Participants</h4>
+        <h3 class="modal-title">Select Participants</h3>
     </div>
     <div class="modal-body">
-        <select ng-model="selectParticipant">
-            <option value="0" label="Please Select"></option>
-            <option ng-repeat="user in users" value="{{user.UserName}}"
-                    ng-selected="{{ user.Selected == true }}">
-                {{user.UserName}}
-            </option>
-        </select>
-    </div>
+        <md-content>
+            <section>
+                <md-list>
+                    <md-subheader class="md-primary">Students</md-subheader>
+                    <md-list-item ng-repeat="student in students">
+                        <p> {{ student.UserName }} </p>
+                        <md-checkbox class="md-secondary" ng-model="student.selected"></md-checkbox>
+                    </md-list-item>
+                </md-list>
+            </section>
+            <section>
+                <md-list>
+                    <md-subheader class="md-primary">Mentors</md-subheader>
+                    <md-list-item ng-repeat="mentor in mentors">
+                        <p> {{ mentor.UserName }} </p>
+                        <md-checkbox class="md-secondary" ng-model="mentor.selected"></md-checkbox>
+                    </md-list-item>
+                </md-list>
+            </section>
+        </md-content>
+</div>
     <div class="modal-footer">
         <input class="btn btn-default btn-sm" ng-click="save()" style="width: 75px;" value="Save" />
         <input class="btn btn-default btn-sm" ng-click="cancel()" style="width: 75px;" value="Cancel" />

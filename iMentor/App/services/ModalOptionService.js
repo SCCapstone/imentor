@@ -3,7 +3,7 @@
 app.factory('modalOptionService', function () {
     return {
     
-        optionsForAddParticipants: function(students, mentors, listing) {
+        optionsForAddParticipants: function(students, mentors, listing, assignments) {
             return {
                 templateUrl: '/Templates/AddParticipantsModal.html',
                 controller: 'addParticipantsCtrl',
@@ -18,6 +18,9 @@ app.factory('modalOptionService', function () {
                     },
                     listing: function() {
                         return listing;
+                    },
+                    assignments: function() {
+                        return assignments;
                     }
                 }
             }

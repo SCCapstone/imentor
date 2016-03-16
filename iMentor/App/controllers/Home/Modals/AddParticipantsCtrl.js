@@ -1,6 +1,6 @@
 ﻿
-app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', 'manageService', 'students', 'mentors', 'listing',
-    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, manageService, students, mentors, listing)
+app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', 'manageService', 'students', 'mentors', 'listing', 'assignments',
+    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, manageService, students, mentors, listing, assignments)
     {
         init();
         
@@ -37,21 +37,40 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
         // initialize
         // ---------------------------------------------------------------
         function init() {
-            getAssignments();
+            $scope.assignments = assignments;
             $scope.students = students;
             $scope.mentors = mentors;
+
+            for(var j = 0; j < students.length; j++){
+                students[j].selected = false;
+                for(var i = 0; i < $scope.assignments.length; i++){
+                    if(students[j].Id == $scope.assignments[i].UserId
+                    && listing.ID == $scope.assignments[i].ListingId)
+                    {
+                        students[j].selected = true;
+                    }
+                }
+            }
+
+            for(var j = 0; j < mentors.length; j++){
+                mentors[j].selected = false;
+                for(var i = 0; i < $scope.assignments.length; i++){
+                    if(mentors[j].Id == $scope.assignments[i].UserId
+                    && listing.ID == $scope.assignments[i].ListingId)
+                    {
+                        mentors[j].selected = true;
+                    }
+                }
+            }
         }
 
-
-        function getAssignments() {
-            manageService.getAssignments().then(
-                function success(assignments) {
-                    $scope.assignments = assignments;
-                },
-                function error(error) {
-
+        function userAlreadyAssigned(user){
+            for(var i = 0; i < assignments.length; i++)
+            {
+                if(user.Id == assignments.UserId){
+                    
                 }
-            )
+            }
         }
 
         $scope.addListing = function () {
@@ -62,20 +81,34 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
 
         $scope.save = function ()
         {
-            if ($scope.assignments != null) {
-                var assignment = $scope.assignments[0];
+        //Loop through all the users and get the selected users
+        //If the user already exists in the Assignments, ignore it
+        //Else if the user doesn't not exist, add it
+        //Else if the user existed but was unselected, remove it
 
-                for (var i = 0; i < students.length; i++) {
-                    if (students[i].UserName.localeCompare($scope.selectParticipant) == 0) {
-                        assignment.UserId = students[i].Id;
+            for(var i = 0; i < students.length; i++){
+                if(students[i].selected){
+                    var studentExists
+                    var assignment = assignments[0];
+
+                    for(var j = 0; j < assignments.length; j++){
+                        if (students[i].Id == assignments.UserId) {
+                            assignment.UserId = students[i].Id;
+                        }
                     }
                 }
-                assignment.ListingId = listing.ID;
+            }   
 
-                manageService.addParticipant(assignment);
+            
 
-                $uibModalInstance.dismiss();
+            for (var i = 0; i < students.length; i++) {
+                
             }
+            assignment.ListingId = listing.ID;
+
+            manageService.addParticipant(assignment);
+
+            $uibModalInstance.dismiss();
         };
 
         $scope.cancel = function ()

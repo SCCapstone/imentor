@@ -64,13 +64,87 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             }
         }
 
-        function userAlreadyAssigned(user){
-            for(var i = 0; i < assignments.length; i++)
-            {
-                if(user.Id == assignments.UserId){
-                    
+        function userAlreadyAssigned(user) {
+            for(var i = 0; i < assignments.length; i++){
+                if (user.Id == assignments[i].UserId
+                    && listing.ID == assignments[i].ListingId) {
+                    console.log("already assigned");
+                    return true;
                 }
             }
+            return false;
+        }
+
+        function getAssignedUsers() {
+            var users = [];
+
+            for (var j = 0; j < students.length; j++) {
+                for (var i = 0; i < $scope.assignments.length; i++) {
+                    if (students[j].Id == $scope.assignments[i].UserId
+                    && listing.ID == $scope.assignments[i].ListingId) {
+                        users.push(students[j]);
+                    }
+                }
+            }
+
+            for (var j = 0; j < mentors.length; j++) {
+                for (var i = 0; i < $scope.assignments.length; i++) {
+                    if (mentors[j].Id == $scope.assignments[i].UserId
+                    && listing.ID == $scope.assignments[i].ListingId) {
+                        users.push(mentors[j]);
+                    }
+                }
+            }
+
+            return users;
+        }
+
+        function getNewUsers() {
+            var users = [];
+
+            for (var i = 0; i < students.length; i++) {
+                if (students[i].selected) {
+                    users.push(students[i]);
+                }
+            }
+
+            for (var i = 0; i < mentors.length; i++) {
+                if (mentors[i].selected) {
+                    users.push(mentors[i]);
+                }
+            }
+
+            return users;
+        }
+
+        function contains(a, obj) {
+            for (var i = 0; i < a.length; i++) {
+                if (a[i] === obj) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function addParticipant(user) {
+            var assignment = assignments[0];
+
+            assignment.UserId = user.Id;
+            assignment.ListingId = listing.ID;
+
+            manageService.addParticipant(assignment);
+        }
+
+        function removeParticipant(user) {
+            var assignment = null;
+
+            for (var i = 0; i < assignments.length; i++) {
+                if (user.Id == assignments[i].UserId && listing.ID == assignments[i].ListingId) {
+                    assignment = assignments[i];
+                }
+            }
+
+            manageService.removeParticipant(assignment);
         }
 
         $scope.addListing = function () {
@@ -81,34 +155,69 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
 
         $scope.save = function ()
         {
-        //Loop through all the users and get the selected users
-        //If the user already exists in the Assignments, ignore it
-        //Else if the user doesn't not exist, add it
-        //Else if the user existed but was unselected, remove it
+            var currentAssignedUsers = getAssignedUsers();  //Users that were assigned before the modal was open
+            var newAssignedUsers = getNewUsers();  //Users assigned after the modal is closed
 
-            for(var i = 0; i < students.length; i++){
-                if(students[i].selected){
-                    var studentExists
-                    var assignment = assignments[0];
+            var usersToRemove = [];
+            var usersToAdd = [];
 
-                    for(var j = 0; j < assignments.length; j++){
-                        if (students[i].Id == assignments.UserId) {
-                            assignment.UserId = students[i].Id;
+            //No users selected, no old users deselected: Error, don't save
+            if (currentAssignedUsers.length == 0 && newAssignedUsers.length == 0) {
+
+            }
+            //No previous users existed.  Add all
+            else if (currentAssignedUsers.length == 0 && !newAssignedUsers.length == 0) {
+                for (var i = 0; i < newAssignedUsers.length; i++) {
+                    addParticipant(newAssignedUsers[i]);
+                }
+
+                
+            }
+            //No users in new array.  Remove all
+            else if (newAssignedUsers.length == 0 && !currentAssignedUsers.length == 0) {
+                for (var i = 0; i < currentAssignedUsers.length; i++) {
+                    removeParticipant(currentAssignedUsers[i]);
+                }
+
+                $uibModalInstance.dismiss();
+            }
+            
+            else {
+                for (var i = 0; i < currentAssignedUsers.length; i++) {
+                    for (var j = 0; j < newAssignedUsers.length; j++) {
+                        //Participant exists in both arrays: Do nothing
+                        if (contains(currentAssignedUsers, newAssignedUsers[j]) && contains(newAssignedUsers, currentAssignedUsers[i])) {
+                            continue;
+                        }
+
+                        //Participant exists in the newAssignedUsers array but not in oldAssignedUsers: Add
+                        if (!contains(currentAssignedUsers, newAssignedUsers[j]) && contains(newAssignedUsers, currentAssignedUsers[i])) {
+                            if(!contains(usersToAdd, newAssignedUsers[j])){
+                                usersToAdd.push(newAssignedUsers[j]);
+                            }
+                        }
+
+                        //Participant exists in the oldAssignedUsers array but not in newAssignedUsers: Remove
+                        if (!contains(newAssignedUsers, currentAssignedUsers[i]) && contains(currentAssignedUsers, newAssignedUsers[j])) {
+                            if (!contains(usersToRemove, currentAssignedUsers[i])) {
+                                usersToRemove.push(currentAssignedUsers[i]);
+                            }
                         }
                     }
                 }
-            }   
 
-            
+                for (var i = 0; i < usersToAdd.length; i++) {
+                    console.log("Add: " + usersToAdd[i].UserName);
+                    addParticipant(usersToAdd[i]);
+                }
+                for (var i = 0; i < usersToRemove.length; i++) {
+                    console.log("Remove: " + usersToRemove[i].UserName);
+                    removeParticipant(usersToRemove[i]);
+                }
 
-            for (var i = 0; i < students.length; i++) {
-                
+
+                $uibModalInstance.dismiss();
             }
-            assignment.ListingId = listing.ID;
-
-            manageService.addParticipant(assignment);
-
-            $uibModalInstance.dismiss();
         };
 
         $scope.cancel = function ()

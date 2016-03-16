@@ -3,14 +3,15 @@
 // Calendar controller- sets up calendar to pull events from database
 // ---------------------------------------------------------------
 
-app.controller('calendarCtrl', ['$scope', '$rootScope', '$location', '$q',  'manageService',  'uiCalendarConfig',
-    function CalendarCtrl($scope,$rootScope, $location, $q, manageService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$location', '$q',  'manageService',  'uiCalendarConfig',
+    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, manageService, uiCalendarConfig){
 
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
         var currentView = "month";
+      
 
         $scope.events = [];
         getListings();
@@ -37,10 +38,18 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$location', '$q',  'man
 // Retrieves listings from database, populates calendar, on
 // event click redirects to listing detail page.
 // ---------------------------------------------------------------  
+    
+
 
         function getListings() {
             manageService.getListings()
                 .then(function success(listings) {
+
+
+
+                    getCurrentUser();
+
+                   
                     for(var i = 0; i < listings.length; i++)
                     {
                         
@@ -74,7 +83,19 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$location', '$q',  'man
                     console.log("Unable to load current user: " + reason);
                 }
             );
-        }
+          }
+
+          function getUsersByListing() {
+              manageService.getUsersByListing().then(
+                  function success(user) {
+                      $scope.user = user
+                    
+                  },
+                  function fail(reason) {
+                      console.log("Cannot find user: " + reason);
+                  }
+              );
+          }
 
        
 

@@ -1,7 +1,12 @@
 ﻿
-app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', 'manageService', 'students', 'mentors', 'listing', 'assignments',
-    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, manageService, students, mentors, listing, assignments)
+app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', '$mdDialog', '$mdMedia', 'manageService', 'students', 'mentors', 'listing', 'assignments',
+    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, $mdDialog, $mdMedia, manageService, students, mentors, listing, assignments)
     {
+        $scope.assignments = assignments;
+        $scope.students = students;
+        $scope.mentors = mentors;
+        $scope.saveError = "Must select a user first time.";
+        $scope.valid = true;
         init();
         
 
@@ -37,9 +42,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
         // initialize
         // ---------------------------------------------------------------
         function init() {
-            $scope.assignments = assignments;
-            $scope.students = students;
-            $scope.mentors = mentors;
+            
 
             for(var j = 0; j < students.length; j++){
                 students[j].selected = false;
@@ -153,7 +156,11 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                 });
         }
 
-        $scope.save = function ()
+        $scope.isValid = function () {
+            return $scope.valid;
+        }
+
+        $scope.save = function (ev)
         {
             var currentAssignedUsers = getAssignedUsers();  //Users that were assigned before the modal was open
             var newAssignedUsers = getNewUsers();  //Users assigned after the modal is closed
@@ -163,7 +170,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
 
             //No users selected, no old users deselected: Error, don't save
             if (currentAssignedUsers.length == 0 && newAssignedUsers.length == 0) {
-
+                $scope.valid = false;
             }
             //No previous users existed.  Add all
             else if (currentAssignedUsers.length == 0 && !newAssignedUsers.length == 0) {

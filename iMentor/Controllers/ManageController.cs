@@ -272,25 +272,29 @@ namespace iMentor.Controllers
         {
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
-                var userIds = new List<int>();
                 var users = new List<iMentorUserInfo>();
-                int id = Convert.ToInt32(data);
-                var listing = db.ListingModels.Where(x => x.ID == id).FirstOrDefault();
 
-                var assignments = db.AssignedListings.Where(x => x.ListingId == listing.ID).ToList();
-
-                foreach(AssignedListing assignment in assignments)
+                if (data != null)
                 {
-                    var user = db.iMentorUsers.Where(x => x.Id == assignment.UserId).FirstOrDefault();
+                    var userIds = new List<int>();
+                    int id = Convert.ToInt32(data);
+                    var listing = db.ListingModels.Where(x => x.ID == id).FirstOrDefault();
 
-                    var u = new iMentorUserInfo();
-                    u.Id = user.Id;
-                    u.UserName = user.UserName;
-                    u.Email = user.Email;
-                    u.RoleId = user.RoleId;
-                    u.Role = u.GetRoleByUser(user);
+                    var assignments = db.AssignedListings.Where(x => x.ListingId == listing.ID).ToList();
 
-                    users.Add(u);
+                    foreach (AssignedListing assignment in assignments)
+                    {
+                        var user = db.iMentorUsers.Where(x => x.Id == assignment.UserId).FirstOrDefault();
+
+                        var u = new iMentorUserInfo();
+                        u.Id = user.Id;
+                        u.UserName = user.UserName;
+                        u.Email = user.Email;
+                        u.RoleId = user.RoleId;
+                        u.Role = u.GetRoleByUser(user);
+
+                        users.Add(u);
+                    }
                 }
 
                 return Json(users, JsonRequestBehavior.AllowGet);

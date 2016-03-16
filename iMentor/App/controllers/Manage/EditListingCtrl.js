@@ -128,6 +128,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
                         $scope.imagePath = getImage();
                         
+                        getUsersByListing();
                         getStudents();
                         getMentors();
                         getUsers();

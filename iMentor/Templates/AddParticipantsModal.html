@@ -27,7 +27,17 @@
         </md-content>
     </div>
     <div class="modal-footer">
-        <input class="btn btn-default btn-sm" ng-click="save()" style="width: 75px;" value="Save" />
-        <input class="btn btn-default btn-sm" ng-click="cancel()" style="width: 75px;" value="Cancel" />
+        <!--<input class="btn btn-default btn-sm" ng-click="save()" style="width: 75px;" value="Save" />-->
+        <div style="float:left;width:200px;">
+            <div ng-show="!isValid()" style="color:red;width:100%;">{{saveError}}</div>
+        </div>
+        <div style="float:right;">
+            <md-button class="md-primary md-raised" ng-click="save($event)">
+                Save
+            </md-button>
+            <md-button class="md-secondary md-raised" ng-click="cancel()">
+                Cancel
+            </md-button>
+        </div>
     </div>
 </div>

@@ -45,7 +45,8 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
 ]);
 
 app.run(['$rootScope', 'editableOptions',
-    function($rootScope, editableOptions) {
+    function($rootScope, editableOptions, $log) {
         editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+        $rootScope.$log = $log;
     }
 ]);

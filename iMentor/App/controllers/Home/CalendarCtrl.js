@@ -58,11 +58,11 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
                         var endDate = new Date(moment(new Date(parseInt(listings[i].EndDate.substr(6)))).format('YYYY/MM/DD'));
 
                         $scope.events.push({
-                            id: listings[i].ID,
+                            id: listings[i].Id,
                             title: listings[i].Title,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
-                            url: "/#!/EditListing/" + listings[i].ID,
+                            url: "/#!/EditListing/" + listings[i].Id,
                             allDay: false
 
                      

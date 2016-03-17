@@ -48,7 +48,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                 students[j].selected = false;
                 for(var i = 0; i < $scope.assignments.length; i++){
                     if(students[j].Id == $scope.assignments[i].UserId
-                    && listing.ID == $scope.assignments[i].ListingId)
+                    && listing.Id == $scope.assignments[i].ListingId)
                     {
                         students[j].selected = true;
                     }
@@ -59,7 +59,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                 mentors[j].selected = false;
                 for(var i = 0; i < $scope.assignments.length; i++){
                     if(mentors[j].Id == $scope.assignments[i].UserId
-                    && listing.ID == $scope.assignments[i].ListingId)
+                    && listing.Id == $scope.assignments[i].ListingId)
                     {
                         mentors[j].selected = true;
                     }
@@ -70,7 +70,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
         function userAlreadyAssigned(user) {
             for(var i = 0; i < assignments.length; i++){
                 if (user.Id == assignments[i].UserId
-                    && listing.ID == assignments[i].ListingId) {
+                    && listing.Id == assignments[i].ListingId) {
                     console.log("already assigned");
                     return true;
                 }
@@ -84,7 +84,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             for (var j = 0; j < students.length; j++) {
                 for (var i = 0; i < $scope.assignments.length; i++) {
                     if (students[j].Id == $scope.assignments[i].UserId
-                    && listing.ID == $scope.assignments[i].ListingId) {
+                    && listing.Id == $scope.assignments[i].ListingId) {
                         users.push(students[j]);
                     }
                 }
@@ -93,7 +93,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             for (var j = 0; j < mentors.length; j++) {
                 for (var i = 0; i < $scope.assignments.length; i++) {
                     if (mentors[j].Id == $scope.assignments[i].UserId
-                    && listing.ID == $scope.assignments[i].ListingId) {
+                    && listing.Id == $scope.assignments[i].ListingId) {
                         users.push(mentors[j]);
                     }
                 }
@@ -133,7 +133,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             var assignment = assignments[0];
 
             assignment.UserId = user.Id;
-            assignment.ListingId = listing.ID;
+            assignment.ListingId = listing.Id;
 
             manageService.addParticipant(assignment);
         }
@@ -142,7 +142,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             var assignment = null;
 
             for (var i = 0; i < assignments.length; i++) {
-                if (user.Id == assignments[i].UserId && listing.ID == assignments[i].ListingId) {
+                if (user.Id == assignments[i].UserId && listing.Id == assignments[i].ListingId) {
                     assignment = assignments[i];
                 }
             }

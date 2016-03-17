@@ -20,15 +20,13 @@ namespace iMentor.Models
             this.AssignedListings = new HashSet<AssignedListing>();
         }
     
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Area { get; set; }
         public string Frequency { get; set; }
         public string Description { get; set; }
-        public string Mentor { get; set; }
-        public string Email { get; set; }
         public string HangoutUrl { get; set; }
         public Nullable<int> TeacherId { get; set; }
         public bool Open { get; set; }

@@ -52,15 +52,13 @@ namespace iMentor.Controllers
                 foreach (ListingModel listing in listingModels)
                 {
                     var l = new ListingInfo();
-                    l.ID = listing.ID;
+                    l.Id = listing.Id;
                     l.Title = listing.Title;
                     l.StartDate = listing.StartDate;
                     l.EndDate = listing.EndDate;
                     l.Area = listing.Area;
                     l.Frequency = listing.Frequency;
                     l.Description = listing.Description;
-                    l.Mentor = listing.Mentor;
-                    l.Email = listing.Email;
                     l.HangoutUrl = listing.HangoutUrl;
                     l.TeacherId = listing.TeacherId;
                     l.Open = listing.Open;
@@ -100,7 +98,7 @@ namespace iMentor.Controllers
             {
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
-                    var l = db.ListingModels.Where(x => x.ID == listing.ID).FirstOrDefault();
+                    var l = db.ListingModels.Where(x => x.Id == listing.Id).FirstOrDefault();
 
                     if (l != null)
                     {
@@ -127,8 +125,8 @@ namespace iMentor.Controllers
             {
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
-                    int no = Convert.ToInt32(listing.ID);
-                    var l = db.ListingModels.Where(x => x.ID == no).FirstOrDefault();
+                    int no = Convert.ToInt32(listing.Id);
+                    var l = db.ListingModels.Where(x => x.Id == no).FirstOrDefault();
 
                     if (l != null)
                     {
@@ -138,8 +136,6 @@ namespace iMentor.Controllers
                         l.Area = listing.Area;
                         l.Frequency = listing.Frequency;
                         l.Description = listing.Description;
-                        l.Mentor = listing.Mentor;
-                        l.Email = listing.Email;
                         l.HangoutUrl = listing.HangoutUrl;
                         l.TeacherId = listing.GetTeacherIdByName(listing.Teacher);
                         l.Open = listing.Open;
@@ -278,9 +274,9 @@ namespace iMentor.Controllers
                 {
                     var userIds = new List<int>();
                     int id = Convert.ToInt32(data);
-                    var listing = db.ListingModels.Where(x => x.ID == id).FirstOrDefault();
+                    var listing = db.ListingModels.Where(x => x.Id == id).FirstOrDefault();
 
-                    var assignments = db.AssignedListings.Where(x => x.ListingId == listing.ID).ToList();
+                    var assignments = db.AssignedListings.Where(x => x.ListingId == listing.Id).ToList();
 
                     foreach (AssignedListing assignment in assignments)
                     {
@@ -455,7 +451,7 @@ namespace iMentor.Controllers
             using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
                     var lastAdded = (from n in db.ListingModels
-                                     orderby n.ID descending
+                                     orderby n.Id descending
                                      select n).FirstOrDefault();
                     return lastAdded;
 

@@ -35,7 +35,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
       
         
         getCurrentUser();
-
         $scope.isNew = ($scope.listingId < 1);
         if (!$scope.isNew) {
             getListings();
@@ -79,7 +78,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                             {
                                 $scope.listing = null;
                             }
-                            else if(listings[i].ID == id)
+                            else if(listings[i].Id == id)
                             {
                                 $scope.listing = listings[i];
                                 $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
@@ -106,7 +105,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     {
                         $scope.listing = listings[0];
 
-                        $scope.listing.ID = 0;
+                        $scope.listing.Id = 0;
                         $scope.listing.Title = "*New Title*";
                         $scope.listing.StartDate = new Date();
                         $scope.listing.EndDate = new Date();
@@ -166,7 +165,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     $scope.users = users;
                 },
                 function error(error) {
-
+                    console.log("Unable to load users: " + error)
                 }
             )
         }
@@ -210,7 +209,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     $scope.assignments = assignments;
                 },
                 function error(error) {
-
+                    console.log("Unable to load assignments: " + error);
                 }
             )
         }
@@ -221,7 +220,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     getUsersByListing($scope.listingId);
                 },
                 function error(error) {
-
+                    console.log("Unable to remove participants: " + error)
                 }
             );
         }
@@ -263,7 +262,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 var assignment = $scope.assignments[0];
 
                 assignment.UserId = $scope.user.Id;
-                assignment.ListingId = listing.ID;
+                assignment.ListingId = listing.Id;
 
 
                 manageService.addParticipant(assignment).then(
@@ -333,7 +332,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     //find assignment 
                     if (user != null) {
                         for (var i = 0; i < $scope.assignments.length; i++) {
-                            if ($scope.assignments[i].ListingId == $scope.listing.ID && $scope.assignments[i].UserId == user.Id) {
+                            if ($scope.assignments[i].ListingId == $scope.listing.Id && $scope.assignments[i].UserId == user.Id) {
                                 assignment = $scope.assignments[i];
                             }
                         }
@@ -386,7 +385,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                             {
                                 $scope.listing = null;
                             }
-                            else if(listings[i].ID == id)
+                            else if(listings[i].Id == id)
                             {
                                 $scope.listing = listings[i];
                                $scope.listing.HangoutUrl = gapi.hangout.getHangoutUrl();

@@ -13,7 +13,7 @@ namespace iMentor.Entities
     public class ListingInfo
     {
         [DataMember]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
         public string Title { get; set; }
@@ -32,13 +32,7 @@ namespace iMentor.Entities
 
         [DataMember]
         public string Description { get; set; }
-
-        [DataMember]
-        public string Mentor { get; set; }
-
-        [DataMember]
-        public string Email { get; set; }
-
+      
         [DataMember]
         public string HangoutUrl { get; set; }
 

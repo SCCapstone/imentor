@@ -11,7 +11,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
         $scope.gridOptions = {
             data: "listings",
             columnDefs: [
-            { field: 'ID', displayName: 'Id', visible: false },
+            { field: 'Id', displayName: 'Id', visible: false },
             { field: 'Title', displayName: 'Title', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Mentor', displayName: 'Mentor', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Area', displayName: 'Area', width: '10%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
@@ -81,7 +81,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
 
             for (var i = 0; i < $scope.listings.length; i++)
             {
-                if($scope.listings[i].ID == row.entity.ID){
+                if($scope.listings[i].Id == row.entity.Id){
                     listing = $scope.listings[i];
                 }
             }

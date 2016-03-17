@@ -44,7 +44,7 @@ namespace iMentor.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != listingModel.ID)
+            if (id != listingModel.Id)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace iMentor.Controllers
             db.ListingModels.Add(listingModel);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = listingModel.ID }, listingModel);
+            return CreatedAtRoute("DefaultApi", new { id = listingModel.Id }, listingModel);
         }
 
         // DELETE: api/Listing/5
@@ -112,7 +112,7 @@ namespace iMentor.Controllers
 
         private bool ListingModelExists(int id)
         {
-            return db.ListingModels.Count(e => e.ID == id) > 0;
+            return db.ListingModels.Count(e => e.Id == id) > 0;
         }
     }
 }

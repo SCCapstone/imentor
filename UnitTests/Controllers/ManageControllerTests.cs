@@ -30,8 +30,6 @@ namespace iMentor.Controllers.Tests
             listing.Area        = "History";
             listing.Frequency   = "Always";
             listing.Description = "Unit testing!";
-            listing.Mentor      = "Ryan";
-            listing.Email       = "labradoe@gmail.com";
             listing.HangoutUrl  = "what.com";
             listing.TeacherId   = 5;
             listing.Open        = false;
@@ -48,8 +46,6 @@ namespace iMentor.Controllers.Tests
                            listing.Area        == lastAdded.Area           &&
                            listing.Frequency   == lastAdded.Frequency      &&
                            listing.Description == lastAdded.Description    &&
-                           listing.Mentor      == lastAdded.Mentor         &&
-                           listing.Email       == lastAdded.Email          &&
                            listing.HangoutUrl  == lastAdded.HangoutUrl     &&
                            listing.TeacherId   == lastAdded.TeacherId      &&
                            listing.Open        == lastAdded.Open );            
@@ -63,15 +59,13 @@ namespace iMentor.Controllers.Tests
             ListingModel listingModel = controller.ReturnLastAddedListing();
             ListingInfo listing = new ListingInfo();
 
-            listing.ID          = listingModel.ID;
+            listing.Id          = listingModel.Id;
             listing.Title       = "Unit Test (Updated)";
             listing.StartDate   = listingModel.StartDate;
             listing.EndDate     = listingModel.EndDate;
             listing.Area        = listingModel.Area;
             listing.Frequency   = listingModel.Frequency;
             listing.Description = "Unit testing... again!";
-            listing.Mentor      = listingModel.Mentor;
-            listing.Email       = listingModel.Email;
             listing.HangoutUrl  = listingModel.HangoutUrl;
             listing.TeacherId   = listingModel.TeacherId;
             listing.Open        = listingModel.Open;
@@ -89,8 +83,6 @@ namespace iMentor.Controllers.Tests
                            listing.Area         == lastAdded.Area           &&
                            listing.Frequency    == lastAdded.Frequency      &&
                            listing.Description  == lastAdded.Description    &&
-                           listing.Mentor       == lastAdded.Mentor         &&
-                           listing.Email        == lastAdded.Email          &&
                            listing.HangoutUrl   == lastAdded.HangoutUrl     &&
                            listing.TeacherId    == lastAdded.TeacherId      &&
                            listing.Open         == lastAdded.Open);
@@ -122,8 +114,6 @@ namespace iMentor.Controllers.Tests
                            listing.Area         == lastAdded.Area           &&
                            listing.Frequency    == lastAdded.Frequency      &&
                            listing.Description  == lastAdded.Description    &&
-                           listing.Mentor       == lastAdded.Mentor         &&
-                           listing.Email        == lastAdded.Email          &&
                            listing.HangoutUrl   == lastAdded.HangoutUrl     &&
                            listing.TeacherId    == lastAdded.TeacherId      &&
                            listing.Open         == lastAdded.Open);

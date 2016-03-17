@@ -334,6 +334,7 @@
     <Content Include="App\controllers\Home\CalendarCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\controllers\Home\gapi-helper.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -6,6 +6,7 @@ var app = angular.module('app', [
     'ngTouch',
     'ngMaterial',
     'ngMessages',
+    'mgcrea.ngStrap.timepicker',
     'ui.grid',
     'xeditable',
     'ui.bootstrap',
@@ -39,7 +40,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 
-        $mdIconProvider.iconSet("avatar", 'Img/Icon/avatar-icons.svg', 128);
+        $mdIconProvider.iconSet("avatar", 'Img/icons/avatar-icons.svg', 128);
     }
 ]);
 

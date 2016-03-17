@@ -1,0 +1,132 @@
+﻿<div class="dateTime">
+    <div class="row">
+        <div class="col-md-11" style="text-align:center;">
+            <div style="font-size:18px;">
+                <div class="im-form-label thick" style="width:30%;font-size:16px">Start</div>
+                <div class="im-form-label thick" style="width:40%;font-size:16px">End</div>
+
+                <div im-btn ng-show="user.RoleId > 2 && !timeEditMode" icon="glyphicon glyphicon-edit" style="width:8%;font-size:40px;float:right;color:black;" text="" on-click="edit"></div>
+                <div im-btn ng-show="user.RoleId > 2 && timeEditMode" icon="glyphicon glyphicon-ok" style="width:8%;font-size:40px;float:right;color:green;" text="" on-click="save"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11" style="text-align:center;">
+            <div style="font-size:18px;">
+                <md-content>
+                    <md-datepicker ng-show="timeEditMode" ng-model="startDate" md-placeholder="Start date"></md-datepicker>
+                    <md-datepicker ng-show="timeEditMode" ng-model="endDate" md-placeholder="End date"></md-datepicker>
+
+                    <md-datepicker ng-show="!timeEditMode" ng-model="startDate" md-placeholder="Start date" disabled></md-datepicker>
+                    <md-datepicker ng-show="!timeEditMode" ng-model="endDate" md-placeholder="End date" disabled></md-datepicker>
+                </md-content>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-11">
+            <div layout-gt-sm="row" style="font-size:12px;width:100%;">
+
+                <div layout-gt-sm="row" ng-show="timeEditMode" style="margin-left:40px;">
+                    <label class="control-label"><i class="glyphicon glyphicon-time" style="padding-top:10px;"></i></label>
+                    <input type="text" class="form-control" size="8" ng-model="startTime" name="time" bs-timepicker style="width:160px;">
+
+                    <label class="control-label"><i class="glyphicon glyphicon-time" style="padding-top:10px;margin-left:20px;"></i></label>
+                    <input type="text" class="form-control" size="8" ng-model="endTime" name="time" bs-timepicker style="width:160px;">
+                </div>
+
+                <div layout-gt-sm="row" ng-show="!timeEditMode" style="margin-left:40px;">
+                    <label class="control-label"><i class="glyphicon glyphicon-time" style="padding-top:10px;"></i></label>
+                    <input type="text" class="form-control" size="8" ng-model="startTime" name="time" bs-timepicker style="width:160px;" disabled>
+
+                    <label class="control-label"><i class="glyphicon glyphicon-time" style="padding-top:10px;margin-left:20px;"></i></label>
+                    <input type="text" class="form-control" size="8" ng-model="endTime" name="time" bs-timepicker style="width:160px;" disabled>
+                </div>
+                <!--<md-content layout-padding>
+                    <div>
+                        <div layout-gt-sm="row" ng-show="timeEditMode">
+                            <md-input-container class="md-block" flex-gt-sm style="margin-left:20px;">
+                                <label>Hours</label>
+                                <input style="text-align:right;" type="number" step="any" ng-model="startHrs" min="1"
+                                       max="12" ng-pattern="/^0123456789/" />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm style="margin-right:20px;">
+                                <label>Minutes</label>
+                                <input type="number" step="15" ng-model="startMins" min="0"
+                                       max="60" ng-pattern="/^0123456789/" />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>AM/PM</label>
+                                <md-select ng-model="startAMPM">
+                                    <md-option ng-repeat="time in times" value="{{time.text}}">
+                                        {{time.text}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm style="margin-left:20px;">
+                                <label>Hours</label>
+                                <input style="text-align:right;" type="number" step="any" ng-model="endHrs" min="1"
+                                       max="12" ng-pattern="/^0123456789/" />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm style="margin-right:20px;">
+                                <label>Minutes</label>
+                                <input type="number" step="15" ng-model="endMins" min="0"
+                                       max="60" ng-pattern="/^0123456789/" />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>AM/PM</label>
+                                <md-select ng-model="endAMPM">
+                                    <md-option ng-repeat="time in times" value="{{time.text}}">
+                                        {{time.text}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-sm="row" ng-show="!timeEditMode">
+                            <md-input-container class="md-block" flex-gt-sm style="margin-left:20px;">
+                                <label>Hours</label>
+                                <input style="text-align:right;" type="number" step="any" ng-model="startHrs" min="1"
+                                       max="12" ng-pattern="/^0123456789/" disabled />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm style="margin-right:20px;">
+                                <label>Minutes</label>
+                                <input type="number" step="15" ng-model="startMins" min="0"
+                                       max="60" ng-pattern="/^0123456789/" disabled />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>AM/PM</label>
+                                <md-select ng-model="startAMPM" disabled>
+                                    <md-option ng-repeat="time in times" value="{{time.text}}">
+                                        {{time.text}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm style="margin-left:20px;">
+                                <label>Hours</label>
+                                <input style="text-align:right;" type="number" step="any" ng-model="endHrs" min="1"
+                                       max="12" ng-pattern="/^0123456789/" disabled />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm style="margin-right:20px;">
+                                <label>Minutes</label>
+                                <input type="number" step="15" ng-model="endMins" min="0"
+                                       max="60" ng-pattern="/^0123456789/" disabled />
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>AM/PM</label>
+                                <md-select ng-model="endAMPM" disabled>
+                                    <md-option ng-repeat="time in times" value="{{time.text}}">
+                                        {{time.text}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+                    </div>
+                </md-content>-->
+            </div>
+        </div>
+    </div>
+</div>

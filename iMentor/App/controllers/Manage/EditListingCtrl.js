@@ -2,17 +2,8 @@
 app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', 'manageService',  'modalOptionService',
     function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, manageService, modalOptionService)
     {
-        $scope.picker = { opened: false };
-
-        $scope.openPicker = function () {
-            $timeout(function () {
-                $scope.picker.opened = true;
-            });
-        };
-
-        $scope.closePicker = function () {
-            $scope.picker.opened = false;
-        };
+        $scope.listings = [];
+        $scope.currentUsers = [];
 
         $scope.editMode = false;
         $scope.imagePath = null;
@@ -30,6 +21,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             { value: 5, text: 'Computer Science' }
         ];
 
+        
+
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
       
@@ -45,25 +38,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
         
 
-        function getImage()
-        {
-            if($scope.listing != null)
-            {
-                if ($scope.listing.Area == 'Math')
-                    return 'img/Math.png';
-                else if ($scope.listing.Area == 'Science')
-                    return 'img/Science.png';
-                else if ($scope.listing.Area == 'History')
-                    return 'img/World.png';
-                else if ($scope.listing.Area == 'Reading')
-                    return 'img/Reading.png';
-                else if($scope.listing.Area == 'Computer Science')
-                    return 'img/ComputerScience.png';
-                else
-                    return 'img/Unknown.png';
-            }
-            console.log($scope.listing);
-        }
+        
 
         // ---------------------------------------------------------------
         // Service Calls
@@ -81,6 +56,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                             else if(listings[i].Id == id)
                             {
                                 $scope.listing = listings[i];
+                                $scope.listings.push($scope.listing);
                                 $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                                 $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
                                 $scope.imagePath = getImage();
@@ -174,6 +150,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             manageService.getCurrentUser().then(
                 function success(user){
                     $scope.user = user;
+                    $scope.currentUsers.push(user);
                 },
                 function fail(reason){
                     console.log("Unable to load current user: " + reason);
@@ -228,54 +205,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         // ---------------------------------------------------------------
         // Functions
         // ---------------------------------------------------------------
-        function CompareForSort(first, second)
-        {
-            if (first.RoleId == second.RoleId)
-                return 0;
-            if (first.RoleId > second.RoledId)
-                return 1;
-            else
-                return -1; 
-        }
-
-        function getDate(){
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
-            var yyyy = today.getFullYear();
-
-            if(dd<10) {
-                dd='0'+dd
-            } 
-
-            if(mm<10) {
-                mm='0'+mm
-            } 
-
-            //today = mm+'/'+dd+'/'+yyyy;
-
-            return new Date(dd, mm, yyyy);
-        }
-
-        function addTeacher(){
-            if ($scope.assignments != null && $scope.user != null) {
-                var assignment = $scope.assignments[0];
-
-                assignment.UserId = $scope.user.Id;
-                assignment.ListingId = listing.Id;
-
-
-                manageService.addParticipant(assignment).then(
-                    function success(response){
-                        console.log("Teacher added: " + assignment); 
-                    },
-                    function error(response){
-                        console.log(response);
-                    }
-                );
-            }
-        }
-
+        
         $scope.save = function () {
             if ($scope.isNew) {
                 $scope.addListing();
@@ -283,8 +213,9 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             else {
                 $scope.updateListing();
             }
-            $location.path("/ManageListings");
         }
+
+        
 
         $scope.cancel = function () {
             $location.path("/ManageListings");
@@ -307,6 +238,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         $scope.toggleEditMode = function () {
             $scope.editMode = !$scope.editMode;
         }
+
+        
 
         $scope.showAreas = function () {
             if ($scope.listing != undefined)
@@ -359,6 +292,76 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     // No-op
                 });
         };
+
+
+        // ---------------------------------------------------------------
+        // Helper Methods
+        // ---------------------------------------------------------------
+
+        function CompareForSort(first, second) {
+            if (first.RoleId == second.RoleId)
+                return 0;
+            if (first.RoleId > second.RoledId)
+                return 1;
+            else
+                return -1;
+        }
+
+        function getDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            //today = mm+'/'+dd+'/'+yyyy;
+
+            return new Date(dd, mm, yyyy);
+        }
+
+        function addTeacher() {
+            if ($scope.assignments != null && $scope.user != null) {
+                var assignment = $scope.assignments[0];
+
+                assignment.UserId = $scope.user.Id;
+                assignment.ListingId = listing.Id;
+
+
+                manageService.addParticipant(assignment).then(
+                    function success(response) {
+                        console.log("Teacher added: " + assignment);
+                    },
+                    function error(response) {
+                        console.log(response);
+                    }
+                );
+            }
+        }
+
+        function getImage() {
+            if ($scope.listing != null) {
+                if ($scope.listing.Area == 'Math')
+                    return 'img/Math.png';
+                else if ($scope.listing.Area == 'Science')
+                    return 'img/Science.png';
+                else if ($scope.listing.Area == 'History')
+                    return 'img/World.png';
+                else if ($scope.listing.Area == 'Reading')
+                    return 'img/Reading.png';
+                else if ($scope.listing.Area == 'Computer Science')
+                    return 'img/ComputerScience.png';
+                else
+                    return 'img/Unknown.png';
+            }
+            console.log($scope.listing);
+        }
 
         // ---------------------------------------------------------------
         // Hangouts

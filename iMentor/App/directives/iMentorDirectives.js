@@ -1,6 +1,4 @@
 ﻿angular.module('iMentor.directives', [])
-
-
     .directive('listingCard', function () {
         return {
             restrict: 'A',
@@ -39,6 +37,73 @@
             }
         };
     })
+    .directive('dateTime', ['$timeout', 'manageService',
+        function ($timeout, manageService) {
+            return {
+                restrict: 'A',
+
+                scope: {
+                    listing: '=',
+                    user: '='
+                },
+
+                templateUrl: '/templates/DateTime.html',
+
+                link: function (scope, elem, attrs) {
+                    scope.startTime = "1970-01-01T15:30:40.000Z"; 
+                    scope.endTime = "1970-01-01T15:30:40.000Z";
+                    scope.timeEditMode = false;
+                    scope.startDate = scope.listing.StartDate;
+                    scope.endDate = scope.listing.EndDate;
+
+                    scope.endAMPM = 'AM';
+                    scope.startAMPM = 'AM';
+                    scope.startHrs = 12;
+                    scope.startMins = 00;
+                    scope.endHrs = 12;
+                    scope.endMins = 00;
+
+                    scope.times = [
+                        { value: 1, text: 'AM' },
+                        { value: 2, text: 'PM' }
+                    ];
+                    
+                    scope.picker = { opened: false };
+
+                    scope.openPicker = function () {
+                        $timeout(function () {
+                            scope.picker.opened = true;
+                        });
+                    };
+
+                    scope.closePicker = function () {
+                        scope.picker.opened = false;
+                    };
+
+                    scope.edit = function () {
+                        scope.timeEditMode = true;
+                    }
+
+                    scope.save = function () {
+                        scope.timeEditMode = false;
+
+                        var startDate = new Date(scope.startDate);
+                        var startTime = new Date(scope.startTime);
+                        
+
+                        console.log("Start Date: " + startDate + ', Start Time: ' + startTime.getTime());
+
+                        startDate.setTime(startTime.getTime());
+                        console.log("New Date: " + startDate);
+
+                        //console.log(new Date(scope.startDate + ' ' + scope.startTime));
+
+                        manageService.updateListing(scope.listing);
+                    }
+                }
+            };
+        }
+    ])
     .directive('imBtn', function () {
         return {
             restrict: 'A',

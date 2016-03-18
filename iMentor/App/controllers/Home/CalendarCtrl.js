@@ -3,8 +3,8 @@
 // Calendar controller- sets up calendar to pull events from database
 // ---------------------------------------------------------------
 
-app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$location', '$q',  'manageService',  'uiCalendarConfig',
-    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, manageService, uiCalendarConfig){
+app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$location', '$q',  'manageService',  'uiCalendarConfig', 'EventSourceFactory',
+    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, manageService, uiCalendarConfig, EventSourceFactory){
 
         var date = new Date();
         var d = date.getDate();
@@ -14,6 +14,7 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
       
 
         $scope.events = [];
+        $scope.authNeeded = false;
         getListings();
         $scope.eventSources = [$scope.events];
    
@@ -38,7 +39,43 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
 // Retrieves listings from database, populates calendar, on
 // event click redirects to listing detail page.
 // ---------------------------------------------------------------  
-    
+        $scope.loadSources = function () {
+            EventSourceFactory.getEventSources().then(function (result) {
+                $scope.$log.debug("event sources %O", result);
+                $scope.eventSources = result;
+                angular.forEach(result, function (source) {
+                    $scope.calendar.fullCalendar('addEventSource', source);
+                });
+            });
+        };
+
+        // request Google authorization from the user
+        $scope.requestAuth = function () {
+            gapi_helper.requestAuth();
+        };
+        gapi_helper.configure({
+            clientId: '1086641013362-rj0u1ckimo3hs369gc8q40bvqs2d1rau.apps.googleusercontent.com',
+   // apiKey: 'AIzaSyDY4uF058d78YHd7SPaF8bH0aoJqPGKXFU',
+    scopes: 'https://www.googleapis.com/auth/calendar',
+    services: {
+      calendar: 'v3'
+    }
+  });
+
+  // set authNeeded to appropriate value on auth events
+  gapi_helper.when('authorized', function() {
+    $scope.$apply(function() {
+      $scope.authNeeded = false;
+    });
+  });
+  gapi_helper.when('authFailed', function() {
+    $scope.$apply(function() {
+      $scope.authNeeded = true;
+    });
+  });
+
+  // load the event sources when the calendar api is loaded
+  gapi_helper.when('calendarLoaded', $scope.loadSources);
 
 
         function getListings() {

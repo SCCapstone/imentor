@@ -50,8 +50,8 @@
                 templateUrl: '/templates/DateTime.html',
 
                 link: function (scope, elem, attrs) {
-                    scope.startTime = "1970-01-01T15:30:40.000Z"; 
-                    scope.endTime = "1970-01-01T15:30:40.000Z";
+                    scope.startTime = scope.listing.StartDate; 
+                    scope.endTime = scope.listing.EndDate;
                     scope.timeEditMode = false;
                     scope.startDate = scope.listing.StartDate;
                     scope.endDate = scope.listing.EndDate;
@@ -89,14 +89,19 @@
 
                         var startDate = new Date(scope.startDate);
                         var startTime = new Date(scope.startTime);
-                        
+                        var endDate = new Date(scope.endDate);
+                        var endTime = new Date(scope.endTime);
 
-                        console.log("Start Date: " + startDate + ', Start Time: ' + startTime.getTime());
+                        startDate.setHours(startTime.getHours());
+                        startDate.setMinutes(startTime.getMinutes());
 
-                        startDate.setTime(startTime.getTime());
-                        console.log("New Date: " + startDate);
+                        endDate.setHours(endTime.getHours());
+                        endDate.setMinutes(endTime.getMinutes());
 
                         //console.log(new Date(scope.startDate + ' ' + scope.startTime));
+
+                        scope.listing.StartDate = startDate;
+                        scope.listing.EndDate = endDate;
 
                         manageService.updateListing(scope.listing);
                     }

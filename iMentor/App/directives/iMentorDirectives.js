@@ -50,23 +50,11 @@
                 templateUrl: '/templates/DateTime.html',
 
                 link: function (scope, elem, attrs) {
+                    scope.timeEditMode = false;
                     scope.startTime = scope.listing.StartDate; 
                     scope.endTime = scope.listing.EndDate;
-                    scope.timeEditMode = false;
                     scope.startDate = scope.listing.StartDate;
                     scope.endDate = scope.listing.EndDate;
-
-                    scope.endAMPM = 'AM';
-                    scope.startAMPM = 'AM';
-                    scope.startHrs = 12;
-                    scope.startMins = 00;
-                    scope.endHrs = 12;
-                    scope.endMins = 00;
-
-                    scope.times = [
-                        { value: 1, text: 'AM' },
-                        { value: 2, text: 'PM' }
-                    ];
                     
                     scope.picker = { opened: false };
 
@@ -97,8 +85,6 @@
 
                         endDate.setHours(endTime.getHours());
                         endDate.setMinutes(endTime.getMinutes());
-
-                        //console.log(new Date(scope.startDate + ' ' + scope.startTime));
 
                         scope.listing.StartDate = startDate;
                         scope.listing.EndDate = endDate;

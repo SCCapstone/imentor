@@ -121,7 +121,19 @@
                 <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
 
                 <div class="row">
-                    <div class="col-md-7" style="margin-left:50px;">
+
+                    <div class="col-md-10" style="margin-left:50px;text-align:center;">
+
+                        <div class="im-form-label thick" style="width:50%;font-size:16px">Participants</div>
+
+                        <div class="pull-right">
+                            <div im-btn ng-show="user.RoleId > 2 && !editMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
+                            <div im-btn ng-show="user.RoleId > 2 && editMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveParticipants"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8" style="margin-left:50px;">
+
                         <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2" 
                                       md-row-height-gt-md="1:1" md-row-height="4:3" 
                                       md-gutter="8px" md-gutter-gt-sm="4px">

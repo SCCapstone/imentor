@@ -41,7 +41,7 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
 // ---------------------------------------------------------------  
         $scope.loadSources = function () {
             EventSourceFactory.getEventSources().then(function (result) {
-                $scope.$log.debug("event sources %O", result);
+               
                 $scope.eventSources = result;
                 angular.forEach(result, function (source) {
                     $scope.calendar.fullCalendar('addEventSource', source);
@@ -55,7 +55,7 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
         };
         gapi_helper.configure({
             clientId: '1086641013362-rj0u1ckimo3hs369gc8q40bvqs2d1rau.apps.googleusercontent.com',
-   // apiKey: 'AIzaSyDY4uF058d78YHd7SPaF8bH0aoJqPGKXFU',
+  
     scopes: 'https://www.googleapis.com/auth/calendar',
     services: {
       calendar: 'v3'

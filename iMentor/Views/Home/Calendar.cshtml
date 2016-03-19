@@ -7,7 +7,7 @@
         <div ng-repeat="l in userListings">
             {{l.Title}}
         </div>
-
+        <button id="authorize-button" ng-show="authNeeded" ng-click="requestAuth()">Authorize</button>
         <div ui-calendar="uiConfig.calendar" ng-model="eventSources" ng-if="eventSources.length > 0"></div>
 
 

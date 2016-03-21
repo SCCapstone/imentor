@@ -50,11 +50,24 @@
                 templateUrl: '/templates/DateTime.html',
 
                 link: function (scope, elem, attrs) {
+                    scope.daysOfTheWeek = [
+                        { value: 1, text: "Monday", abb: "Mon", letter: "M", selected: false },
+                        { value: 1, text: "Tuesday", abb: "Tue", letter: "T", selected: false },
+                        { value: 1, text: "Wednesday", abb: "Wed", letter: "W", selected: false },
+                        { value: 1, text: "Thursday", abb: "Thu", letter: "R", selected: false },
+                        { value: 1, text: "Friday", abb: "Fri", letter: "F", selected: false },
+                        { value: 1, text: "Saturday", abb: "Sat", letter: "S", selected: false },
+                        { value: 1, text: "Sunday", abb: "Sun", letter: "U", selected: false }
+                    ]
+
+                    parseFrequency();
+
                     scope.timeEditMode = false;
                     scope.startTime = scope.listing.StartDate; 
                     scope.endTime = scope.listing.EndDate;
                     scope.startDate = scope.listing.StartDate;
                     scope.endDate = scope.listing.EndDate;
+
                     
                     scope.picker = { opened: false };
 
@@ -75,6 +88,7 @@
                     scope.save = function () {
                         scope.timeEditMode = false;
 
+                        //--Date/Time--
                         var startDate = new Date(scope.startDate);
                         var startTime = new Date(scope.startTime);
                         var endDate = new Date(scope.endDate);
@@ -89,7 +103,38 @@
                         scope.listing.StartDate = startDate;
                         scope.listing.EndDate = endDate;
 
+                        //--Frequency--
+                        var frequency = "";
+                        for (var i = 0; i < scope.daysOfTheWeek.length; i++) {
+                            if (scope.daysOfTheWeek[i].selected) {
+                                frequency += scope.daysOfTheWeek[i].letter;
+                            }
+                        }
+                        scope.listing.Frequency = frequency;
+
+                        //--Update the listing--
                         manageService.updateListing(scope.listing);
+                    }
+
+                    function parseFrequency() {
+                        if(scope.listing.Frequency != null){
+                            var days =  scope.listing.Frequency.split("");
+                            console.log("Saved Days: " + days);
+                            for (var i = 0; i < scope.daysOfTheWeek.length; i++) {
+                                if (contains(days, scope.daysOfTheWeek[i].letter)) {
+                                    scope.daysOfTheWeek[i].selected = true;
+                                }
+                            }
+                        }
+                    }
+
+                    function contains(a, obj) {
+                        for (var i = 0; i < a.length; i++) {
+                            if (a[i] === obj) {
+                                return true;
+                            }
+                        }
+                        return false;
                     }
                 }
             };

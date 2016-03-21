@@ -30,7 +30,7 @@ gapi_helper_onScriptLoad = gapi_helper.onScriptLoad;
 
 gapi_helper.init = function () {
     console.log("gapi_helper.init %s", gapi_helper.time());
-   
+    gapi.client.setApiKey(gapi_helper.config.apiKey);
     window.setTimeout(gapi_helper.checkAuth, 1);
 };
 

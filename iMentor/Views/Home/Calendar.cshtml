@@ -1,6 +1,4 @@
-﻿<script src="https://apis.google.com/js/client:plusone.js" type="text/javascript"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
+﻿
 <div class="ngview-wrapper">
     <div class="ngview-body" style="padding-top:25px;">
         <!-- For testing purposes -->
@@ -8,7 +6,8 @@
             {{l.Title}}
         </div>
         <button id="authorize-button" ng-show="authNeeded" ng-click="requestAuth()">Authorize</button>
-        <div ui-calendar="uiConfig.calendar" ng-model="eventSources" ng-if="eventSources.length > 0"></div>
+       
+        <div class="calendar" ng-model="eventSources" calendar="calendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar" ng-if="eventSources.length > 0"></div>
 
 
     </div>

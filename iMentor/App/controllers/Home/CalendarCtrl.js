@@ -16,7 +16,7 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
         $scope.events = [];
         $scope.authNeeded = false;
         getListings();
-        $scope.eventSources = [$scope.events];
+        $scope.eventSources = [$scope.events];d
    
         $scope.uiConfig = {
             calendar: {
@@ -42,8 +42,8 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
         // load calendars from google and pass them as event sources to fullcalendar
         $scope.loadSources = function () {
             EventSourceFactory.getEventSources().then(function (result) {
-                //$scope.$log.debug("event sources %O", result);
-                $scope.eventSources = result;
+                $scope.$log.debug("event sources %O", result);
+                $scope.events = result;
                 angular.forEach(result, function (source) {
                     $scope.calendar.fullCalendar('addEventSource', source);
                 });

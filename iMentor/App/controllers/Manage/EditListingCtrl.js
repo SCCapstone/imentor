@@ -439,14 +439,14 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
                     switch ($scope.assignedUsers[i].RoleId) {
                         case 1:
-                            it.background = "#80D8FF";
+                            it.background = "#a4ffff";
                             break;
                         case 2: 
-                            it.background = "#84FFFF";
+                            it.background = "#00bcd4";
                             it.span.col = 2;
                             break;
                         case 3:
-                            it.background = "#FF8A80";
+                            it.background = "#006064";
                             it.span.row = it.span.col = 2;
                             break;
                         case 4: it.background = "#B9F6CA"; break;
@@ -460,7 +460,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 it.icon = 1;
                 it.title = "Add Participant";
                 it.span = { row: 1, col: 1 };
-                it.background = "#80D8FF"
+                it.background = "#009688"
 
                 results.push(it);
 

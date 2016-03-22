@@ -3,8 +3,8 @@
 // Calendar controller- sets up calendar to pull events from database
 // ---------------------------------------------------------------
 
-app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$location', '$q',  'manageService',  'uiCalendarConfig', 'EventSourceFactory','CalendarData',
-    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, manageService, uiCalendarConfig, EventSourceFactory, CalendarData){
+app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$location', '$q', '$log',  'manageService',  'uiCalendarConfig',  'CalendarData', 'EventSourceFactory',
+    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, $log, manageService, uiCalendarConfig,CalendarData, EventSourceFactory){
 
         var date = new Date();
         var d = date.getDate();
@@ -14,9 +14,10 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
       
 
         $scope.events = [];
+        $scope.events2 = [];
         $scope.authNeeded = false;
         getListings();
-        $scope.eventSources = [$scope.events];d
+        $scope.eventSources = [$scope.events, $scope.events2];
    
         $scope.uiConfig = {
             calendar: {
@@ -42,8 +43,10 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
         // load calendars from google and pass them as event sources to fullcalendar
         $scope.loadSources = function () {
             EventSourceFactory.getEventSources().then(function (result) {
-                $scope.$log.debug("event sources %O", result);
-                $scope.events = result;
+               
+                $scope.events2 = result;
+               
+                
                 angular.forEach(result, function (source) {
                     $scope.calendar.fullCalendar('addEventSource', source);
                 });

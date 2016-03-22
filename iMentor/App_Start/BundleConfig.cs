@@ -24,7 +24,9 @@ namespace iMentor
                 "~/Content/ui-bootstrap-csp.css",
                 "~/Content/iMentor/iMentor-site.css"
                 ));
-
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+              "~/Scripts/jquery-2.2.0.min.js")
+              );
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                "~/Scripts/angular.js",
                "~/Scripts/angular-animate.js",
@@ -44,9 +46,13 @@ namespace iMentor
                ));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-2.2.0.min.js")
-                );
+          
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+    "~/Scripts/fullcalendar.min.js",
+
+    "~/Scripts/gcal.js",
+    "~/Scripts/gapi-helper.js")
+);
             //bundles.Add(new StyleBundle("~/bundles/content/iMentor").IncludeDirectory("~/Content/iMentor", "*.css", false));
             bundles.Add(new StyleBundle("~/bundles/content/ngMaterial").IncludeDirectory("~/Scripts/node-modules/angular-material", "*.css", false));
             //bundles.Add(new StyleBundle("~/bundles/content/themes").IncludeDirectory("~/Content/themes", "*.css", false));
@@ -64,8 +70,8 @@ namespace iMentor
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/respond.js")
             );
+    
 
-          
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/App/globals.js",
@@ -88,12 +94,7 @@ namespace iMentor
                 "~/Scripts/moment.min.js",
                 "~/Scripts/moment.js")
             );
-            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
-              "~/Scripts/fullcalendar.min.js",
-             
-              "~/Scripts/gcal.js",
-              "~/Scripts/gapi-helper.js")
-          );
+          
         
         }
     }

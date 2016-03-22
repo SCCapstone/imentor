@@ -1,4 +1,5 @@
-﻿app.factory('CalendarData', function($q, $log) {
+﻿app.factory('CalendarData',[ '$q','$log', 
+function($q, $log) {
   var self = {};
 
   // gets the calendar list from Google
@@ -35,9 +36,10 @@
   };
 
   return self;
-});
+}])
 
-app.factory("EventSourceFactory", function($q, CalendarData) {
+app.factory('EventSourceFactory', [ '$q', 'CalendarData',
+function($q, CalendarData) {
   var self = {};
 
   self.eventCache = {};
@@ -137,4 +139,4 @@ app.factory("EventSourceFactory", function($q, CalendarData) {
 
   return self;
 
-});
+}]);

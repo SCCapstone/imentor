@@ -51,7 +51,7 @@ function($q, CalendarData) {
 
   // converts unix timestamp to Google API date format (RFC 3339)
   self.ts2googleDate = function(ts) {
-    return $.fullCalendar.formatDate($.fullCalendar.parseDate(ts), 'u');
+    return ($.fullCalendar.moment(ts), 'u');
   };
 
   // reformats events from Google's API into an object fullcalendar can use
@@ -107,7 +107,7 @@ function($q, CalendarData) {
           data: data
         };
         // display the fresh data if we didn't display the cached data
-        if (!displayCached) callback(data);
+   
       });
     }
   };

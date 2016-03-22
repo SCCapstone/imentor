@@ -3,8 +3,8 @@
 // Calendar controller- sets up calendar to pull events from database
 // ---------------------------------------------------------------
 
-app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$location', '$q', '$log',  'manageService',  'uiCalendarConfig',  'CalendarData', 'EventSourceFactory',
-    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, $log, manageService, uiCalendarConfig,CalendarData, EventSourceFactory){
+app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$log',  'manageService',  'uiCalendarConfig',  'CalendarData', 'EventSourceFactory',
+    function CalendarCtrl($scope, $routeParms, $location, $q, $log, manageService, uiCalendarConfig,CalendarData, EventSourceFactory){
 
         var date = new Date();
         var d = date.getDate();
@@ -44,11 +44,12 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
         $scope.loadSources = function () {
             EventSourceFactory.getEventSources().then(function (result) {
                
-                $scope.events2 = result;
+                $scope.events = result;
                
                 
                 angular.forEach(result, function (source) {
-                    $scope.calendar.fullCalendar('addEventSource', source);
+                    $scope.myCalendar.fullCalendar('addEventSource', source);
+                    $scope.eventSources = [$scope.events];
                 });
             });
         };
@@ -101,7 +102,7 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
                         var startDate = new Date(moment(new Date(parseInt(listings[i].StartDate.substr(6)))).format('YYYY/MM/DD'));
                         var endDate = new Date(moment(new Date(parseInt(listings[i].EndDate.substr(6)))).format('YYYY/MM/DD'));
 
-                        $scope.events.push({
+                        $scope.events2.push({
                             id: listings[i].Id,
                             title: listings[i].Title,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
@@ -113,7 +114,7 @@ app.controller('calendarCtrl', ['$scope', '$rootScope', '$routeParams','$locatio
                         });
                     }
 
-                    $scope.eventSources = [$scope.events];
+                    $scope.eventSources = [$scope.events2];
                 })
               
         }

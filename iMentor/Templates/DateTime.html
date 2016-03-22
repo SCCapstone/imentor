@@ -1,6 +1,6 @@
 ﻿<div class="dateTime">
     <div class="row">
-        <div class="col-md-11" style="text-align:center;">
+        <div class="col-md-12" style="text-align:center;">
             <div style="font-size:18px;">
                 <div class="im-form-label thick" style="width:30%;font-size:16px">Start</div>
                 <div class="im-form-label thick" style="width:40%;font-size:16px">End</div>
@@ -8,7 +8,6 @@
                 <div im-btn ng-show="user.RoleId > 2 && !timeEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="edit"></div>
                 <div im-btn ng-show="user.RoleId > 2 && timeEditMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="save"></div>
             </div>
-
         </div>
     </div>
 
@@ -60,7 +59,7 @@
                                     <md-chip style="background:green;color:white;">{{day.abb}}</md-chip>
                                 </md-chips>
                                 <md-chips ng-show="!day.selected">
-                                    <md-chip style="background:gray;color:white;">{{day.abb}}</md-chip>
+                                    <md-chip style="background:gray;color:lightgray;">{{day.abb}}</md-chip>
                                 </md-chips>
                             </div>
                         </div>

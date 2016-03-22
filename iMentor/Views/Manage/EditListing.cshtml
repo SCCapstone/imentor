@@ -1,18 +1,13 @@
 ﻿<script src="https://apis.google.com/js/platform.js" async defer></script> @*This does not break the project. This script is fine*@
 
 
-<div class="ngview-wrapper" ng-class="cursorClass">
+@*<div class="ngview-wrapper" ng-class="cursorClass">
     <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
         <div class="form-group" style="clear:both">
             <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:150px;font-size:12px;" text="Toggle Edit Mode" on-click="toggleEditMode"></div>
-
-            @*<div class="text-right">
-                <div class="btn btn-sm btn-custom" ng-click="save()" style="margin-right:0px;width:75px;">Save</div>
-                <div class="btn btn-sm btn-custom" ng-click="cancel()" style="width:75px;">Cancel</div>
-            </div>*@
         </div>
     </div>
-</div>
+</div>*@
 
 
 <div class="ngview-body" style="padding-top:20px;">
@@ -56,54 +51,111 @@
             </div>
 
             <div class="col-sm-6" style="width:500px;">
-                <!-- Teacher Hangout Button -->
-                <div class="col-sm-12">
-                    <div class="col-sm-4" ng-show="user.RoleId == 3">
-                        <div class="im-form-label" style="width:125px;font-size:16px">Start Hangout:</div>
+
+                <!--Mentor's apply button-->
+                <div class="row" ng-show="user.RoleId == 2">
+                    <div class="col-sm-12">
+                        <md-content>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools" style="background:green;" ng-show="listing.Open">
+                                    <div style="margin-left:100px;">
+                                        Apply for Listing
+                                        <md-button class="md-raised" ng-click="applyForListing()">Apply</md-button>
+                                    </div>
+                                </div>
+                                <div class="md-toolbar-tools" style="background:red;" ng-show="!listing.Open">
+                                    <div style="margin-left:100px;">
+                                        Listing is Full
+                                        <md-button class="md-raised" disabled>Apply</md-button>
+                                    </div>
+                                </div>
+                            </md-toolbar>
+                        </md-content>
                     </div>
-                    <div class="col-sm-3" ng-show="user.RoleId == 3" style="margin-bottom:6px;">
-                        <div class="g-hangout" data-render="createhangout"
-                                data-initial_apps="[{ app_id : '1086641013362', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
+
+                    <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                </div>
+                <!------------------------->
+
+                <!--Teachers's view applicants button-->
+                <div class="row" ng-show="user.RoleId >= 3">
+                    <div class="col-sm-12">
+                        <md-content>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools">
+                                    <div style="margin-left:100px;">
+                                        Applicants
+                                        <md-button class="md-raised" ng-click="viewApplicants()">View</md-button>
+                                    </div>
+                                </div>
+                            </md-toolbar>
+                        </md-content>
+                    </div>
+
+                    <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                </div>
+                <!------------------------->
+
+
+                <!--Details/Hangout Info-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        
+                    <!-- Teacher Hangout Button -->
+                        <div class="col-sm-4" ng-show="user.RoleId == 3">
+                            <div class="im-form-label" style="width:125px;font-size:16px">Start Hangout:</div>
+                        </div>
+                        <div class="col-sm-3" ng-show="user.RoleId == 3" style="margin-bottom:6px;">
+                            <div class="g-hangout" data-render="createhangout"
+                                 data-initial_apps="[{ app_id : '1086641013362', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
+                            </div>
+                        </div>
+                        <!------------------------->
+                        <!-- Student/Mentor Hangout Button -->
+                        <div class="col-sm-4" ng-show="user.RoleId <= 2 && user.RoleId > 0">
+                            <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
+                        </div>
+                        <div class="col-sm-3" ng-show="user.RoleId <= 2 && user.RoleId > 0" style="margin-bottom:6px;">
+                            <button class="btn btn-default" ng-disabled="listing.HangoutUrl == null" ng-show="user.RoleId <= 2" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="">
+                                <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
+                            </button>
                         </div>
                     </div>
                     <!------------------------->
-                    <!-- Student/Mentor Hangout Button -->
-                    <div class="col-sm-4" ng-show="user.RoleId <= 2 && user.RoleId > 0">
-                        <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
-                    </div>
-                    <div class="col-sm-3" ng-show="user.RoleId <= 2 && user.RoleId > 0" style="margin-bottom:6px;">
-                        <button class="btn btn-default" ng-disabled="listing.HangoutUrl == null" ng-show="user.RoleId <= 2" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="">
-                            <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
-                        </button>
-                    </div>
                 </div>
-                <!------------------------->
-                <!-- Teacher Info -->
-                <div class="row">
-                    <div class="col-sm-4" style="margin-left:100px;">
-                        <img ng-src="{{imagePath}}" class="img-responsive" style="" alt="" />
-                        @*<div class="carousel-caption thick">
-                            <div style="margin-right:90%;">
-                                Teacher
-                            </div>
-                            <div style="font-size:12px;">
-                                <a href="#" ng-show="editMode" editable-text="listing.Teacher">{{ listing.Teacher || "Teacher" }}</a>
-                            </div>
-                            <div ng-show="!editMode" style="font-size:12px;">{{listing.Teacher}}</div>
-                        </div>*@
-                    </div>
-                </div>
-                <!------------------>
+
+                <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
 
                 <!-- Area Info -->
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div style="font-size:16px;margin-top:3px;text-align:center;">
-                            <a href="#" ng-show="editMode" editable-select="listing.Area" e-ng-options="a.text as a.text for a in areas">
-                                {{ showAreas() }}
-                            </a>
+                <div layout="row" layout-wrap>
+                    <div class="col-md-12">
 
-                            <div ng-show="!editMode">{{listing.Area}}</div>
+                        <div class="row">
+                            <div class="pull-right">
+                                <div im-btn ng-show="user.RoleId > 2 && !areaEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editArea"></div>
+                                <div im-btn ng-show="user.RoleId > 2 && areaEditMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveArea"></div>
+                                </div>
+                            <div>
+                                <img ng-src="{{imagePath}}" ng-show="!areaEditMode" class="img-responsive" style="margin-left:30%;" alt="" />
+                            </div>
+                        </div>
+
+                        <div flex="100" flex-gt-sm="100" layout="column">
+                            <div ng-show="!areaEditMode" style="margin-top:20px;">
+                                <div class="im-form-label thick" style="width:100%;font-size:16px;text-align:center;">{{listing.Area}}</div>
+                            </div>
+
+                            <div ng-show="areaEditMode" style="padding-left:50px;margin-top:20px;" >
+                                <fieldset class="standard">
+                                    <div layout="row" layout-wrap flex>
+                                        <div flex="30" ng-repeat="subject in subjects">
+                                            <md-radio-group ng-model="listing.Area">
+                                                <md-radio-button ng-value="subject.text">{{subject.text}}</md-radio-button>
+                                            </md-radio-group>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,18 +173,16 @@
                 <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
 
                 <div class="row">
-
-                    <div class="col-md-10" style="margin-left:50px;margin-bottom:10px;text-align:center;">
+                    <div class="col-md-11" style="margin-left:50px;margin-bottom:10px;text-align:center;">
 
                         <div class="im-form-label thick" style="width:50%;font-size:16px">Participants</div>
 
-                        <div class="pull-right">
-                            <div im-btn ng-show="user.RoleId > 2 && !editMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
-                            <div im-btn ng-show="user.RoleId > 2 && editMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveParticipants"></div>
+                        <div class="pull-right" style="padding-right:10px;">
+                            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
                         </div>
                     </div>
 
-                    <div class="col-md-8" style="margin-left:50px;">
+                    <div class="col-md-8" style="margin-left:75px;">
 
                         <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2" 
                                       md-row-height-gt-md="1:1" md-row-height="4:3" 
@@ -140,14 +190,6 @@
 
                             <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
                                 <md-icon md-svg-icon="{{tile.icon}}" ></md-icon>
-                                <md-grid-tile-header ng-show="editMode" >
-                                    <div ng-show="tile.title != 'Add Participant'" layout="row" layout-align="end center"> Delete
-                                        <i ng-click="deleteParticipant(tile)" class="glyphicon glyphicon-remove"></i> 
-                                    </div>
-                                    <div ng-show="tile.title == 'Add Participant'" layout="row" layout-align="end center"> 
-                                        <i ng-click="addParticipants()" class="glyphicon glyphicon-plus"></i>
-                                    </div>
-                                </md-grid-tile-header>
                                 <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
                             </md-grid-tile>
 

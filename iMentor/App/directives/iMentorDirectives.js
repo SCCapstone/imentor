@@ -119,7 +119,6 @@
                     function parseFrequency() {
                         if(scope.listing.Frequency != null){
                             var days =  scope.listing.Frequency.split("");
-                            console.log("Saved Days: " + days);
                             for (var i = 0; i < scope.daysOfTheWeek.length; i++) {
                                 if (contains(days, scope.daysOfTheWeek[i].letter)) {
                                     scope.daysOfTheWeek[i].selected = true;

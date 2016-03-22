@@ -1,8 +1,9 @@
 ﻿
-app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', '$mdDialog', '$mdMedia', 'manageService', 'students', 'mentors', 'listing', 'assignments',
-    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, $mdDialog, $mdMedia, manageService, students, mentors, listing, assignments)
+app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', '$mdDialog', '$mdMedia', 'manageService', 'teachers', 'students', 'mentors', 'listing', 'assignments',
+    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, $mdDialog, $mdMedia, manageService, teachers, students, mentors, listing, assignments)
     {
         $scope.assignments = assignments;
+        $scope.teachers = teachers;
         $scope.students = students;
         $scope.mentors = mentors;
         $scope.saveError = "Must select a user first time.";
@@ -11,9 +12,21 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
         
 
 
-        // ---------------------------------------------------------------
+        // 
         // Grid
         // ---------------------------------------------------------------
+        $scope.gridOptionsStudents = {
+            data: "teachers",
+            columnDefs: [
+            { field: 'Id', displayName: 'Id', visible: false },
+            { field: 'UserName', displayName: 'User Name', width: '50%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Email', displayName: 'Email', width:'50%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            ],
+            enableSorting: true,
+            enableCellSelection: true,
+            rowHeight: 25
+        };
+
         $scope.gridOptionsStudents = {
             data: "students",
             columnDefs: [
@@ -51,6 +64,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                     && listing.Id == $scope.assignments[i].ListingId)
                     {
                         students[j].selected = true;
+                        students[j].disabled = false;
                     }
                 }
             }
@@ -62,6 +76,25 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                     && listing.Id == $scope.assignments[i].ListingId)
                     {
                         mentors[j].selected = true;
+                        mentors[j].disabled = false;
+                    }
+                }
+            }
+
+            for(var j = 0; j < teachers.length; j++){
+                teachers[j].selected = false;
+                for(var i = 0; i < $scope.assignments.length; i++){
+                    if(teachers[j].Id == $scope.assignments[i].UserId
+                    && listing.Id == $scope.assignments[i].ListingId)
+                    {
+                        teachers[j].selected = true;
+                        teachers[j].disabled = false;
+                        teachers[j].owner = false;
+                        if (teachers[j].Id == listing.TeacherId) {
+                            $scope.owner = teachers[j];
+                            teachers[j].disabled = true;
+                            teachers[j].owner = true;;
+                        }
                     }
                 }
             }
@@ -99,6 +132,15 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                 }
             }
 
+            for (var j = 0; j < teachers.length; j++) {
+                for (var i = 0; i < $scope.assignments.length; i++) {
+                    if (teachers[j].Id == $scope.assignments[i].UserId
+                    && listing.Id == $scope.assignments[i].ListingId) {
+                        users.push(teachers[j]);
+                    }
+                }
+            }
+
             return users;
         }
 
@@ -114,6 +156,12 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             for (var i = 0; i < mentors.length; i++) {
                 if (mentors[i].selected) {
                     users.push(mentors[i]);
+                }
+            }
+
+            for (var i = 0; i < teachers.length; i++) {
+                if (teachers[i].selected) {
+                    users.push(teachers[i]);
                 }
             }
 
@@ -214,11 +262,9 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                 }
 
                 for (var i = 0; i < usersToAdd.length; i++) {
-                    console.log("Add: " + usersToAdd[i].UserName);
                     addParticipant(usersToAdd[i]);
                 }
                 for (var i = 0; i < usersToRemove.length; i++) {
-                    console.log("Remove: " + usersToRemove[i].UserName);
                     removeParticipant(usersToRemove[i]);
                 }
 

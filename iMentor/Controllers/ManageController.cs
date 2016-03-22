@@ -339,7 +339,7 @@ namespace iMentor.Controllers
 
             foreach (iMentorUserInfo user in allUsers)
             {
-                if (user.RoleId == 3)
+                if (user.RoleId >= 3)
                 {
                     teachers.Add(user);
                 }

@@ -8,6 +8,17 @@
         <md-content>
             <section>
                 <md-list>
+                    <md-subheader class="md-primary">Teachers</md-subheader>
+                    <md-list-item ng-repeat="teacher in teachers">
+                        <p ng-show="!teacher.owner"> {{ teacher.UserName }} </p>
+                        <p ng-show="teacher.owner"> {{ teacher.UserName }} [Owner]</p>
+                        <md-checkbox ng-show="!teacher.owner" class="md-secondary" ng-model="teacher.selected"></md-checkbox>
+                        <md-checkbox ng-show="teacher.owner" class="md-secondary" ng-model="teacher.selected" disabled></md-checkbox>
+                    </md-list-item>
+                </md-list>
+            </section>
+            <section>
+                <md-list>
                     <md-subheader class="md-primary">Students</md-subheader>
                     <md-list-item ng-repeat="student in students">
                         <p> {{ student.UserName }} </p>

@@ -51,6 +51,52 @@
             </div>
 
             <div class="col-sm-6" style="width:500px;">
+
+                <!--Mentor's apply button-->
+                <div class="row" ng-show="user.RoleId == 2">
+                    <div class="col-sm-12">
+                        <md-content>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools" style="background:green;" ng-show="listing.Open">
+                                    <div style="margin-left:100px;">
+                                        Apply for Listing
+                                        <md-button class="md-raised" ng-click="applyForListing()">Apply</md-button>
+                                    </div>
+                                </div>
+                                <div class="md-toolbar-tools" style="background:red;" ng-show="!listing.Open">
+                                    <div style="margin-left:100px;">
+                                        Listing is Full
+                                        <md-button class="md-raised" disabled>Apply</md-button>
+                                    </div>
+                                </div>
+                            </md-toolbar>
+                        </md-content>
+                    </div>
+
+                    <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                </div>
+                <!------------------------->
+
+                <!--Teachers's view applicants button-->
+                <div class="row" ng-show="user.RoleId >= 3">
+                    <div class="col-sm-12">
+                        <md-content>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools">
+                                    <div style="margin-left:100px;">
+                                        Applicants
+                                        <md-button class="md-raised" ng-click="viewApplicants()">View</md-button>
+                                    </div>
+                                </div>
+                            </md-toolbar>
+                        </md-content>
+                    </div>
+
+                    <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                </div>
+                <!------------------------->
+
+
                 <!--Details/Hangout Info-->
                 <div class="row">
                     <div class="col-sm-12">

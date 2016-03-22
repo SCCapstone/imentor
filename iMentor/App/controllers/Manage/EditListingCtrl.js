@@ -62,7 +62,9 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                                 getUsersByListing($scope.listingId);
                                 getStudents();
                                 getMentors();
+                                getTeachers();
                                 getUsers();
+                                getOwner();
                                 getAssignments();
                             }
                         }
@@ -157,6 +159,17 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             );
         }
 
+        function getTeachers(){
+            manageService.getTeachers().then(
+                function success(teachers){
+                    $scope.teachers = teachers;
+                },
+                function fail(reason){
+                    console.log("Unable to load teachers: " + reason);
+                }
+            );
+        }
+
         function getStudents(){
             manageService.getStudents().then(
                 function success(students){
@@ -177,6 +190,22 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     console.log("Unable to load mentors: " + reason);
                 }
             );
+        }
+
+        function getOwner() {
+            manageService.getUsers().then(
+                function success(users) {
+                    for (var i = 0; i < users.length; i++) {
+                        if (users[i].Id == $scope.listing.TeacherId) {
+                            $scope.owner = users[i];
+                            console.log($scope.owner);
+                        }
+                    }
+                },
+                function error(error) {
+                    console.log("Unable to load users: " + error)
+                }
+            )
         }
 
         function getAssignments() {
@@ -234,19 +263,13 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             );
         }
 
-        $scope.toggleEditMode = function () {
-            $scope.editMode = !$scope.editMode;
+        $scope.applyForListing = function(){
+            console.log("Apply for Listing clicked!");
         }
 
-        
-
-        //$scope.showAreas = function () {
-        //    if ($scope.listing != undefined)
-        //    {
-        //        var selected = $filter('filter')($scope.areas, { value: $scope.listing.Area });
-        //        return ($scope.listing.Area && selected.length) ? selected[0].text : $scope.listing.Area;
-        //    }
-        //};
+        $scope.viewApplicants = function(){
+            console.log("View Participants clicked!");
+        }
 
         $scope.editArea = function(){
             $scope.areaEditMode = true;
@@ -262,41 +285,14 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             $scope.areaEditMode = false;
         }
 
-        //$scope.deleteParticipant = function (tile) {
-        //    if ($scope.editMode) {
-        //        if ($scope.assignments != null && $scope.users != null && $scope.listing != null) {
-        //            var assignment = null;
-        //            var user = null;
-
-        //            //get user for its Id
-        //            for(var i = 0; i < $scope.users.length; i++){
-        //                if($scope.users[i].UserName.localeCompare(tile.title) == 0){
-        //                    user = $scope.users[i];
-        //                }
-        //            }
-
-        //            //find assignment 
-        //            if (user != null) {
-        //                for (var i = 0; i < $scope.assignments.length; i++) {
-        //                    if ($scope.assignments[i].ListingId == $scope.listing.Id && $scope.assignments[i].UserId == user.Id) {
-        //                        assignment = $scope.assignments[i];
-        //                    }
-        //                }
-        //            }
-
-        //            removeParticipants(assignment);
-        //        }
-        //    }
-        //}
-
         $scope.editParticipants = function () {
             if($scope.students != null && $scope.listing != null){
-                $scope.showAddParticipantsModal($scope.students, $scope.mentors, $scope.listing, $scope.assignments);
+                $scope.showAddParticipantsModal($scope.teachers, $scope.students, $scope.mentors, $scope.listing, $scope.assignments);
             }
         }
 
-        $scope.showAddParticipantsModal = function (students, mentors, listing, assignments) {
-            var modalOptions = modalOptionService.optionsForAddParticipants(students, mentors, listing, assignments);
+        $scope.showAddParticipantsModal = function (teachers, students, mentors, listing, assignments) {
+            var modalOptions = modalOptionService.optionsForAddParticipants(teachers, students, mentors, listing, assignments);
             var modalInstance = $uibModal.open(modalOptions);
 
             modalInstance.result.then(

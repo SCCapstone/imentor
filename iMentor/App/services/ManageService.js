@@ -55,7 +55,7 @@ app.factory('manageService', ['$http', '$q', 'apiService',
             return apiService.httpGet(url, false);
         };
 
-        manageService.getTeacher = function () {
+        manageService.getTeachers = function () {
             var url = '/manage/getTeachers';
 
             return apiService.httpGet(url, false);

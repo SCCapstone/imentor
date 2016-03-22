@@ -2,6 +2,8 @@
 app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', 'manageService',  'modalOptionService',
     function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, manageService, modalOptionService)
     {
+        $scope.areaEditMode = false;
+
         $scope.listings = [];
         $scope.currentUsers = [];
 
@@ -13,12 +15,12 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             { value: 2, text: 'False' }
         ];
 
-        $scope.areas = [
-            { value: 1, text: 'Math' },
-            { value: 2, text: 'Science' },
-            { value: 3, text: 'History' },
-            { value: 4, text: 'Reading' },
-            { value: 5, text: 'Computer Science' }
+        $scope.subjects = [
+            { value: 1, text: 'Math', selected: true },
+            { value: 2, text: 'Science', selected: false },
+            { value: 3, text: 'History', selected: false },
+            { value: 4, text: 'Reading', selected: false },
+            { value: 5, text: 'Computer Science', selected: false }
         ];
 
         
@@ -37,9 +39,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         }
 
         
-
-        
-
         // ---------------------------------------------------------------
         // Service Calls
         // ---------------------------------------------------------------
@@ -241,42 +240,56 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
         
 
-        $scope.showAreas = function () {
-            if ($scope.listing != undefined)
-            {
-                var selected = $filter('filter')($scope.areas, { value: $scope.listing.Area });
-                return ($scope.listing.Area && selected.length) ? selected[0].text : $scope.listing.Area;
-            }
-        };
+        //$scope.showAreas = function () {
+        //    if ($scope.listing != undefined)
+        //    {
+        //        var selected = $filter('filter')($scope.areas, { value: $scope.listing.Area });
+        //        return ($scope.listing.Area && selected.length) ? selected[0].text : $scope.listing.Area;
+        //    }
+        //};
 
-        $scope.deleteParticipant = function (tile) {
-            if ($scope.editMode) {
-                if ($scope.assignments != null && $scope.users != null && $scope.listing != null) {
-                    var assignment = null;
-                    var user = null;
+        $scope.editArea = function(){
+            $scope.areaEditMode = true;
 
-                    //get user for its Id
-                    for(var i = 0; i < $scope.users.length; i++){
-                        if($scope.users[i].UserName.localeCompare(tile.title) == 0){
-                            user = $scope.users[i];
-                        }
-                    }
+            $scope.showAreas();
+        }
+        $scope.saveArea = function () {
+            $scope.imagePath = getImage();
+            
+            manageService.updateListing($scope.listing);
+            
 
-                    //find assignment 
-                    if (user != null) {
-                        for (var i = 0; i < $scope.assignments.length; i++) {
-                            if ($scope.assignments[i].ListingId == $scope.listing.Id && $scope.assignments[i].UserId == user.Id) {
-                                assignment = $scope.assignments[i];
-                            }
-                        }
-                    }
-
-                    removeParticipants(assignment);
-                }
-            }
+            $scope.areaEditMode = false;
         }
 
-        $scope.addParticipants = function () {
+        //$scope.deleteParticipant = function (tile) {
+        //    if ($scope.editMode) {
+        //        if ($scope.assignments != null && $scope.users != null && $scope.listing != null) {
+        //            var assignment = null;
+        //            var user = null;
+
+        //            //get user for its Id
+        //            for(var i = 0; i < $scope.users.length; i++){
+        //                if($scope.users[i].UserName.localeCompare(tile.title) == 0){
+        //                    user = $scope.users[i];
+        //                }
+        //            }
+
+        //            //find assignment 
+        //            if (user != null) {
+        //                for (var i = 0; i < $scope.assignments.length; i++) {
+        //                    if ($scope.assignments[i].ListingId == $scope.listing.Id && $scope.assignments[i].UserId == user.Id) {
+        //                        assignment = $scope.assignments[i];
+        //                    }
+        //                }
+        //            }
+
+        //            removeParticipants(assignment);
+        //        }
+        //    }
+        //}
+
+        $scope.editParticipants = function () {
             if($scope.students != null && $scope.listing != null){
                 $scope.showAddParticipantsModal($scope.students, $scope.mentors, $scope.listing, $scope.assignments);
             }
@@ -454,15 +467,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
                     results.push(it);
                 }
-
-                //Add the "Add Participant" tile
-                it = angular.extend({}, tileTmpl);
-                it.icon = 1;
-                it.title = "Add Participant";
-                it.span = { row: 1, col: 1 };
-                it.background = "#009688"
-
-                results.push(it);
 
                 return results;
             }

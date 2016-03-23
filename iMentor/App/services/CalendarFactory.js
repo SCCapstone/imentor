@@ -50,27 +50,29 @@ function($q, CalendarData) {
   // (if age falls inbetween, display cached, then query server in the bg to update cache)
 
   // converts unix timestamp to Google API date format (RFC 3339)
-  self.ts2googleDate = function(ts) {
-    return ($.fullCalendar.moment(ts), 'u');
+  self.ts2googleDate = function (ts) {
+
+      var m = moment();
+      return $.fullCalendar.moment().format($.fullCalendar.moment(ts), 'u');
   };
 
   // reformats events from Google's API into an object fullcalendar can use
-  self.google2fcEvent = function(google) {
-    var fc = {
-      title: google.summary,
-      start: google.start.date || google.start.dateTime,
-      end: google.end.date || google.end.dateTime,
-      allDay: google.start.date ? true : false,
-      google: google // keep a reference to the original
-    };
-    if (fc.allDay) {
-      // subtract 1 from end date: Google all-day end dates are exclusive
-      // FullCalendar's are inclusive
-      var end = $.fullCalendar.parseDate(fc.end);
-      end.setDate(end.getDate() - 1);
-      fc.end = $.fullCalendar.formatDate(end, 'yyyy-MM-dd');
-    }
-    return fc;
+  self.google2fcEvent = function (google) {
+      var fc = {
+          title: google.summary,
+          start: google.start.date || google.start.dateTime,
+          end: google.end.date || google.end.dateTime,
+          allDay: google.start.date ? true : false,
+          google: google // keep a reference to the original
+      };
+      if (fc.allDay) {
+          // subtract 1 from end date: Google all-day end dates are exclusive
+          // FullCalendar's are inclusive
+          var end = $.fullCalendar.moment(fc.end);
+          end.setDate(end.getDate() - 1);
+          fc.end = $.fullCalendar.moment().format(end, 'YYYY-MM-DD');
+      }
+      return fc;
   };
 
   // fetches events from Google

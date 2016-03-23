@@ -1,12 +1,13 @@
 ﻿gapi_helper = {
-    start: new Date(),
+    
+    start: moment(),
     listeners: {},
     status: {}
 };
 
 // for logging elapsed times to console
 gapi_helper.time = function () {
-    return new Date() - gapi_helper.start;
+    return moment(gapi_helper.start).fromNow();
 };
 
 // config must contain clientId, apiKey, scopes, and services to load, eg

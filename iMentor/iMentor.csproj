@@ -279,6 +279,9 @@
     <Compile Include="Models\AccountViewModels.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Models\Applicant.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
@@ -333,6 +336,17 @@
     </Content>
     <Content Include="App\controllers\Home\CalendarCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App\controllers\Home\Modals\ViewApplicantsCtrl.js" />
+    <Content Include="Models\dbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbModel.edmx</DependentUpon>
+      <LastGenOutput>dbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\dbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbModel.edmx</DependentUpon>
+      <LastGenOutput>dbModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\gapi-helper.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js">
@@ -472,16 +486,6 @@
     </Content>
     <Content Include="Img\World.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\dbModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbModel.edmx</DependentUpon>
-      <LastGenOutput>dbModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\dbModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbModel.edmx</DependentUpon>
-      <LastGenOutput>dbModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -1875,6 +1879,7 @@
     <Content Include="Templates\ListingDetailModal.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\ViewApplicantsModal.html" />
     <Content Include="Views\Manage\ManageUsers.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

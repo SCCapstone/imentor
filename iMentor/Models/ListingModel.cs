@@ -17,6 +17,7 @@ namespace iMentor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ListingModel()
         {
+            this.Applicants = new HashSet<Applicant>();
             this.AssignedListings = new HashSet<AssignedListing>();
         }
     
@@ -31,6 +32,8 @@ namespace iMentor.Models
         public Nullable<int> TeacherId { get; set; }
         public bool Open { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Applicant> Applicants { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignedListing> AssignedListings { get; set; }
         public virtual iMentorUser iMentorUser { get; set; }

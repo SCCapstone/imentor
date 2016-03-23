@@ -53,21 +53,21 @@
             <div class="col-sm-6" style="width:500px;">
 
                 <!--Mentor's apply button-->
-                <div class="row" ng-show="user.RoleId == 2" style="margin-bottom:20px">
+                <div class="row" ng-show="user.RoleId == 2 && applied != null" style="margin-bottom:20px">
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
+                                <div class="md-toolbar-tools" ng-show="listing.Open && applied">
+                                    <div style="margin-left:85px;">
+                                        You are applied to this listing
+                                    </div>
+                                </div>
                                 <div class="md-toolbar-tools" style="background:green;" ng-show="listing.Open && !applied">
                                     <div style="margin-left:100px;">
                                         Apply for Listing
                                         <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
                                             Apply
                                         </md-button>
-                                    </div>
-                                </div>
-                                <div class="md-toolbar-tools" ng-show="listing.Open && applied">
-                                    <div style="margin-left:85px;">
-                                        You are applied to this listing
                                     </div>
                                 </div>
                                 <div class="md-toolbar-tools" style="background:red;" ng-show="!listing.Open">
@@ -79,7 +79,6 @@
                             </md-toolbar>
                         </md-content>
                     </div>
-
                 </div>
                 <!------------------------->
 
@@ -103,7 +102,7 @@
 
 
                 <!--Details/Hangout Info-->
-                <div class="row">
+                <div class="row" style="margin-top:10px;">
                     <div class="col-sm-12">
                         
                     <!-- Teacher Hangout Button -->
@@ -129,7 +128,7 @@
                     <!------------------------->
                 </div>
 
-                <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                <md-content ng-show="user.RoleId > 1" style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
 
                 <!-- Area Info -->
                 <div layout="row" layout-wrap>

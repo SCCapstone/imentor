@@ -111,6 +111,24 @@ app.factory('manageService', ['$http', '$q', 'apiService',
             return apiService.httpGet(url, false);
         }
 
+        manageService.removeApplicant = function (applicant) {
+            var url = 'manage/removeApplicant';
+            
+            return apiService.httpPost(url, applicant);
+        }
+
+        manageService.addApplicant = function (applicant) {
+            var url = 'manage/addApplicant';
+            
+            return apiService.httpPost(url, applicant);
+        }
+
+        manageService.getApplicants = function(){
+            var url = 'manage/getApplicants';
+
+            return apiService.httpGet(url, false);
+        }
+
 
 
         manageService.getRoles = function () {

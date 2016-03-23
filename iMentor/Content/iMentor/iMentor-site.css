@@ -209,7 +209,7 @@ h6.panel-title {
 
 
 .addParticipantsModal .modal-dialog {
-	width: 750px;
+	width: 600px;
 	border-radius: 6px;
 	border: 1px solid #CCC;
 	color: #000;
@@ -218,11 +218,30 @@ h6.panel-title {
 
 .addParticipantsModal .modal-body {
 	border-radius: 6px;
-    max-height:400px;
+    max-height:600px;
     overflow-y:auto;
 }
 
 .addParticipantsModal .dtl-group {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.viewParticipantsModal .modal-dialog {
+	width: 600px;
+	border-radius: 6px;
+	border: 1px solid #CCC;
+	color: #000;
+	margin-top: 75px;
+}
+
+.viewParticipantsModal .modal-body {
+	border-radius: 6px;
+    max-height:400px;
+    overflow-y:auto;
+}
+
+.viewParticipantsModal .dtl-group {
 	padding-left: 5px;
 	padding-right: 5px;
 }

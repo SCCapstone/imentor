@@ -29,34 +29,20 @@ app.factory('modalOptionService', function () {
             }
         },
 
-        optionsForListingDetail: function(listing) {
+        optionsForViewApplicants: function(applicants, assignments) {
             return {
-                templateUrl: '/Templates/ListingDetailModal.html',
-                controller: 'listingDetailCtrl',
+                templateUrl: '/Templates/ViewApplicantsModal.html',
+                controller: 'viewApplicantsCtrl',
                 backdrop: true,
-                windowClass: 'listingDetailModal',
+                windowClass: 'viewApplicantsModal',
                 resolve: {
-                    listing: function() {
-                        return listing;
+                    applicants: function() {
+                        return applicants;
+                    },
+                    assignments: function() {
+                        return assignments;
                     }
                 }
-            }
-        },
-        
-        optionsForEventDetails: function (listing) {
-
-            return {
-
-                templateUrl: '/Templates/EventDetailsModal.html',
-                controller: 'eventDetailsCtrl',
-                backdrop: true,
-                windowClass: 'eventDetailsModal',
-                resolve: {
-                    listing: function () {
-                        return listing;
-                    }
-                }
-
             }
         }
 

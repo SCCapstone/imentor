@@ -15,6 +15,14 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Applicants">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ListingId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -105,6 +113,30 @@
           <Property Name="TeacherId" Type="int" />
           <Property Name="Open" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Applicant__Listi__503BEA1C">
+          <End Role="ListingModels" Type="Self.ListingModels" Multiplicity="1" />
+          <End Role="Applicants" Type="Self.Applicants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListingModels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applicants">
+              <PropertyRef Name="ListingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicant__UserI__4F47C5E3">
+          <End Role="iMentorUser" Type="Self.iMentorUser" Multiplicity="1" />
+          <End Role="Applicants" Type="Self.Applicants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iMentorUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applicants">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__AssignedL__Listi__3C34F16F">
           <End Role="ListingModels" Type="Self.ListingModels" Multiplicity="1" />
           <End Role="AssignedListings" Type="Self.AssignedListings" Multiplicity="*" />
@@ -211,6 +243,7 @@
         </Association>
         <EntityContainer Name="iMAST_dbModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applicants" EntityType="Self.Applicants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -220,6 +253,14 @@
           <EntitySet Name="iMentorRole" EntityType="Self.iMentorRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="iMentorUser" EntityType="Self.iMentorUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListingModels" EntityType="Self.ListingModels" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Applicant__Listi__503BEA1C" Association="Self.FK__Applicant__Listi__503BEA1C">
+            <End Role="ListingModels" EntitySet="ListingModels" />
+            <End Role="Applicants" EntitySet="Applicants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicant__UserI__4F47C5E3" Association="Self.FK__Applicant__UserI__4F47C5E3">
+            <End Role="iMentorUser" EntitySet="iMentorUser" />
+            <End Role="Applicants" EntitySet="Applicants" />
+          </AssociationSet>
           <AssociationSet Name="FK__AssignedL__Listi__3C34F16F" Association="Self.FK__AssignedL__Listi__3C34F16F">
             <End Role="ListingModels" EntitySet="ListingModels" />
             <End Role="AssignedListings" EntitySet="AssignedListings" />
@@ -267,6 +308,16 @@
           <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ListingId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ListingModel" Relationship="Self.FK__Applicant__Listi__503BEA1C" FromRole="Applicants" ToRole="ListingModels" />
+          <NavigationProperty Name="iMentorUser" Relationship="Self.FK__Applicant__UserI__4F47C5E3" FromRole="Applicants" ToRole="iMentorUser" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -343,6 +394,7 @@
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Applicants" Relationship="Self.FK__Applicant__UserI__4F47C5E3" FromRole="iMentorUser" ToRole="Applicants" />
           <NavigationProperty Name="AssignedListings" Relationship="Self.FK__AssignedL__UserI__2A164134" FromRole="iMentorUser" ToRole="AssignedListings" />
           <NavigationProperty Name="iMentorRole" Relationship="Self.FK__iMentorUs__RoleI__2B0A656D" FromRole="iMentorUser" ToRole="iMentorRole" />
           <NavigationProperty Name="ListingModels" Relationship="Self.FK__ListingMo__Teach__3D2915A8" FromRole="iMentorUser" ToRole="ListingModels" />
@@ -361,9 +413,34 @@
           <Property Name="HangoutUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TeacherId" Type="Int32" />
           <Property Name="Open" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Applicants" Relationship="Self.FK__Applicant__Listi__503BEA1C" FromRole="ListingModels" ToRole="Applicants" />
           <NavigationProperty Name="AssignedListings" Relationship="Self.FK__AssignedL__Listi__3C34F16F" FromRole="ListingModels" ToRole="AssignedListings" />
           <NavigationProperty Name="iMentorUser" Relationship="Self.FK__ListingMo__Teach__3D2915A8" FromRole="ListingModels" ToRole="iMentorUser" />
         </EntityType>
+        <Association Name="FK__Applicant__Listi__503BEA1C">
+          <End Role="ListingModels" Type="Self.ListingModel" Multiplicity="1" />
+          <End Role="Applicants" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListingModels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applicants">
+              <PropertyRef Name="ListingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicant__UserI__4F47C5E3">
+          <End Role="iMentorUser" Type="Self.iMentorUser" Multiplicity="1" />
+          <End Role="Applicants" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iMentorUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applicants">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -446,6 +523,7 @@
         </Association>
         <EntityContainer Name="iMAST_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Applicants" EntityType="Self.Applicant" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
@@ -454,6 +532,14 @@
           <EntitySet Name="iMentorRoles" EntityType="Self.iMentorRole" />
           <EntitySet Name="iMentorUsers" EntityType="Self.iMentorUser" />
           <EntitySet Name="ListingModels" EntityType="Self.ListingModel" />
+          <AssociationSet Name="FK__Applicant__Listi__503BEA1C" Association="Self.FK__Applicant__Listi__503BEA1C">
+            <End Role="ListingModels" EntitySet="ListingModels" />
+            <End Role="Applicants" EntitySet="Applicants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicant__UserI__4F47C5E3" Association="Self.FK__Applicant__UserI__4F47C5E3">
+            <End Role="iMentorUser" EntitySet="iMentorUsers" />
+            <End Role="Applicants" EntitySet="Applicants" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -496,6 +582,15 @@
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applicants">
+            <EntityTypeMapping TypeName="iMAST_dbModel.Applicant">
+              <MappingFragment StoreEntitySet="Applicants">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ListingId" ColumnName="ListingId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

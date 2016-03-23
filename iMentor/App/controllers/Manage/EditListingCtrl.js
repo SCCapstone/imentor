@@ -3,7 +3,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
     function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
     {
         $scope.areaEditMode = false;
-        $scope.applied = false;
+        $scope.applied = null;
         $scope.assigned = false;
 
         $scope.listings = [];
@@ -32,6 +32,11 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
       
         
         getCurrentUser();
+        getOwner();
+        getMentors();
+        getStudents();
+        getTeachers();
+        getUsers();
         $scope.isNew = ($scope.listingId < 1);
         if (!$scope.isNew) {
             getListings();
@@ -62,11 +67,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                                 $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
                                 $scope.imagePath = getImage();
                                 getUsersByListing($scope.listingId);
-                                getStudents();
-                                getMentors();
-                                getTeachers();
-                                getUsers();
-                                getOwner();
                                 getAssignments();
                             }
                         }
@@ -194,6 +194,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             manageService.getMentors().then(
                 function success(mentors){
                     $scope.mentors = mentors;
+
+                   getApplicants(mentors);
                 },
                 function fail(reason){
                     console.log("Unable to load mentors: " + reason);
@@ -207,7 +209,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     for (var i = 0; i < users.length; i++) {
                         if (users[i].Id == $scope.listing.TeacherId) {
                             $scope.owner = users[i];
-                            console.log($scope.owner);
                         }
                     }
                 },
@@ -238,6 +239,61 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 }
             );
         }
+
+        function getApplicants(mentors){
+             manageService.getApplicants().then(
+                function success(applicants){
+                    $scope.applicants = [];
+
+                    for (var j = 0; j < mentors.length; j++) {
+                        for (var i = 0; i < applicants.length; i++) {
+                            if (mentors[j].Id == applicants[i].UserId
+                            && $scope.listing.Id == applicants[i].ListingId) {
+                                $scope.applicants.push(mentors[j]);
+                            }
+                        }
+                    }
+
+                    //Check if current user is an applicant
+                    if($scope.user != null){
+                        for(var i = 0; i < applicants.length; i++){
+                            if(applicants[i].UserId == $scope.user.Id){
+                                $scope.applied = true;
+                                break;
+                            }else{
+                                $scope.applied = false;
+                            }
+                        }
+                    }
+                },
+                function error(error) {
+                    console.log("Unable to load applicants: " + error);
+                }
+            )
+        }
+
+        function addApplicant(applicant){
+            manageService.addApplicant(applicant).then(
+                function success(response) {
+                    
+                },
+                function error(error) {
+                    console.log("Unable to add applicant: " + error)
+                }
+            );
+        }
+
+        function removeApplicant(applicant) {
+            manageService.removeApplicant(applicant).then(
+                function success(response) {
+                    getUsersByListing($scope.listingId);
+                },
+                function error(error) {
+                    console.log("Unable to remove applicant: " + error)
+                }
+            );
+        }
+
 
         // ---------------------------------------------------------------
         // Functions
@@ -274,10 +330,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
         $scope.applyForListing = function(){
             console.log("Apply for Listing clicked!");
-        }
-
-        $scope.viewApplicants = function(){
-            console.log("View Participants clicked!");
+            
         }
 
         $scope.editArea = function(){
@@ -311,6 +364,24 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 });
         };
 
+        $scope.viewApplicants = function () {
+            
+            if($scope.applicants != null && $scope.assignments != null){
+                $scope.showViewApplicantsModal($scope.applicants, $scope.assignments);
+            }
+        }
+
+        $scope.showViewApplicantsModal = function (applicants, assignments) {
+            var modalOptions = modalOptionService.optionsForViewApplicants(applicants, assignments);
+            var modalInstance = $uibModal.open(modalOptions);
+
+            modalInstance.result.then(
+                null,
+                function cancel() {
+                    // No-op
+                });
+        };
+
         $scope.showConfirm = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
@@ -323,7 +394,15 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             $mdDialog.show(confirm).then(function () {
                 //Save the application
                 $scope.applied = true;
-                $scope.status = 'Applied';
+
+                if($scope.user != null && $scope.applicants != null && $scope.listing != null){
+                    var applicant = $scope.applicants[0];
+
+                    applicant.ListingId = $scope.listing.Id;
+                    applicant.UserId = $scope.user.Id;
+
+                    addApplicant(applicant);
+                }
             }, function () {
                 $scope.status = 'Canceled';
             });

@@ -53,14 +53,21 @@
             <div class="col-sm-6" style="width:500px;">
 
                 <!--Mentor's apply button-->
-                <div class="row" ng-show="user.RoleId == 2">
+                <div class="row" ng-show="user.RoleId == 2" style="margin-bottom:20px">
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
-                                <div class="md-toolbar-tools" style="background:green;" ng-show="listing.Open">
+                                <div class="md-toolbar-tools" style="background:green;" ng-show="listing.Open && !applied">
                                     <div style="margin-left:100px;">
                                         Apply for Listing
-                                        <md-button class="md-raised" ng-click="applyForListing()">Apply</md-button>
+                                        <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
+                                            Apply
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div class="md-toolbar-tools" ng-show="listing.Open && applied">
+                                    <div style="margin-left:85px;">
+                                        You are applied to this listing
                                     </div>
                                 </div>
                                 <div class="md-toolbar-tools" style="background:red;" ng-show="!listing.Open">
@@ -73,7 +80,6 @@
                         </md-content>
                     </div>
 
-                    <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
                 </div>
                 <!------------------------->
 
@@ -92,7 +98,6 @@
                         </md-content>
                     </div>
 
-                    <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
                 </div>
                 <!------------------------->
 
@@ -110,12 +115,12 @@
                                  data-initial_apps="[{ app_id : '1086641013362', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
                             </div>
                         </div>
-                        <!------------------------->
-                        <!-- Student/Mentor Hangout Button -->
-                        <div class="col-sm-4" ng-show="user.RoleId <= 2 && user.RoleId > 0">
+                    <!------------------------->
+                    <!-- Student/Mentor Hangout Button -->
+                        <div class="col-sm-4" ng-show="(user.RoleId == 1 && assigned) || (user.RoleId == 2 && assigned)">
                             <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
                         </div>
-                        <div class="col-sm-3" ng-show="user.RoleId <= 2 && user.RoleId > 0" style="margin-bottom:6px;">
+                        <div class="col-sm-3" ng-show="(user.RoleId == 1 && assigned) || (user.RoleId == 2 && assigned)" style="margin-bottom:6px;">
                             <button class="btn btn-default" ng-disabled="listing.HangoutUrl == null" ng-show="user.RoleId <= 2" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="">
                                 <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
                             </button>

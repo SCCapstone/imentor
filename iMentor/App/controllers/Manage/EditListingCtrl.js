@@ -1,8 +1,10 @@
 ﻿
-app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', 'manageService',  'modalOptionService',
-    function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, manageService, modalOptionService)
+app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', '$mdDialog', 'manageService',  'modalOptionService',
+    function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
     {
         $scope.areaEditMode = false;
+        $scope.applied = false;
+        $scope.assigned = false;
 
         $scope.listings = [];
         $scope.currentUsers = [];
@@ -124,6 +126,13 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
+
+                    for (var i = 0; i < assignedUsers.length; i++) {
+                        if (assignedUsers[i].Id == $scope.user.Id) {
+                            $scope.assigned = true;
+                        }
+                    }
+
                     $scope.tiles = buildGridModel({
                         icon: "avatar:svg-",
                         title: "Svg-",
@@ -300,6 +309,24 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 function cancel() {
                     // No-op
                 });
+        };
+
+        $scope.showConfirm = function (ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Apply to this listing?')
+                  .textContent($scope.listing.Title)
+                  .ariaLabel('')
+                  .targetEvent(ev)
+                  .ok('Apply!')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                //Save the application
+                $scope.applied = true;
+                $scope.status = 'Applied';
+            }, function () {
+                $scope.status = 'Canceled';
+            });
         };
 
 

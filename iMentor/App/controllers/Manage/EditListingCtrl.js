@@ -122,7 +122,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 );
         }
 
-        function getUsersByListing(listingId){
+        function getUsersByListing(listingId) {
+            console.log("getUsersByListing Called");
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
@@ -245,6 +246,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 function success(applicants){
                     $scope.applicants = [];
 
+                    //Get all applicants for this listing
                     for (var j = 0; j < mentors.length; j++) {
                         for (var i = 0; i < applicants.length; i++) {
                             if (mentors[j].Id == applicants[i].UserId
@@ -256,14 +258,20 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
                     //Check if current user is an applicant
                     if($scope.user != null){
-                        for(var i = 0; i < applicants.length; i++){
-                            if(applicants[i].UserId == $scope.user.Id){
+                        for(var i = 0; i < $scope.applicants.length; i++){
+                            console.log($scope.applicants[i].Id);
+                            if($scope.applicants[i].Id == $scope.user.Id){
                                 $scope.applied = true;
                                 break;
                             }else{
                                 $scope.applied = false;
                             }
                         }
+                    }
+
+                    //If no users are applied to this listing
+                    if ($scope.applicants.length == 0) {
+                        $scope.applied = false;
                     }
                 },
                 function error(error) {
@@ -292,6 +300,12 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     console.log("Unable to remove applicant: " + error)
                 }
             );
+        }
+
+        function refreshParticipants() {
+            console.log("Refresh Participants");
+            getUsersByListing($scope.listingId);
+            getAssignments();
         }
 
 
@@ -353,8 +367,12 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             }
         }
 
+        $scope.refreshParticipantsList = function () {
+            refreshParticipants();
+        }
+
         $scope.showAddParticipantsModal = function (teachers, students, mentors, listing, assignments) {
-            var modalOptions = modalOptionService.optionsForAddParticipants(teachers, students, mentors, listing, assignments);
+            var modalOptions = modalOptionService.optionsForAddParticipants(teachers, students, mentors, listing, assignments, this);
             var modalInstance = $uibModal.open(modalOptions);
 
             modalInstance.result.then(
@@ -396,11 +414,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                 $scope.applied = true;
 
                 if($scope.user != null && $scope.applicants != null && $scope.listing != null){
-                    var applicant = $scope.applicants[0];
-
-                    applicant.ListingId = $scope.listing.Id;
-                    applicant.UserId = $scope.user.Id;
-
+                    var applicant = { ListingId: $scope.listing.Id, UserId: $scope.user.Id };
+                    
                     addApplicant(applicant);
                 }
             }, function () {
@@ -553,15 +568,15 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
                     it.span = { row: 1, col: 1 };
 
                     switch ($scope.assignedUsers[i].RoleId) {
-                        case 1:
-                            it.background = "#a4ffff";
+                        case 1: //Student
+                            it.background = "#26a69a";
                             break;
-                        case 2: 
-                            it.background = "#00bcd4";
+                        case 2: //Mentor
+                            it.background = "#00796b";
                             it.span.col = 2;
                             break;
-                        case 3:
-                            it.background = "#006064";
+                        case 3: //Teacher
+                            it.background = "#004d40";
                             it.span.row = it.span.col = 2;
                             break;
                         case 4: it.background = "#B9F6CA"; break;

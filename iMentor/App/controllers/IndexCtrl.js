@@ -1,7 +1,23 @@
 ﻿
 
-app.controller('indexCtrl', [ '$scope', '$location',
-    function IndexCtrl($scope, $location) {
+app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
+    function IndexCtrl($scope, $location, manageService) {
+        getCurrentUser();
+
+        //---------------------------------------------------
+        // Service Calls
+        //---------------------------------------------------
+        function getCurrentUser(){
+            manageService.getCurrentUser().then(
+                function success(user){
+                    $scope.user = user;
+                },
+                function fail(reason){
+                    console.log("Unable to load current user: " + reason);
+                }
+            );
+        }
+
         //---------------------------------------------------
         // Navigation
         //---------------------------------------------------

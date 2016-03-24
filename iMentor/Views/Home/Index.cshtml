@@ -23,7 +23,7 @@
     <body ng-controller="indexCtrl" ng-cloak>
         <div>
             <div id="main-header" style="text-align:center;">
-                <nav class="navbar navbar-default">
+                <nav class="navbar navbar-default navbar-fixed-top" >
                     <div class="container">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -56,6 +56,21 @@
 
 
             <div id="main-content">
+
+                <div class="row content" ng-show="user.Id > 0">
+                    <div class="col-sm-12">
+                        <md-content>
+                            <md-toolbar md-scroll-shrink>
+                                <div class="md-toolbar-tools" style="background:#a7ffeb;color:#004d40;border:2px;">
+                                    <div>
+                                        Upcoming Events
+                                    </div>
+                                </div>
+                            </md-toolbar>
+                        </md-content>
+                    </div>
+                </div>
+
                 <div ng-view class="ngview-fade">
                 </div>
             </div>

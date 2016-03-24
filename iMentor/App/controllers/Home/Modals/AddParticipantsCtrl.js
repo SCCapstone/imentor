@@ -1,6 +1,6 @@
 ﻿
-app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', '$mdDialog', '$mdMedia', 'manageService', 'teachers', 'students', 'mentors', 'listing', 'assignments',
-    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, $mdDialog, $mdMedia, manageService, teachers, students, mentors, listing, assignments)
+app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', '$mdDialog', '$mdMedia', 'manageService', 'teachers', 'students', 'mentors', 'listing', 'assignments', 'editListings',
+    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, $mdDialog, $mdMedia, manageService, teachers, students, mentors, listing, assignments, editListings)
     {
         $scope.assignments = assignments;
         $scope.teachers = teachers;
@@ -268,14 +268,16 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                     removeParticipant(usersToRemove[i]);
                 }
 
-
                 $uibModalInstance.dismiss();
             }
+
+            editListings.refreshParticipantsList();
         };
 
         $scope.cancel = function ()
 	    {
-		    $uibModalInstance.dismiss();
+            $uibModalInstance.dismiss();
+            editListings.refreshParticipantsList();
         };
     }
 ])

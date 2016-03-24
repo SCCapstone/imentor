@@ -29,7 +29,6 @@
         
 
         <div class="row content">
-
             <div class="col-sm-6" style="margin-left:100px;">
                 <div class="panel panel-default" style="width:600px;">
                     <div class="panel-body" >
@@ -57,12 +56,12 @@
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
-                                <div class="md-toolbar-tools" ng-show="listing.Open && applied">
+                                <div class="md-toolbar-tools" style="background:#1de9b6;color:#004d40;" ng-show="listing.Open && applied">
                                     <div style="margin-left:85px;">
                                         You are applied to this listing
                                     </div>
                                 </div>
-                                <div class="md-toolbar-tools" style="background:green;" ng-show="listing.Open && !applied">
+                                <div class="md-toolbar-tools" style="background:#009688;" ng-show="listing.Open && !applied">
                                     <div style="margin-left:100px;">
                                         Apply for Listing
                                         <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
@@ -87,16 +86,15 @@
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
-                                <div class="md-toolbar-tools">
+                                <div class="md-toolbar-tools" style="background:#1de9b6;color:#004d40;">
                                     <div style="margin-left:100px;">
                                         Applicants
-                                        <md-button class="md-raised" ng-click="viewApplicants()">View</md-button>
+                                        <md-button class="md-raised" ng-click="viewApplicants()" >View</md-button>
                                     </div>
                                 </div>
                             </md-toolbar>
                         </md-content>
                     </div>
-
                 </div>
                 <!------------------------->
 
@@ -183,6 +181,7 @@
 
                         <div class="pull-right" style="padding-right:10px;">
                             <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
+                            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-refresh" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="refreshParticipantsList"></div>
                         </div>
                     </div>
 

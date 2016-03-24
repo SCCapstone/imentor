@@ -40,6 +40,16 @@ textarea {
 }
 
 #main-header {
+	max-width: 1280px;
+    min-width: 720px;
+    width: auto;
+    margin: 0 auto;
+}
+
+.sticky {
+  position: sticky;
+  top: 10px; /* When the element reaches top: 10px, it becomes fixed. */
+  z-index: 100;
 }
 
 #main-content {

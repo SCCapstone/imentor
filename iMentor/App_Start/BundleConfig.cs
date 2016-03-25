@@ -10,7 +10,6 @@ namespace iMentor
         {
           
             bundles.Add(new StyleBundle("~/bundles/content").Include(
-                
                 "~/Content/bootstrap-theme.css",
                 "~/Content/bootstrap-theme.css.map",
                 "~/Content/bootstrap-theme.min.css",
@@ -21,7 +20,10 @@ namespace iMentor
                 "~/Content/ui-grid.css",
                 "~/Content/fullcalendar.css",
                 "~/Content/fullcalendar.min.css",
+                "~/Content/font-awesome.css",
+                "~/Content/font-awesome.min.css",
                 "~/Content/ui-bootstrap-csp.css",
+                "~/Content/textAngular.css",
                 "~/Content/iMentor/iMentor-site.css"
                 ));
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -33,13 +35,16 @@ namespace iMentor
                "~/Scripts/angular-aria.js",
                "~/Scripts/angular-route.js",
                "~/Scripts/angular-messages.js",
-               "~/Scripts/angular-sanitize.js",
+               //"~/Scripts/angular-sanitize.js",
                "~/Scripts/angular-touch.js",
                "~/Scripts/angular-strap.js",
                "~/Scripts/angular-strap.tpl.js",
                "~/Scripts/ui-grid.js",
                "~/Scripts/xeditable.js",
                "~/Scripts/node-modules/angular-material/angular-material.js",
+               "~/Scripts/node-modules/textangular/dist/textAngular-rangy.min.js",
+               "~/Scripts/node-modules/textangular/dist/textAngular-sanitize.min.js",
+               "~/Scripts/node-modules/textangular/dist/textAngular.min.js",
                "~/Scripts/angular-ui/bootstrap.min.js",
                "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
                "~/Scripts/angular-ui-calendar/calendar.js"

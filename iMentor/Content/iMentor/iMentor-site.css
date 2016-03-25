@@ -55,7 +55,7 @@ textarea {
 #main-content {
 	height: 100%;
 	max-width: 1280px;
-    min-width: 720px;
+    min-width: 800px;
     width: auto;
     margin: 0 auto;
 }

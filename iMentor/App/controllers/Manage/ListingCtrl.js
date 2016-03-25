@@ -83,34 +83,27 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getListings().then(
                     function success(listings)
                     {
-                        $scope.listing = listings[0];
-
-                        $scope.listing.Id = 0;
-                        $scope.listing.Title = "*New Title*";
-                        $scope.listing.StartDate = new Date();
-                        $scope.listing.EndDate = new Date();
-                        $scope.listing.Area = "*Choose Subject*";
-                        $scope.listing.Frequency = "";
-                        $scope.listing.Description = "*New Description*";
-                        $scope.listing.Mentor = "";
-                        $scope.listing.Email = "";
-                        $scope.listing.HangoutUrl = "";
+                        $scope.listing = {
+                            Id: 0,
+                            Title: "*New Title*",
+                            StartDate: new Date(),
+                            EndDate: new Date(),
+                            Area: "*Choose Subject*",
+                            Frequency: "",
+                            Description: "*New Description*",
+                            HangoutUrl: null,
+                            TeacherId: null,
+                            Open: true
+                        };
 
                         if($scope.currentUser != null){
-                            $scope.listing.TeacherId = "";
+                            $scope.listing.TeacherId = $scope.currentUser.id
+                        } else {
+                            $scope.listing.TeacherId = 0;
                         }
-                        else{
-                            $scope.listing.Teacher = "";
-                        }
-
-                        $scope.listing.Open = true;
 
                         $scope.imagePath = getImage();
-                        
-                        getUsersByListing();
-                        getStudents();
-                        getMentors();
-                        getUsers();
+                        getUsersByListing(0);
                         getAssignments();
                         addTeacher();
 
@@ -302,10 +295,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             );
         }
 
-        function refreshParticipants() {
-            getUsersByListing($scope.listingId);
-            getAssignments();
-        }
+        
 
 
         // ---------------------------------------------------------------
@@ -442,6 +432,11 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 $scope.status = 'Canceled';
             });
         };
+
+        function refreshParticipants() {
+            getUsersByListing($scope.listingId);
+            getAssignments();
+        }
 
 
         // ---------------------------------------------------------------

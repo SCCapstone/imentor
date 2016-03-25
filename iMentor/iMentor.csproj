@@ -1859,7 +1859,7 @@
     <Content Include="Scripts\node-modules\textangular\dist\textAngular-rangy.min.js" />
     <Content Include="Scripts\node-modules\textangular\dist\textAngular-sanitize.js" />
     <Content Include="Scripts\node-modules\textangular\dist\textAngular-sanitize.min.js" />
-    <Content Include="Scripts\node-modules\textangular\dist\textAngular.css" />
+    <Content Include="Content\textAngular.css" />
     <Content Include="Scripts\node-modules\textangular\dist\textAngular.js" />
     <Content Include="Scripts\node-modules\textangular\dist\textAngular.min.js" />
     <Content Include="Scripts\node-modules\textangular\dist\textAngularSetup.js" />

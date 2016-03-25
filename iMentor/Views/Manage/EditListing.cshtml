@@ -39,6 +39,10 @@
                             <div ng-show="!editMode" style="font-size:20px;">{{listing.Title}}</div>
                         </div>
                         <hr />
+
+                        <div text-angular ng-model="htmlVariable"></div>
+
+
                         <div class="" >
                             <div style="font-size:14px;">
                                 <a href="#" ng-show="editMode" editable-textarea="listing.Description" e-rows="7" e-cols="40">{{ listing.Description || "Description" }}</a>

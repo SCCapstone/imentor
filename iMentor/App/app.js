@@ -9,6 +9,7 @@ var app = angular.module('app', [
     'mgcrea.ngStrap.timepicker',
     'ui.grid',
     'xeditable',
+    'textAngular',
     'ui.bootstrap',
     'ui.calendar',
     'iMentor.directives'

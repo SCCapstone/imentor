@@ -108,7 +108,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
 
         $scope.editListing = function (listingId)
         {
-            $location.path("/EditListing/" + listingId);
+            $location.path("/Listing/" + listingId);
         }
         
         $scope.showInactiveListings = function()

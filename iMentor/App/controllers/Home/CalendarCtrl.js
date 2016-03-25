@@ -107,7 +107,7 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
                             title: listings[i].Title,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
-                            url: "/#!/EditListing/" + listings[i].Id,
+                            url: "/#!/Listing/" + listings[i].Id,
                             allDay: false
 
                      

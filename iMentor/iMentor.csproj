@@ -364,7 +364,7 @@
     <Content Include="App\controllers\Home\LoginCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\controllers\Manage\EditListingCtrl.js">
+    <Content Include="App\controllers\Manage\ListingCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App\controllers\Manage\EditUserCtrl.js">
@@ -2114,7 +2114,7 @@
     <Content Include="Views\Manage\ManageListings.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Manage\EditListing.cshtml">
+    <Content Include="Views\Manage\Listing.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Manage\EditUser.cshtml">

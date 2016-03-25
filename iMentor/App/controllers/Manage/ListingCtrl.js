@@ -1,6 +1,6 @@
 ﻿
-app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', '$mdDialog', 'manageService',  'modalOptionService',
-    function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
+app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', '$mdDialog', 'manageService',  'modalOptionService',
+    function ListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
     {
         $scope.areaEditMode = false;
         $scope.descriptionEditMode = false;
@@ -348,9 +348,8 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
 
         $scope.editArea = function(){
             $scope.areaEditMode = true;
-
-            $scope.showAreas();
         }
+
         $scope.saveArea = function () {
             $scope.imagePath = getImage();
             
@@ -360,12 +359,24 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             $scope.areaEditMode = false;
         }
 
+        $scope.cancelArea = function () {
+            getListings();
+
+            $scope.areaEditMode = false;
+        }
+
         $scope.editDescription = function () {
             $scope.descriptionEditMode = true;
         }
+
         $scope.saveDescription = function () {
             manageService.updateListing($scope.listing);
 
+            $scope.descriptionEditMode = false;
+        }
+
+        $scope.cancelDescription = function () {
+            getListings();
 
             $scope.descriptionEditMode = false;
         }

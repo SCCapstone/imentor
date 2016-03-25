@@ -1,15 +1,6 @@
 ﻿<script src="https://apis.google.com/js/platform.js" async defer></script> @*This does not break the project. This script is fine*@
 
 
-@*<div class="ngview-wrapper" ng-class="cursorClass">
-    <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
-        <div class="form-group" style="clear:both">
-            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:150px;font-size:12px;" text="Toggle Edit Mode" on-click="toggleEditMode"></div>
-        </div>
-    </div>
-</div>*@
-
-
 <div class="ngview-body" style="padding-top:20px;">
     <div class="text-left" style="display:inline-block;">
 
@@ -18,7 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div style="font-size:16px;margin-top:3px;">
-                    <a href="#" ng-show="editMode" editable-checkbox="listing.Open" e-title="Listing Open">
+                    <a href="#" ng-show="descriptionEditMode" editable-checkbox="listing.Open" e-title="Listing Open">
                         {{ listing.Open && "Listing Open" || "Listing Closed" }}
                     </a>
                 </div>
@@ -35,6 +26,7 @@
                         <div class="pull-right">
                             <div im-btn ng-show="user.RoleId > 2 && !descriptionEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editDescription"></div>
                             <div im-btn ng-show="user.RoleId > 2 && descriptionEditMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDescription"></div>
+                            <div im-btn ng-show="user.RoleId > 2 && descriptionEditMode" icon="glyphicon glyphicon-remove-circle" style="width:30px;font-size:40px;float:right;color:red;" text="" on-click="cancelDescription"></div>
                         </div>
                         <div class="header-title">
                             <md-input-container ng-show="descriptionEditMode" class="md-block" style="width:90%;">

@@ -1,6 +1,6 @@
 ﻿
-app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', '$mdDialog', '$mdMedia', 'manageService', 'teachers', 'students', 'mentors', 'listing', 'assignments', 'editListings',
-    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, $mdDialog, $mdMedia, manageService, teachers, students, mentors, listing, assignments, editListings)
+app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location', '$rootScope', '$mdDialog', '$mdMedia', 'manageService', 'teachers', 'students', 'mentors', 'listing', 'assignments', 'listingsCtrl',
+    function addParticipantsCtrl($scope, $uibModalInstance, $location, $rootScope, $mdDialog, $mdMedia, manageService, teachers, students, mentors, listing, assignments, listingsCtrl)
     {
         $scope.assignments = assignments;
         $scope.teachers = teachers;
@@ -104,7 +104,6 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             for(var i = 0; i < assignments.length; i++){
                 if (user.Id == assignments[i].UserId
                     && listing.Id == assignments[i].ListingId) {
-                    console.log("already assigned");
                     return true;
                 }
             }
@@ -271,13 +270,13 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                 $uibModalInstance.dismiss();
             }
 
-            editListings.refreshParticipantsList();
+            listingsCtrl.refreshParticipantsList();
         };
 
         $scope.cancel = function ()
 	    {
             $uibModalInstance.dismiss();
-            editListings.refreshParticipantsList();
+            listingsCtrl.refreshParticipantsList();
         };
     }
 ])

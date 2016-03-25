@@ -40,8 +40,8 @@
                         </div>
                         <hr />
 
-                        <div text-angular ng-model="htmlVariable"></div>
-
+                        <div ng-show="areaEditMode" text-angular ng-model="htmlVariable"></div>
+                        <div ng-show="!areaEditMode" style="font-size:14px;" ng-bind-html="htmlVariable"></div>
 
                         <div class="" >
                             <div style="font-size:14px;">

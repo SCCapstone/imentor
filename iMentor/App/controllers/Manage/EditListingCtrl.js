@@ -5,6 +5,7 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         $scope.areaEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
+        $scope.htmlVariable = "";
 
         $scope.listings = [];
         $scope.currentUsers = [];

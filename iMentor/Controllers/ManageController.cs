@@ -27,7 +27,7 @@ namespace iMentor.Controllers
         }
 
         [System.Web.Mvc.AllowAnonymous]
-        public ActionResult EditListing()
+        public ActionResult Listing()
         {
             return PartialView();
         }

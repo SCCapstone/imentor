@@ -50,7 +50,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', '
         // ---------------------------------------------------------------
         $scope.goToCreateListing = function()
         {
-            $location.path("/EditListing/" + 0);
+            $location.path("/Listing/" + 0);
         }
 
 
@@ -58,7 +58,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', '
         // Modals
         // ---------------------------------------------------------------
         $scope.selectListing = function (listing) {
-             $location.path("/EditListing/" + listing.Id);
+             $location.path("/Listing/" + listing.Id);
         };
 
         $scope.showListingDetail = function (listing) {

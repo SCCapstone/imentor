@@ -25,7 +25,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
             .when('/ManageUsers', { templateUrl: 'Manage/manageUsers', controller: 'manageUsersCtrl' })
             .when('/ManageListings', { templateUrl: 'Manage/manageListings', controller: 'manageListingsCtrl' })
         
-            .when('/EditListing/:listingId', { templateUrl: 'Manage/editListing', controller: 'editListingCtrl' })
+            .when('/Listing/:listingId', { templateUrl: 'Manage/Listing', controller: 'listingCtrl' })
             .when('/EditUser/:userId', { templateUrl: 'Manage/editUser', controller: 'editUserCtrl' })
 
             .otherwise({ redirectTo: '/' });

@@ -16,7 +16,7 @@ app.controller('listingDetailCtrl', [ '$scope', '$uibModalInstance', '$location'
 	    {
             $rootScope.currentListing = listing;
 		    $uibModalInstance.dismiss();
-		    $location.path("/EditListing/" + listing.Id);
+		    $location.path("/Listing/" + listing.Id);
 	    };
     }
 ])

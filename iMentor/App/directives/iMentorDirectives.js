@@ -86,8 +86,6 @@
                     }
 
                     scope.save = function () {
-                        scope.timeEditMode = false;
-
                         //--Date/Time--
                         var startDate = new Date(scope.startDate);
                         var startTime = new Date(scope.startTime);
@@ -114,6 +112,8 @@
 
                         //--Update the listing--
                         manageService.updateListing(scope.listing);
+
+                        scope.timeEditMode = false;
                     }
 
                     function parseFrequency() {

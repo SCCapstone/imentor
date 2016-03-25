@@ -104,7 +104,6 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
             for(var i = 0; i < assignments.length; i++){
                 if (user.Id == assignments[i].UserId
                     && listing.Id == assignments[i].ListingId) {
-                    console.log("already assigned");
                     return true;
                 }
             }

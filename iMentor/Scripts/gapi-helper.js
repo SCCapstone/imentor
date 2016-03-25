@@ -14,14 +14,14 @@ gapi_helper.time = function () {
 // { clientId: "<id>", apiKey: "<key>", scopes: "https://www.googleapis.com/auth/calendar", 
 //   services: { calendar: 'v3' } }
 gapi_helper.configure = function (config) {
-    console.log("gapi configured %s", gapi_helper.time());
+    //console.log("gapi configured %s", gapi_helper.time());
     // TODO: confirm valid config
     gapi_helper.config = config;
     if (gapi_helper.status.scriptLoaded) gapi_helper.init();
 };
 
 gapi_helper.onScriptLoad = function () {
-    console.log("gapi script loaded %s", gapi_helper.time());
+//console.log("gapi script loaded %s", gapi_helper.time());
     gapi_helper.status.scriptLoaded = true;
     if (gapi_helper.config) gapi_helper.init();
 };
@@ -30,13 +30,13 @@ gapi_helper.onScriptLoad = function () {
 gapi_helper_onScriptLoad = gapi_helper.onScriptLoad;
 
 gapi_helper.init = function () {
-    console.log("gapi_helper.init %s", gapi_helper.time());
+    //console.log("gapi_helper.init %s", gapi_helper.time());
     gapi.client.setApiKey(gapi_helper.config.apiKey);
     window.setTimeout(gapi_helper.checkAuth, 1);
 };
 
 gapi_helper.checkAuth = function () {
-    console.log("gapi_helper.checkAuth %s", gapi_helper.time());
+    //console.log("gapi_helper.checkAuth %s", gapi_helper.time());
     gapi.auth.authorize({
         client_id: gapi_helper.config.clientId,
         scope: gapi_helper.config.scopes,
@@ -45,7 +45,7 @@ gapi_helper.checkAuth = function () {
 };
 
 gapi_helper.handleAuthResult = function (authResult) {
-    console.log("gapi_helper.handleAuthResult %s", gapi_helper.time());
+    //console.log("gapi_helper.handleAuthResult %s", gapi_helper.time());
     if (authResult && !authResult.error) {
         gapi_helper.fireEvent('authorized');
         gapi_helper.loadServices();
@@ -55,7 +55,7 @@ gapi_helper.handleAuthResult = function (authResult) {
 };
 
 gapi_helper.requestAuth = function (event) {
-    console.log("gapi_helper.requestAuth %s", gapi_helper.time());
+    //console.log("gapi_helper.requestAuth %s", gapi_helper.time());
     gapi.auth.authorize({
         client_id: gapi_helper.config.clientId,
         scope: gapi_helper.config.scopes,
@@ -66,11 +66,11 @@ gapi_helper.requestAuth = function (event) {
 };
 
 gapi_helper.loadServices = function () {
-    console.log("gapi_helper.loadServices %s", gapi_helper.time());
+   //console.log("gapi_helper.loadServices %s", gapi_helper.time());
 
     function eventFirer(name, version) {
         return function (result) {
-            console.log("%s %s loaded %s %O", name, version, gapi_helper.time(), result);
+            //console.log("%s %s loaded %s %O", name, version, gapi_helper.time(), result);
             gapi_helper.fireEvent(name + 'Loaded');
         };
     }
@@ -90,11 +90,11 @@ gapi_helper.when = function (eventName, callback) {
     // in any case, add the callback to the listeners array
     if (!gapi_helper.listeners[eventName]) gapi_helper.listeners[eventName] = [];
     gapi_helper.listeners[eventName].push(callback);
-    console.log('gapi_helper: registered listener for %s', eventName);
+    //console.log('gapi_helper: registered listener for %s', eventName);
 };
 
 gapi_helper.fireEvent = function (eventName) {
-    console.log("firing %s", eventName);
+    //console.log("firing %s", eventName);
     // register event
     gapi_helper.status[eventName] = true;
     // trigger listeners

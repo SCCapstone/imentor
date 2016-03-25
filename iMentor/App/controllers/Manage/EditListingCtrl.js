@@ -3,9 +3,9 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
     function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
     {
         $scope.areaEditMode = false;
+        $scope.descriptionEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
-        $scope.htmlVariable = "";
 
         $scope.listings = [];
         $scope.currentUsers = [];
@@ -360,6 +360,16 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             
 
             $scope.areaEditMode = false;
+        }
+
+        $scope.editDescription = function () {
+            $scope.descriptionEditMode = true;
+        }
+        $scope.saveDescription = function () {
+            manageService.updateListing($scope.listing);
+
+
+            $scope.descriptionEditMode = false;
         }
 
         $scope.editParticipants = function () {

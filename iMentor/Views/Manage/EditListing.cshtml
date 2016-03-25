@@ -32,23 +32,21 @@
             <div class="col-sm-6" style="margin-left:100px;">
                 <div class="panel panel-default" style="width:600px;">
                     <div class="panel-body" >
-                        <div class="header-title">
-                            <div style="font-size:20px;">
-                                <a href="#" ng-show="editMode" editable-text="listing.Title">{{ listing.Title || "Title" }}</a>
-                            </div>
-                            <div ng-show="!editMode" style="font-size:20px;">{{listing.Title}}</div>
+                        <div class="pull-right">
+                            <div im-btn ng-show="user.RoleId > 2 && !descriptionEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editDescription"></div>
+                            <div im-btn ng-show="user.RoleId > 2 && descriptionEditMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDescription"></div>
                         </div>
+                        <div class="header-title">
+                            <md-input-container ng-show="descriptionEditMode" class="md-block" style="width:90%;">
+                                <input style="width:500px;" ng-model="listing.Title">
+                            </md-input-container>
+                            <div ng-show="!descriptionEditMode" style="font-size:20px;">{{listing.Title}}</div>
+                        </div>
+
                         <hr />
 
-                        <div ng-show="areaEditMode" text-angular ng-model="htmlVariable"></div>
-                        <div ng-show="!areaEditMode" style="font-size:14px;" ng-bind-html="htmlVariable"></div>
-
-                        <div class="" >
-                            <div style="font-size:14px;">
-                                <a href="#" ng-show="editMode" editable-textarea="listing.Description" e-rows="7" e-cols="40">{{ listing.Description || "Description" }}</a>
-                            </div>
-                            <div ng-show="!editMode" style="font-size:14px;">{{listing.Description}}</div>
-                        </div>
+                        <div ng-show="descriptionEditMode" text-angular ng-model="listing.Description"></div>
+                        <div ng-show="!descriptionEditMode" style="font-size:14px;" ng-bind-html="listing.Description"></div>
                     </div>
                 </div>
             </div>
@@ -140,8 +138,8 @@
                             <div class="pull-right">
                                 <div im-btn ng-show="user.RoleId > 2 && !areaEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editArea"></div>
                                 <div im-btn ng-show="user.RoleId > 2 && areaEditMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveArea"></div>
-                                </div>
-                            <div>
+                            </div>
+                        <div>
                                 <img ng-src="{{imagePath}}" ng-show="!areaEditMode" class="img-responsive" style="margin-left:30%;" alt="" />
                             </div>
                         </div>

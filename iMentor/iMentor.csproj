@@ -396,23 +396,41 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bootstrap-theme.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bootstrap-theme.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bootstrap.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\fullcalendar.css" />
-    <Content Include="Content\fullcalendar.min.css" />
-    <Content Include="Content\fullcalendar.print.css" />
-    <Content Include="Content\glDatePicker.darkneon.css" />
-    <Content Include="Content\glDatePicker.default.css" />
-    <Content Include="Content\glDatePicker.flatwhite.css" />
+    <Content Include="Content\bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\font-awesome.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\font-awesome.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fullcalendar.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fullcalendar.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\fullcalendar.print.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\glDatePicker.darkneon.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\glDatePicker.default.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\glDatePicker.flatwhite.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\iMentor\iMentor-site.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -449,10 +467,18 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\ui-bootstrap-csp.css" />
-    <Content Include="Content\ui-grid.css" />
-    <Content Include="Content\ui-grid.min.css" />
-    <Content Include="Content\ui-grid.svg" />
+    <Content Include="Content\ui-bootstrap-csp.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui-grid.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui-grid.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui-grid.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -505,10 +531,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap.css.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-theme.min.css.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -559,9 +593,15 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="Content\ui-grid.woff" />
-    <Content Include="Content\ui-grid.ttf" />
-    <Content Include="Content\ui-grid.eot" />
+    <Content Include="Content\ui-grid.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui-grid.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ui-grid.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EntityDeploy Include="Models\dbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
@@ -1856,16 +1896,36 @@
     <Content Include="Scripts\node-modules\textangular\demo\demo.html" />
     <Content Include="Scripts\node-modules\textangular\demo\static-demo.html" />
     <Content Include="Scripts\node-modules\textangular\demo\textAngular.com.html" />
-    <Content Include="Scripts\node-modules\textangular\dist\textAngular-rangy.min.js" />
-    <Content Include="Scripts\node-modules\textangular\dist\textAngular-sanitize.js" />
-    <Content Include="Scripts\node-modules\textangular\dist\textAngular-sanitize.min.js" />
-    <Content Include="Content\textAngular.css" />
-    <Content Include="Scripts\node-modules\textangular\dist\textAngular.js" />
-    <Content Include="Scripts\node-modules\textangular\dist\textAngular.min.js" />
-    <Content Include="Scripts\node-modules\textangular\dist\textAngularSetup.js" />
-    <Content Include="Scripts\node-modules\textangular\Gruntfile.js" />
-    <Content Include="Scripts\node-modules\textangular\karma-jqlite.conf.js" />
-    <Content Include="Scripts\node-modules\textangular\karma-jquery.conf.js" />
+    <Content Include="Scripts\node-modules\textangular\dist\textAngular-rangy.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\dist\textAngular-sanitize.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\dist\textAngular-sanitize.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\textAngular.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\dist\textAngular.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\dist\textAngular.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\dist\textAngularSetup.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\Gruntfile.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\karma-jqlite.conf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\karma-jquery.conf.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-classapplier.js" />
     <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-core.js" />
     <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-highlighter.js" />
@@ -2060,19 +2120,37 @@
     <Content Include="Views\Manage\EditUser.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\node-modules\textangular\.bowerrc" />
-    <Content Include="Scripts\node-modules\textangular\.npmignore" />
-    <Content Include="Scripts\node-modules\textangular\.travis.yml" />
-    <Content Include="Scripts\node-modules\textangular\bower.json" />
-    <Content Include="Scripts\node-modules\textangular\changelog.md" />
-    <Content Include="Scripts\node-modules\textangular\CONTRIBUTING.md" />
-    <Content Include="Scripts\node-modules\textangular\moveit.sh" />
+    <Content Include="Scripts\node-modules\textangular\.bowerrc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\.npmignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\.travis.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\bower.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\changelog.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\CONTRIBUTING.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\moveit.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\node-modules\textangular\node_modules\rangy\.npmignore" />
     <Content Include="Scripts\node-modules\textangular\node_modules\rangy\LICENSE" />
     <Content Include="Scripts\node-modules\textangular\node_modules\rangy\package.json" />
     <Content Include="Scripts\node-modules\textangular\node_modules\rangy\README.md" />
-    <Content Include="Scripts\node-modules\textangular\package.json" />
-    <Content Include="Scripts\node-modules\textangular\README.md" />
+    <Content Include="Scripts\node-modules\textangular\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\node-modules\textangular\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

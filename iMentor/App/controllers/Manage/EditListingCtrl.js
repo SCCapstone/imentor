@@ -3,9 +3,9 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
     function EditListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
     {
         $scope.areaEditMode = false;
+        $scope.descriptionEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
-        $scope.htmlVariable = "";
 
         $scope.listings = [];
         $scope.currentUsers = [];
@@ -124,7 +124,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         }
 
         function getUsersByListing(listingId) {
-            console.log("getUsersByListing Called");
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
@@ -304,7 +303,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         }
 
         function refreshParticipants() {
-            console.log("Refresh Participants");
             getUsersByListing($scope.listingId);
             getAssignments();
         }
@@ -360,6 +358,16 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
             
 
             $scope.areaEditMode = false;
+        }
+
+        $scope.editDescription = function () {
+            $scope.descriptionEditMode = true;
+        }
+        $scope.saveDescription = function () {
+            manageService.updateListing($scope.listing);
+
+
+            $scope.descriptionEditMode = false;
         }
 
         $scope.editParticipants = function () {

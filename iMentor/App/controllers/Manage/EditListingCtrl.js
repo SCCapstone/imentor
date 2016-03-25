@@ -124,7 +124,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         }
 
         function getUsersByListing(listingId) {
-            console.log("getUsersByListing Called");
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
@@ -304,7 +303,6 @@ app.controller('editListingCtrl', ['$scope', '$rootScope', '$q', '$routeParams',
         }
 
         function refreshParticipants() {
-            console.log("Refresh Participants");
             getUsersByListing($scope.listingId);
             getAssignments();
         }

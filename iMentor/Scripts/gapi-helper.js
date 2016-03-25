@@ -106,7 +106,7 @@ gapi_helper.fireEvent = function (eventName) {
 
 gapi_helper.watcher = setInterval(function () {
     var loaded = typeof gapi !== "undefined" && gapi.client;
-    console.log("%s %s", loaded ? "gapi loaded" : "waiting", gapi_helper.time());
+    //console.log("%s %s", loaded ? "gapi loaded" : "waiting", gapi_helper.time());
     if (loaded) {
         clearTimeout(gapi_helper.watcher);
         gapi_helper.onScriptLoad();

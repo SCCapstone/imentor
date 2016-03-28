@@ -162,6 +162,18 @@ namespace UnitTests
             String ListingManagement = driver.FindElement(By.ClassName("header-title")).Text;
             Assert.AreEqual("Listing Management", ListingManagement);
 
+            // Verify that the add listing button is clickable.
+            IWebElement AddListing = driver.FindElement(By.XPath("//*[@id=\"main-content\"]/div[2]/div/div[2]/div[1]/div/div[2]/div"));
+            AddListing.Click();
+
+            // Also while we're here, check the login button (which is accessible anywhere).
+            IWebElement LogIn = driver.FindElement(By.XPath("//*[@id=\"loginLink\"]"));
+            LogIn.Click();
+
+            // To verify that the login page is up, check the Google Button.
+            String Google = driver.FindElement(By.ClassName("btn")).Text;
+            Assert.AreEqual("Google", Google);
+
             // End the test by closing the browser
             driver.Close();
         }

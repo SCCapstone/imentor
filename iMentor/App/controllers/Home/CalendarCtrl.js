@@ -3,8 +3,8 @@
 // Calendar controller- sets up calendar to pull events from database
 // ---------------------------------------------------------------
 
-app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$log',  'manageService',  'uiCalendarConfig',  'CalendarData', 'EventSourceFactory',
-    function CalendarCtrl($scope, $routeParms, $location, $q, $log, manageService, uiCalendarConfig,CalendarData, EventSourceFactory){
+app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$location', '$q', '$log',  'manageService',  'uiCalendarConfig',  'CalendarData', 'EventSourceFactory',
+    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, $log, manageService, uiCalendarConfig,CalendarData, EventSourceFactory){
 
         var date = new Date();
         var d = date.getDate();
@@ -72,14 +72,14 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
 
         // set authNeeded to appropriate value on auth events
         gapi_helper.when('authorized', function () {
-            $scope.$apply(function () {
+           
                 $scope.authNeeded = false;
-            });
+           
         });
         gapi_helper.when('authFailed', function () {
-            $scope.$apply(function () {
+          
                 $scope.authNeeded = true;
-            });
+          
         });
 
         // load the event sources when the calendar api is loaded
@@ -105,8 +105,14 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
         return datestring;
 	}
 
+         $('#calendar').fullCalendar('addEventSource',
+               function(start, end, timezone, callback) {})
 
-        function getListings() {
+
+         
+
+
+         function getListings() {
             manageService.getListings()
                 .then(function success(listings) {
 

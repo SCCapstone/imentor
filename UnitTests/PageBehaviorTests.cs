@@ -20,7 +20,7 @@ namespace UnitTests
         public void HomepageLoads_CalendarIsReachable()
         {
             // Instantiate a new web driver to run the test
-             IWebDriver driver = new ChromeDriver();
+            IWebDriver driver = new ChromeDriver("\\\\psf\\Home\\Documents\\GitHubVisualStudio\\imentor\\UnitTests\\");
 
             // Instruct the driver to throw an error if it has to wait more than 5 seconds for retrieval, then go to URL
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
@@ -100,7 +100,7 @@ namespace UnitTests
         public void HomepageLoads_ManageUsersIsReachable()
         {
             // Instantiate a new web driver to run the test
-            IWebDriver driver = new ChromeDriver();
+            IWebDriver driver = new ChromeDriver("\\\\psf\\Home\\Documents\\GitHubVisualStudio\\imentor\\UnitTests\\");
 
             // Instruct the driver to throw an error if it has to wait more than 5 seconds for retrieval, then go to URL
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
@@ -140,7 +140,7 @@ namespace UnitTests
         public void HomepageLoads_ManageListingsIsReachable()
         {
             // Instantiate a new web driver to run the test
-            IWebDriver driver = new ChromeDriver();
+            IWebDriver driver = new ChromeDriver("\\\\psf\\Home\\Documents\\GitHubVisualStudio\\imentor\\UnitTests\\");
 
             // Instruct the driver to throw an error if it has to wait more than 5 seconds for retrieval, then go to URL
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));

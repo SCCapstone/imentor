@@ -8,56 +8,71 @@
 
 
         <!-- Open/Closed-->
-        <div class="row">
+        @*<div class="row">
             <div class="col-sm-12">
-                <div class="row content" ng-show="isNew">
-                    <div class="col-sm-6">
-                        <md-content>
-                            <md-toolbar md-scroll-shrink>
-                                <div class="md-toolbar-tools" style="background:white;color:black;border:2px;">
-                                    <md-button class="md-primary md-raised" ng-click="createListing($event)">
-                                        Create Listing
-                                    </md-button>
-                                    <md-button class="md-primary md-raised" ng-click="cancelCreateListing($event)">
-                                        Cancel
-                                    </md-button>
-                                </div>
-                            </md-toolbar>
-                        </md-content>
-                    </div>
-                </div>
-
                 <div style="font-size:16px;margin-top:3px;">
                     <a href="#" ng-show="descriptionEditMode" editable-checkbox="listing.Open" e-title="Listing Open">
                         {{ listing.Open && "Listing Open" || "Listing Closed" }}
                     </a>
                 </div>
             </div>
-        </div>
+        </div>*@
         <!--------------->
             
         
 
         <div class="row content">
+            <div class="col-sm-12" style="padding-bottom:10px;">
+                <md-content class="pull-right" ng-show="!titleEditMode && !isNew">
+                    <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="editTitle()">
+                        Edit
+                    </md-button>
+                    <md-button class="md-raised" style="background:green;color:white;" ng-click="createNewListing()">
+                        Create new listing
+                    </md-button>
+                </md-content>
+                <md-content class="pull-right" ng-show="isNew">
+                    <md-button class="md-raised" style="background:green;color:white;" ng-click="createListing($event)">
+                        Submit new listing
+                    </md-button>
+                </md-content>
+
+                <md-input-container ng-show="titleEditMode" class="md-block" style="width:90%;">
+                    <label>Listing Title</label>
+                    <input class="thick" style="width:700px;font-size:36px;height:45px;" ng-model="listing.Title">
+
+                    <md-content class="" ng-show="!isNew">
+                        <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="saveTitle()">
+                            Save
+                        </md-button>
+                        <md-button class="" style="background:white;color:black;" ng-click="cancelTitle()">
+                            Cancel
+                        </md-button>
+                    </md-content>
+                </md-input-container>
+                <div class="thick" ng-show="!titleEditMode" style="font-size:36px;">{{listing.Title}}</div>
+
+                <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+            </div>
+
+            
+
             <div class="col-sm-6" style="margin-left:100px;">
                 <div class="panel panel-default" style="width:600px;">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="background:#f2f2f2;color:#999999;height:45px;">
                         <div class="pull-right">
                             <div im-btn ng-show="user.RoleId > 2 && !descriptionEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editDescription"></div>
-                            <div im-btn ng-show="user.RoleId > 2 && descriptionEditMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDescription"></div>
-                            <div im-btn ng-show="user.RoleId > 2 && descriptionEditMode" icon="glyphicon glyphicon-remove-circle" style="width:30px;font-size:40px;float:right;color:red;" text="" on-click="cancelDescription"></div>
+                            <div im-btn ng-show="user.RoleId > 2 && descriptionEditMode && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDescription"></div>
+                            <div im-btn ng-show="user.RoleId > 2 && descriptionEditMode && !isNew" icon="glyphicon glyphicon-remove-circle" style="width:30px;font-size:40px;float:right;color:red;" text="" on-click="cancelDescription"></div>
                         </div>
-                        <div class="header-title">
-                            <md-input-container ng-show="descriptionEditMode" class="md-block" style="width:90%;">
-                                <label>Listing Title</label>
-                                <input style="width:500px;" ng-model="listing.Title">
-                            </md-input-container>
-                            <div ng-show="!descriptionEditMode" style="font-size:20px;">{{listing.Title}}</div>
-                        </div>
+                        <div style="font-size:12px;padding-top:5px;">Created by {{owner.UserName}}</div>
                     </div>
+
                     <div class="panel-body">
                         <div ng-show="descriptionEditMode" text-angular style="width:565px;" ng-model="listing.Description"></div>
                         <div ng-show="!descriptionEditMode" style="font-size:14px;width:565px;" ng-bind-html="listing.Description"></div>
+
+                        
                     </div>
                 </div>
             </div>
@@ -95,7 +110,7 @@
                 <!------------------------->
 
                 <!--Teachers's view applicants button-->
-                <div class="row" ng-show="user.RoleId >= 3">
+                <div class="row" ng-show="user.RoleId >= 3 && !isNew">
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
@@ -113,7 +128,7 @@
 
 
                 <!--Details/Hangout Info-->
-                <div class="row" style="margin-top:10px;">
+                <div class="row" style="margin-top:10px;" ng-show="!isNew">
                     <div class="col-sm-12">
                         
                     <!-- Teacher Hangout Button -->
@@ -139,7 +154,7 @@
                     <!------------------------->
                 </div>
 
-                <md-content ng-show="user.RoleId > 1" style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                <md-content ng-show="user.RoleId > 1 &&!isNew" style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
 
                 <!-- Area Info -->
                 <div layout="row" layout-wrap>
@@ -147,8 +162,8 @@
 
                         <div class="row">
                             <div class="pull-right">
-                                <div im-btn ng-show="user.RoleId > 2 && !areaEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editArea"></div>
-                                <div im-btn ng-show="user.RoleId > 2 && areaEditMode" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveArea"></div>
+                                <div im-btn ng-show="user.RoleId > 2 && !areaEditMode && !isNew" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editArea"></div>
+                                <div im-btn ng-show="user.RoleId > 2 && areaEditMode  && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveArea"></div>
                             </div>
                         <div>
                                 <img ng-src="{{imagePath}}" ng-show="!areaEditMode" class="img-responsive" style="margin-left:30%;" alt="" />
@@ -193,8 +208,8 @@
                         <div class="im-form-label thick" style="width:50%;font-size:16px">Participants</div>
 
                         <div class="pull-right" style="padding-right:10px;">
-                            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
-                            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-refresh" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="refreshParticipantsList"></div>
+                            <div im-btn ng-show="user.RoleId > 2  && !isNew" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
+                            <div im-btn ng-show="user.RoleId > 2  && !isNew" icon="glyphicon glyphicon-refresh" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="refreshParticipantsList"></div>
                         </div>
                     </div>
 

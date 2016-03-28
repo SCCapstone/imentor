@@ -84,15 +84,12 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
 
         // load the event sources when the calendar api is loaded
         gapi_helper.when('calendarLoaded', $scope.loadSources);
-
+      
 
         function getListings() {
             manageService.getListings()
                 .then(function success(listings) {
 
-
-
-                    getCurrentUser();
 
                    
                     for(var i = 0; i < listings.length; i++)
@@ -105,7 +102,6 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
                         $scope.events2.push({
                             id: listings[i].Id,
                             title: listings[i].Title,
-                            frequency: listings[i].Frequency,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
                             url: "/#!/Listing/" + listings[i].Id,

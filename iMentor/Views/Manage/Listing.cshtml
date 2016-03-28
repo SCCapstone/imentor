@@ -5,9 +5,28 @@
     <div class="text-left" style="display:inline-block;">
 
 
+
+
         <!-- Open/Closed-->
         <div class="row">
             <div class="col-sm-12">
+                <div class="row content" ng-show="isNew">
+                    <div class="col-sm-6">
+                        <md-content>
+                            <md-toolbar md-scroll-shrink>
+                                <div class="md-toolbar-tools" style="background:white;color:black;border:2px;">
+                                    <md-button class="md-primary md-raised" ng-click="createListing($event)">
+                                        Create Listing
+                                    </md-button>
+                                    <md-button class="md-primary md-raised" ng-click="cancelCreateListing($event)">
+                                        Cancel
+                                    </md-button>
+                                </div>
+                            </md-toolbar>
+                        </md-content>
+                    </div>
+                </div>
+
                 <div style="font-size:16px;margin-top:3px;">
                     <a href="#" ng-show="descriptionEditMode" editable-checkbox="listing.Open" e-title="Listing Open">
                         {{ listing.Open && "Listing Open" || "Listing Closed" }}

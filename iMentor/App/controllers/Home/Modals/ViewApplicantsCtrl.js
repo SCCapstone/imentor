@@ -67,12 +67,6 @@ app.controller('viewApplicantsCtrl', ['$scope', '$uibModalInstance', '$location'
             manageService.removeParticipant(assignment);
         }
 
-        $scope.addListing = function () {
-            manageService.addListing($scope.listing)
-                .success(function (response) {
-                });
-        }
-
         $scope.save = function (ev)
         {
            

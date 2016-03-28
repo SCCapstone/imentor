@@ -62,6 +62,8 @@
 
                     parseFrequency();
 
+                    console.log("Date Time Listing: " + scope.listing.StartDate);
+
                     scope.timeEditMode = false;
                     scope.startTime = scope.listing.StartDate; 
                     scope.endTime = scope.listing.EndDate;

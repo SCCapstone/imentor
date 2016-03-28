@@ -56,16 +56,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     {
                         for (var i = 0; i < listings.length; i++)
                         {
-                            if(id == 0)
-                            {
-                                $scope.listing = null;
-                            }
-                            else if(listings[i].Id == id)
+                            if (listings[i].Id == id)
                             {
                                 $scope.listing = listings[i];
                                 $scope.listings.push($scope.listing);
                                 $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                                 $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+                                console.log($scope.listing.StartDate);
                                 $scope.imagePath = getImage();
                                 getUsersByListing($scope.listingId);
                                 getAssignments();
@@ -80,40 +77,42 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         function newListing(){
-            manageService.getListings().then(
-                    function success(listings)
-                    {
-                        $scope.listing = {
-                            Id: 0,
-                            Title: "*New Title*",
-                            StartDate: new Date(),
-                            EndDate: new Date(),
-                            Area: "*Choose Subject*",
-                            Frequency: "",
-                            Description: "*New Description*",
-                            HangoutUrl: null,
-                            TeacherId: null,
-                            Open: true
-                        };
+            $scope.listing = {
+                //Id: 0,
+                Title: "",
+                StartDate: new Date(),
+                EndDate: new Date(),
+                Area: "",
+                Frequency: "",
+                Description: "",
+                HangoutUrl: null,
+                TeacherId: null,
+                Open: true
+            };
 
-                        if($scope.currentUser != null){
-                            $scope.listing.TeacherId = $scope.currentUser.id
-                        } else {
-                            $scope.listing.TeacherId = 0;
-                        }
+            $scope.listings.push($scope.listing);
 
-                        $scope.imagePath = getImage();
-                        getUsersByListing(0);
-                        getAssignments();
-                        addTeacher();
+            if ($scope.user != null) {
+                $scope.listing.TeacherId = $scope.user.Id;
+            } else {
+                $scope.listing.TeacherId = 37;
+            }
 
-                        console.log($scope.listing);
-                    },
-                    function fail(reason)
-                    {
-                        console.log("Unable to load listing: " + reason);
-                    }
-                );
+            $scope.assignments = [];
+
+            manageService.addListing($scope.listing).then(
+                function success(listing) {
+                    $scope.listing = listing;
+
+                    addTeacher(listing);
+                },
+                function error(response) {
+                    console.log("Unable to add new listing: " + response);
+                }
+            );
+
+            $scope.areaEditMode = true;
+            $scope.descriptionEditMode = true;
         }
 
         function getUsersByListing(listingId) {
@@ -201,8 +200,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getUsers().then(
                 function success(users) {
                     for (var i = 0; i < users.length; i++) {
-                        if (users[i].Id == $scope.listing.TeacherId) {
-                            $scope.owner = users[i];
+                        if ($scope.listing != null) {
+                            if (users[i].Id == $scope.listing.TeacherId) {
+                                $scope.owner = users[i];
+                            }
                         }
                     }
                 },
@@ -239,25 +240,28 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 function success(applicants){
                     $scope.applicants = [];
 
-                    //Get all applicants for this listing
-                    for (var j = 0; j < mentors.length; j++) {
-                        for (var i = 0; i < applicants.length; i++) {
-                            if (mentors[j].Id == applicants[i].UserId
-                            && $scope.listing.Id == applicants[i].ListingId) {
-                                $scope.applicants.push(mentors[j]);
+                    if ($scope.listing != null) {
+                        //Get all applicants for this listing
+
+                        for (var j = 0; j < mentors.length; j++) {
+                            for (var i = 0; i < applicants.length; i++) {
+                                if (mentors[j].Id == applicants[i].UserId
+                                && $scope.listing.Id == applicants[i].ListingId) {
+                                    $scope.applicants.push(mentors[j]);
+                                }
                             }
                         }
-                    }
 
-                    //Check if current user is an applicant
-                    if($scope.user != null){
-                        for(var i = 0; i < $scope.applicants.length; i++){
-                            console.log($scope.applicants[i].Id);
-                            if($scope.applicants[i].Id == $scope.user.Id){
-                                $scope.applied = true;
-                                break;
-                            }else{
-                                $scope.applied = false;
+                        //Check if current user is an applicant
+                        if ($scope.user != null) {
+                            for (var i = 0; i < $scope.applicants.length; i++) {
+                                console.log($scope.applicants[i].Id);
+                                if ($scope.applicants[i].Id == $scope.user.Id) {
+                                    $scope.applied = true;
+                                    break;
+                                } else {
+                                    $scope.applied = false;
+                                }
                             }
                         }
                     }
@@ -301,25 +305,12 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         // ---------------------------------------------------------------
         // Functions
         // ---------------------------------------------------------------
-        
-        $scope.save = function () {
-            if ($scope.isNew) {
-                $scope.addListing();
-            }
-            else {
-                $scope.updateListing();
-            }
-        }
-
-        
-
-        $scope.cancel = function () {
-            $location.path("/ManageListings");
-        }
-
         $scope.addListing = function () {
             manageService.addListing($scope.listing).then(
                 function success(response){
+                },
+                function error(response) {
+                    console.log("Unable to add listing: " + response);
                 }
             );
         }
@@ -328,6 +319,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.updateListing($scope.listing).then(
                 function success(response){
                 }
+            );
+        }
+
+        $scope.deleteListing = function() {
+            manageService.deleteListing($scope.listing).then(
+                function success(response){
+                }    
             );
         }
 
@@ -433,6 +431,27 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             });
         };
 
+        $scope.showConfirm = function (ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Create this listing?')
+                  .textContent($scope.listing.Title)
+                  .ariaLabel('')
+                  .targetEvent(ev)
+                  .ok('Create')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                //Save the application
+                console.log("Listing Created");
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
+
+        $scope.cancelCreateListing = function () {
+            $scope.deleteListing();
+        }
+
         function refreshParticipants() {
             getUsersByListing($scope.listingId);
             getAssignments();
@@ -452,39 +471,20 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 return -1;
         }
 
-        function getDate() {
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1; //January is 0!
-            var yyyy = today.getFullYear();
-
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-
-            //today = mm+'/'+dd+'/'+yyyy;
-
-            return new Date(dd, mm, yyyy);
-        }
-
-        function addTeacher() {
-            if ($scope.assignments != null && $scope.user != null) {
-                var assignment = $scope.assignments[0];
-
-                assignment.UserId = $scope.user.Id;
-                assignment.ListingId = listing.Id;
-
+        function addTeacher(listing) {
+            if ($scope.user != null) {
+                var assignment = {
+                    Id: 0,
+                    UserId: $scope.userId,
+                    ListingId: listing.Id,
+                }
 
                 manageService.addParticipant(assignment).then(
                     function success(response) {
-                        console.log("Teacher added: " + assignment);
+                        console.log("Teacher Added");
                     },
                     function error(response) {
-                        console.log(response);
+                        console.log("Unable to add teacher");
                     }
                 );
             }

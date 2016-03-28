@@ -26,7 +26,7 @@
                             <div class="panel-title" style="font-size:30px">Listings</div>
                             <div class="row" style="padding-right: 20px;">
                                 <div style="font-size:12px;">
-                                    @*<div im-btn icon="glyphicon glyphicon-plus" ng-click="goToCreateListing()" text="Add Listing" on-click="addListing" class="pull-right"></div>*@
+                                    <div im-btn icon="glyphicon glyphicon-plus" ng-show="user.RoleId >= 3" ng-click="goToCreateListing()" text="Add Listing" on-click="addListing" class="pull-right"></div>
                                 </div>
                             </div>
                         </div>

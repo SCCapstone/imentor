@@ -3,8 +3,8 @@
 // Calendar controller- sets up calendar to pull events from database
 // ---------------------------------------------------------------
 
-app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$log',  'manageService',  'uiCalendarConfig',  'CalendarData', 'EventSourceFactory',
-    function CalendarCtrl($scope, $routeParms, $location, $q, $log, manageService, uiCalendarConfig,CalendarData, EventSourceFactory){
+app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$location', '$q', '$log',  'manageService',  'uiCalendarConfig',  'CalendarData', 'EventSourceFactory',
+    function CalendarCtrl($scope,$rootScope, $routeParms, $location, $q, $log, manageService, uiCalendarConfig,CalendarData, EventSourceFactory){
 
         var date = new Date();
         var d = date.getDate();
@@ -36,10 +36,10 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
 
 
       
-// ---------------------------------------------------------------
-// Retrieves listings from database, populates calendar, on
-// event click redirects to listing detail page.
-// ---------------------------------------------------------------  
+        // ---------------------------------------------------------------
+        // Retrieves listings from database, populates calendar, on
+        // event click redirects to listing detail page.
+        // ---------------------------------------------------------------  
         // load calendars from google and pass them as event sources to fullcalendar
         $scope.loadSources = function () {
             EventSourceFactory.getEventSources().then(function (result) {
@@ -72,41 +72,64 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
 
         // set authNeeded to appropriate value on auth events
         gapi_helper.when('authorized', function () {
-            $scope.$apply(function () {
-                $scope.authNeeded = false;
-            });
+           
+            $scope.authNeeded = false;
+           
         });
         gapi_helper.when('authFailed', function () {
-            $scope.$apply(function () {
-                $scope.authNeeded = true;
-            });
+          
+            $scope.authNeeded = true;
+          
         });
 
         // load the event sources when the calendar api is loaded
         gapi_helper.when('calendarLoaded', $scope.loadSources);
       
       
-         $scope.getDateString = function GetDateString(myDate){
-		// GET CURRENT DATE
-		var date = new Date(myDate);
+        $scope.getDateString = function GetDateString(myDate){
+            // GET CURRENT DATE
+            var date = new Date(myDate);
 		 
-		// GET YYYY, MM AND DD FROM THE DATE OBJECT
-		var yyyy = date.getFullYear().toString();
-		var mm = (date.getMonth()+1).toString();
-		var dd  = date.getDate().toString();
+            // GET YYYY, MM AND DD FROM THE DATE OBJECT
+            var yyyy = date.getFullYear().toString();
+            var mm = (date.getMonth()+1).toString();
+            var dd  = date.getDate().toString();
 		 
-		// CONVERT mm AND dd INTO chars
-		var mmChars = mm.split('');
-		var ddChars = dd.split('');
+            // CONVERT mm AND dd INTO chars
+            var mmChars = mm.split('');
+            var ddChars = dd.split('');
 		 
-		// CONCAT THE STRINGS IN YYYY-MM-DD FORMAT
-		var datestring = yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+            // CONCAT THE STRINGS IN YYYY-MM-DD FORMAT
+            var datestring = yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
         
-        return datestring;
-	}
+            return datestring;
+        }
+
+        $('#calendar').fullCalendar('addEventSource',
+              function (start, end, timezone, callback) {
+                  $scope.events = [];
+
+                  for (loop = start.toDate().getTime() ; loop <= end.toDate().getTime() ; loop = loop + (24 * 60 * 60 * 1000))
+                  {
+                      $scope.test_date = new Date(loop);
 
 
-        function getListings() {
+                  }
+              })
+                 
+
+                      
+           
+
+              
+                   
+   
+
+
+         
+
+
+         function getListings() {
             manageService.getListings()
                 .then(function success(listings) {
 

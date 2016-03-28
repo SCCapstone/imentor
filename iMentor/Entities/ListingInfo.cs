@@ -50,10 +50,15 @@ namespace iMentor.Entities
         {
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
-                var teacher = db.iMentorUsers.Where(x => x.Id == listing.TeacherId).FirstOrDefault();
-                var result = teacher.UserName;
+                try {
+                    var teacher = db.iMentorUsers.Where(x => x.Id == listing.TeacherId).FirstOrDefault();
+                    var result = teacher.UserName;
 
-                return result;
+                    return result;
+                }catch(Exception err)
+                {
+                    return err.ToString();
+                }
             }
         }
 

@@ -73,21 +73,29 @@ namespace iMentor.Controllers
 
 
         [AllowAnonymous]
-        public string AddListing(ListingModel listing)
+        public JsonResult AddListing(ListingModel listing)
         {
             if (listing != null)
             {
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
-                    db.ListingModels.Add(listing);
-                    db.SaveChanges();
-
-                    return "Listing Added";
+                    try
+                    {
+                        db.ListingModels.Add(listing);
+                        db.SaveChanges();
+                        
+                        //Return the listing because it now has its new Id
+                        return Json(listing, JsonRequestBehavior.AllowGet);
+                    }
+                    catch(Exception err)
+                    {
+                        return Json(err, JsonRequestBehavior.AllowGet);
+                    }
                 }
             }
             else
             {
-                return "Invalid Listing";
+                return Json("Invalid listing", JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -137,7 +145,7 @@ namespace iMentor.Controllers
                         l.Frequency = listing.Frequency;
                         l.Description = listing.Description;
                         l.HangoutUrl = listing.HangoutUrl;
-                        l.TeacherId = listing.GetTeacherIdByName(listing.Teacher);
+                        l.TeacherId = listing.TeacherId;
                         l.Open = listing.Open;
                         db.SaveChanges();
                         return "Listing Updated";
@@ -381,10 +389,17 @@ namespace iMentor.Controllers
             {
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
-                    db.AssignedListings.Add(assignment);
-                    db.SaveChanges();
+                    try
+                    {
+                        db.AssignedListings.Add(assignment);
+                        db.SaveChanges();
 
-                    return "Assignment Added";
+                        return "Assignment Added";
+                    }
+                    catch (Exception err)
+                    {
+                        return err.ToString();
+                    }
                 }
             }
             else

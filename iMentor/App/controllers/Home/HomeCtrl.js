@@ -48,7 +48,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', '
         // ---------------------------------------------------------------
         // Navigation
         // ---------------------------------------------------------------
-        $scope.goToCreateListing = function()
+        $scope.createNewListing = function()
         {
             $location.path("/Listing/" + 0);
         }

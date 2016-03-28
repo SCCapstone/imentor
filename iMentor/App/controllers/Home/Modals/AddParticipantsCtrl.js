@@ -177,12 +177,14 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
         }
 
         function addParticipant(user) {
-            var assignment = assignments[0];
+            if(user != null){
+                var assignment = {
+                    UserId: user.Id,
+                    ListingId: listing.Id
+                }
 
-            assignment.UserId = user.Id;
-            assignment.ListingId = listing.Id;
-
-            manageService.addParticipant(assignment);
+                manageService.addParticipant(assignment);
+            }
         }
 
         function removeParticipant(user) {
@@ -219,7 +221,7 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                     addParticipant(newAssignedUsers[i]);
                 }
 
-                
+                $uibModalInstance.dismiss();
             }
             //No users in new array.  Remove all
             else if (newAssignedUsers.length == 0 && !currentAssignedUsers.length == 0) {

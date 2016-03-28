@@ -282,22 +282,26 @@ namespace iMentor.Controllers
                 {
                     var userIds = new List<int>();
                     int id = Convert.ToInt32(data);
-                    var listing = db.ListingModels.Where(x => x.Id == id).FirstOrDefault();
 
-                    var assignments = db.AssignedListings.Where(x => x.ListingId == listing.Id).ToList();
-
-                    foreach (AssignedListing assignment in assignments)
+                    if (id > 0)
                     {
-                        var user = db.iMentorUsers.Where(x => x.Id == assignment.UserId).FirstOrDefault();
+                        var listing = db.ListingModels.Where(x => x.Id == id).FirstOrDefault();
 
-                        var u = new iMentorUserInfo();
-                        u.Id = user.Id;
-                        u.UserName = user.UserName;
-                        u.Email = user.Email;
-                        u.RoleId = user.RoleId;
-                        u.Role = u.GetRoleByUser(user);
+                        var assignments = db.AssignedListings.Where(x => x.ListingId == listing.Id).ToList();
 
-                        users.Add(u);
+                        foreach (AssignedListing assignment in assignments)
+                        {
+                            var user = db.iMentorUsers.Where(x => x.Id == assignment.UserId).FirstOrDefault();
+
+                            var u = new iMentorUserInfo();
+                            u.Id = user.Id;
+                            u.UserName = user.UserName;
+                            u.Email = user.Email;
+                            u.RoleId = user.RoleId;
+                            u.Role = u.GetRoleByUser(user);
+
+                            users.Add(u);
+                        }
                     }
                 }
 

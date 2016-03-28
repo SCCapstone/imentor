@@ -4,6 +4,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
     {
         $scope.areaEditMode = false;
         $scope.descriptionEditMode = false;
+        $scope.titleEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
 
@@ -78,7 +79,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
 
         function newListing(){
             $scope.listing = {
-                //Id: 0,
                 Title: "",
                 StartDate: new Date(),
                 EndDate: new Date(),
@@ -87,7 +87,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 Description: "",
                 HangoutUrl: null,
                 TeacherId: null,
-                Open: true
+                Open: false
             };
 
             $scope.listings.push($scope.listing);
@@ -111,6 +111,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 }
             );
 
+            $scope.titleEditMode = true;
             $scope.areaEditMode = true;
             $scope.descriptionEditMode = true;
         }
@@ -255,7 +256,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                         //Check if current user is an applicant
                         if ($scope.user != null) {
                             for (var i = 0; i < $scope.applicants.length; i++) {
-                                console.log($scope.applicants[i].Id);
                                 if ($scope.applicants[i].Id == $scope.user.Id) {
                                     $scope.applied = true;
                                     break;
@@ -329,9 +329,28 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             );
         }
 
+        $scope.createNewListing = function () {
+            $location.path("/Listing/" + 0);
+        }
+
         $scope.applyForListing = function(){
             console.log("Apply for Listing clicked!");
             
+        }
+
+        $scope.editTitle = function () {
+            $scope.titleEditMode = true;
+        }
+
+        $scope.saveTitle = function () {
+            manageService.updateListing($scope.listing);
+
+            $scope.titleEditMode = false;
+        }
+
+        $scope.cancelTitle = function () {
+            getListings();
+            $scope.titleEditMode = false;
         }
 
         $scope.editArea = function(){
@@ -431,7 +450,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             });
         };
 
-        $scope.showConfirm = function (ev) {
+        $scope.createListing = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
                   .title('Create this listing?')
@@ -441,8 +460,21 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                   .ok('Create')
                   .cancel('Cancel');
             $mdDialog.show(confirm).then(function () {
-                //Save the application
-                console.log("Listing Created");
+
+                
+
+                $scope.listing.Open = true;
+
+                manageService.updateListing($scope.listing).then(
+                    function success(respones) {
+                        console.log("Listing Created");
+                        $location.path('/');
+                    },
+                    function error(response) {
+                        console.log("Unable to create listing");
+                    }
+                );
+
             }, function () {
                 $scope.status = 'Canceled';
             });
@@ -453,7 +485,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         function refreshParticipants() {
-            getUsersByListing($scope.listingId);
+            getUsersByListing($scope.listing.Id);
             getAssignments();
         }
 

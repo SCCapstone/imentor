@@ -60,7 +60,7 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
         };
 
         // configure gapi-helper
-        // (you'll have to change these values for your own app)
+       
         gapi_helper.configure({
             clientId: '1086641013362-rj0u1ckimo3hs369gc8q40bvqs2d1rau.apps.googleusercontent.com',
             apiKey: 'AIzaSyAbFYYKc7cdZwPTYhi9wK-C_hwZku3lVaE',
@@ -85,6 +85,26 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
         // load the event sources when the calendar api is loaded
         gapi_helper.when('calendarLoaded', $scope.loadSources);
       
+      
+         $scope.getDateString = function GetDateString(myDate){
+		// GET CURRENT DATE
+		var date = new Date(myDate);
+		 
+		// GET YYYY, MM AND DD FROM THE DATE OBJECT
+		var yyyy = date.getFullYear().toString();
+		var mm = (date.getMonth()+1).toString();
+		var dd  = date.getDate().toString();
+		 
+		// CONVERT mm AND dd INTO chars
+		var mmChars = mm.split('');
+		var ddChars = dd.split('');
+		 
+		// CONCAT THE STRINGS IN YYYY-MM-DD FORMAT
+		var datestring = yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+        
+        return datestring;
+	}
+
 
         function getListings() {
             manageService.getListings()
@@ -105,6 +125,7 @@ app.controller('calendarCtrl', ['$scope',  '$routeParams','$location', '$q', '$l
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
                             url: "/#!/Listing/" + listings[i].Id,
+                            frequency: listings[i].Frequency,
                             allDay: false
 
                      

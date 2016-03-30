@@ -5,7 +5,7 @@
             <div class="row content">
                 <div class="col-sm-12" style="padding-bottom:10px;">
                     <md-content class="pull-right">
-                        <md-button class="md-raised" style="background:green;color:white;" ng-click="createNewListing()">
+                        <md-button class="md-raised" style="background:green;color:white;" ng-show="user.RoleId >= 3" ng-click="createNewListing()">
                             Create new listing
                         </md-button>
                     </md-content>

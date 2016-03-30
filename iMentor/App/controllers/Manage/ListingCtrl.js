@@ -60,7 +60,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                             if (listings[i].Id == id)
                             {
                                 $scope.listing = listings[i];
-                                $scope.listings.push($scope.listing);
+                                $scope.listings.push($scope.listing);                                
                                 $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                                 $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
                                 console.log($scope.listing.StartDate);
@@ -100,17 +100,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
 
             $scope.assignments = [];
 
-            manageService.addListing($scope.listing).then(
-                function success(listing) {
-                    $scope.listing = listing;
-
-                    addTeacher(listing);
-                },
-                function error(response) {
-                    console.log("Unable to add new listing: " + response);
-                }
-            );
-
             $scope.titleEditMode = true;
             $scope.areaEditMode = true;
             $scope.descriptionEditMode = true;
@@ -121,6 +110,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
 
+                    //If the current user is assigned to the listing
                     for (var i = 0; i < assignedUsers.length; i++) {
                         if (assignedUsers[i].Id == $scope.user.Id) {
                             $scope.assigned = true;
@@ -366,13 +356,9 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             $scope.areaEditMode = false;
         }
 
-        $scope.cancelArea = function () {
-            getListings();
-
-            $scope.areaEditMode = false;
-        }
-
         $scope.editDescription = function () {
+            $scope.oldDescription = $scope.listing.Description;
+
             $scope.descriptionEditMode = true;
         }
 
@@ -383,7 +369,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         $scope.cancelDescription = function () {
-            getListings();
+            $scope.listing.Description = $scope.oldDescription;
 
             $scope.descriptionEditMode = false;
         }
@@ -461,14 +447,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                   .cancel('Cancel');
             $mdDialog.show(confirm).then(function () {
 
-                
-
                 $scope.listing.Open = true;
+                $rootScope.$broadcast('saveDateTime', {});
 
-                manageService.updateListing($scope.listing).then(
-                    function success(respones) {
-                        console.log("Listing Created");
-                        $location.path('/');
+                manageService.addListing($scope.listing).then(
+                    function success(listing) {
+                        addTeacher(listing.Id);
+                        $location.path("/Listing/" + listing.Id);
                     },
                     function error(response) {
                         console.log("Unable to create listing");
@@ -503,14 +488,16 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 return -1;
         }
 
-        function addTeacher(listing) {
+        function addTeacher(listingId) {
+            console.log($scope.user);
             if ($scope.user != null) {
                 var assignment = {
-                    Id: 0,
-                    UserId: $scope.userId,
-                    ListingId: listing.Id,
+                    UserId: $scope.user.Id,
+                    ListingId: listingId,
                 }
 
+                console.log(assignment);
+                
                 manageService.addParticipant(assignment).then(
                     function success(response) {
                         console.log("Teacher Added");
@@ -626,7 +613,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                             it.background = "#004d40";
                             it.span.row = it.span.col = 2;
                             break;
-                        case 4: it.background = "#B9F6CA"; break;
+                        case 4://Administrator
+                            it.background = "#004d40";
+                            it.span.row = it.span.col = 2;
+                            break;
                     }
 
                     results.push(it);

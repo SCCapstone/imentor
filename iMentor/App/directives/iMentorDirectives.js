@@ -115,7 +115,7 @@
                         scope.timeEditMode = true;
                     }
 
-                    scope.save = function () {
+                    scope.saveDateTime = function () {
                         //--Date/Time--
                         var startDate = new Date(scope.startDate);
                         var startTime = new Date(scope.startTime);
@@ -140,11 +140,19 @@
                         }
                         scope.listing.Frequency = frequency;
 
-                        //--Update the listing--
-                        manageService.updateListing(scope.listing);
+                        //--Update the listing if it's not new--
+                        if(!scope.isNew){
+                            manageService.updateListing(scope.listing);
+                        }
 
                         scope.timeEditMode = false;
                     }
+
+
+                    //This function allows other code to call it through the $rootscope
+                    scope.$on('saveDateTime', function (event, data) {
+                        scope.saveDateTime();
+                    });
 
                     function parseFrequency() {
                         if(scope.listing.Frequency != null){

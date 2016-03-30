@@ -23,7 +23,7 @@
 
         <div class="row content">
             <div class="col-sm-12" style="padding-bottom:10px;">
-                <md-content class="pull-right" ng-show="!titleEditMode && !isNew">
+                <md-content class="pull-right" ng-show="!titleEditMode && !isNew && user.RoleId >= 3">
                     <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="editTitle()">
                         Edit
                     </md-button>
@@ -80,7 +80,7 @@
             <div class="col-sm-6" style="width:500px;">
 
                 <!--Mentor's apply button-->
-                <div class="row" ng-show="user.RoleId == 2 && applied != null" style="margin-bottom:20px">
+                <div class="row" ng-show="user.RoleId == 2 && applied != null && !assigned" style="margin-bottom:20px">
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
@@ -101,6 +101,19 @@
                                     <div style="margin-left:100px;">
                                         Listing is Full
                                         <md-button class="md-raised" disabled>Apply</md-button>
+                                    </div>
+                                </div>
+                            </md-toolbar>
+                        </md-content>
+                    </div>
+                </div>
+                <div class="row" ng-show="user.RoleId <= 2 && assigned" style="margin-bottom:20px">
+                    <div class="col-sm-12">
+                        <md-content>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools" style="background:#26a69a;color:#004d40;" ng-show="listing.Open">
+                                    <div style="margin-left:85px;">
+                                        You are assigned to this listing.
                                     </div>
                                 </div>
                             </md-toolbar>
@@ -202,14 +215,14 @@
 
                 <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
 
-                <div class="row">
+                <div class="row" ng-show="!isNew">
                     <div class="col-md-11" style="margin-left:50px;margin-bottom:10px;text-align:center;">
 
                         <div class="im-form-label thick" style="width:50%;font-size:16px">Participants</div>
 
                         <div class="pull-right" style="padding-right:10px;">
-                            <div im-btn ng-show="user.RoleId > 2  && !isNew" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
-                            <div im-btn ng-show="user.RoleId > 2  && !isNew" icon="glyphicon glyphicon-refresh" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="refreshParticipantsList"></div>
+                            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
+                            <div im-btn ng-show="user.RoleId > 2" icon="glyphicon glyphicon-refresh" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="refreshParticipantsList"></div>
                         </div>
                     </div>
 
@@ -226,6 +239,9 @@
 
                         </md-grid-list>
                     </div>
+                </div>
+                <div class="row" ng-show="isNew" style="text-align:center;">
+                    <div class="im-form-label thick" style="width:75%;font-size:16px;color:#004d40;">Submit the listing to add participants.</div>
                 </div>
             </div>
         </div>

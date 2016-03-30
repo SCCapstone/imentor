@@ -1,5 +1,5 @@
 ﻿<div class="ngview-wrapper">
-    <div class="ngview-body" style="padding-top:25px;">
+    <div class="ngview-body" style="padding-top:10px;">
         <div class="container-fluid">
 
             <div class="row content">
@@ -10,7 +10,7 @@
                         </md-button>
                     </md-content>
 
-                    <div class="thick" style="font-size:24px;color:gray;">Search bar will go here_______________________________</div>
+                    
                 </div>
             </div>
 
@@ -18,8 +18,21 @@
                 <div class="col-sm-3">
                     <!--Filters-->
                     <div class="panel panel-default">
-                        <div class="panel-body">
+                        <div class="panel-heading">
+                            <div class="panel-title" style="font-size:20px">Filters</div>
+                        </div>
 
+                        <div class="panel-body">
+                            <form class="navbar-form" role="search">
+                                <md-input-container class="md-block" style="width:100%;">
+                                    <label>Search</label>
+                                    <input class="thick" style="width:80%;font-size:16px;height:34px;" ng-model="searchText">
+
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" style="height:34px;" ng-click="search()"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                </md-input-container>
+                            </form>
                             <div>
                                 Subjects<br />
                                 <input type="checkbox" ng-click="includeArea('Math')" /> Math<br />

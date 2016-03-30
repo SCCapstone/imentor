@@ -17,7 +17,7 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
         $scope.events2 = [];
         $scope.authNeeded = false;
         getListings();
-        $scope.eventSources = [$scope.events, $scope.events2];
+        $scope.eventSources = [$scope.events];
    
         $scope.uiConfig = {
             calendar: {
@@ -30,7 +30,7 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
                     right: 'month,basicWeek,basicDay'
 
                 },
-         
+        
             }
         };
 
@@ -41,7 +41,7 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
         // event click redirects to listing detail page.
         // ---------------------------------------------------------------  
         // load calendars from google and pass them as event sources to fullcalendar
-        $scope.loadSources = function () {
+        /*$scope.loadSources = function () {
             EventSourceFactory.getEventSources().then(function (result) {
                
                 $scope.events = result;
@@ -83,9 +83,9 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
         });
 
         // load the event sources when the calendar api is loaded
-        gapi_helper.when('calendarLoaded', $scope.loadSources);
+        gapi_helper.when('calendarLoaded', $scope.loadSources);*/
       
-      
+     
         $scope.getDateString = function GetDateString(myDate){
             // GET CURRENT DATE
             var date = new Date(myDate);
@@ -105,7 +105,7 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
             return datestring;
         }
 
-        $('#calendar').fullCalendar('addEventSource',
+       /* $('#calendar').fullCalendar('addEventSource',
               function (start, end, timezone, callback) {
                   $scope.events = [];
 
@@ -115,7 +115,7 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
 
 
                   }
-              })
+              })*/
                  
 
                       
@@ -142,20 +142,21 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
                         var startDate = new Date(moment(new Date(parseInt(listings[i].StartDate.substr(6)))).format('YYYY/MM/DD'));
                         var endDate = new Date(moment(new Date(parseInt(listings[i].EndDate.substr(6)))).format('YYYY/MM/DD'));
 
-                        $scope.events2.push({
+                        $scope.events.push({
                             id: listings[i].Id,
                             title: listings[i].Title,
                             start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
                             end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
                             url: "/#!/Listing/" + listings[i].Id,
                             frequency: listings[i].Frequency,
-                            allDay: false
+                            allDay: false,
+                            stick: true
 
                      
                         });
                     }
 
-                    $scope.eventSources = [$scope.events2];
+                    $scope.eventSources = [$scope.events];
                 })
               
         }

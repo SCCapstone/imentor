@@ -63,7 +63,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                                 $scope.listings.push($scope.listing);                                
                                 $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                                 $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
-                                console.log($scope.listing.StartDate);
                                 $scope.imagePath = getImage();
                                 getUsersByListing($scope.listingId);
                                 getAssignments();
@@ -489,15 +488,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         function addTeacher(listingId) {
-            console.log($scope.user);
             if ($scope.user != null) {
                 var assignment = {
                     UserId: $scope.user.Id,
                     ListingId: listingId,
                 }
 
-                console.log(assignment);
-                
+
                 manageService.addParticipant(assignment).then(
                     function success(response) {
                         console.log("Teacher Added");
@@ -524,7 +521,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 else
                     return 'img/Unknown.png';
             }
-            console.log($scope.listing);
         }
 
         // ---------------------------------------------------------------

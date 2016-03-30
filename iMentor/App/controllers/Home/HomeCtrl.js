@@ -5,6 +5,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', '
     {
         $scope.listings = [];
         $scope.subjectsIncludes = [];
+        $scope.searchText = "";
 
         getListings();
 
@@ -30,9 +31,12 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'homeService', '
             return listings;
         }
 
+        $scope.search = function() {
+            console.log("Search: " + $scope.searchText);
+        }
 
         // ---------------------------------------------------------------
-        // Load Database Listings
+        // Service Calls
         // ---------------------------------------------------------------
         function getListings() {
             homeService.getListings()

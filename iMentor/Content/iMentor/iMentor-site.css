@@ -32,6 +32,10 @@ textarea {
     font-weight: bold;
 }
 
+.underline{
+    text-decoration: underline;
+}
+
 .center {
     margin: auto;
     width: 60%;

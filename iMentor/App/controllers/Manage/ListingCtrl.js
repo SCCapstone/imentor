@@ -19,13 +19,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             { value: 2, text: 'False' }
         ];
 
-        $scope.subjects = [
-            { value: 1, text: 'Math', selected: true },
-            { value: 2, text: 'Science', selected: false },
-            { value: 3, text: 'History', selected: false },
-            { value: 4, text: 'Reading', selected: false },
-            { value: 5, text: 'Computer Science', selected: false }
-        ];
+        
 
         
 

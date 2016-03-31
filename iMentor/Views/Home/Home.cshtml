@@ -15,7 +15,7 @@
             </div>
 
             <div class="row content">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <!--Filters-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -23,29 +23,33 @@
                         </div>
 
                         <div class="panel-body">
-                            <form class="navbar-form" role="search">
-                                <md-input-container class="md-block" style="width:100%;">
-                                    <label>Search</label>
-                                    <input class="thick" style="width:80%;font-size:16px;height:34px;" ng-model="searchText">
+                            <md-input-container class="md-block" style="width:100%;">
+                                <label>Search</label>
+                                <input class="thick" style="width:95%;font-size:16px;height:34px;" ng-model="searchText">
+                            </md-input-container>
 
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit" style="height:34px;" ng-click="search()"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>
-                                </md-input-container>
-                            </form>
+                            <div class="thick" style="font-size:16px;">Quick Filters</div>
+                            <md-content style="padding-bottom:5px;"><md-divider></md-divider></md-content>
+                            
                             <div>
-                                Subjects<br />
-                                <input type="checkbox" ng-click="includeArea('Math')" /> Math<br />
-                                <input type="checkbox" ng-click="includeArea('Science')" /> Science<br />
-                                <input type="checkbox" ng-click="includeArea('History')" /> History<br />
-                                <input type="checkbox" ng-click="includeArea('Reading')" /> Reading<br />
-                                <input type="checkbox" ng-click="includeArea('Computer Science')" /> Computer Science<br />
+                                <md-content>
+                                    <md-list>
+                                        <md-list-item style="width:100%;">
+                                            <div class="thick">Subjects </div>
+                                            @*<md-checkbox ng-model="selectAll" ng-click="includeArea('All')"></md-checkbox>*@
+                                        </md-list-item>
+                                        <md-list-item ng-repeat="subject in subjects" style="width:100%;">
+                                            <md-checkbox style="margin-left:25px;" ng-model="subject.selected" ng-click="includeArea(subject.text)"></md-checkbox>
+                                            <div style=""> {{ subject.text }} </div>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-content>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <!--Listings-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -54,7 +58,7 @@
 
 
                         <div class="panel-body">
-                            <div ng-animate="'animate'" ng-repeat="listing in listings | filter:areaFilter" listing-card listing="listing" ng-show="listing.Open" ng-click="selectListing(listing)">
+                            <div ng-animate="'animate'" ng-repeat="listing in listings | filter:areaFilter | filter: searchText" listing-card listing="listing" ng-show="listing.Open" ng-click="selectListing(listing)">
                             </div>
                         </div>
                     </div>

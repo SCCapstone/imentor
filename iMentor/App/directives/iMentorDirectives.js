@@ -10,13 +10,15 @@
             templateUrl: '/templates/ListingCard.html',
 
             link: function (scope, elem, attrs) {
+                
                 scope.imagePath = '';
                 scope.title = scope.listing.Title;
-                
                 scope.area = scope.listing.Area;
-
-
+                scope.startDate = scope.listing.StartDate;
+                scope.endDate = scope.listing.EndDate;
+                scope.owner = scope.listing.OwnerUserName;
                 scope.imagePath = getImage();
+
 
 
                 function getImage()

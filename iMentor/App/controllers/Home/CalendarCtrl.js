@@ -105,17 +105,17 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
             return datestring;
         }
 
-       /* $('#calendar').fullCalendar('addEventSource',
+        $('#calendar').fullCalendar('addEventSource',
               function (start, end, timezone, callback) {
                   $scope.events = [];
 
                   for (loop = start.toDate().getTime() ; loop <= end.toDate().getTime() ; loop = loop + (24 * 60 * 60 * 1000))
                   {
                       $scope.test_date = new Date(loop);
-
+                      getListings();
 
                   }
-              })*/
+              })
                  
 
                       

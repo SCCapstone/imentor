@@ -2010,6 +2010,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\ViewApplicantsModal.html" />
+    <Content Include="Views\hangout.xml" />
     <Content Include="Views\Manage\ManageUsers.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

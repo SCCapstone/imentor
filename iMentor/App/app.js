@@ -15,8 +15,8 @@ var app = angular.module('app', [
     'iMentor.directives'
 ])
 
-app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProvider',
-    function ($routeProvider, $locationProvider, $httpProvider, $mdIconProvider)
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', '$mdThemingProvider',
+    function ($routeProvider, $locationProvider, $httpProvider, $mdIconProvider, $mdThemingProvider)
     {
         $routeProvider
             .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
@@ -42,6 +42,10 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 
         $mdIconProvider.iconSet("avatar", 'Img/icons/avatar-icons.svg', 128);
+
+        $mdThemingProvider.theme('default')
+            .primaryPalette('teal')
+            .accentPalette('orange');
     }
 ]);
 

@@ -3,6 +3,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
     function ManageListingsCtrl($scope, $rootScope, $location, manageService) 
     {
         $scope.currentUserIsAdmin = true;
+        $scope.listings = [];
         getListings();
 
         // ---------------------------------------------------------------
@@ -66,9 +67,11 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
                     for (var i = 0; i < listings.length; i++) {
                         listings[i].StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                         listings[i].EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+
+                        $scope.listings.push(listings[i]);
                     }
 
-                    $scope.listings = listings;
+                    //$scope.listings = listings;
                 },
                 function error(error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;

@@ -1,10 +1,14 @@
 ﻿<script src="https://apis.google.com/js/platform.js" async defer></script> @*This does not break the project. This script is fine*@
 
+<md-content layout-padding>
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="listing == null">
+        <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
 
-<div class="ngview-body" style="padding-top:20px;">
+
+<div class="ngview-body" style="padding-top:20px;" ng-show="listing != null">
     <div class="text-left" style="display:inline-block;">
-
-
 
 
         <!-- Open/Closed-->
@@ -84,12 +88,12 @@
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
-                                <div class="md-toolbar-tools" style="background:#1de9b6;color:#004d40;" ng-show="listing.Open && applied">
+                                <div class="md-toolbar-tools md-hue-2" ng-show="listing.Open && applied">
                                     <div style="margin-left:85px;">
                                         You are applied to this listing
                                     </div>
                                 </div>
-                                <div class="md-toolbar-tools" style="background:#009688;" ng-show="listing.Open && !applied">
+                                <div class="md-toolbar-tools md-hue-1" ng-show="listing.Open && !applied">
                                     <div style="margin-left:100px;">
                                         Apply for Listing
                                         <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
@@ -97,10 +101,10 @@
                                         </md-button>
                                     </div>
                                 </div>
-                                <div class="md-toolbar-tools" style="background:red;" ng-show="!listing.Open">
+                                <div class="md-toolbar-tools md-hue-3"  ng-show="!listing.Open">
                                     <div style="margin-left:100px;">
                                         Listing is Full
-                                        <md-button class="md-raised" disabled>Apply</md-button>
+                                        <md-button class="md-raised md-primary" disabled>Apply</md-button>
                                     </div>
                                 </div>
                             </md-toolbar>
@@ -111,7 +115,7 @@
                     <div class="col-sm-12">
                         <md-content>
                             <md-toolbar>
-                                <div class="md-toolbar-tools" style="background:#26a69a;color:#004d40;" ng-show="listing.Open">
+                                <div class="md-toolbar-tools md-hue-1"  ng-show="listing.Open">
                                     <div style="margin-left:85px;">
                                         You are assigned to this listing.
                                     </div>

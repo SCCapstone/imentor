@@ -1,7 +1,13 @@
-﻿<div class="ngview-wrapper">
-    <div class="ngview-body" style="padding-top:10px;">
-        <div class="container-fluid">
+﻿
+<md-content layout-padding>
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="listings.length == 0">
+        <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
 
+<div class="ngview-wrapper">
+    <div class="ngview-body" style="padding-top:10px;">
+        <div class="container-fluid" ng-show="listings.length > 0">
             <div class="row content">
                 <div class="col-sm-12" style="padding-bottom:10px;">
                     <md-content class="pull-right">
@@ -9,16 +15,14 @@
                             Create new listing
                         </md-button>
                     </md-content>
-
-                    
                 </div>
             </div>
 
             <div class="row content">
                 <div class="col-sm-4">
                     <!--Filters-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" style="background:#f5f5f5">
                             <div class="panel-title" style="font-size:20px">Filters</div>
                         </div>
 
@@ -52,13 +56,32 @@
                 <div class="col-sm-8">
                     <!--Listings-->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title" style="font-size:30px">Listings</div>
+                        <div class="panel-heading" style="background:#f5f5f5">
+                            <div class="navbar-header"  ng-show="user.RoleId >= 3">
+                                <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:black;font-size:14px;"><i class="glyphicon glyphicon-eye-open"></i> {{openLength}} Open </a>
+                                <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:gray;font-size:14px;"><i class="glyphicon glyphicon-eye-close"></i> {{closedLength}} Closed  </a>
+                            </div>
+
+                            <div class="navbar-header" ng-show="user.RoleId < 3">
+                                <a class="navbar-brand" style="color:black;font-size:14px;"><i class="glyphicon glyphicon-eye-open"></i> {{openLength}} Open </a>
+                            </div>
+                            
+
+                            <div class="collapse navbar-collapse">
+                                <div style="float:right;">
+                                    <ul class="nav navbar-nav">
+                                        <li><a style="color:gray;" href="" ng-click="sort('Id')"><i class="glyphicon glyphicon-sort"></i> Id </a></li>
+                                        <li><a style="color:gray;" href="" ng-click="sort('OwnerUserName')"><i class="glyphicon glyphicon-sort"></i> Teacher </a></li>
+                                        <li><a style="color:gray;" href="" ng-click="sort('Title')"><i class="glyphicon glyphicon-sort"></i> Title </a></li>
+                                        <li><a style="color:gray;" href="" ng-click="sort('Area')"><i class="glyphicon glyphicon-sort"></i> Subject </a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
-
                         <div class="panel-body">
-                            <div ng-animate="'animate'" ng-repeat="listing in listings | filter:areaFilter | filter: searchText" listing-card listing="listing" ng-show="listing.Open" ng-click="selectListing(listing)">
+                            <div ng-repeat="listing in listings | orderBy: sortListings | filter:areaFilter | filter: searchText" 
+                                 listing-card listing="listing" ng-click="selectListing(listing)">
                             </div>
                         </div>
                     </div>

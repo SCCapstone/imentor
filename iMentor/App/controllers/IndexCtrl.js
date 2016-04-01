@@ -2,6 +2,7 @@
 
 app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
     function IndexCtrl($scope, $location, manageService) {
+        expireListings();
         getCurrentUser();
 
         //---------------------------------------------------
@@ -16,6 +17,31 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
                     console.log("Unable to load current user: " + reason);
                 }
             );
+        }
+
+        //---------------------------------------------------
+        // Functions
+        //---------------------------------------------------
+        function expireListings() {
+            manageService.getListings().then(
+                function success(listings){
+                    
+                    var currentDate = new Date();
+
+                    for(var i = 0; i < listings.length; i++){
+
+                        var listingEndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+
+                        console.log("Current Date: " + currentDate);
+                        console.log("End Date: " + listingEndDate);
+
+                        if(currentDate > listingEndDate && listings[i].Open){
+                            console.log("Listing has expired: " + listings[i].Id);
+                            //listings[i].Open = false;
+                        }
+                    }
+                }
+            )
         }
 
         //---------------------------------------------------

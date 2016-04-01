@@ -2,9 +2,11 @@
 app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'manageService',
     function ManageListingsCtrl($scope, $rootScope, $location, manageService) 
     {
-        $scope.currentUserIsAdmin = true;
+        $scope.user = null;
         $scope.listings = [];
+        getCurrentUser();
         getListings();
+        
 
         // ---------------------------------------------------------------
         // Grid
@@ -62,6 +64,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
         // Manage Listings
         // ---------------------------------------------------------------
         function getListings() {
+            $scope.listings = [];
             manageService.getListings().then(
                 function success(listings) {
                     for (var i = 0; i < listings.length; i++) {
@@ -76,6 +79,16 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
                 function error(error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
+        }
+        function getCurrentUser() {
+            manageService.getCurrentUser().then(
+                function success(user) {
+                    $scope.user = user;
+                },
+                function fail(reason) {
+                    console.log("Unable to load current user: " + reason);
+                }
+            );
         }
 
         $scope.deleteListing = function (row) {

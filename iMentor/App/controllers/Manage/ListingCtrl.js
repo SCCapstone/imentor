@@ -521,6 +521,9 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         // Hangouts
         // ---------------------------------------------------------------
    
+
+
+
         $scope.onClientReady = function(){
 	gapi.hangout.onApiReady.add(function(e){
 		if(e.isApiReady){
@@ -531,35 +534,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
 
         $scope.onApiReady = function () {
 
-            
-            function getListings(){
-            manageService.getListings().then(
-                    function success(listings)
-                    {
-                	    for (var i = 0; i < listings.length; i++)
-                        {
-                            if(id == 0)
-                            {
-                                $scope.listing = null;
-                            }
-                            else if(listings[i].Id == id)
-                            {
-                                $scope.listing = listings[i];
-                               $scope.listing.HangoutUrl = gapi.hangout.getHangoutUrl();
-                            }
-                        }
-                    },
-                    function fail(reason)
-                    {
-                	    console.log("Unable to load listing: " + reason);
-                    }
-                );
-        }
-            
-            $scope.updateListing();
-
-
-            
+           $scope.hangoutUrl = gapi.hangout.getHangoutUrl();
         
         };
 

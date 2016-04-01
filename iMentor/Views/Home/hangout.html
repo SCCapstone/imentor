@@ -1,0 +1,152 @@
+﻿<!-- Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License
+ -->
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<style type="text/css">
+    <!--
+    p {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    li {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .button {
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+        background: -moz-linear-gradient(top, #fff, #ddd);
+        border: 1px solid #bbb;
+    }
+
+        .button:active {
+            background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#333));
+            background: -moz-linear-gradient(bottom, #ddd, #aaa);
+        }
+    -->
+</style>
+
+<html>
+
+<!-- Standard boilerplate to start hangouts.  Without these, you Hangout will not start. -->
+<script src="//hangoutsapi.talkgadget.google.com/talkgadget/apps/gadgets/js/rpc.js"></script>
+<script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.1"></script>
+
+<div id="apiStatus"><p>No API Status</p></div>
+<div><p>ParticipantsList:</p></div>
+<div id="participants"><p>No idea who is in this hangout</p></div>
+
+<p>Access token is <span id='token'></span></p>
+<div id="gd-info">
+    <p>
+        Your gd parameter: <span id='gd'></span><br />
+        <i>Note that we are using encodeURIComponent() on this because we have not sanitized it.</i>
+    </p>
+</div>
+
+<p><input class="button" type="button" action="Make API call" onclick="makeApiCall()" value="Make authenticated REST API call"></input></p>
+
+<div id="info"></div>
+
+<script>
+/** Reads parameters off the iframe's URI
+ @param {String} paramName the name of the parameter.
+ @return {String} value of parameter.
+ */
+function getParameter(paramName) {
+  var searchString = window.location.search.substring(1),
+  i, val, params = searchString.split('&');
+  for (i = 0; i < params.length; i++) {
+    val = params[i].split('=');
+    if (val[0] == paramName) {
+      return unescape(val[1]);
+    }
+  }
+  return null;
+}
+/** This is where we put status updates. */
+var apiStatusDiv = document.getElementById('apiStatus');
+/** Updates the list of participants.  We use this to show that our
+  * API is ready. */
+function updateParticipants() {
+  var participantsDiv = document.getElementById('participants');
+  var retVal = '<ul>';
+  var participants = gapi.hangout.getParticipants();
+  for (var index in participants) {
+    var part = participants[index];
+    if (part.person == null) {
+      retVal += '<li>An unknown person</li>';
+      continue;
+    }
+    retVal += '<li>' + stripHTML(part.person.displayName) + '</li>';
+  }
+  retVal += '</ul>';
+  participantsDiv.innerHTML = retVal;
+}
+/** Make an authenticated Google+ API call using the access token. */
+function makeApiCall() {
+  gapi.client.load('plus', 'v1', function() {
+      var request = gapi.client.plus.people.get({
+                                                  'userId': 'me'
+                                                });
+    request.execute(function(resp) {
+      var heading = document.createElement('h4');
+      var image = document.createElement('img');
+      if (resp.code && resp.code != '200') {
+        apiStatusDiv.innerHTML = '<p>' + resp.code
+             + ' occurred getting API call.</p>';
+        return;
+      }
+      // Note that displayName and image URL are already available
+      // from the hangout API.  We're just showing that we can get
+      // this information using the people/me endpoint with authentication.
+      image.src = resp.image.url;
+      heading.appendChild(image);
+      heading.appendChild(document.createTextNode(resp.displayName));
+      document.getElementById('info').appendChild(heading);
+    });
+  });
+}
+/** Called when jsclient has fully loaded; sets API key */
+function onClientReady() {
+  apiStatusDiv.innerHTML = '<p>Client ready</p>';
+  // Now wait to see if the API is ready.
+  gapi.hangout.onApiReady.add(function(eventObj) {
+            if (eventObj.isApiReady) {
+              apiStatusDiv.innerHTML = '<p>API is ready</p>';
+              window.setTimeout(function() {
+                                  gapi.auth.setToken(generateToken());
+                                  updateParticipants();
+                                }, 1);
+            }
+          });
+  document.getElementById('gd').innerHTML =
+      encodeURIComponent(getParameter('gd'));
+  document.getElementById('token').innerHTML = getParameter('token');
+}
+function generateToken() {
+  var theToken = new Object();
+  theToken.access_token = getParameter('token');
+  return theToken;
+}
+function stripHTML(string) {
+	var re = /<\S[^><]*>/g
+	return string.replace(re, "")
+}
+</script>
+
+<script src="https://apis.google.com/js/client.js?onload=onClientReady"></script>
+
+</html>
+Status API Training Shop Blog About

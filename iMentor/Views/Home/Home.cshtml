@@ -43,7 +43,7 @@
                                             @*<md-checkbox ng-model="selectAll" ng-click="includeArea('All')"></md-checkbox>*@
                                         </md-list-item>
                                         <md-list-item ng-repeat="subject in subjects" style="width:100%;">
-                                            <md-checkbox style="margin-left:25px;" ng-model="subject.selected" ng-click="includeArea(subject.text)"></md-checkbox>
+                                            <md-checkbox style="margin-left:25px;" ng-model="subject.selected" ng-click="includeArea(subject.text)" aria-label=""></md-checkbox>
                                             <div style=""> {{ subject.text }} </div>
                                         </md-list-item>
                                     </md-list>

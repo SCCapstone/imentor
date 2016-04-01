@@ -320,11 +320,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             $location.path("/Listing/" + 0);
         }
 
-        $scope.applyForListing = function(){
-            console.log("Apply for Listing clicked!");
-            
-        }
-
         $scope.editTitle = function () {
             $scope.titleEditMode = true;
         }
@@ -415,7 +410,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             var confirm = $mdDialog.confirm()
                   .title('Apply to this listing?')
                   .textContent($scope.listing.Title)
-                  .ariaLabel('')
+                  //.ariaLabel('')
                   .targetEvent(ev)
                   .ok('Apply!')
                   .cancel('Cancel');
@@ -438,7 +433,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             var confirm = $mdDialog.confirm()
                   .title('Create this listing?')
                   .textContent($scope.listing.Title)
-                  .ariaLabel('')
+                  //.ariaLabel('')
                   .targetEvent(ev)
                   .ok('Create')
                   .cancel('Cancel');

@@ -15,11 +15,12 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
             data: "listings",
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
-            { field: 'Title', displayName: 'Title', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Area', displayName: 'Area', width: '13%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Title', displayName: 'Title', width: '18%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Area', displayName: 'Area', width: '10%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Description', displayName: 'Description', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'StartDate', displayName: 'Start Date', width: '17%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'EndDate', displayName: 'End Date', width: '17%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'StartDate', displayName: 'Start Date', width: '16%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'EndDate', displayName: 'End Date', width: '16%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Open', displayName: 'Open', width: '5%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             {
                 field: ' ',
                 displayName: 'Edit',
@@ -100,10 +101,11 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
                 }
             }
 
-            manageService.deleteListing(listing)
-                .success(function (listings) {
+            manageService.deleteListing(listing).then(
+                function success(listings){
                     getListings();
-                });
+                }
+            )
         }
 
         $scope.refreshListings = function () {

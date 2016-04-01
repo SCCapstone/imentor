@@ -1,5 +1,10 @@
-﻿
-<div class="ngview-wrapper">
+﻿<md-content layout-padding>
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="listings.length == 0">
+        <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
+
+<div class="ngview-wrapper" ng-show="listings.length > 0">
     <div class="ngview-body" style="padding-top:25px;">
         <div class="ngview-header-left">
             <div class="header-title">Listing Management</div>

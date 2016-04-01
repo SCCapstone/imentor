@@ -7,6 +7,11 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         $scope.subjectsIncludes = [];
         $scope.owners = [];
         $scope.selectAll = false;
+        $scope.sortListings = "Id";
+        $scope.openLength = 0;
+        $scope.closedLength = 0;
+        $scope.showOpen = true;
+        getCurrentUser();
         getListings();
 
         $scope.subjects = [
@@ -61,12 +66,82 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
             return listings;
         }
 
+        $scope.toggleShowOpen = function () {
+            $scope.showOpen = !$scope.showOpen;
+            getListings();
+        } 
+
+        // ---------------------------------------------------------------
+        // Sorting
+        // ---------------------------------------------------------------
+        $scope.sort = function (field) {
+            if (field.localeCompare("Id") == 0
+                && $scope.sortListings.localeCompare("Id") == 0) {
+                $scope.sortListings = "-Id";
+                return;
+            } else if (field.localeCompare("Id") == 0
+                && $scope.sortListings.localeCompare("-Id") == 0) {
+                $scope.sortListings = "Id";
+                return;
+            } else if (field.localeCompare("Id") == 0
+                && $scope.sortListings.localeCompare("Id") != 0) {
+                $scope.sortListings = "Id";
+                return;
+            }
+
+            if (field.localeCompare("OwnerUserName") == 0
+                && $scope.sortListings.localeCompare("OwnerUserName") == 0) {
+                $scope.sortListings = "-OwnerUserName";
+                return;
+            } else if (field.localeCompare("OwnerUserName") == 0
+                && $scope.sortListings.localeCompare("-OwnerUserName") == 0) {
+                $scope.sortListings = "OwnerUserName";
+                return;
+            } else if (field.localeCompare("OwnerUserName") == 0
+                && $scope.sortListings.localeCompare("OwnerUserName") != 0) {
+                $scope.sortListings = "OwnerUserName";
+                return;
+            }
+
+            if (field.localeCompare("Title") == 0
+                && $scope.sortListings.localeCompare("Title") == 0) {
+                $scope.sortListings = "-Title";
+                return;
+            } else if (field.localeCompare("Title") == 0
+                && $scope.sortListings.localeCompare("-Title") == 0) {
+                $scope.sortListings = "Title";
+                return;
+            } else if (field.localeCompare("Title") == 0
+                && $scope.sortListings.localeCompare("Title") != 0) {
+                $scope.sortListings = "Title";
+                return;
+            }
+
+            if (field.localeCompare("Area") == 0
+                && $scope.sortListings.localeCompare("Area") == 0) {
+                $scope.sortListings = "-Area";
+                return;
+            } else if (field.localeCompare("Area") == 0
+                && $scope.sortListings.localeCompare("-Area") == 0) {
+                $scope.sortListings = "Area";
+                return;
+            } else if (field.localeCompare("Area") == 0
+                && $scope.sortListings.localeCompare("Area") != 0) {
+                $scope.sortListings = "Area";
+                return;
+            }
+        }
+
         // ---------------------------------------------------------------
         // Service Calls
         // ---------------------------------------------------------------
         function getListings() {
             manageService.getListings().then(
                 function success(listings){
+                    $scope.listings = [];
+                    $scope.openLength = 0;
+                    $scope.closedLength = 0;
+
                     manageService.getUsers().then(
                         function success(users) {
                             for (var i = 0; i < listings.length; i++) {
@@ -80,11 +155,24 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                                     OwnerUserName: null,
                                     Open: listings[i].Open
                                 }
-                                $scope.listings.push(temp);
+                                
+
+                                if (listings[i].Open) {
+                                    $scope.openLength++;
+                                } else {
+                                    $scope.closedLength++;
+                                }
+
                                 for (var j = 0; j < users.length; j++) {
                                     if (listings[i].TeacherId == users[j].Id) {
-                                        $scope.listings[i].OwnerUserName = users[j].UserName;
+                                        temp.OwnerUserName = users[j].UserName;
                                     }
+                                }
+
+                                if ($scope.showOpen && listings[i].Open) {
+                                    $scope.listings.push(temp);
+                                } else if(!$scope.showOpen && !listings[i].Open) {
+                                    $scope.listings.push(temp);
                                 }
                             }
                         },
@@ -95,6 +183,17 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                 },
                 function error(response){
                     console.log("Unable to load listings (homeCtrl)");
+                }
+            );
+        }
+
+        function getCurrentUser() {
+            manageService.getCurrentUser().then(
+                function success(user) {
+                    $scope.user = user;
+                },
+                function fail(reason) {
+                    console.log("Unable to load current user: " + reason);
                 }
             );
         }

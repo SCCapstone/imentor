@@ -15,13 +15,11 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
             data: "listings",
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
-            { field: 'Title', displayName: 'Title', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Mentor', displayName: 'Mentor', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Area', displayName: 'Area', width: '10%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Description', displayName: 'Description', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'StartDate', displayName: 'Start Date', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'EndDate', displayName: 'End Date', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Email', displayName: 'Email', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Title', displayName: 'Title', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Area', displayName: 'Area', width: '13%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Description', displayName: 'Description', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'StartDate', displayName: 'Start Date', width: '17%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'EndDate', displayName: 'End Date', width: '17%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             {
                 field: ' ',
                 displayName: 'Edit',

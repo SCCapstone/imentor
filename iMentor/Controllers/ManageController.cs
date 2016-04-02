@@ -60,6 +60,7 @@ namespace iMentor.Controllers
                     l.Frequency = listing.Frequency;
                     l.Description = listing.Description;
                     l.HangoutUrl = listing.HangoutUrl;
+                    l.HangoutStart = listing.HangoutStart;
                     l.TeacherId = listing.TeacherId;
                     l.Open = listing.Open;
                     l.Teacher = l.GetTeacherUserName(listing);
@@ -149,6 +150,7 @@ namespace iMentor.Controllers
                         l.Frequency = listing.Frequency;
                         l.Description = listing.Description;
                         l.HangoutUrl = listing.HangoutUrl;
+                        l.HangoutStart = listing.HangoutStart;
                         l.TeacherId = listing.TeacherId;
                         l.Open = listing.Open;
                         db.SaveChanges();

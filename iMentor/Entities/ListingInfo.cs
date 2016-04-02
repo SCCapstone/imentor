@@ -37,6 +37,9 @@ namespace iMentor.Entities
         public string HangoutUrl { get; set; }
 
         [DataMember]
+        public string HangoutStart { get; set; }
+
+        [DataMember]
         public Nullable<int> TeacherId { get; set; }
 
         [DataMember]

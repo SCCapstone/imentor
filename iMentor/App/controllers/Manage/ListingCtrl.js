@@ -45,7 +45,113 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             newListing();
         }
 
-        
+
+        // ---------------------------------------------------------------
+        // Hangouts
+        // ---------------------------------------------------------------
+
+        /** Reads parameters off the iframe's URI
+ @param {String} paramName the name of the parameter.
+ @return {String} value of parameter.
+ */
+        function getParameter(paramName) {
+            $scope.searchString = window.location.search.substring(1),
+            i, val, params = searchString.split('&');
+            for (i = 0; i < params.length; i++) {
+                val = params[i].split('=');
+                if (val[0] == paramName) {
+                    return unescape(val[1]);
+                }
+            }
+            return null;
+        }
+        /** Updates the list of participants.  We use this to show that our
+  * API is ready. */
+        function updateParticipants() {
+            var participantsDiv = document.getElementById('participants');
+            var retVal = '<ul>';
+            var participants = gapi.hangout.getParticipants();
+            for (var index in participants) {
+                var part = participants[index];
+                if (part.person == null) {
+                    retVal += '<li>An unknown person</li>';
+                    continue;
+                }
+                retVal += '<li>' + stripHTML(part.person.displayName) + '</li>';
+            }
+            retVal += '</ul>';
+            participantsDiv.innerHTML = retVal;
+        }
+        /** Make an authenticated Google+ API call using the access token. */
+        function makeApiCall() {
+            gapi.client.load('plus', 'v1', function() {
+                var request = gapi.client.plus.people.get({
+                    'userId': 'me'
+                });
+                request.execute(function(resp) {
+                    var heading = document.createElement('h4');
+                    var image = document.createElement('img');
+                    if (resp.code && resp.code != '200') {
+                        apiStatusDiv.innerHTML = '<p>' + resp.code 
+                             + ' occurred getting API call.</p>';
+                        return;
+                    }
+                    // Note that displayName and image URL are already available
+                    // from the hangout API.  We're just showing that we can get
+                    // this information using the people/me endpoint with authentication.
+                    image.src = resp.image.url;
+                    heading.appendChild(image);
+                    heading.appendChild(document.createTextNode(resp.displayName));
+                    document.getElementById('info').appendChild(heading);
+                });
+            });
+        }
+        function getHangoutUrl() {
+
+            var callbackUrl = manageService.updateListing();
+            $scope.hangoutUrl = gapi.hangout.getHangoutUrl();
+            $scope.startData = gapi.getStartData();
+
+            $.ajax({
+
+                type: "POST",
+                url: callbackUrl,
+                datatype: 'json',
+                data: JSON.stringify({
+
+                    "hangoutUrl": hangoutUrl,
+                    "startData": startData
+                })
+
+            });
+ 
+        }
+        /** Called when jsclient has fully loaded; sets API key */
+        function onClientReady() {
+            apiStatusDiv.innerHTML = '<p>Client ready</p>';
+            // Now wait to see if the API is ready.
+            gapi.hangout.onApiReady.add(function (eventObj) {
+                if (eventObj.isApiReady) {
+                    apiStatusDiv.innerHTML = '<p>API is ready</p>';
+                    window.setTimeout(function () {
+                        gapi.auth.setToken(generateToken());
+                        updateParticipants();
+                    }, 1);
+                }
+            });
+            document.getElementById('gd').innerHTML =
+                encodeURIComponent(getParameter('gd'));
+            document.getElementById('token').innerHTML = getParameter('token');
+        }
+        function generateToken() {
+            var theToken = new Object();
+            theToken.access_token = getParameter('token');
+            return theToken;
+        }
+        function stripHTML(string) {
+            var re = /<\S[^><]*>/g
+            return string.replace(re, "")
+        }
         // ---------------------------------------------------------------
         // Service Calls
         // ---------------------------------------------------------------
@@ -292,6 +398,9 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         // ---------------------------------------------------------------
         // Functions
         // ---------------------------------------------------------------
+
+        //Calls the manage service and adds a listing to the database
+
         $scope.addListing = function () {
             manageService.addListing($scope.listing).then(
                 function success(response){
@@ -302,6 +411,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             );
         }
 
+        //Grabs a listing using the manage service and updates some listing
         $scope.updateListing = function () {
             manageService.updateListing($scope.listing).then(
                 function success(response){
@@ -309,6 +419,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             );
         }
 
+        
+        //Removes a listing via the manageservice
         $scope.deleteListing = function() {
             manageService.deleteListing($scope.listing).then(
                 function success(response){
@@ -521,26 +633,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             }
         }
 
-        // ---------------------------------------------------------------
-        // Hangouts
-        // ---------------------------------------------------------------
    
-
-
-
-        $scope.onClientReady = function(){
-	gapi.hangout.onApiReady.add(function(e){
-		if(e.isApiReady){
-			onApiReady();
-		}
-	});
-}
-
-        $scope.onApiReady = function () {
-
-           $scope.hangoutUrl = gapi.hangout.getHangoutUrl();
-        
-        };
 
 
         // ---------------------------------------------------------------

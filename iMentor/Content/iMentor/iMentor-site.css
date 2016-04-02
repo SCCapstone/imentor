@@ -36,8 +36,12 @@ textarea {
     text-decoration: underline;
 }
 
-.verticalLine {
-    border-left: 2px solid lightgray;
+.verticalLineLeft {
+    border-left: 2px solid gray;
+}
+
+.verticalLineRight {
+    border-right: 2px solid gray;
 }
 
 .center {

@@ -67,10 +67,11 @@ namespace iMentor.Controllers
                     listings.Add(l);
                 }
 
+                CheckForExpiredListings(listings);
+
                 return Json(listings, JsonRequestBehavior.AllowGet);
             }
         }
-
 
         [AllowAnonymous]
         public JsonResult AddListing(ListingModel listing)
@@ -110,6 +111,9 @@ namespace iMentor.Controllers
 
                     if (l != null)
                     {
+                        DeleteAssociatedAssignments(l);
+                        DeleteAssociatedApplications(l);
+
                         db.ListingModels.Remove(l);
                         db.SaveChanges();
                         return "Listing Deleted";
@@ -519,7 +523,64 @@ namespace iMentor.Controllers
             }
         }
 
-//******************* FOR UNIT TESTING PURPOSES ONLY! *******************\\
+
+
+
+        #region Helper Methods
+
+        [AllowAnonymous]
+        private void CheckForExpiredListings(List<ListingInfo> listings)
+        {
+            DateTime currentDate = DateTime.Now;
+
+            foreach (ListingInfo listing in listings)
+            {
+                if (listing.Open)
+                {
+                    DateTime listingEndDate = listing.EndDate ?? DateTime.Now;
+
+                    if (DateTime.Compare(currentDate, listingEndDate) > 0)
+                    {
+                        listing.Open = false;
+                    }
+                }
+            }
+        }
+
+        [AllowAnonymous]
+        private void DeleteAssociatedAssignments(ListingModel listing)
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var assignments = db.AssignedListings.Where(x => x.ListingId == listing.Id).ToList();
+
+                foreach (AssignedListing assignment in assignments)
+                {
+                    db.AssignedListings.Remove(assignment);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        [AllowAnonymous]
+        private void DeleteAssociatedApplications(ListingModel listing)
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var applicants = db.Applicants.Where(x => x.ListingId == listing.Id).ToList();
+
+                foreach (Applicant applicant in applicants)
+                {
+                    db.Applicants.Remove(applicant);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+
+        #endregion
+
+        //******************* FOR UNIT TESTING PURPOSES ONLY! *******************\\
 
         [AllowAnonymous]
         public ListingModel ReturnLastAddedListing()

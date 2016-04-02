@@ -2,9 +2,11 @@
 app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'manageService',
     function ManageListingsCtrl($scope, $rootScope, $location, manageService) 
     {
-        $scope.currentUserIsAdmin = true;
+        $scope.user = null;
         $scope.listings = [];
+        getCurrentUser();
         getListings();
+        
 
         // ---------------------------------------------------------------
         // Grid
@@ -13,13 +15,12 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
             data: "listings",
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
-            { field: 'Title', displayName: 'Title', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Mentor', displayName: 'Mentor', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Title', displayName: 'Title', width: '18%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Area', displayName: 'Area', width: '10%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Description', displayName: 'Description', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'StartDate', displayName: 'Start Date', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'EndDate', displayName: 'End Date', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Email', displayName: 'Email', width: '15%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Description', displayName: 'Description', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'StartDate', displayName: 'Start Date', width: '16%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'EndDate', displayName: 'End Date', width: '16%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Open', displayName: 'Open', width: '5%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             {
                 field: ' ',
                 displayName: 'Edit',
@@ -62,6 +63,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
         // Manage Listings
         // ---------------------------------------------------------------
         function getListings() {
+            $scope.listings = [];
             manageService.getListings().then(
                 function success(listings) {
                     for (var i = 0; i < listings.length; i++) {
@@ -77,6 +79,16 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
                     $scope.status = 'Unable to load listing data: ' + error.message;
                 });
         }
+        function getCurrentUser() {
+            manageService.getCurrentUser().then(
+                function success(user) {
+                    $scope.user = user;
+                },
+                function fail(reason) {
+                    console.log("Unable to load current user: " + reason);
+                }
+            );
+        }
 
         $scope.deleteListing = function (row) {
             var index = $scope.gridOptions.data.indexOf(row.entity);
@@ -89,10 +101,11 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
                 }
             }
 
-            manageService.deleteListing(listing)
-                .success(function (listings) {
+            manageService.deleteListing(listing).then(
+                function success(listings){
                     getListings();
-                });
+                }
+            )
         }
 
         $scope.refreshListings = function () {

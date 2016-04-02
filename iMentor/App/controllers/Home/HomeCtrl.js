@@ -75,17 +75,17 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         // Sorting
         // ---------------------------------------------------------------
         $scope.sort = function (field) {
-            if (field.localeCompare("Id") == 0
-                && $scope.sortListings.localeCompare("Id") == 0) {
-                $scope.sortListings = "-Id";
+            if (field.localeCompare("StartDate") == 0
+                && $scope.sortListings.localeCompare("StartDate") == 0) {
+                $scope.sortListings = "-StartDate";
                 return;
-            } else if (field.localeCompare("Id") == 0
-                && $scope.sortListings.localeCompare("-Id") == 0) {
-                $scope.sortListings = "Id";
+            } else if (field.localeCompare("StartDate") == 0
+                && $scope.sortListings.localeCompare("-StartDate") == 0) {
+                $scope.sortListings = "StartDate";
                 return;
-            } else if (field.localeCompare("Id") == 0
-                && $scope.sortListings.localeCompare("Id") != 0) {
-                $scope.sortListings = "Id";
+            } else if (field.localeCompare("StartDate") == 0
+                && $scope.sortListings.localeCompare("StartDate") != 0) {
+                $scope.sortListings = "StartDate";
                 return;
             }
 
@@ -220,6 +220,29 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                 }
             }
             return false;
+        }
+
+
+        // ---------------------------------------------------------------
+        // Grid list
+        // ---------------------------------------------------------------
+        $scope.tiles = buildGridModel({
+            icon: "avatar:svg-",
+            title: "Svg-",
+            background: ""
+        });
+
+        function buildGridModel(tileTmpl) {
+            if ($scope.listings != undefined) {
+
+                //Get open listings assigned to the current user
+                    //...get only listings within the next week
+                    //...sort listings by starting first
+                    //...create object based on day of the week (and maybe time) and put it into a new array
+                    //...sort this array by upcoming first
+                    //...create tiles based on this new array.
+
+            }
         }
     }
 ]);

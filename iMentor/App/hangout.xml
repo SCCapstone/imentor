@@ -13,7 +13,7 @@
  * the License
  -->
 
-  <ModulePrefs title="Your App Name">
+  <ModulePrefs title="MAST">
     <Require feature="rpc"/>
     <Require feature="views"/>
     <Require feature="locked-domain"/>

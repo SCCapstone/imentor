@@ -136,6 +136,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     window.setTimeout(function () {
                         gapi.auth.setToken(generateToken());
                         updateParticipants();
+                        getHangoutUrl();
                     }, 1);
                 }
             });

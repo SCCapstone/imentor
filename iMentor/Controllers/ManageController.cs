@@ -167,6 +167,55 @@ namespace iMentor.Controllers
                 return "Invalid Listing";
             }
         }
+
+        [AllowAnonymous]
+        public JsonResult GetListingsByCurrentUser()
+        {
+            var currentUserName = User.Identity.GetUserName();
+            List<ListingInfo> listings = new List<ListingInfo>();
+
+            if (currentUserName != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    //Get the current user from the database
+                    var iMentorUser = db.iMentorUsers.Where(x => x.UserName.Equals(currentUserName)).FirstOrDefault();
+
+                    //Get current users assigned listings
+                    var assignments = db.AssignedListings.Where(x => x.UserId == iMentorUser.Id);
+
+                    //Get listings base on the assignments
+                    var assidnedListings = new List<ListingModel>();
+                    foreach (AssignedListing assignment in assignments)
+                    {
+                        assidnedListings.Add(db.ListingModels.Where(x => x.Id == assignment.ListingId).FirstOrDefault());
+                    }
+
+                    
+
+                    foreach (ListingModel listing in assidnedListings)
+                    {
+                        var l = new ListingInfo();
+                        l.Id = listing.Id;
+                        l.Title = listing.Title;
+                        l.StartDate = listing.StartDate;
+                        l.EndDate = listing.EndDate;
+                        l.Area = listing.Area;
+                        l.Frequency = listing.Frequency;
+                        l.Description = listing.Description;
+                        l.HangoutUrl = listing.HangoutUrl;
+                        l.HangoutStart = listing.HangoutStart;
+                        l.TeacherId = listing.TeacherId;
+                        l.Open = listing.Open;
+                        l.Teacher = l.GetTeacherUserName(listing);
+
+                        listings.Add(l);
+                    }
+                }
+            }
+
+            return Json(listings, JsonRequestBehavior.AllowGet);
+        }
         
         [AllowAnonymous]
         public JsonResult GetUsers()

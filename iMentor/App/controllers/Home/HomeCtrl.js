@@ -13,6 +13,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         $scope.showOpen = true;
         getCurrentUser();
         getListings();
+        getListingsByCurrentUser();
 
         $scope.subjects = [
             { value: 1, text: 'Math', selected: false },
@@ -196,6 +197,14 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                     console.log("Unable to load current user: " + reason);
                 }
             );
+        }
+
+        function getListingsByCurrentUser() {
+            manageService.getListingsByCurrentUser().then(
+                function success(listings){
+                    console.log(listings);
+                }
+            )
         }
 
         // ---------------------------------------------------------------

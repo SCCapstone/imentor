@@ -29,6 +29,12 @@ app.factory('manageService', ['$http', '$q', 'apiService',
             return apiService.httpPost(url, listing);
         }
 
+        manageService.getListingsByCurrentUser = function() {
+            var url = '/manage/getListingsByCurrentUser';
+
+            return apiService.httpGet(url, false);
+        }  
+
 
 
         manageService.getUsers = function () {

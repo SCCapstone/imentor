@@ -89,14 +89,79 @@
             });
         }
 
-        /** Called when jsclient has fully loaded; sets API key */
-        function onClientReady() {
-            gapi.hangout.onApiReady.add(function (event) {
-                console.log(event);
-                if (event.isApiReady) {
+/** Reads parameters off the iframe's URI
+ @param {String} paramName the name of the parameter.
+ @return {String} value of parameter.
+ */
 
-                    gapi.client.setApiKey(apiKey);
-                    window.setTimeout(function () { checkAuth(true) }, 1);
-                }
-            });
+    function getParameters() {
+        var ret = {};
+
+        var queryString = window.location.search.substring(1);
+        var params = queryString.split('&');
+        for (var co = 0; co < params.length; co++) {
+            var keyValue = params[co].split('=');
+            ret[keyValue[0]] = unescape(keyValue[1]);
         }
+
+        return ret;
+    };
+/** This is where we put status updates. */
+var apiStatusDiv = document.getElementById('apiStatus');
+/** Updates the list of participants.  We use this to show that our
+  * API is ready. */
+function updateParticipants() {
+  var participantsDiv = document.getElementById('participants');
+  var retVal = '<ul>';
+  var participants = gapi.hangout.getParticipants();
+  for (var index in participants) {
+    var part = participants[index];
+    if (part.person == null) {
+      retVal += '<li>An unknown person</li>';
+      continue;
+    }
+    retVal += '<li>' + stripHTML(part.person.displayName) + '</li>';
+  }
+  retVal += '</ul>';
+  participantsDiv.innerHTML = retVal;
+}
+/** Make an authenticated Google+ API call using the access token. */
+function onApiReady() {
+    // We can get the parameters that were used to start the hangout,
+    // and we will pass some of these along to the server.
+    var param = getParameters();
+    var now = new Date();
+
+    // At this point, we can access the Hangout API functions
+    var hangoutUrl = gapi.hangout.getHangoutUrl();
+      console.log(hangoutUrl);
+    //Get the URL of this javascript, so we can call a nearby page with this URL info
+    var callbackUrl = 'register_hangout.json';
+
+    // Make the call via AJAX.
+    // The data are all passed as parameters in the call
+    $.ajax({
+        url: callbackUrl,
+        dataType: 'json',
+        data: {
+            "hangoutUrl": hangoutUrl,
+            "topic": param["gd"]
+        }
+      
+    }).done(function (data, status, xhr) {
+        // Call was made, process results
+        $('#msg').html(data.msg);
+    }).fail(function (xhr, status, error) {
+        $('#msg').html("There was a problem contacting the help desk. Please try again. (" + textStatus + ")");
+    });
+};
+
+onClientReady = function () {
+    gapi.hangout.onApiReady.add(function (e) {
+        if (e.isApiReady) {
+            onApiReady();
+        }
+    });
+};
+
+       

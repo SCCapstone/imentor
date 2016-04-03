@@ -20,6 +20,9 @@
   </ModulePrefs>
   <Content type="html">
     <![CDATA[
+   <style type = "text/css">
+   <link rel='stylesheet' href='iMentor-site.css'/>
+   </style>
    <script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.1"></script>
 	<p>
     	<button id="authorize-button" style="visibility: hidden">Authorize</button>

@@ -29,6 +29,7 @@ namespace iMentor.Models
         public string Frequency { get; set; }
         public string Description { get; set; }
         public string HangoutUrl { get; set; }
+        public string HangoutStart { get; set; }
         public Nullable<int> TeacherId { get; set; }
         public bool Open { get; set; }
     

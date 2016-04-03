@@ -338,6 +338,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App\controllers\Home\Modals\ViewApplicantsCtrl.js" />
+    <Content Include="App\controllers\Manage\Hangout.js" />
     <Content Include="fonts\fontawesome-webfont.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1934,12 +1935,6 @@
     <Content Include="Scripts\node-modules\textangular\karma-jquery.conf.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-classapplier.js" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-core.js" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-highlighter.js" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-selectionsaverestore.js" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-serializer.js" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\lib\rangy-textrange.js" />
     <Content Include="Scripts\node-modules\textangular\src\demo\demo.html" />
     <Content Include="Scripts\node-modules\textangular\src\demo\static-demo.html" />
     <Content Include="Scripts\node-modules\textangular\src\demo\textAngular.com.html" />
@@ -2149,10 +2144,6 @@
     <Content Include="Scripts\node-modules\textangular\moveit.sh">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\.npmignore" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\LICENSE" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\package.json" />
-    <Content Include="Scripts\node-modules\textangular\node_modules\rangy\README.md" />
     <Content Include="Scripts\node-modules\textangular\package.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-  <!-- Licensed under the Apache License, Version 2.0 (the "License"); you may not
+<!-- Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
  *
@@ -20,16 +20,13 @@
   </ModulePrefs>
   <Content type="html">
     <![CDATA[
-   <style type = "text/css">
-   <link rel='stylesheet' href='iMentor-site.css'/>
-   </style>
    <script src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.1"></script>
 	<p>
     	<button id="authorize-button" style="visibility: hidden">Authorize</button>
     	<button id="token-button" style="visibility: hidden">Show token</button>
 	</p>
     <div id="token-field" style="visibility: hidden">NONE</div>
-    <script src="ListingCtrl.js"></script>
+    <script src="https://imast.azurewebsites.net/App/controllers/Manage/Hangout.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=onClientReady"></script>
     <div id="content"></div>
     <span id="instructions"><p>Retrieves your profile name using the Google Plus API.</p></span>

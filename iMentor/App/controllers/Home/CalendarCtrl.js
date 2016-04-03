@@ -130,7 +130,7 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
 
 
          function getListings() {
-            manageService.getListings()
+             manageService.getListingsByCurrentUser()
                 .then(function success(listings) {
 
 

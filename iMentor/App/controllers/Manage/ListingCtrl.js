@@ -55,7 +55,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
  @return {String} value of parameter.
  */
         function getParameter(paramName) {
-            $scope.searchString = window.location.search.substring(1),
+            var searchString = window.location.search.substring(1),
             i, val, params = searchString.split('&');
             for (i = 0; i < params.length; i++) {
                 val = params[i].split('=');
@@ -65,47 +65,37 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             }
             return null;
         }
-        /** Updates the list of participants.  We use this to show that our
-  * API is ready. */
-        function updateParticipants() {
-            var participantsDiv = document.getElementById('participants');
-            var retVal = '<ul>';
-            var participants = gapi.hangout.getParticipants();
-            for (var index in participants) {
-                var part = participants[index];
-                if (part.person == null) {
-                    retVal += '<li>An unknown person</li>';
-                    continue;
+  
+
+
+        /** Called when jsclient has fully loaded; sets API key */
+        function onClientReady() {
+            apiStatusDiv.innerHTML = '<p>Client ready</p>';
+            // Now wait to see if the API is ready.
+            gapi.hangout.onApiReady.add(function (eventObj) {
+                if (eventObj.isApiReady) {
+                    apiStatusDiv.innerHTML = '<p>API is ready</p>';
+                    window.setTimeout(function () {
+                        gapi.auth.setToken(generateToken());
+                        updateParticipants();
+                    }, 1);
                 }
-                retVal += '<li>' + stripHTML(part.person.displayName) + '</li>';
-            }
-            retVal += '</ul>';
-            participantsDiv.innerHTML = retVal;
-        }
-        /** Make an authenticated Google+ API call using the access token. */
-        function makeApiCall() {
-            gapi.client.load('plus', 'v1', function() {
-                var request = gapi.client.plus.people.get({
-                    'userId': 'me'
-                });
-                request.execute(function(resp) {
-                    var heading = document.createElement('h4');
-                    var image = document.createElement('img');
-                    if (resp.code && resp.code != '200') {
-                        apiStatusDiv.innerHTML = '<p>' + resp.code 
-                             + ' occurred getting API call.</p>';
-                        return;
-                    }
-                    // Note that displayName and image URL are already available
-                    // from the hangout API.  We're just showing that we can get
-                    // this information using the people/me endpoint with authentication.
-                    image.src = resp.image.url;
-                    heading.appendChild(image);
-                    heading.appendChild(document.createTextNode(resp.displayName));
-                    document.getElementById('info').appendChild(heading);
-                });
             });
+            document.getElementById('gd').innerHTML =
+                encodeURIComponent(getParameter('gd'));
+            document.getElementById('token').innerHTML = getParameter('token');
+            getHangoutUrl();
         }
+        function generateToken() {
+            var theToken = new Object();
+            theToken.access_token = getParameter('token');
+            return theToken;
+        }
+        function stripHTML(string) {
+            var re = /<\S[^><]*>/g
+            return string.replace(re, "")
+        }
+    
         function getHangoutUrl() {
 
             var callbackUrl = manageService.updateListing();
@@ -135,7 +125,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     apiStatusDiv.innerHTML = '<p>API is ready</p>';
                     window.setTimeout(function () {
                         gapi.auth.setToken(generateToken());
-                        updateParticipants();
+                       
                         getHangoutUrl();
                     }, 1);
                 }

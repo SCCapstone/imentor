@@ -2013,6 +2013,7 @@
     <Content Include="App\hangout.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Home\hangout.html" />
     <Content Include="Views\Manage\ManageUsers.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

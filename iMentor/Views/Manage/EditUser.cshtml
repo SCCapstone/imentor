@@ -1,5 +1,11 @@
-﻿
-<div class="ngview-wrapper" ng-class="cursorClass">
+﻿<md-content layout-padding>
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="user.Id == null">
+        <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
+
+
+<div class="ngview-wrapper" ng-class="cursorClass" ng-show="user.Id != null">
     <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
         <div class="ngview-header-left">
             <div class="header-title">User Details</div>

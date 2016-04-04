@@ -3,7 +3,7 @@
 var app = angular.module('app', [
     'ngAnimate',
     'ngRoute',
-    'ngTouch',
+    //'ngTouch',
     'ngMaterial',
     'ngMessages',
     'mgcrea.ngStrap.timepicker',
@@ -32,7 +32,6 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
 
         $locationProvider.html5Mode(false).hashPrefix('!');
 
-        // Globally turn off caching of all data calls
         // Initialize headers
         $httpProvider.defaults.headers.get = $httpProvider.defaults.headers.get || {};
 

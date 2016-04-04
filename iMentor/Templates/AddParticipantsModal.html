@@ -12,8 +12,8 @@
                     <md-list-item ng-repeat="teacher in teachers">
                         <p ng-show="!teacher.owner"> {{ teacher.UserName }} </p>
                         <p ng-show="teacher.owner"> {{ teacher.UserName }} [Owner]</p>
-                        <md-checkbox ng-show="!teacher.owner" class="md-secondary" ng-model="teacher.selected"></md-checkbox>
-                        <md-checkbox ng-show="teacher.owner" class="md-secondary" ng-model="teacher.selected" disabled></md-checkbox>
+                        <md-checkbox ng-show="!teacher.owner" class="md-secondary" ng-model="teacher.selected" aria-label="{{teacher.Id}}"></md-checkbox>
+                        <md-checkbox ng-show="teacher.owner" class="md-secondary" ng-model="teacher.selected" aria-label="{{teacher.Id}}" disabled></md-checkbox>
                     </md-list-item>
                 </md-list>
             </section>
@@ -22,7 +22,7 @@
                     <md-subheader class="md-primary">Students</md-subheader>
                     <md-list-item ng-repeat="student in students">
                         <p> {{ student.UserName }} </p>
-                        <md-checkbox class="md-secondary" ng-model="student.selected"></md-checkbox>
+                        <md-checkbox class="md-secondary" ng-model="student.selected" aria-label="{{student.Id}}"></md-checkbox>
                     </md-list-item>
                 </md-list>
             </section>
@@ -31,7 +31,7 @@
                     <md-subheader class="md-primary">Mentors</md-subheader>
                     <md-list-item ng-repeat="mentor in mentors">
                         <p> {{ mentor.UserName }} </p>
-                        <md-checkbox class="md-secondary" ng-model="mentor.selected"></md-checkbox>
+                        <md-checkbox class="md-secondary" ng-model="mentor.selected" aria-label="{{mentor.Id}}"></md-checkbox>
                     </md-list-item>
                 </md-list>
             </section>

@@ -91,7 +91,37 @@ namespace iMentor.Controllers.Tests
         [TestMethod()]
         public void GetListingsTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+
+            var JSONListings = controller.GetListings();
+
+            string stringListings = JsonConvert.SerializeObject(JSONListings.Data);
+
+            List<ListingInfo> ListListings = JsonConvert.DeserializeObject<List<ListingInfo>>(stringListings);
+
+            ListingInfo test = ListListings.Last();
+
+            ListingModel listing = new ListingModel();
+
+            listing.Title       = "Unit Test (Updated)";
+            listing.StartDate   = new DateTime(2016, 3, 20, 12, 00, 00);
+            listing.EndDate     = new DateTime(2016, 3, 21, 12, 00, 00);
+            listing.Area        = "History";
+            listing.Frequency   = "Always";
+            listing.Description = "Unit testing... again!";
+            listing.HangoutUrl  = "what.com";
+            listing.TeacherId   = 5;
+            listing.Open        = false;
+
+            Assert.IsTrue( listing.Title        == test.Title          &&
+                           listing.StartDate    == test.StartDate      &&
+                           listing.EndDate      == test.EndDate        &&
+                           listing.Area         == test.Area           &&
+                           listing.Frequency    == test.Frequency      &&
+                           listing.Description  == test.Description    &&
+                           listing.HangoutUrl   == test.HangoutUrl     &&
+                           listing.TeacherId    == test.TeacherId      &&
+                           listing.Open         == test.Open);
         }
 
         [TestMethod()]

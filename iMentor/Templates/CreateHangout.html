@@ -1,0 +1,37 @@
+﻿<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<md-dialog aria-label="hangout" ng-cloak>
+    <form>
+        <md-dialog-content>
+            <p>
+                Step 1: Create a Hangout.
+            </p>
+            <div class="md-dialog-content">
+                <div class="g-hangout" data-render="createhangout"
+                       data-initial_apps="[{ app_id : '1086641013362', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
+                </div>
+            </div>
+            <div>
+                <p>
+                    Step 2: Insert the Hangout URL.
+                </p>
+                <md-input-container class="md-block" style="width:400px;">
+                    <label>Hangout URL</label>
+                    <input class="thick" style="font-size:14px;" ng-model="listing.HangoutUrl">
+                </md-input-container>
+            </div>
+            <p>
+                Step 3: Save the URL for others to join.
+            </p>
+        </md-dialog-content>
+        
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()" style="margin-right:20px;">
+                Cancel
+            </md-button>
+            <md-button ng-click="save()" style="margin-right:20px;">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

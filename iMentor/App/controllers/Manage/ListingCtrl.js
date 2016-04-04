@@ -1,5 +1,5 @@
 ﻿
-app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', '$mdDialog', 'manageService',  'modalOptionService',
+app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', '$mdDialog', 'manageService', 'modalOptionService',
     function ListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
     {
         $scope.areaEditMode = false;
@@ -7,6 +7,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.titleEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
+
+        $scope.hangoutSaved = false;
 
         $scope.listings = [];
         $scope.currentUsers = [];
@@ -69,6 +71,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                                 $scope.imagePath = getImage();
                                 getUsersByListing($scope.listingId);
                                 getAssignments();
+
+                                if (listings[i].HangoutUrl != null) {
+                                    $scope.hangoutSaved = true;
+                                }
                             }
                         }
                     },
@@ -439,6 +445,44 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             });
         };
 
+        $scope.showAdvanced = function (ev) {
+            $mdDialog.show({
+                controller: 'createHangoutCtrl',
+                templateUrl: 'Templates/CreateHangout.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false,
+                resolve: {
+                    listing: function () {
+                        return $scope.listing;
+                    }
+                }
+            })
+            .then(function (answer) {
+                $scope.hangoutSaved = true;
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
+
+        $scope.closeHangout = function (ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Close Hangout?')
+                  .textContent($scope.listing.Title)
+                  .targetEvent(ev)
+                  .ok('Okay')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                //Save the application
+                $scope.listing.HangoutUrl = null;
+                manageService.updateListing($scope.listing);
+                $scope.hangoutSaved = false;
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
+
         $scope.createListing = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
@@ -475,6 +519,14 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         function refreshParticipants() {
             getUsersByListing($scope.listing.Id);
             getAssignments();
+        }
+
+        $scope.showUrlInput = function () {
+            $scope.showHangoutUrl = true;
+        }
+
+        $scope.joinHangout = function() {
+            window.open($scope.listing.HangoutUrl);
         }
 
 

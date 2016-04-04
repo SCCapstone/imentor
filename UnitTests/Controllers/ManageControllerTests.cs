@@ -180,7 +180,23 @@ namespace iMentor.Controllers.Tests
         [TestMethod()]
         public void GetUserByIdTest()
         {
-            
+            ManageController controller = new ManageController();
+
+            var JSONUser = controller.GetUserById("5");
+
+            string stringUser = JsonConvert.SerializeObject(JSONUser.Data);
+
+            iMentorUserInfo test = JsonConvert.DeserializeObject<iMentorUserInfo>(stringUser);
+
+            iMentorUserInfo user = new iMentorUserInfo();
+
+            user.UserName = "labradoe@gmail.com";
+            user.Email = "labradoe@gmail.com";
+
+            Assert.IsTrue( test.UserName    == user.UserName    &&
+                           test.Email       == user.Email);
+
+
         }
 
         [TestMethod()]

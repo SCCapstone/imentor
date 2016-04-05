@@ -49,7 +49,29 @@
                                 </li>
                             </ul>
 
-                            @Html.Partial("_LoginPartial")
+                            @if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <ul class="nav navbar-nav navbar-right" ng-show="user != null">
+                                        <li><a href="" ng-click="goToEditUser()">Welcome: {{user.UserName}}</a></li>
+
+                                        <!--Uncomment this to prevent Students/Mentors from clicking their username-->
+                                        @*<li><a href="" ng-click="goToEditUser()" ng-show="user.RoleId >= 3">Welcome: {{user.UserName}}</a></li>
+                                        <li><a ng-show="user.RoleId < 3">Welcome: {{user.UserName}}</a></li>*@
+
+                                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    </ul>
+                                }
+                            }
+                            else
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                </ul>
+                            }
                         </div>
                     </div>
                 </nav>

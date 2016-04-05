@@ -53,13 +53,13 @@
 
                 link: function (scope, elem, attrs) {
                     scope.daysOfTheWeek = [
-                        { value: 1, text: "Monday", abb: "Mon", letter: "M", selected: false },
-                        { value: 2, text: "Tuesday", abb: "Tue", letter: "T", selected: false },
-                        { value: 3, text: "Wednesday", abb: "Wed", letter: "W", selected: false },
-                        { value: 4, text: "Thursday", abb: "Thu", letter: "R", selected: false },
-                        { value: 5, text: "Friday", abb: "Fri", letter: "F", selected: false },
-                        { value: 6, text: "Saturday", abb: "Sat", letter: "S", selected: false },
-                        { value: 7, text: "Sunday", abb: "Sun", letter: "U", selected: false }
+                        { value: 1, text: "Monday", abb: "Mon", letter: "M", selected: false, disabled: false },
+                        { value: 2, text: "Tuesday", abb: "Tue", letter: "T", selected: false, disabled: false },
+                        { value: 3, text: "Wednesday", abb: "Wed", letter: "W", selected: false, disabled: false },
+                        { value: 4, text: "Thursday", abb: "Thu", letter: "R", selected: false, disabled: false },
+                        { value: 5, text: "Friday", abb: "Fri", letter: "F", selected: false, disabled: false },
+                        { value: 6, text: "Saturday", abb: "Sat", letter: "S", selected: false, disabled: false },
+                        { value: 7, text: "Sunday", abb: "Sun", letter: "U", selected: false, disabled: false }
                     ]
 
                     parseFrequency();
@@ -113,6 +113,7 @@
                     };
 
                     scope.edit = function () {
+                        scope.changeDate();
                         scope.timeEditMode = true;
                     }
 
@@ -181,7 +182,58 @@
                     }
 
                     scope.changeDate = function () {
-                        console.log("Date Change");
+                        var weekday = new Array(7);
+                        weekday[0]=  "U";
+                        weekday[1] = "M";
+                        weekday[2] = "T";
+                        weekday[3] = "W";
+                        weekday[4] = "R";
+                        weekday[5] = "F";
+                        weekday[6] = "S";
+
+                        var startDate = new Date(scope.startDate);
+                        var endDate = new Date(scope.endDate);
+
+                        var timeDiff = Math.abs(endDate - startDate);
+                        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                        if (diffDays < 7) {
+                            var startDay = startDate.getDay();
+                            var endDay = endDate.getDay();
+                            
+                            for (var j = 0; j < scope.daysOfTheWeek.length; j++) {
+                                scope.daysOfTheWeek[j].disabled = true;
+                            }
+
+                            //If the startDay is a weekday earlier than the endDay weekday or they are the same day
+                            if (startDay < endDay || startDay == endDay) {
+                                var dayArray = new Array(endDay - startDay + 1);
+                                for (var i = 0; i < dayArray.length; i++) {
+                                    dayArray[i] = weekday[startDay + i];
+                                }
+                                
+                                findValidDays(dayArray);
+                            }
+                            //if the endDay is a weekday eariler than the startDay weekday ( Thur->Monday)
+                            else if (endDay < startDay) {
+                                var dayArray = [];
+
+                                for (var i = 0; i <= 6 - startDay; i++) {
+                                    dayArray.push(weekday[startDay + i]);
+                                }
+
+                                for (var i = 0; i <= endDay; i++) {
+                                    dayArray.push(weekday[i]);
+                                }
+
+
+                                findValidDays(dayArray);
+                            }
+                        } else {
+                            for (var j = 0; j < scope.daysOfTheWeek.length; j++) {
+                                scope.daysOfTheWeek[j].disabled = false;
+                            }
+                        }
                     }
 
                     function contains(a, obj) {
@@ -191,6 +243,22 @@
                             }
                         }
                         return false;
+                    }
+
+                    function findValidDays(a) {
+                        for (var i = 0; i < a.length; i++) {
+                            for (var j = 0; j < scope.daysOfTheWeek.length; j++) {
+                                if (a[i].localeCompare(scope.daysOfTheWeek[j].letter) == 0) {
+                                    scope.daysOfTheWeek[j].disabled = false;
+                                }
+                            }
+                        }
+
+                        for (var j = 0; j < scope.daysOfTheWeek.length; j++) {
+                            if (scope.daysOfTheWeek[j].disabled) {
+                                scope.daysOfTheWeek[j].selected = false;
+                            }
+                        }
                     }
                 }
             };

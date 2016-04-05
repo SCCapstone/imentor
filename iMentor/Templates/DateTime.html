@@ -69,7 +69,7 @@
                     <fieldset class="standard">
                         <div layout="row" layout-wrap flex>
                             <div flex="50" ng-repeat="day in daysOfTheWeek">
-                                <md-checkbox class="md-secondary" ng-model="day.selected" ng-change="updateFrequency(day)">
+                                <md-checkbox class="md-secondary" ng-model="day.selected" ng-change="updateFrequency(day)" ng-disabled="day.disabled">
                                     {{ day.text }}
                                 </md-checkbox>
                             </div>

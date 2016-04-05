@@ -52,7 +52,6 @@
                 templateUrl: '/templates/DateTime.html',
 
                 link: function (scope, elem, attrs) {
-                    
                     scope.daysOfTheWeek = [
                         { value: 1, text: "Monday", abb: "Mon", letter: "M", selected: false },
                         { value: 2, text: "Tuesday", abb: "Tue", letter: "T", selected: false },
@@ -132,7 +131,7 @@
 
                         scope.listing.StartDate = startDate;
                         scope.listing.EndDate = endDate;
-
+                        
                         //--Frequency--
                         var frequency = "";
                         for (var i = 0; i < scope.daysOfTheWeek.length; i++) {
@@ -179,6 +178,10 @@
                         scope.listing.Frequency = frequency;
 
                         console.log("Update Frequency: " + frequency);
+                    }
+
+                    scope.changeDate = function () {
+                        console.log("Date Change");
                     }
 
                     function contains(a, obj) {

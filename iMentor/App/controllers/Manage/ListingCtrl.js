@@ -116,10 +116,11 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
-
                     //If the current user is assigned to the listing
                     for (var i = 0; i < assignedUsers.length; i++) {
+                        $scope.user.assigned = false;
                         if (assignedUsers[i].Id == $scope.user.Id) {
+                            $scope.user.assigned = true;
                             $scope.assigned = true;
                         }
                     }

@@ -5,8 +5,8 @@
                 <div class="im-form-label thick" style="width:30%;font-size:16px">Start</div>
                 <div class="im-form-label thick" style="width:40%;font-size:16px">End</div>
 
-                <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4) && !timeEditMode  && !isNew" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="edit"></div>
-                <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4) && timeEditMode  && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDateTime"></div>
+                <div im-btn ng-show="((user.RoleId == 3 && user.assigned) || user.RoleId == 4) && !timeEditMode  && !isNew" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="edit"></div>
+                <div im-btn ng-show="((user.RoleId == 3 && user.assigned) || user.RoleId == 4) && timeEditMode  && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDateTime"></div>
             </div>
         </div>
     </div>
@@ -15,8 +15,8 @@
         <div class="col-md-11" style="text-align:center;">
             <div style="font-size:18px;">
                 <md-content>
-                    <md-datepicker ng-show="timeEditMode" ng-model="startDate" md-placeholder="Start date"></md-datepicker>
-                    <md-datepicker ng-show="timeEditMode" ng-model="endDate" md-placeholder="End date"></md-datepicker>
+                    <md-datepicker ng-show="timeEditMode" ng-model="startDate" ng-change="changeDate()" md-placeholder="Start date"></md-datepicker>
+                    <md-datepicker ng-show="timeEditMode" ng-model="endDate" ng-change="changeDate()" md-placeholder="End date"></md-datepicker>
 
                     <md-datepicker ng-show="!timeEditMode" ng-model="startDate" md-placeholder="Start date" disabled></md-datepicker>
                     <md-datepicker ng-show="!timeEditMode" ng-model="endDate" md-placeholder="End date" disabled></md-datepicker>

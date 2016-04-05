@@ -7,7 +7,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.titleEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
-
         $scope.hangoutSaved = false;
 
         $scope.listings = [];

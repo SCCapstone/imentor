@@ -65,7 +65,6 @@
                     parseFrequency();
 
                     scope.isNew = (scope.listing.Id == null);
-
                     scope.timeEditMode = (scope.listing.Id == null);
 
                     scope.startTime = null; 

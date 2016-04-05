@@ -8,6 +8,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.applied = null;
         $scope.assigned = false;
         $scope.hangoutSaved = false;
+        $scope.validListing = false;
 
         $scope.listings = [];
         $scope.currentUsers = [];
@@ -57,31 +58,36 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         // ---------------------------------------------------------------
         function getListings(){
             manageService.getListings().then(
-                    function success(listings)
+                function success(listings)
+                {
+                    for (var i = 0; i < listings.length; i++)
                     {
-                        for (var i = 0; i < listings.length; i++)
+                        if (listings[i].Id == id)
                         {
-                            if (listings[i].Id == id)
-                            {
-                                $scope.listing = listings[i];
-                                $scope.listings.push($scope.listing);                                
-                                $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
-                                $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
-                                $scope.imagePath = getImage();
-                                getUsersByListing($scope.listingId);
-                                getAssignments();
+                            $scope.validListing = true;
+                            $scope.listing = listings[i];
+                            $scope.listings.push($scope.listing);                                
+                            $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
+                            $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+                            $scope.imagePath = getImage();
+                            getUsersByListing($scope.listingId);
+                            getAssignments();
 
-                                if (listings[i].HangoutUrl != null) {
-                                    $scope.hangoutSaved = true;
-                                }
+                            if (listings[i].HangoutUrl != null) {
+                                $scope.hangoutSaved = true;
                             }
                         }
-                    },
-                    function fail(reason)
-                    {
-                        console.log("Unable to load listing: " + reason);
                     }
-                );
+
+                    if(!$scope.validListing){
+                        console.log("Invalid Listing");
+                    }
+                },
+                function fail(reason)
+                {
+                    console.log("Unable to load listing: " + reason);
+                }
+            );
         }
 
         function newListing(){
@@ -296,9 +302,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 }
             );
         }
-
-        
-
 
         // ---------------------------------------------------------------
         // Functions

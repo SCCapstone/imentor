@@ -340,49 +340,51 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 
                         //Create array of selected days of the week
-                        var days =  $scope.currentUserListings[i].Frequency.split("");
+                        if($scope.currentUserListings[i].Frequency != null){
+                            var days =  $scope.currentUserListings[i].Frequency.split("");
 
-                        //Step through each day, create a new event when the day matches
-                        for(var x = 0; x < diffDays; x++){
-                            //Create a new date for the day
-                            var d = new Date($scope.currentUserListings[i].StartDate);
-                            d.setDate(d.getDate() + x);
+                            //Step through each day, create a new event when the day matches
+                            for(var x = 0; x < diffDays; x++){
+                                //Create a new date for the day
+                                var d = new Date($scope.currentUserListings[i].StartDate);
+                                d.setDate(d.getDate() + x);
 
-                            //If the new date is older than today, ignore it
-                            if(today.getDate() > d.getDate()){
-                                continue;
-                            }
+                                //If the new date is older than today, ignore it
+                                if(today.getDate() > d.getDate()){
+                                    continue;
+                                }
 
-                            //If the new date is more than a week away, ignore it
-                            if(nextWeek.getDate() <= d.getDate() ){
-                                //Break because every day after this will be to large too
-                                break;
-                            }
+                                //If the new date is more than a week away, ignore it
+                                if(nextWeek.getDate() <= d.getDate() ){
+                                    //Break because every day after this will be to large too
+                                    break;
+                                }
 
-                            //Find the days that match the frequency
-                            for(var y = 0; y < days.length; y++){
-                                if(days[y].localeCompare(weekday[d.getDay()]) == 0){
-                                    //Create new event
+                                //Find the days that match the frequency
+                                for(var y = 0; y < days.length; y++){
+                                    if(days[y].localeCompare(weekday[d.getDay()]) == 0){
+                                        //Create new event
 
-                                    var event = {
-                                        ListingId: $scope.currentUserListings[i].Id,
-                                        ListingTitle: $scope.currentUserListings[i].Title,
-                                        ListingStartDate: $scope.currentUserListings[i].StartDate,
-                                        ListingEndDate: $scope.currentUserListings[i].EndDate,
-                                        EventDate: new Date(d)
-                                    }
+                                        var event = {
+                                            ListingId: $scope.currentUserListings[i].Id,
+                                            ListingTitle: $scope.currentUserListings[i].Title,
+                                            ListingStartDate: $scope.currentUserListings[i].StartDate,
+                                            ListingEndDate: $scope.currentUserListings[i].EndDate,
+                                            EventDate: new Date(d)
+                                        }
 
-                                    upcomingEvents.push(event);
-                                }   
-                            }
+                                        upcomingEvents.push(event);
+                                    }   
+                                }
 
-                            //Sort new array by date
-                            sortByDate(upcomingEvents);
+                                //Sort new array by date
+                                sortByDate(upcomingEvents);
                             
 
-                            //If the array is larger than 10, remove the last elements
-                            while(upcomingEvents.length > 10){
-                                upcomingEvents.pop();
+                                //If the array is larger than 10, remove the last elements
+                                while(upcomingEvents.length > 10){
+                                    upcomingEvents.pop();
+                                }
                             }
                         }
                     }

@@ -260,7 +260,20 @@ namespace iMentor.Controllers.Tests
         [TestMethod()]
         public void GetStudentsTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+
+            var JSONStudents = controller.GetStudents();
+
+            string stringStudents = JsonConvert.SerializeObject(JSONStudents.Data);
+
+            List<iMentorUserInfo> ListStudents = JsonConvert.DeserializeObject<List<iMentorUserInfo>>(stringStudents);
+
+            //This should return the first student created "StudentOne"
+            iMentorUserInfo test1 = ListStudents.First();
+
+            Assert.IsTrue(  test1.UserName   == "StudentOne"         &&
+                            test1.Email      == "student1@gmail.com" &&
+                            test1.RoleId     == 1 );   
         }
 
         [TestMethod()]

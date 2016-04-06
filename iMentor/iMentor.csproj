@@ -340,6 +340,7 @@
     <Content Include="App\controllers\Home\Modals\CreateHangoutCtrl.js" />
     <Content Include="App\controllers\Home\Modals\ViewApplicantsCtrl.js" />
     <Content Include="App\controllers\Manage\Hangout.js" />
+    <Content Include="App\controllers\PageNotFoundCtrl.js" />
     <Content Include="fonts\fontawesome-webfont.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2149,6 +2150,7 @@
     <Content Include="Scripts\node-modules\textangular\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Home\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

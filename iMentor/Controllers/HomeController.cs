@@ -27,6 +27,12 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
+        [AllowAnonymous]
+        public ActionResult PageNotFound()
+        {
+            return PartialView();
+        }
+
         public ActionResult Secure()
         {
             ViewBag.Message = "Secure page.";

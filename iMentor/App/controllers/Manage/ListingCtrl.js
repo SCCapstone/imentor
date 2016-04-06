@@ -80,7 +80,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     }
 
                     if(!$scope.validListing){
-                        console.log("Invalid Listing");
+                        goToPageNotFound();
                     }
                 },
                 function fail(reason)
@@ -301,6 +301,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     console.log("Unable to remove applicant: " + error)
                 }
             );
+        }
+
+        function goToPageNotFound() {
+            $location.path('/PageNotFound');
         }
 
         // ---------------------------------------------------------------

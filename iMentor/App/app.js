@@ -27,6 +27,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
         
             .when('/Listing/:listingId', { templateUrl: 'Manage/Listing', controller: 'listingCtrl' })
             .when('/EditUser/:userId', { templateUrl: 'Manage/editUser', controller: 'editUserCtrl' })
+            .when('/PageNotFound', { templateUrl: 'Home/pageNotFound', controller: 'pageNotFoundCtrl'})
 
             .otherwise({ redirectTo: '/' });
 

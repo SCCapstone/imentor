@@ -309,7 +309,7 @@ namespace iMentor.Controllers.Tests
 
             List<iMentorUserInfo> ListTeachers = JsonConvert.DeserializeObject<List<iMentorUserInfo>>(stringTeachers);
 
-            //This should return the first mentor created "labradoe@gmail.com"
+            //This should return the first teacher created "labradoe@gmail.com"
             iMentorUserInfo test1 = ListTeachers.First();
 
             Assert.IsTrue(  test1.UserName  == "labradoe@gmail.com"     &&

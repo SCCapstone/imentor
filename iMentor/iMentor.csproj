@@ -337,8 +337,10 @@
     <Content Include="App\controllers\Home\CalendarCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\controllers\Home\Modals\CreateHangoutCtrl.js" />
     <Content Include="App\controllers\Home\Modals\ViewApplicantsCtrl.js" />
     <Content Include="App\controllers\Manage\Hangout.js" />
+    <Content Include="App\controllers\PageNotFoundCtrl.js" />
     <Content Include="fonts\fontawesome-webfont.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1992,6 +1994,7 @@
     <Content Include="Templates\BtnDT.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\CreateHangout.html" />
     <Content Include="Templates\DateTime.html" />
     <Content Include="Templates\DltBtn.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2042,9 +2045,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Account\VerifyCode.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Shared\_LoginPartial.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Home\Home.cshtml">
@@ -2150,6 +2150,7 @@
     <Content Include="Scripts\node-modules\textangular\README.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Home\PageNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

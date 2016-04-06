@@ -257,6 +257,7 @@ namespace iMentor.Controllers.Tests
             Assert.Fail();
         }
 
+        //*Hard coded test
         [TestMethod()]
         public void GetStudentsTest()
         {
@@ -271,15 +272,29 @@ namespace iMentor.Controllers.Tests
             //This should return the first student created "StudentOne"
             iMentorUserInfo test1 = ListStudents.First();
 
-            Assert.IsTrue(  test1.UserName   == "StudentOne"         &&
-                            test1.Email      == "student1@gmail.com" &&
+            Assert.IsTrue(  test1.UserName   == "StudentOne"            &&
+                            test1.Email      == "student1@gmail.com"    &&
                             test1.RoleId     == 1 );   
         }
 
+        //*Hard coded test
         [TestMethod()]
         public void GetMentorsTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+
+            var JSONMentors = controller.GetMentors();
+
+            string stringMentors = JsonConvert.SerializeObject(JSONMentors.Data);
+
+            List<iMentorUserInfo> ListMentors = JsonConvert.DeserializeObject<List<iMentorUserInfo>>(stringMentors);
+
+            //This should return the first mentor created "8bitminion@gmail.com"
+            iMentorUserInfo test1 = ListMentors.First();
+
+            Assert.IsTrue(test1.UserName    == "8bitminion@gmail.com"   &&
+                            test1.Email     == "8bitminion@gmail.com"   &&
+                            test1.RoleId    == 2 );
         }
 
         [TestMethod()]

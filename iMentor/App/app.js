@@ -3,7 +3,7 @@
 var app = angular.module('app', [
     'ngAnimate',
     'ngRoute',
-    'ngTouch',
+    //'ngTouch',
     'ngMaterial',
     'ngMessages',
     'mgcrea.ngStrap.timepicker',
@@ -27,12 +27,12 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
         
             .when('/Listing/:listingId', { templateUrl: 'Manage/Listing', controller: 'listingCtrl' })
             .when('/EditUser/:userId', { templateUrl: 'Manage/editUser', controller: 'editUserCtrl' })
+            .when('/PageNotFound', { templateUrl: 'Home/pageNotFound', controller: 'pageNotFoundCtrl'})
 
             .otherwise({ redirectTo: '/' });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
 
-        // Globally turn off caching of all data calls
         // Initialize headers
         $httpProvider.defaults.headers.get = $httpProvider.defaults.headers.get || {};
 

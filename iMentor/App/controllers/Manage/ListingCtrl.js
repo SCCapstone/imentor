@@ -1,5 +1,5 @@
 ﻿
-app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', '$mdDialog', 'manageService',  'modalOptionService',
+app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$location', '$uibModal', '$filter', '$timeout', '$mdDialog', 'manageService', 'modalOptionService',
     function ListingCtrl($scope, $rootScope, $q, $routeParams, $location, $uibModal, $filter, $timeout, $mdDialog, manageService, modalOptionService)
     {
         $scope.areaEditMode = false;
@@ -7,6 +7,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.titleEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
+        $scope.hangoutSaved = false;
+        $scope.validListing = false;
 
         $scope.listings = [];
         $scope.currentUsers = [];
@@ -56,27 +58,36 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         // ---------------------------------------------------------------
         function getListings(){
             manageService.getListings().then(
-                    function success(listings)
+                function success(listings)
+                {
+                    for (var i = 0; i < listings.length; i++)
                     {
-                        for (var i = 0; i < listings.length; i++)
+                        if (listings[i].Id == id)
                         {
-                            if (listings[i].Id == id)
-                            {
-                                $scope.listing = listings[i];
-                                $scope.listings.push($scope.listing);                                
-                                $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
-                                $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
-                                $scope.imagePath = getImage();
-                                getUsersByListing($scope.listingId);
-                                getAssignments();
+                            $scope.validListing = true;
+                            $scope.listing = listings[i];
+                            $scope.listings.push($scope.listing);                                
+                            $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
+                            $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+                            $scope.imagePath = getImage();
+                            getUsersByListing($scope.listingId);
+                            getAssignments();
+
+                            if (listings[i].HangoutUrl != null) {
+                                $scope.hangoutSaved = true;
                             }
                         }
-                    },
-                    function fail(reason)
-                    {
-                        console.log("Unable to load listing: " + reason);
                     }
-                );
+
+                    if(!$scope.validListing){
+                        goToPageNotFound();
+                    }
+                },
+                function fail(reason)
+                {
+                    console.log("Unable to load listing: " + reason);
+                }
+            );
         }
 
         function newListing(){
@@ -111,10 +122,11 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
-
                     //If the current user is assigned to the listing
                     for (var i = 0; i < assignedUsers.length; i++) {
+                        $scope.user.assigned = false;
                         if (assignedUsers[i].Id == $scope.user.Id) {
+                            $scope.user.assigned = true;
                             $scope.assigned = true;
                         }
                     }
@@ -291,8 +303,9 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             );
         }
 
-        
-
+        function goToPageNotFound() {
+            $location.path('/PageNotFound');
+        }
 
         // ---------------------------------------------------------------
         // Functions
@@ -439,6 +452,44 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             });
         };
 
+        $scope.showAdvanced = function (ev) {
+            $mdDialog.show({
+                controller: 'createHangoutCtrl',
+                templateUrl: 'Templates/CreateHangout.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false,
+                resolve: {
+                    listing: function () {
+                        return $scope.listing;
+                    }
+                }
+            })
+            .then(function (answer) {
+                $scope.hangoutSaved = true;
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
+
+        $scope.closeHangout = function (ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Close Hangout?')
+                  .textContent($scope.listing.Title)
+                  .targetEvent(ev)
+                  .ok('Okay')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                //Save the application
+                $scope.listing.HangoutUrl = null;
+                manageService.updateListing($scope.listing);
+                $scope.hangoutSaved = false;
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
+
         $scope.createListing = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
@@ -475,6 +526,14 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         function refreshParticipants() {
             getUsersByListing($scope.listing.Id);
             getAssignments();
+        }
+
+        $scope.showUrlInput = function () {
+            $scope.showHangoutUrl = true;
+        }
+
+        $scope.joinHangout = function() {
+            window.open($scope.listing.HangoutUrl);
         }
 
 

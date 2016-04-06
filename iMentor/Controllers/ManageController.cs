@@ -174,7 +174,7 @@ namespace iMentor.Controllers
             var currentUserName = User.Identity.GetUserName();
             List<ListingInfo> listings = new List<ListingInfo>();
 
-            if (currentUserName != null)
+            if (!currentUserName.Equals(""))
             {
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
@@ -211,6 +211,8 @@ namespace iMentor.Controllers
 
                         listings.Add(l);
                     }
+
+                    CheckForExpiredListings(listings);
                 }
             }
 

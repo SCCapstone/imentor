@@ -257,22 +257,64 @@ namespace iMentor.Controllers.Tests
             Assert.Fail();
         }
 
+        //*Hard coded test
         [TestMethod()]
         public void GetStudentsTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+
+            var JSONStudents = controller.GetStudents();
+
+            string stringStudents = JsonConvert.SerializeObject(JSONStudents.Data);
+
+            List<iMentorUserInfo> ListStudents = JsonConvert.DeserializeObject<List<iMentorUserInfo>>(stringStudents);
+
+            //This should return the first student created "StudentOne"
+            iMentorUserInfo test1 = ListStudents.First();
+
+            Assert.IsTrue(  test1.UserName  == "StudentOne"            &&
+                            test1.Email     == "student1@gmail.com"    &&
+                            test1.RoleId    == 1 );   
         }
 
+        //*Hard coded test
         [TestMethod()]
         public void GetMentorsTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+
+            var JSONMentors = controller.GetMentors();
+
+            string stringMentors = JsonConvert.SerializeObject(JSONMentors.Data);
+
+            List<iMentorUserInfo> ListMentors = JsonConvert.DeserializeObject<List<iMentorUserInfo>>(stringMentors);
+
+            //This should return the first mentor created "8bitminion@gmail.com"
+            iMentorUserInfo test1 = ListMentors.First();
+
+            Assert.IsTrue(  test1.UserName  == "8bitminion@gmail.com"   &&
+                            test1.Email     == "8bitminion@gmail.com"   &&
+                            test1.RoleId    == 2 );
         }
 
+        //*Hard coded test
         [TestMethod()]
         public void GetTeachersTest()
         {
-            Assert.Fail();
+            ManageController controller = new ManageController();
+
+            var JSONTeachers = controller.GetTeachers();
+
+            string stringTeachers = JsonConvert.SerializeObject(JSONTeachers.Data);
+
+            List<iMentorUserInfo> ListTeachers = JsonConvert.DeserializeObject<List<iMentorUserInfo>>(stringTeachers);
+
+            //This should return the first teacher created "labradoe@gmail.com"
+            iMentorUserInfo test1 = ListTeachers.First();
+
+            Assert.IsTrue(  test1.UserName  == "labradoe@gmail.com"     &&
+                            test1.Email     == "labradoe@gmail.com"     &&
+                            test1.RoleId    == 3 );
         }
 
         [TestMethod()]

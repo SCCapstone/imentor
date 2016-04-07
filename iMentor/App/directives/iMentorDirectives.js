@@ -215,6 +215,11 @@
                             errorReason += " [Start time must be before end time]";
                         }
 
+                        if (scope.listing.Frequency.localeCompare("") == 0) {
+                            toReturn = false;
+                            errorReason += " [Please select a day of the week]";
+                        }
+
                         return toReturn;
                     }
 

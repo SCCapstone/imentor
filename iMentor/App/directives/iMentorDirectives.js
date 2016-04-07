@@ -39,8 +39,8 @@
             }
         };
     })
-    .directive('dateTime', ['$timeout', 'manageService',
-        function ($timeout, manageService) {
+    .directive('dateTime', ['$timeout', '$mdToast', 'manageService',
+        function ($timeout, $mdToast, manageService) {
             return {
                 restrict: 'A',
 
@@ -67,6 +67,28 @@
                     scope.isNew = (scope.listing.Id == null);
                     scope.timeEditMode = (scope.listing.Id == null);
 
+                    scope.today = new Date();
+
+                    scope.minDate = new Date(
+                        scope.today.getFullYear(),
+                        scope.today.getMonth(),
+                        scope.today.getDate());
+                    
+                    scope.maxDate = new Date(
+                        scope.today.getFullYear() + 5,
+                        scope.today.getMonth(),
+                        scope.today.getDate());
+
+                    //This makes the date-picker a click only element.
+                    angular.element(".md-datepicker-button").each(function () {
+                        var el = this;
+                        var ip = angular.element(el).parent().find("input").bind('click', function (e) {
+                            angular.element(el).click();
+                        });
+                    });
+
+                    var errorReason = "";
+                    scope.saveDisabled = false;
                     scope.startTime = null; 
                     scope.endTime = null;
                     scope.startDate = null;
@@ -142,11 +164,15 @@
                         scope.listing.Frequency = frequency;
 
                         //--Update the listing if it's not new--
-                        if(!scope.isNew){
-                            manageService.updateListing(scope.listing);
-                        }
+                        if (validate()) {
+                            if (!scope.isNew) {
+                                manageService.updateListing(scope.listing);
+                            }
 
-                        scope.timeEditMode = false;
+                            scope.timeEditMode = false;
+                        } else {
+                            scope.showSaveError();
+                        }
                     }
 
 
@@ -154,6 +180,16 @@
                     scope.$on('saveDateTime', function (event, data) {
                         scope.saveDateTime();
                     });
+
+                    scope.showSaveError = function () {
+                        $mdToast.show(
+                          $mdToast.simple()
+                            .textContent('Unable to save:' + errorReason)
+                            .position('top')
+                            .hideDelay(2000)
+                            .parent(dateTimeForm)
+                        );
+                    };
 
                     function parseFrequency() {
                         if(scope.listing.Frequency != null){
@@ -166,8 +202,23 @@
                         }
                     }
 
+                    function validate() {
+                        var toReturn = true;
+                        errorReason = "";
+
+                        if (scope.timeForm.$invalid) {
+                            toReturn = false;
+                            errorReason += " [Invalid Time]";
+                        } else if (scope.endTime.getHours() < scope.startTime.getHours() || 
+                            (scope.endTime.getHours() == scope.startTime.getHours() && scope.endTime.getMinutes() <= scope.startTime.getMinutes())) {
+                            toReturn = false;
+                            errorReason += " [Start time must be before end time]";
+                        }
+
+                        return toReturn;
+                    }
+
                     scope.updateFrequency = function (day) {
-                        console.log(day);
                         var frequency = day;
 
                         for (var i = 0; i < scope.daysOfTheWeek.length; i++) {
@@ -176,8 +227,6 @@
                             }
                         }
                         scope.listing.Frequency = frequency;
-
-                        console.log("Update Frequency: " + frequency);
                     }
 
                     scope.changeDate = function () {

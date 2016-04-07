@@ -1,22 +1,45 @@
 ﻿<div class="dateTime">
-    <div class="row">
-        <div class="col-md-12" style="text-align:center;">
-            <div style="font-size:18px;">
-                <div class="im-form-label thick" style="width:30%;font-size:16px">Start</div>
-                <div class="im-form-label thick" style="width:40%;font-size:16px">End</div>
+    <form name="dateTimeForm">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center;">
+                <div style="font-size:18px;">
+                    <div class="im-form-label thick" style="width:30%;font-size:16px">Start</div>
+                    <div class="im-form-label thick" style="width:40%;font-size:16px">End</div>
 
-                <div im-btn ng-show="((user.RoleId == 3 && user.assigned) || user.RoleId == 4) && !timeEditMode  && !isNew" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="edit"></div>
-                <div im-btn ng-show="((user.RoleId == 3 && user.assigned) || user.RoleId == 4) && timeEditMode  && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDateTime"></div>
+                    <div im-btn ng-show="((user.RoleId == 3 && user.assigned) || user.RoleId == 4) && !timeEditMode  && !isNew" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="edit"></div>
+                    <div im-btn ng-show="((user.RoleId == 3 && user.assigned) || user.RoleId == 4) && timeEditMode  && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDateTime"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <div class="row">
         <div class="col-md-11" style="text-align:center;">
             <div style="font-size:18px;">
                 <md-content>
-                    <md-datepicker ng-show="timeEditMode" ng-model="startDate" ng-change="changeDate()" md-placeholder="Start date"></md-datepicker>
-                    <md-datepicker ng-show="timeEditMode" ng-model="endDate" ng-change="changeDate()" md-placeholder="End date"></md-datepicker>
+
+                    <form name="dateForm" ng-show="timeEditMode" style="text-align:left;padding-left:28px;">
+                        <md-datepicker name="startDateField" ng-model="startDate" md-placeholder="Start date"
+                                       required md-min-date="minDate" md-max-date="maxDate" ng-change="changeDate()"></md-datepicker>
+                        <md-datepicker name="endDateField" ng-model="endDate" md-placeholder="End date"
+                                       required md-min-date="startDate" md-max-date="maxDate" ng-change="changeDate()"></md-datepicker>
+                        <div class="validation-messages col-md-5" style="padding-bottom:10px;padding-left:15px;">
+                            <div ng-messages="dateForm.startDateField.$error">
+                                <div ng-message="valid">The entered value is not a date!</div>
+                                <div ng-message="required">This date is required!</div>
+                                <div ng-message="mindate">Date is too early!</div>
+                                <div ng-message="maxdate">Date is too late!</div>
+                            </div>
+                        </div>
+                        <div class="validation-messages col-md-5" style="padding-bottom:10px;padding-left:5px;">
+                            <div ng-messages="dateForm.endDateField.$error">
+                                <div ng-message="valid">The entered value is not a date!</div>
+                                <div ng-message="required">This date is required!</div>
+                                <div ng-message="mindate">Date is too early!</div>
+                                <div ng-message="maxdate">Date is too late!</div>
+                            </div>
+                        </div>
+                    </form>
 
                     <md-datepicker ng-show="!timeEditMode" ng-model="startDate" md-placeholder="Start date" disabled></md-datepicker>
                     <md-datepicker ng-show="!timeEditMode" ng-model="endDate" md-placeholder="End date" disabled></md-datepicker>
@@ -29,13 +52,17 @@
         <div class="col-md-11">
             <div layout-gt-sm="row" style="font-size:12px;width:100%;">
 
-                <div layout-gt-sm="row" ng-show="timeEditMode" style="margin-left:40px;">
-                    <label class="control-label"><i class="glyphicon glyphicon-time" style="padding-top:10px;"></i></label>
-                    <input type="text" class="form-control" size="8" ng-model="startTime" name="time" bs-timepicker style="width:160px;">
+                <form name="timeForm" ng-show="timeEditMode" class="form-inline" role="form" style="margin-left:40px;">
+                    <div class="form-group" ng-class="{'has-error': timeForm.startTime.$invalid}">
+                        <label class="control-label"><i class="glyphicon glyphicon-time"></i></label>
+                        <input type="text" class="form-control" size="8" ng-model="startTime" data-time-format="hh:mm a" name="startTime" bs-timepicker style="width:160px;">
+                    </div>
 
-                    <label class="control-label"><i class="glyphicon glyphicon-time" style="padding-top:10px;margin-left:20px;"></i></label>
-                    <input type="text" class="form-control" size="8" ng-model="endTime" name="time" bs-timepicker style="width:160px;">
-                </div>
+                    <div class="form-group" ng-class="{'has-error': timeForm.endTime.$invalid}">
+                        <label class="control-label"><i class="glyphicon glyphicon-time" style="margin-left:20px;"></i></label>
+                        <input type="text" class="form-control" size="8" ng-model="endTime" data-time-format="hh:mm a" name="endTime" bs-timepicker style="width:160px;">
+                    </div>
+                </form>
 
                 <div layout-gt-sm="row" ng-show="!timeEditMode" style="margin-left:40px;">
                     <label class="control-label"><i class="glyphicon glyphicon-time" style="padding-top:10px;"></i></label>

@@ -266,13 +266,13 @@ app.controller('addParticipantsCtrl', ['$scope', '$uibModalInstance', '$location
                 $uibModalInstance.dismiss();
             }
 
-            listingsCtrl.refreshParticipantsList();
+            $rootScope.$broadcast('refreshParticipantsList', { assignments: newAssignedUsers });
         };
 
         $scope.cancel = function ()
 	    {
             $uibModalInstance.dismiss();
-            listingsCtrl.refreshParticipantsList();
+            $rootScope.$broadcast('refreshParticipantsList');
         };
     }
 ])

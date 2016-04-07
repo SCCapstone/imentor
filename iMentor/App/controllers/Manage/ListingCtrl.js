@@ -122,9 +122,9 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getUsersByListing(listingId).then(
                 function success(assignedUsers){
                     $scope.assignedUsers = assignedUsers;
+
                     //If the current user is assigned to the listing
                     for (var i = 0; i < assignedUsers.length; i++) {
-                        $scope.user.assigned = false;
                         if (assignedUsers[i].Id == $scope.user.Id) {
                             $scope.assigned = true;
                         }
@@ -395,9 +395,17 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             }
         }
 
-        $scope.refreshParticipantsList = function () {
+        $scope.$on('refreshParticipantsList', function (event, data) {
+
+            console.log("Before: " + $scope.assignedUsers);
+            $scope.assignedUsers = [];
+            for (var i = 0; i < data.assignments.length; i++) {
+                $scope.assignedUsers.push(data.assignments[i]);
+            }
+
+            console.log("After: " + $scope.assignedUsers);
             refreshParticipants();
-        }
+        });
 
         $scope.showAddParticipantsModal = function (teachers, students, mentors, listing, assignments) {
             var modalOptions = modalOptionService.optionsForAddParticipants(teachers, students, mentors, listing, assignments, this);
@@ -527,7 +535,12 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         function refreshParticipants() {
-            getUsersByListing($scope.listing.Id);
+            $scope.tiles = buildGridModel({
+                icon: "avatar:svg-",
+                title: "Svg-",
+                background: ""
+            });
+            //getUsersByListing($scope.listing.Id);
             getAssignments();
         }
 

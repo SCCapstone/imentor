@@ -207,6 +207,11 @@
                         var toReturn = true;
                         errorReason = "";
 
+                        if (scope.endDate < scope.startDate) {
+                            toReturn = false;
+                            errorReason += " [Start date must be before end date]";
+                        }
+
                         if (scope.timeForm.$invalid) {
                             toReturn = false;
                             errorReason += " [Invalid Time]";

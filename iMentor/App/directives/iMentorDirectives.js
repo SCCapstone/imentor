@@ -39,8 +39,8 @@
             }
         };
     })
-    .directive('dateTime', ['$timeout', '$mdToast', 'manageService',
-        function ($timeout, $mdToast, manageService) {
+    .directive('dateTime', ['$rootScope', '$timeout', '$mdToast', 'manageService',
+        function ($rootScope, $timeout, $mdToast, manageService) {
             return {
                 restrict: 'A',
 
@@ -171,15 +171,21 @@
                             }
 
                             scope.timeEditMode = false;
+                            return true;
                         } else {
                             scope.showSaveError();
+                            return false;
                         }
                     }
 
 
                     //This function allows other code to call it through the $rootscope
                     scope.$on('saveDateTime', function (event, data) {
-                        scope.saveDateTime();
+                        if(scope.saveDateTime()){
+                            $rootScope.$broadcast('createNewListing');
+                        } else {
+                            $rootScope.$broadcast('cancelCreation');
+                        }
                     });
 
                     scope.showSaveError = function () {

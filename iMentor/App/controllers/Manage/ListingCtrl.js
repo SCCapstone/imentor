@@ -499,24 +499,28 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                   .ok('Create')
                   .cancel('Cancel');
             $mdDialog.show(confirm).then(function () {
-
-                $scope.listing.Open = true;
-                $rootScope.$broadcast('saveDateTime', {});
-
-                manageService.addListing($scope.listing).then(
-                    function success(listing) {
-                        addTeacher(listing.Id);
-                        $location.path("/Listing/" + listing.Id);
-                    },
-                    function error(response) {
-                        console.log("Unable to create listing");
-                    }
-                );
-
+                $rootScope.$broadcast('saveDateTime')
             }, function () {
                 $scope.status = 'Canceled';
             });
         };
+
+        $scope.$on('createNewListing', function (event, data)  {
+            $scope.listing.Open = true;
+            manageService.addListing($scope.listing).then(
+                function success(listing) {
+                    addTeacher(listing.Id);
+                    $location.path("/Listing/" + listing.Id);
+                },
+                function error(response) {
+                    console.log("Unable to create listing");
+                }
+            );
+        });
+
+        $scope.$on('cancelCreation', function (event, data) {
+            $scope.cancelCreateListing();
+        });
 
         $scope.cancelCreateListing = function () {
             $scope.deleteListing();
@@ -559,7 +563,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
 
                 manageService.addParticipant(assignment).then(
                     function success(response) {
-                        console.log("Teacher Added");
                     },
                     function error(response) {
                         console.log("Unable to add teacher");

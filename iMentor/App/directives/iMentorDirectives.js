@@ -101,10 +101,13 @@
                         scope.startDate = scope.listing.StartDate;
                         scope.endDate = scope.listing.EndDate;
                     }else{
-                        scope.startTime = new Date(); 
+                        scope.startTime = scope.minDate;
                         scope.endTime = new Date();
                         scope.startDate = new Date();
-                        scope.endDate = new Date();
+                        scope.endDate = new Date(
+                            scope.today.getFullYear(),
+                            scope.today.getMonth(),
+                            scope.today.getDate() + 7);
                     }
                     
                     scope.picker = { opened: false };

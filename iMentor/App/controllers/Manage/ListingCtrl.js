@@ -126,7 +126,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     for (var i = 0; i < assignedUsers.length; i++) {
                         $scope.user.assigned = false;
                         if (assignedUsers[i].Id == $scope.user.Id) {
-                            $scope.user.assigned = true;
                             $scope.assigned = true;
                         }
                     }

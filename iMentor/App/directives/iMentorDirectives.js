@@ -46,7 +46,8 @@
 
                 scope: {
                     listing: '=',
-                    user: '='
+                    user: '=',
+                    assigned: '='
                 },
 
                 templateUrl: '/templates/DateTime.html',
@@ -63,7 +64,7 @@
                     ]
 
                     parseFrequency();
-
+                        
                     scope.isNew = (scope.listing.Id == null);
                     scope.timeEditMode = (scope.listing.Id == null);
 

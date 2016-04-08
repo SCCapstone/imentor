@@ -4,6 +4,7 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
     {
         $scope.user = {};
         $scope.userId = $routeParams.userId;
+        $scope.showOnlyAssignedListings = false;
         var id = $scope.userId;
         getUsers();
 
@@ -18,6 +19,7 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
                         if(users[i].Id == id)
                         {
                             $scope.user = users[i];
+                            $scope.showOnlyAssignedListings = $scope.user.ShowOnlyAssignedListings;
                         }
                     }
                 },
@@ -43,6 +45,8 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
         }
 
         $scope.updateUser = function () {
+            $scope.user.ShowOnlyAssignedListings = $scope.showOnlyAssignedListings;
+
             manageService.updateUser($scope.user).then(
                 function success(response) {
                 }
@@ -50,7 +54,7 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
         }
 
         $scope.roleChanged = function (){
-            $scope.user.ShowOnlyAssignedListings = false;
+            $scope.showOnlyAssignedListings = false;
         }
     }
 ]);

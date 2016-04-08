@@ -10,11 +10,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
+        <meta name="google-signin-client_id" content="1086641013362-rj0u1ckimo3hs369gc8q40bvqs2d1rau.apps.googleusercontent.com	">
         <script type="text/javascript" src="//hangoutsapi.talkgadget.google.com/talkgadget/apps/gadgets/js/rpc.js"></script>
         <script type="text/javascript" src="//hangoutsapi.talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>
         <script src="https://apis.google.com/js/client.js"></script>
         <script type="text/javascript" src="//www.google.com/jsapi"></script>
         <script src="https://apis.google.com/js/client.js?onload=onClientReady"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <script>
+//<![CDATA[
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/client:plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+
+// ]]></script>
 
        
         @Styles.Render("~/bundles/content")
@@ -49,13 +61,14 @@
                                 </li>
                             </ul>
 
+
                             @if (Request.IsAuthenticated)
                             {
                                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                                 {
                                     @Html.AntiForgeryToken()
 
-                                    <ul class="nav navbar-nav navbar-right" ng-show="user != null">
+                                    <ul class="nav navbar-nav navbar-right" ng-show="signedIn">
                                         <li><a href="" ng-click="goToEditUser()">Welcome: {{user.UserName}}</a></li>
 
                                         <!--Uncomment this to prevent Students/Mentors from clicking their username-->
@@ -68,9 +81,13 @@
                             }
                             else
                             {
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                                </ul>
+                                <div class="nav navbar-nav navbar-right" ng-show="!signedIn">
+                                    <span id="googleSignIn">
+                                        <span id="signInButton">
+                                        </span>
+                                    </span>
+                                    @*<li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+                                </div>
                             }
                         </div>
                     </div>

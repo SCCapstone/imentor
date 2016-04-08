@@ -389,23 +389,37 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             $scope.descriptionEditMode = false;
         }
 
-        $scope.editParticipants = function () {
-            if($scope.students != null && $scope.listing != null){
-                $scope.showAddParticipantsModal($scope.teachers, $scope.students, $scope.mentors, $scope.listing, $scope.assignments);
-            }
-        }
 
         $scope.$on('refreshParticipantsList', function (event, data) {
-
-            console.log("Before: " + $scope.assignedUsers);
             $scope.assignedUsers = [];
             for (var i = 0; i < data.assignments.length; i++) {
                 $scope.assignedUsers.push(data.assignments[i]);
             }
-
-            console.log("After: " + $scope.assignedUsers);
             refreshParticipants();
         });
+
+        function refreshParticipants() {
+            $scope.tiles = buildGridModel({
+                icon: "avatar:svg-",
+                title: "Svg-",
+                background: ""
+            });
+            //getAssignments();
+        }
+
+        $scope.editParticipants = function () {
+            if($scope.students != null && $scope.listing != null){
+                manageService.getAssignments().then(
+                    function success(assignments){
+                        $scope.showAddParticipantsModal($scope.teachers, 
+                                        $scope.students, $scope.mentors, 
+                                        $scope.listing, assignments);
+                    }
+                )
+            
+                
+            }
+        }
 
         $scope.showAddParticipantsModal = function (teachers, students, mentors, listing, assignments) {
             var modalOptions = modalOptionService.optionsForAddParticipants(teachers, students, mentors, listing, assignments, this);
@@ -534,15 +548,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             $scope.deleteListing();
         }
 
-        function refreshParticipants() {
-            $scope.tiles = buildGridModel({
-                icon: "avatar:svg-",
-                title: "Svg-",
-                background: ""
-            });
-            //getUsersByListing($scope.listing.Id);
-            getAssignments();
-        }
+        
 
         $scope.showUrlInput = function () {
             $scope.showHangoutUrl = true;

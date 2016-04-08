@@ -33,9 +33,9 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
         // ---------------------------------------------------------------
 
         $scope.save = function () {
-                $scope.updateUser();
+            $scope.updateUser();
                 
-                $location.path("/ManageUsers");
+            $location.path("/ManageUsers");
         }
 
         $scope.cancel = function () {
@@ -49,5 +49,8 @@ app.controller('editUserCtrl', ['$scope', '$rootScope', '$routeParams', '$locati
             );
         }
 
+        $scope.roleChanged = function (){
+            $scope.user.ShowOnlyAssignedListings = false;
+        }
     }
 ]);

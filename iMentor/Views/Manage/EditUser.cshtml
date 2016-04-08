@@ -21,27 +21,29 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="radio" style="margin-left:70px;">
-                                <label><input type="radio" ng-model="user.Role" value="Student" name="role">Student</label>
-                                <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Mentor" name="role">Mentor</label>
+                                <label><input type="radio" ng-model="user.Role" value="Student" name="role" ng-change="roleChanged()">Student</label>
+                                <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Mentor" name="role" ng-change="roleChanged()">Mentor</label>
                             </div>
 
                             <div class="radio" style="margin-left:70px;">
-                                <label><input type="radio" ng-model="user.Role" value="Teacher" name="role">Teacher</label>
-                                <label style="margin-left:30px;"><input type="radio" ng-model="user.Role" value="Administrator" name="role">Administrator</label>
+                                <label><input type="radio" ng-model="user.Role" value="Teacher" name="role" ng-change="roleChanged()">Teacher</label>
+                                <label style="margin-left:30px;"><input type="radio" ng-model="user.Role" value="Administrator" name="role" ng-change="roleChanged()">Administrator</label>
                             </div>
                         </div>
                     </div>
 
-                    <md-content><md-divider></md-divider></md-content>
+                    <md-content style="padding-bottom:20px;"><md-divider></md-divider></md-content>
 
                     <div class="row" style="margin-left:28px;" ng-show="!user.Role.localeCompare('Student')">
-                        <div class="im-form-label" style="font-size:18px;margin-top:20px">Student Limitations</div>
+                        <div class="im-form-label" style="font-size:18px;">Student Limitations</div>
                     </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <md-checkbox style="margin-left:25px;" ng-model="subject.selected" ng-click="includeArea(subject.text)" aria-label="{{subject.value}}"></md-checkbox>
-                            <div style=""> {{ subject.text }} </div>
-                        </div>
+                    <div class="row" ng-show="!user.Role.localeCompare('Student')">
+                        <md-list>
+                            <md-list-item style="width:100%;">
+                                <md-checkbox style="margin-left:70px;" ng-model="user.ShowOnlyAssignedListings" aria-label="{{userId}}"></md-checkbox>
+                                <div style=""> Only show assigned listings </div>
+                            </md-list-item>
+                        </md-list>
                     </div>
 
                     <md-content style="padding-top:20px;padding-bottom:20px;" ng-show="!user.Role.localeCompare('Student')"><md-divider></md-divider></md-content>

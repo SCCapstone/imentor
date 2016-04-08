@@ -341,6 +341,7 @@
     <Content Include="App\controllers\Home\Modals\ViewApplicantsCtrl.js" />
     <Content Include="App\controllers\Manage\Hangout.js" />
     <Content Include="App\controllers\PageNotFoundCtrl.js" />
+    <Content Include="Content\bootstrap-social.css" />
     <Content Include="fonts\fontawesome-webfont.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

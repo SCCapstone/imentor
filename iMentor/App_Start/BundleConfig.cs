@@ -8,7 +8,7 @@ namespace iMentor
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-          
+
             bundles.Add(new StyleBundle("~/bundles/content").Include(
                 "~/Content/bootstrap-theme.css",
                 "~/Content/bootstrap-theme.css.map",
@@ -20,8 +20,8 @@ namespace iMentor
                 "~/Content/ui-grid.css",
                 "~/Content/fullcalendar.css",
                 "~/Content/fullcalendar.min.css",
+                "~/Content/bootstrap-social.css",
                 "~/Content/font-awesome.css",
-                "~/Content/font-awesome.min.css",
                 "~/Content/ui-bootstrap-csp.css",
                 "~/Content/textAngular.css",
                 "~/Content/iMentor/iMentor-site.css"

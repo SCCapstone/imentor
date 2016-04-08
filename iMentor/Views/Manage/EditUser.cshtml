@@ -6,44 +6,63 @@
 
 
 <div class="ngview-wrapper" ng-class="cursorClass" ng-show="user.Id != null">
-    <div class="ngview-header" style="padding: 0px 20px 8px 20px;">
-        <div class="ngview-header-left">
-            <div class="header-title">User Details</div>
+    <div class="panel panel-default" style="width:500px;">
+        <div class="panel-heading" style="background:#f2f2f2;color:#999999;height:45px;">
+            <div class="header-title pull-left">User Details</div>
         </div>
-        <div class="form-group" style="clear:both">
-            <div class="im-form-label" style="width:125px;font-size:14px;">{{user.UserName}}</div>
-        </div>
-    </div>
 
+        <div class="panel-body">
+            <div class="text-left col-sm-12" style="display:inline-block;">
+                <form name="userForm" novalidate>
 
-    <div class="ngview-body" style="padding-top:20px;">
-        <div class="text-left" style="display:inline-block;">
-            <form name="userForm" novalidate>
-                <div class="im-form-label" style="width:25px;font-size:18px;">Role</div>
+                    <div class="row" style="margin-left:28px;">
+                        <div class="im-form-label" style="width:25px;font-size:18px;">Role</div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="radio" style="margin-left:70px;">
+                                <label><input type="radio" ng-model="user.Role" value="Student" name="role">Student</label>
+                                <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Mentor" name="role">Mentor</label>
+                            </div>
 
-                <div class="form-group">
-                    <div class="radio" style="margin-left:70px;" >
-                        <label><input type="radio" ng-model="user.Role" value="Student" name="role">Student</label>
-                        <label style="margin-left:34px;"><input type="radio"  ng-model="user.Role" value="Mentor" name="role">Mentor</label>
+                            <div class="radio" style="margin-left:70px;">
+                                <label><input type="radio" ng-model="user.Role" value="Teacher" name="role">Teacher</label>
+                                <label style="margin-left:30px;"><input type="radio" ng-model="user.Role" value="Administrator" name="role">Administrator</label>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="radio" style="margin-left:70px;">
-                        <label><input type="radio" ng-model="user.Role" value="Teacher" name="role">Teacher</label>
-                        <label style="margin-left:30px;"><input type="radio"  ng-model="user.Role" value="Administrator" name="role">Administrator</label>
+                    <md-content><md-divider></md-divider></md-content>
+
+                    <div class="row" style="margin-left:28px;" ng-show="!user.Role.localeCompare('Student')">
+                        <div class="im-form-label" style="font-size:18px;margin-top:20px">Student Limitations</div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <md-checkbox style="margin-left:25px;" ng-model="subject.selected" ng-click="includeArea(subject.text)" aria-label="{{subject.value}}"></md-checkbox>
+                            <div style=""> {{ subject.text }} </div>
+                        </div>
+                    </div>
 
-                <div class="form-group" style="clear:both">
-                    <div class="im-form-label" style="width:125px;">Usrname</div>
-                    <input type="text" ng-model="user.UserName" required name="usrName" class="form-control im-form-text" style="width:250px;" />
-                </div>
+                    <md-content style="padding-top:20px;padding-bottom:20px;" ng-show="!user.Role.localeCompare('Student')"><md-divider></md-divider></md-content>
 
-                <div class="text-right">
-                    <div class="btn btn-sm btn-custom" ng-click="save()" style="margin-right:0px;width:75px;">Save</div>
-                    <div class="btn btn-sm btn-custom" ng-click="cancel()" style="width:75px;">Cancel</div>
-                </div>
+                    <div class="row" style="">
+                        <div class="im-form-label" style="width:125px;font-size:18px;">Username</div>
+                    </div>
+                    <div class="row">
+                        <input type="text" ng-model="user.UserName" required name="userName" class="form-control im-form-text" style="width:250px;margin-left:70px;" />
+                    </div>
 
-            </form>
+                    <div class="text-right">
+                        <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="cancel()">
+                            Cancel
+                        </md-button>
+                        <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="save()">
+                            Save
+                        </md-button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

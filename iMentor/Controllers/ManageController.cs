@@ -53,6 +53,7 @@ namespace iMentor.Controllers
                 {
                     var l = new ListingInfo();
                     l.Id = listing.Id;
+                    l.UrlId = listing.UrlId;
                     l.Title = listing.Title;
                     l.StartDate = listing.StartDate;
                     l.EndDate = listing.EndDate;
@@ -144,6 +145,7 @@ namespace iMentor.Controllers
                     if (l != null)
                     {
                         l.Title = listing.Title;
+                        l.UrlId = listing.UrlId;
                         l.StartDate = listing.StartDate;
                         l.EndDate = listing.EndDate;
                         l.Area = listing.Area;
@@ -197,6 +199,7 @@ namespace iMentor.Controllers
                     {
                         var l = new ListingInfo();
                         l.Id = listing.Id;
+                        l.UrlId = listing.UrlId;
                         l.Title = listing.Title;
                         l.StartDate = listing.StartDate;
                         l.EndDate = listing.EndDate;
@@ -246,6 +249,7 @@ namespace iMentor.Controllers
                     user.Email = iMentorUser.Email;
                     user.RoleId = iMentorUser.RoleId;
                     user.Role = user.GetRoleByUser(iMentorUser);
+                    user.ShowOnlyAssignedListings = iMentorUser.ShowOnlyAssignedListings;
                 }
 
                 return Json(user, JsonRequestBehavior.AllowGet);
@@ -281,6 +285,7 @@ namespace iMentor.Controllers
                         u.UserName = user.UserName;
                         u.Email = user.Email;
                         u.RoleId = user.GetRoleIdByName(user.Role);
+                        u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
 
                         db.SaveChanges();
                         return "User Updated";
@@ -356,6 +361,7 @@ namespace iMentor.Controllers
                             u.Email = user.Email;
                             u.RoleId = user.RoleId;
                             u.Role = u.GetRoleByUser(user);
+                            u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
 
                             users.Add(u);
                         }
@@ -435,6 +441,7 @@ namespace iMentor.Controllers
                     u.Email = user.Email;
                     u.RoleId = user.RoleId;
                     u.Role = u.GetRoleByUser(user);
+                    u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
 
                     users.Add(u);
                 }

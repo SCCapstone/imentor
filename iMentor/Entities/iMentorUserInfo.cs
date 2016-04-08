@@ -27,6 +27,9 @@ namespace iMentor.Entities
         [DataMember]
         public string Role { get; set; }
 
+        [DataMember]
+        public bool ShowOnlyAssignedListings { get; set; }
+
 
         [AllowAnonymous]
         public string GetRoleByUser(iMentorUser user)

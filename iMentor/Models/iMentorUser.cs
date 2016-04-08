@@ -26,6 +26,7 @@ namespace iMentor.Models
         public string UserName { get; set; }
         public string Email { get; set; }
         public int RoleId { get; set; }
+        public bool ShowOnlyAssignedListings { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Applicant> Applicants { get; set; }

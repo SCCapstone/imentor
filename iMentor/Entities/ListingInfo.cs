@@ -16,6 +16,9 @@ namespace iMentor.Entities
         public int Id { get; set; }
 
         [DataMember]
+        public string UrlId { get; set; }
+
+        [DataMember]
         public string Title { get; set; }
 
         [DataMember]

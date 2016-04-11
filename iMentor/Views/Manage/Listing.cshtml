@@ -1,19 +1,19 @@
 ﻿<script src="https://apis.google.com/js/platform.js" async defer></script> @*This does not break the project. This script is fine*@
 
-<md-content layout-padding>
+<md-content layout-padding style="background:#f2f2f2">
     <div layout="row" layout-sm="column" layout-align="space-around" ng-show="listing == null">
         <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
     </div>
 </md-content>
 
 
-<div id="Listing" ng-app="app" class="ngview-body" style="padding-top:20px;" ng-show="listing != null">
+<div id="Listing" ng-app="app" class="ngview-body" style="padding-top:20px;background:#f2f2f2" ng-show="listing != null">
     <div class="text-left" style="display:inline-block;">        
 
         <div class="row content">
             <div class="col-sm-12" style="padding-bottom:10px;">
-                <md-content class="pull-right" ng-show="!titleEditMode && !isNew && user.RoleId >= 3">
-                    <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="editTitle()" ng-show="assigned || user.RoleId == 4">
+                <md-content class="pull-right" ng-show="!titleEditMode && !isNew && user.RoleId >= 3" style="background:#f2f2f2">
+                    <md-button class="md-raised" style="background:white;color:black;" ng-click="editTitle()" ng-show="assigned || user.RoleId == 4">
                         Edit
                     </md-button>
                     <md-button class="md-raised" style="background:green;color:white;" ng-click="createNewListing()">
@@ -28,27 +28,27 @@
 
                 <md-input-container ng-show="titleEditMode" class="md-block" style="width:90%;">
                     <label>Listing Title</label>
-                    <input class="thick" style="width:700px;font-size:36px;height:45px;" ng-model="listing.Title">
+                    <input class="thick" style="width:600px;font-size:36px;height:45px;" ng-model="listing.Title">
 
-                    <md-content class="" ng-show="!isNew">
-                        <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="saveTitle()">
+                    <md-content class="" ng-show="!isNew" style="background:#f2f2f2">
+                        <md-button class="md-raised" style="background:white;color:black;" ng-click="saveTitle()">
                             Save
                         </md-button>
-                        <md-button class="" style="background:white;color:black;" ng-click="cancelTitle()">
+                        <md-button class="" style="background:#f2f2f2;color:black;" ng-click="cancelTitle()">
                             Cancel
                         </md-button>
                     </md-content>
                 </md-input-container>
                 <div class="thick" ng-show="!titleEditMode" style="font-size:36px;">{{listing.Title}}</div>
 
-                <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                <md-content style="padding-bottom:30px;padding-top:30px;background:#f2f2f2"><md-divider></md-divider></md-content>
             </div>
 
             
 
-            <div class="col-sm-7" style="">
+            <div class="col-sm-7" style="background:#f2f2f2">
                 <div class="panel panel-default" style="width:550px;">
-                    <div class="panel-heading" style="background:#f2f2f2;color:#999999;height:45px;">
+                    <div class="panel-heading" style="background:white;color:#999999;height:45px;">
                         <div class="pull-right">
                             <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4) && !descriptionEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editDescription"></div>
                             <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4) && descriptionEditMode && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveDescription"></div>
@@ -168,7 +168,7 @@
                 </div>
 
 
-                <md-content ng-show="user.RoleId > 1 && !isNew" style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                <md-content ng-show="user.RoleId > 1 && !isNew" style="padding-bottom:30px;padding-top:30px;background:#f2f2f2"><md-divider></md-divider></md-content>
 
                 <!-- Area Info -->
                 <div layout="row" layout-wrap>
@@ -205,7 +205,7 @@
                 </div>
                 <!--------------->
 
-                <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                <md-content style="padding-bottom:30px;padding-top:30px;background:#f2f2f2"><md-divider></md-divider></md-content>
 
 
                 <!-- Date/Time Info -->
@@ -214,7 +214,7 @@
                 </div>
                 <!---------------->
 
-                <md-content style="padding-bottom:30px;padding-top:30px;"><md-divider></md-divider></md-content>
+                <md-content style="padding-bottom:30px;padding-top:30px;background:#f2f2f2"><md-divider></md-divider></md-content>
 
                 <!-- Participants -->
                 <div class="row" ng-show="!isNew">

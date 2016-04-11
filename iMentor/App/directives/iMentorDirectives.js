@@ -54,13 +54,14 @@
 
                 link: function (scope, elem, attrs) {
                     scope.daysOfTheWeek = [
-                        { value: 1, text: "Monday", abb: "Mon", letter: "M", selected: false, disabled: false },
-                        { value: 2, text: "Tuesday", abb: "Tue", letter: "T", selected: false, disabled: false },
-                        { value: 3, text: "Wednesday", abb: "Wed", letter: "W", selected: false, disabled: false },
-                        { value: 4, text: "Thursday", abb: "Thu", letter: "R", selected: false, disabled: false },
-                        { value: 5, text: "Friday", abb: "Fri", letter: "F", selected: false, disabled: false },
-                        { value: 6, text: "Saturday", abb: "Sat", letter: "S", selected: false, disabled: false },
-                        { value: 7, text: "Sunday", abb: "Sun", letter: "U", selected: false, disabled: false }
+                        { value: 1, text: "Sunday", abb: "Sun", letter: "U", selected: false, disabled: false },
+                        { value: 2, text: "Monday", abb: "Mon", letter: "M", selected: false, disabled: false },
+                        { value: 3, text: "Tuesday", abb: "Tue", letter: "T", selected: false, disabled: false },
+                        { value: 4, text: "Wednesday", abb: "Wed", letter: "W", selected: false, disabled: false },
+                        { value: 5, text: "Thursday", abb: "Thu", letter: "R", selected: false, disabled: false },
+                        { value: 6, text: "Friday", abb: "Fri", letter: "F", selected: false, disabled: false },
+                        { value: 7, text: "Saturday", abb: "Sat", letter: "S", selected: false, disabled: false }
+                        
                     ]
 
                     parseFrequency();

@@ -6,10 +6,10 @@
 </md-content>
 
 <div class="ngview-wrapper">
-    <div class="ngview-body" style="">
-        <div class="container-fluid" ng-show="listings.length > 0">
+    <div class="ngview-body" style="width:1000px;margin-left:0;margin-right:0;padding-left:0;padding-right:0;">
+        <div class="container-fluid" style="" ng-show="listings.length > 0">
 
-            <div class="row content" ng-show="user.RoleId < 3">
+            <div class="row content" ng-show="user.RoleId == 1 && user.RoleId == 2">
                 <div class="im-form-label thick" style="font-size:16px;">Upcoming Events</div>
             </div>
             
@@ -35,9 +35,7 @@
 
                             </div>
                         </md-grid-tile>
-
                     </md-grid-list>
-
                 </div>
             </div>
 
@@ -52,41 +50,30 @@
             </div>
 
             <div class="row content">
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="width:300px;">
                     <!--Filters-->
-                    <div class="panel panel-default" >
-                        <div class="panel-heading" style="background:#f5f5f5">
-                            <div class="panel-title" style="font-size:20px">Filters</div>
-                        </div>
-
-                        <div class="panel-body">
-                            <md-input-container class="md-block" style="width:100%;">
-                                <label>Search</label>
-                                <input class="thick" style="width:95%;font-size:16px;height:34px;" ng-model="searchText">
-                            </md-input-container>
-
-                            <div class="thick" style="font-size:16px;">Quick Filters</div>
-                            <md-content style="padding-bottom:5px;"><md-divider></md-divider></md-content>
-                            
-                            <div>
-                                <md-content>
-                                    <md-list>
-                                        <md-list-item style="width:100%;">
-                                            <div class="thick">Subjects </div>
-                                            @*<md-checkbox ng-model="selectAll" ng-click="includeArea('All')"></md-checkbox>*@
-                                        </md-list-item>
-                                        <md-list-item ng-repeat="subject in subjects" style="width:100%;">
-                                            <md-checkbox style="margin-left:25px;" ng-model="subject.selected" ng-click="includeArea(subject.text)" aria-label="{{subject.value}}"></md-checkbox>
-                                            <div style=""> {{ subject.text }} </div>
-                                        </md-list-item>
-                                    </md-list>
-                                </md-content>
-                            </div>
-                        </div>
+                    <md-input-container class="md-block">
+                        <label>Search</label>
+                        <input class="thick" style="width:95%;font-size:16px;height:34px;" ng-model="searchText">
+                    </md-input-container>
+                                                
+                    <div>
+                        <md-content>
+                            <md-list>
+                                <md-list-item style="width:100%;">
+                                    <div class="thick">Subjects </div>
+                                    @*<md-checkbox ng-model="selectAll" ng-click="includeArea('All')"></md-checkbox>*@
+                                </md-list-item>
+                                <md-list-item ng-repeat="subject in subjects" style="width:100%;">
+                                    <md-checkbox style="margin-left:25px;" ng-model="subject.selected" ng-click="includeArea(subject.text)" aria-label="{{subject.value}}"></md-checkbox>
+                                    <div style=""> {{ subject.text }} </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
                     </div>
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-8" style="width:700px;">
                     <!--Listings-->
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background:#f5f5f5">
@@ -111,12 +98,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="panel-body">
-                            <div ng-repeat="listing in listings | orderBy: sortListings | filter:areaFilter | filter: searchText" 
-                                 listing-card listing="listing" ng-click="selectListing(listing)">
-                            </div>
-                        </div>
+                    <div ng-repeat="listing in listings | orderBy: sortListings | filter:areaFilter | filter: searchText"
+                         listing-card listing="listing" ng-click="selectListing(listing)">
                     </div>
                 </div>
             </div>

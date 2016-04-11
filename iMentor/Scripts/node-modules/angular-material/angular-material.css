@@ -10512,8 +10512,8 @@ md-datepicker {
   box-shadow: none;
   outline: none;
   background: transparent;
-  min-width: 120px;
-  max-width: 328px; }
+  min-width: 100px;
+  max-width: 100px; }
   .md-datepicker-input::-ms-clear {
     display: none; }
 

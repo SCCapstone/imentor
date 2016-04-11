@@ -33,11 +33,11 @@
       
         @Styles.Render("~/bundles/content/ngMaterial")
     </head>
-    <body ng-controller="indexCtrl" ng-cloak>
+    <body ng-controller="indexCtrl" ng-cloak ng-show="!user.ShowOnlyAssignedListings">
         <div>
-            <div id="main-header" style="text-align:center;">
+            <div id="main-header" style="text-align:center;" >
                 <nav class="navbar navbar-default navbar-fixed-top" style="background:#f5f5f5">
-                    <div class="container">
+                    <div class="container" style="max-width:1000px;">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                                 <span class="sr-only">Toggle navigation</span>
@@ -68,7 +68,7 @@
                               {
                                 @Html.AntiForgeryToken()
 
-                                <ul class="nav navbar-nav navbar-right" ng-show="user != null">
+                                <ul class="nav navbar-nav" ng-show="user != null">
                                     <li><a href="" ng-click="goToEditUser()">Welcome: {{user.UserName}}</a></li>
 
                                     <!--Uncomment this to prevent Students/Mentors from clicking their username-->

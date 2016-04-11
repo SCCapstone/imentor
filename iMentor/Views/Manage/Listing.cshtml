@@ -46,8 +46,8 @@
 
             
 
-            <div class="col-sm-6" style="margin-left:100px;">
-                <div class="panel panel-default" style="width:600px;">
+            <div class="col-sm-7" style="">
+                <div class="panel panel-default" style="width:550px;">
                     <div class="panel-heading" style="background:#f2f2f2;color:#999999;height:45px;">
                         <div class="pull-right">
                             <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4) && !descriptionEditMode" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editDescription"></div>
@@ -58,13 +58,13 @@
                     </div>
 
                     <div class="panel-body">
-                        <div ng-show="descriptionEditMode" text-angular style="width:565px;" ng-model="listing.Description"></div>
-                        <div ng-show="!descriptionEditMode" style="font-size:14px;width:565px;" ng-bind-html="listing.Description"></div>
+                        <div ng-show="descriptionEditMode" text-angular style="width:515px;" ng-model="listing.Description"></div>
+                        <div ng-show="!descriptionEditMode" style="font-size:14px;width:515px;" ng-bind-html="listing.Description"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-6" style="width:500px;">
+            <div class="col-sm-5" style="width:400px;">
 
                 <!--Mentor's apply button-->
                 <div class="row" ng-show="user.RoleId == 2 && applied != null && !assigned" style="margin-bottom:20px">
@@ -227,14 +227,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-8" style="margin-left:75px;">
+                    <div class="col-md-8" style="margin-left:55px;">
 
                         <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2"
                                       md-row-height-gt-md="1:1" md-row-height="4:3"
                                       md-gutter="8px" md-gutter-gt-sm="4px">
 
                             <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
-                                <md-icon md-svg-icon="{{tile.icon}}"></md-icon>
+                                <md-icon md-svg-icon="{{tile.icon}}" style="width:50%;height:50%;"></md-icon>
                                 <md-grid-tile-footer><h3>{{tile.title}}</h3></md-grid-tile-footer>
                             </md-grid-tile>
 

@@ -55,7 +55,7 @@ textarea {
 
 #main-header {
 	max-width: 1000px;
-    min-width: 720px;
+    min-width: 800px;
     width: auto;
     margin: 0 auto;
 }
@@ -76,8 +76,9 @@ textarea {
 
 .navbar {
   position: relative;
+  max-width: 1000px;
   min-height: 50px;
-  min-width: 720px;
+  min-width: 800px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }

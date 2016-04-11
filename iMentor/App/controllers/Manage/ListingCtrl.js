@@ -633,7 +633,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 for (var i = 0; i < $scope.assignedUsers.length; i++) {
 
                     it = angular.extend({}, tileTmpl);
-                    it.icon = it.icon + (i + 1);
+                    it.icon = it.icon + (($scope.assignedUsers[i].Id % 16) + 1 );
                     it.title = $scope.assignedUsers[i].UserName;
                     it.span = { row: 1, col: 1 };
 

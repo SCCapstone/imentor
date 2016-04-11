@@ -345,6 +345,7 @@
     <Content Include="fonts\fontawesome-webfont.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Img\spatiul-cosmic.png" />
     <Content Include="Models\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>

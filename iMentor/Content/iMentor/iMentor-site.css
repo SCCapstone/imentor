@@ -24,8 +24,10 @@ textarea {
 }
 
 #main-wrapper {
-	height: 100%;
-	min-width: 720px;
+    height: 100%;
+    min-width: 720px;
+   
+    background-image: url("~/img/spatiul-cosmic.png");
 }
 
 .thick {

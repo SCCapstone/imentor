@@ -33,6 +33,12 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
+        [AllowAnonymous]
+        public ActionResult StudentView()
+        {
+            return PartialView();
+        }
+
         public ActionResult Secure()
         {
             ViewBag.Message = "Secure page.";

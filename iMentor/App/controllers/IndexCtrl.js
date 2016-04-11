@@ -11,6 +11,10 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
             manageService.getCurrentUser().then(
                 function success(user){
                     $scope.user = user;
+
+                    if (user.ShowOnlyAssignedListings) {
+                        $scope.goToStudentView();
+                    }
                 },
                 function fail(reason){
                     console.log("Unable to load current user: " + reason);
@@ -48,6 +52,11 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
         $scope.goToEditUser = function()
         {
             $location.path("/EditUser/" + $scope.user.Id);
+        }
+
+        $scope.goToStudentView = function() 
+        {
+            $location.path("/StudentView");
         }
     }
 ]);

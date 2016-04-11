@@ -2,7 +2,6 @@
 app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageService',
     function ManageUsersCtrl($scope, $rootScope, $location, manageService) 
     {
-        $scope.currentUserIsAdmin = true;
         $scope.users = [];
         getUsers();
 

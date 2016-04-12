@@ -241,17 +241,23 @@
                     it.title = upcomingEvents[i].ListingTitle;
                     it.startDate = (upcomingEvents[i].EventDate.getMonth() + 1)  + "/" + upcomingEvents[i].EventDate.getDate() + "/" + upcomingEvents[i].EventDate.getFullYear();
                     it.startTime = parseTime(upcomingEvents[i].ListingStartDate);
-                    it.span = { row: 1, col: 1 };
+                    
                     it.id = upcomingEvents[i].ListingId;
                     it.background = upcomingEvents[i].Background;
                     it.eventDate = upcomingEvents[i].EventDate;
                     
                     if (upcomingEvents[i].Active) {
                         it.header = "Hangout active. Join now!";
+                        it.span = { row: 2, col: 2 };
+                        it.fontSize = 18;
                     } else if (upcomingEvents[i].EventDate.getDate() == today.getDate()) {
                         it.header = "Hangout inactive.";
+                        it.span = { row: 2, col: 1 };
+                        it.fontSize = 14;
                     } else {
                         it.header = "";
+                        it.span = { row: 1, col: 1 };
+                        it.fontSize = 14;
                     }
 
                     results.push(it);

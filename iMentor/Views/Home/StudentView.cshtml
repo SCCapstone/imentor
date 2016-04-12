@@ -11,7 +11,7 @@
 
                 <div>To change your user role, go to ManageUsers</div> <br />
 
-                <md-grid-list md-cols="10" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4"
+                <md-grid-list md-cols="10" md-cols-sm="5" md-cols-md="5" md-cols-gt-md="5"
                               md-row-height-gt-md="2:2" md-row-height="4:3"
                               md-gutter="20px" md-gutter-gt-sm="20px">
 
@@ -20,15 +20,15 @@
                                   ng-repeat="tile in tiles"
                                   md-rowspan="{{tile.span.row}}"
                                   md-colspan="{{tile.span.col}}"
-                                  md-colspan-lg="1"
+                                  md-colspan-md="1"
                                   ng-click="joinHangout(tile)"
-                                  ng-style="{'background': tile.background}">
+                                  ng-style="{'background': tile.background, 'font-size': tile.fontSize}">
 
                         <div class="thick" style="text-align:center;">
                             <md-grid-tile-header ng-show="tile.header.localeCompare('') != 0"><h3>{{tile.header}}</h3></md-grid-tile-header>
-                            <div>{{tile.title}}</div><br />
-                            <div>{{tile.startDate}}</div>
-                            <div>{{tile.startTime}}</div>
+                            <div>{{tile.title}}</div>
+                            <div style="font-size:12px">{{tile.startDate}}</div>
+                            <div style="font-size:12px">{{tile.startTime}}</div>
 
                         </div>
                     </md-grid-tile>

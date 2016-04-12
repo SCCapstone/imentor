@@ -372,7 +372,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                                             ListingEndDate: $scope.currentUserListings[i].EndDate,
                                             EventDate: new Date(d)
                                         }
-
+                                            
                                         upcomingEvents.push(event);
                                     }   
                                 }

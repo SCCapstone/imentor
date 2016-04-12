@@ -33,10 +33,10 @@
       
         @Styles.Render("~/bundles/content/ngMaterial")
     </head>
-    <body ng-controller="indexCtrl" ng-cloak ng-show="!user.ShowOnlyAssignedListings" style="background:#f2f2f2">
+    <body ng-controller="indexCtrl" ng-cloak style="background:#f2f2f2">
         <div>
             <div id="main-header" style="text-align:center;" >
-                <nav class="navbar navbar-default navbar-fixed-top" style="background:white">
+                <nav class="navbar navbar-default navbar-fixed-top" style="background:white" ng-show="!user.ShowOnlyAssignedListings">
                     <div class="container" style="max-width:1000px;">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -45,7 +45,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#/">iMentor</a>
+                            <a class="navbar-brand "href="" ng-click="goToHome()">iMentor</a>
                         </div>
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

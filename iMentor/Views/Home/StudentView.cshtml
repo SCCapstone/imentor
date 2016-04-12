@@ -1,7 +1,40 @@
-﻿
-<div>
-        Student View Page
+﻿<md-content layout-padding style="background:#f2f2f2">
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="currentUserListings.length == 0">
+        <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
+
+<div class="ngview-wrapper" ng-show="user.RoleId == 1">
+    <div class="ngview-body" style="padding-top:25px;background:#f2f2f2;color:black;">
+        <div class="container-fluid" style="">
+            <div class="col-sm-12" style="padding-bottom:10px;">
+
+                <div>To change your user role, go to ManageUsers</div> <br />
+
+                <md-grid-list md-cols="10" md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4"
+                              md-row-height-gt-md="2:2" md-row-height="4:3"
+                              md-gutter="20px" md-gutter-gt-sm="20px">
+
+
+                    <md-grid-tile style="cursor:pointer;"
+                                  ng-repeat="tile in tiles"
+                                  md-rowspan="{{tile.span.row}}"
+                                  md-colspan="{{tile.span.col}}"
+                                  md-colspan-lg="1"
+                                  ng-click="joinHangout(tile)"
+                                  ng-style="{'background': tile.background}">
+
+                        <div class="thick" style="text-align:center;">
+                            <md-grid-tile-header ng-show="tile.header.localeCompare('') != 0"><h3>{{tile.header}}</h3></md-grid-tile-header>
+                            <div>{{tile.title}}</div><br />
+                            <div>{{tile.startDate}}</div>
+                            <div>{{tile.startTime}}</div>
+
+                        </div>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 

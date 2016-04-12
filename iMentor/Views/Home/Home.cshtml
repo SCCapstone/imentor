@@ -56,6 +56,17 @@
                         <label>Search</label>
                         <input class="thick" style="width:95%;font-size:16px;height:34px;" ng-model="searchText">
                     </md-input-container>
+
+                    <div class="row" style="padding-left:30px;" ng-show="user.RoleId >= 3">
+                        <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:black;font-size:14px;"><i class="glyphicon glyphicon-eye-open"></i> {{openLength}} Open </a>
+                        <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:gray;font-size:14px;"><i class="glyphicon glyphicon-eye-close"></i> {{closedLength}} Closed  </a>
+                    </div>
+
+                    <div class="row" style="padding-left:30px;" ng-show="user.RoleId < 3">
+                        <a class="navbar-brand" style="color:black;font-size:14px;"><i class="glyphicon glyphicon-eye-open"></i> {{openLength}} Open </a>
+                    </div>
+
+                    <md-content style="padding-bottom:5px;padding-top:5px;background:#f2f2f2"><md-divider></md-divider></md-content>
                                                 
                     <div>
                         <md-content style="background:#f2f2f2">
@@ -76,16 +87,11 @@
                     <!--Listings-->
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background:white">
-                            <div class="navbar-header"  ng-show="user.RoleId >= 3">
-                                <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:black;font-size:14px;"><i class="glyphicon glyphicon-eye-open"></i> {{openLength}} Open </a>
-                                <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:gray;font-size:14px;"><i class="glyphicon glyphicon-eye-close"></i> {{closedLength}} Closed  </a>
-                            </div>
 
-                            <div class="navbar-header" ng-show="user.RoleId < 3">
-                                <a class="navbar-brand" style="color:black;font-size:14px;"><i class="glyphicon glyphicon-eye-open"></i> {{openLength}} Open </a>
-                            </div>
+                            @*<div class="" ng-show="user.RoleId >= 3">
+                                <a class="navbar-brand" style="color:black;font-size:14px;"> Open Listings </a>
+                            </div>*@
                             
-
                             <div class="collapse navbar-collapse">
                                 <div style="float:right;">
                                     <ul class="nav navbar-nav">

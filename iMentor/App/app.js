@@ -46,7 +46,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
 
         $mdThemingProvider.theme('default')
             .primaryPalette('teal')
-            .accentPalette('orange');
+            .accentPalette('teal');
     }
 ]);
 

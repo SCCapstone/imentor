@@ -28,6 +28,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
             .when('/Listing/:listingId', { templateUrl: 'Manage/Listing', controller: 'listingCtrl' })
             .when('/EditUser/:userId', { templateUrl: 'Manage/editUser', controller: 'editUserCtrl' })
             .when('/PageNotFound', { templateUrl: 'Home/pageNotFound', controller: 'pageNotFoundCtrl'})
+            .when('/About', { templateUrl: 'Home/about', controller: 'aboutCtrl'})
             .when('/StudentView', { templateUrl: 'Home/studentView', controller: 'studentViewCtrl'})
 
             .otherwise({ redirectTo: '/' });

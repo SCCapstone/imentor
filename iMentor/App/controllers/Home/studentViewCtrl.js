@@ -251,7 +251,7 @@
                         it.span = { row: 2, col: 2 };
                         it.fontSize = 18;
                     } else if (upcomingEvents[i].EventDate.getDate() == today.getDate()) {
-                        it.header = "Hangout inactive.";
+                        it.header = "Hangout has not been started.";
                         it.span = { row: 2, col: 1 };
                         it.fontSize = 14;
                     } else {

@@ -74,6 +74,14 @@ textarea {
     margin: 0 auto;
 }
 
+#main-footer {
+	height: 100%;
+	max-width: 1000px;
+    min-width: 800px;
+    width: auto;
+    margin: 0 auto;
+}
+
 .navbar {
   position: relative;
   max-width: 1000px;

@@ -34,6 +34,12 @@ namespace iMentor.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult About()
+        {
+            return PartialView();
+        }
+
+        [AllowAnonymous]
         public ActionResult StudentView()
         {
             return PartialView();

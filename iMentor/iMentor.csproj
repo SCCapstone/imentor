@@ -334,6 +334,7 @@
     <Content Include="App\app.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\controllers\AboutCtrl.js" />
     <Content Include="App\controllers\Home\CalendarCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2155,6 +2156,7 @@
     </Content>
     <Content Include="Views\Home\PageNotFound.cshtml" />
     <Content Include="Views\Home\StudentView.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

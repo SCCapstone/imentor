@@ -54,6 +54,11 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
             $location.path("/EditUser/" + $scope.user.Id);
         }
 
+        $scope.goToAbout = function() 
+        {
+            $location.path("/About");
+        }
+
         $scope.goToStudentView = function() 
         {
             $location.path("/StudentView");

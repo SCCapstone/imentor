@@ -12,14 +12,14 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
             data: "users",
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
-            { field: 'UserName', displayName: 'User Name', width: '250', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Email', displayName: 'Email', width:'250', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'UserName', displayName: 'User Name', width: '35%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Email', displayName: 'Email', width:'35%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'RoleId', displayName: 'RoleId', visible: false },
-            { field: 'Role', displayName: 'Role', width: '183', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Role', displayName: 'Role', width: '16%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             {
                 field: ' ',
                 displayName: 'Edit',
-                width: '100',
+                width: '10%',
                 cellTemplate: 'Templates/EditUsersBtn.html',
                 cellClass: 'gridCellCenter',
                 headerClass: 'gridHeaderCenter',

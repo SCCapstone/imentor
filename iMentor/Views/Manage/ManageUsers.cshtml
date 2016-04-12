@@ -1,21 +1,21 @@
 ﻿
-<md-content layout-padding>
+<md-content layout-padding style="background:#f2f2f2">
     <div layout="row" layout-sm="column" layout-align="space-around" ng-show="users.length == 0">
         <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
     </div>
 </md-content>
 
-<div class="ngview-wrapper" ng-show="users.length > 0">
-    <div class="ngview-body" style="padding-top:25px;">
+<div class="ngview-wrapper">
+    <div class="ngview-body" style="padding-top:25px;background:#f2f2f2">
         <div class="ngview-header-left">
             <div class="header-title">User Management</div>
         </div>
     </div>
 
-    <div class="ngview-body" style="padding-top:10px;">
+    <div class="ngview-body" style="padding-top:10px;background:#f2f2f2">
         <div class="row" style="padding-right: 20px;">
             <div style="font-size:12px;">
-                <div im-btn style="margin-right:400px;" icon="glyphicon glyphicon-refresh" text="" on-click="refreshUsers" class="pull-right"></div>
+                <div im-btn style="margin-right:120px;" icon="glyphicon glyphicon-refresh" text="" on-click="refreshUsers" class="pull-right"></div>
             </div>
         </div>
         <div ui-grid="gridOptions"  class="im-grid-sm"></div>

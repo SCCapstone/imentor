@@ -16,9 +16,9 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
             { field: 'Title', displayName: 'Title', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'Area', displayName: 'Area', width: '10%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'StartDate', displayName: 'Start Date', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
-            { field: 'EndDate', displayName: 'End Date', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'Area', displayName: 'Area', width: '12%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'StartDate', displayName: 'Start', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
+            { field: 'EndDate', displayName: 'End', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Open', displayName: 'Open', width: '10%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             {
                 field: ' ',
@@ -69,6 +69,11 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
                         listings[i].StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                         listings[i].EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
 
+                        listings[i].StartDate = (listings[i].StartDate.getMonth() + 1)  + "/" + listings[i].StartDate.getDate() + "/" + listings[i].StartDate.getFullYear()
+                                                    + " " + parseTime(listings[i].StartDate);
+                        listings[i].EndDate = (listings[i].EndDate.getMonth() + 1)  + "/" + listings[i].EndDate.getDate() + "/" + listings[i].EndDate.getFullYear()
+                                                    + " " + parseTime(listings[i].EndDate);
+
                         $scope.listings.push(listings[i]);
                     }
 
@@ -109,6 +114,35 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
 
         $scope.refreshListings = function () {
             getListings();
+        }
+
+        function parseTime(e){
+            var hours = "";
+            var minutes = "";
+            var ampm = "";
+
+            if(e.getHours() == 0){
+                hours = "12";
+                ampm = "AM";
+            } else if(e.getHours() < 12) { 
+                hours = "" + e.getHours();
+                ampm = "AM";
+            } else if(e.getHours() == 12) { 
+                hours = "12";
+                ampm = "PM";
+            } else if(e.getHours() > 12) { 
+                hours = "" + (e.getHours() - 12);
+                ampm = "PM";
+            }
+
+            if(e.getMinutes() < 10){
+                minutes = "0" + e.getMinutes();
+            } else {
+                minutes = "" + e.getMinutes();
+            }
+
+            var t = hours + ":" + minutes + " " + ampm;
+            return t;
         }
 
 

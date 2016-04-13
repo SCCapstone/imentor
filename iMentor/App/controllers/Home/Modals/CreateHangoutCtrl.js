@@ -7,7 +7,10 @@ app.controller('createHangoutCtrl', ['$scope', '$mdDialog', 'manageService', 'li
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
+
         $scope.save = function () {
+            $scope.listing.HangoutStart = new Date();
+            console.log($scope.listing);
             manageService.updateListing($scope.listing);
             $mdDialog.hide();
         };

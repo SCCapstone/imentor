@@ -112,11 +112,11 @@
           <Property Name="Frequency" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="HangoutUrl" Type="nvarchar(max)" />
-          <Property Name="HangoutStart" Type="nvarchar(max)" />
+          <Property Name="HangoutStart" Type="datetime" />
           <Property Name="TeacherId" Type="int" />
           <Property Name="Open" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Applicant__Listi__5AB9788F">
+        <Association Name="FK__Applicant__Listi__5F7E2DAC">
           <End Role="ListingModels" Type="Self.ListingModels" Multiplicity="1" />
           <End Role="Applicants" Type="Self.Applicants" Multiplicity="*" />
           <ReferentialConstraint>
@@ -140,7 +140,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AssignedL__Listi__59C55456">
+        <Association Name="FK__AssignedL__Listi__5E8A0973">
           <End Role="ListingModels" Type="Self.ListingModels" Multiplicity="1" />
           <End Role="AssignedListings" Type="Self.AssignedListings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,7 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ListingMo__Teach__5BAD9CC8">
+        <Association Name="FK__ListingMo__Teach__607251E5">
           <End Role="iMentorUser" Type="Self.iMentorUser" Multiplicity="0..1" />
           <End Role="ListingModels" Type="Self.ListingModels" Multiplicity="*" />
           <ReferentialConstraint>
@@ -256,7 +256,7 @@
           <EntitySet Name="iMentorRole" EntityType="Self.iMentorRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="iMentorUser" EntityType="Self.iMentorUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListingModels" EntityType="Self.ListingModels" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Applicant__Listi__5AB9788F" Association="Self.FK__Applicant__Listi__5AB9788F">
+          <AssociationSet Name="FK__Applicant__Listi__5F7E2DAC" Association="Self.FK__Applicant__Listi__5F7E2DAC">
             <End Role="ListingModels" EntitySet="ListingModels" />
             <End Role="Applicants" EntitySet="Applicants" />
           </AssociationSet>
@@ -264,7 +264,7 @@
             <End Role="iMentorUser" EntitySet="iMentorUser" />
             <End Role="Applicants" EntitySet="Applicants" />
           </AssociationSet>
-          <AssociationSet Name="FK__AssignedL__Listi__59C55456" Association="Self.FK__AssignedL__Listi__59C55456">
+          <AssociationSet Name="FK__AssignedL__Listi__5E8A0973" Association="Self.FK__AssignedL__Listi__5E8A0973">
             <End Role="ListingModels" EntitySet="ListingModels" />
             <End Role="AssignedListings" EntitySet="AssignedListings" />
           </AssociationSet>
@@ -276,7 +276,7 @@
             <End Role="iMentorRole" EntitySet="iMentorRole" />
             <End Role="iMentorUser" EntitySet="iMentorUser" />
           </AssociationSet>
-          <AssociationSet Name="FK__ListingMo__Teach__5BAD9CC8" Association="Self.FK__ListingMo__Teach__5BAD9CC8">
+          <AssociationSet Name="FK__ListingMo__Teach__607251E5" Association="Self.FK__ListingMo__Teach__607251E5">
             <End Role="iMentorUser" EntitySet="iMentorUser" />
             <End Role="ListingModels" EntitySet="ListingModels" />
           </AssociationSet>
@@ -319,7 +319,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ListingId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ListingModel" Relationship="Self.FK__Applicant__Listi__5AB9788F" FromRole="Applicants" ToRole="ListingModels" />
+          <NavigationProperty Name="ListingModel" Relationship="Self.FK__Applicant__Listi__5F7E2DAC" FromRole="Applicants" ToRole="ListingModels" />
           <NavigationProperty Name="iMentorUser" Relationship="Self.FK__Applicant__UserI__4F47C5E3" FromRole="Applicants" ToRole="iMentorUser" />
         </EntityType>
         <EntityType Name="AspNetRole">
@@ -378,7 +378,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ListingId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ListingModel" Relationship="Self.FK__AssignedL__Listi__59C55456" FromRole="AssignedListings" ToRole="ListingModels" />
+          <NavigationProperty Name="ListingModel" Relationship="Self.FK__AssignedL__Listi__5E8A0973" FromRole="AssignedListings" ToRole="ListingModels" />
           <NavigationProperty Name="iMentorUser" Relationship="Self.FK__AssignedL__UserI__2A164134" FromRole="AssignedListings" ToRole="iMentorUser" />
         </EntityType>
         <EntityType Name="iMentorRole">
@@ -401,7 +401,7 @@
           <NavigationProperty Name="Applicants" Relationship="Self.FK__Applicant__UserI__4F47C5E3" FromRole="iMentorUser" ToRole="Applicants" />
           <NavigationProperty Name="AssignedListings" Relationship="Self.FK__AssignedL__UserI__2A164134" FromRole="iMentorUser" ToRole="AssignedListings" />
           <NavigationProperty Name="iMentorRole" Relationship="Self.FK__iMentorUs__RoleI__2B0A656D" FromRole="iMentorUser" ToRole="iMentorRole" />
-          <NavigationProperty Name="ListingModels" Relationship="Self.FK__ListingMo__Teach__5BAD9CC8" FromRole="iMentorUser" ToRole="ListingModels" />
+          <NavigationProperty Name="ListingModels" Relationship="Self.FK__ListingMo__Teach__607251E5" FromRole="iMentorUser" ToRole="ListingModels" />
         </EntityType>
         <EntityType Name="ListingModel">
           <Key>
@@ -416,14 +416,14 @@
           <Property Name="Frequency" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HangoutUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HangoutStart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HangoutStart" Type="DateTime" Precision="3" />
           <Property Name="TeacherId" Type="Int32" />
           <Property Name="Open" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Applicants" Relationship="Self.FK__Applicant__Listi__5AB9788F" FromRole="ListingModels" ToRole="Applicants" />
-          <NavigationProperty Name="AssignedListings" Relationship="Self.FK__AssignedL__Listi__59C55456" FromRole="ListingModels" ToRole="AssignedListings" />
-          <NavigationProperty Name="iMentorUser" Relationship="Self.FK__ListingMo__Teach__5BAD9CC8" FromRole="ListingModels" ToRole="iMentorUser" />
+          <NavigationProperty Name="Applicants" Relationship="Self.FK__Applicant__Listi__5F7E2DAC" FromRole="ListingModels" ToRole="Applicants" />
+          <NavigationProperty Name="AssignedListings" Relationship="Self.FK__AssignedL__Listi__5E8A0973" FromRole="ListingModels" ToRole="AssignedListings" />
+          <NavigationProperty Name="iMentorUser" Relationship="Self.FK__ListingMo__Teach__607251E5" FromRole="ListingModels" ToRole="iMentorUser" />
         </EntityType>
-        <Association Name="FK__Applicant__Listi__5AB9788F">
+        <Association Name="FK__Applicant__Listi__5F7E2DAC">
           <End Role="ListingModels" Type="Self.ListingModel" Multiplicity="1" />
           <End Role="Applicants" Type="Self.Applicant" Multiplicity="*" />
           <ReferentialConstraint>
@@ -475,7 +475,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AssignedL__Listi__59C55456">
+        <Association Name="FK__AssignedL__Listi__5E8A0973">
           <End Role="ListingModels" Type="Self.ListingModel" Multiplicity="1" />
           <End Role="AssignedListings" Type="Self.AssignedListing" Multiplicity="*" />
           <ReferentialConstraint>
@@ -511,7 +511,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ListingMo__Teach__5BAD9CC8">
+        <Association Name="FK__ListingMo__Teach__607251E5">
           <End Role="iMentorUser" Type="Self.iMentorUser" Multiplicity="0..1" />
           <End Role="ListingModels" Type="Self.ListingModel" Multiplicity="*" />
           <ReferentialConstraint>
@@ -538,7 +538,7 @@
           <EntitySet Name="iMentorRoles" EntityType="Self.iMentorRole" />
           <EntitySet Name="iMentorUsers" EntityType="Self.iMentorUser" />
           <EntitySet Name="ListingModels" EntityType="Self.ListingModel" />
-          <AssociationSet Name="FK__Applicant__Listi__5AB9788F" Association="Self.FK__Applicant__Listi__5AB9788F">
+          <AssociationSet Name="FK__Applicant__Listi__5F7E2DAC" Association="Self.FK__Applicant__Listi__5F7E2DAC">
             <End Role="ListingModels" EntitySet="ListingModels" />
             <End Role="Applicants" EntitySet="Applicants" />
           </AssociationSet>
@@ -554,7 +554,7 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__AssignedL__Listi__59C55456" Association="Self.FK__AssignedL__Listi__59C55456">
+          <AssociationSet Name="FK__AssignedL__Listi__5E8A0973" Association="Self.FK__AssignedL__Listi__5E8A0973">
             <End Role="ListingModels" EntitySet="ListingModels" />
             <End Role="AssignedListings" EntitySet="AssignedListings" />
           </AssociationSet>
@@ -566,7 +566,7 @@
             <End Role="iMentorRole" EntitySet="iMentorRoles" />
             <End Role="iMentorUser" EntitySet="iMentorUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__ListingMo__Teach__5BAD9CC8" Association="Self.FK__ListingMo__Teach__5BAD9CC8">
+          <AssociationSet Name="FK__ListingMo__Teach__607251E5" Association="Self.FK__ListingMo__Teach__607251E5">
             <End Role="iMentorUser" EntitySet="iMentorUsers" />
             <End Role="ListingModels" EntitySet="ListingModels" />
           </AssociationSet>

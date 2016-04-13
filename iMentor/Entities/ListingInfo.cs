@@ -40,7 +40,7 @@ namespace iMentor.Entities
         public string HangoutUrl { get; set; }
 
         [DataMember]
-        public string HangoutStart { get; set; }
+        public Nullable<System.DateTime> HangoutStart { get; set; }
 
         [DataMember]
         public Nullable<int> TeacherId { get; set; }

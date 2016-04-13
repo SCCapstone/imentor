@@ -70,6 +70,7 @@ namespace iMentor.Controllers
                 }
 
                 CheckForExpiredListings(listings);
+                CheckForExpiredHangouts(listings);
 
                 return Json(listings, JsonRequestBehavior.AllowGet);
             }
@@ -603,6 +604,29 @@ namespace iMentor.Controllers
                     {
                         listing.Open = false;
                     }
+                }
+            }
+        }
+
+        [AllowAnonymous]
+        private void CheckForExpiredHangouts(List<ListingInfo> listings)
+        {
+            TimeSpan expireTime = TimeSpan.Parse("60:00:00");
+
+            foreach (ListingInfo listing in listings)
+            {
+                if (listing.Open)
+                {
+                    DateTime listingStartDate = listing.StartDate ?? DateTime.Now;
+                    DateTime listingEndDate = listing.EndDate ?? DateTime.Now;
+
+                    TimeSpan diff = (listingStartDate - listingEndDate);
+
+
+                    //if (DateTime.Compare(currentDate, listingEndDate) > 0)
+                    //{
+                    //    listing.Open = false;
+                    //}
                 }
             }
         }

@@ -504,6 +504,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             $mdDialog.show(confirm).then(function () {
                 //Save the application
                 $scope.listing.HangoutUrl = null;
+                $scope.listing.HangoutStart = null;
                 manageService.updateListing($scope.listing);
                 $scope.hangoutSaved = false;
             }, function () {

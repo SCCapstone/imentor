@@ -601,6 +601,8 @@ namespace iMentor.Controllers
                     if (DateTime.Compare(currentDate, listingEndDate) > 0)
                     {
                         listing.Open = false;
+
+                        UpdateListing(listing);
                     }
                 }
             }
@@ -615,13 +617,21 @@ namespace iMentor.Controllers
             {
                 if (listing.HangoutUrl != null)
                 {
+                    DateTime listingStartDate = listing.StartDate ?? DateTime.Now;
+                    DateTime listingEndDate = listing.EndDate ?? DateTime.Now;
+
+                    double hourDiff = listingEndDate.Hour - listingStartDate.Hour;
+                    double minuteDiff = listingEndDate.Minute - listingStartDate.Minute;
+                    
                     DateTime hangoutStart = listing.HangoutStart ?? DateTime.Now;
-                    DateTime expireTime = hangoutStart.AddMinutes(1);
+                    DateTime expireTime = hangoutStart.AddMinutes((hourDiff * 60) + minuteDiff);
 
                     if(currentDate > expireTime)
                     {
                         listing.HangoutUrl = null;
                         listing.HangoutStart = null;
+
+                        UpdateListing(listing);
                     }
                 }
             }

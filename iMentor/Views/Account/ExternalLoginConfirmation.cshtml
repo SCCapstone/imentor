@@ -22,7 +22,7 @@
                 <div class="form-group" style="padding-left:100px;">
                     <div class="col-md-12" style="padding-top:5px;">
                         <div class="im-form-label" style="width:200px;font-size:18px;">Your Default User Name:</div>
-                        @Html.TextArea("Email", new { @class = "form-control", @readonly = true, @style = "resize:none;height:35px;width:300px;", @disabled = true })
+                        @Html.TextAreaFor(m => m.Email, new { @class = "form-control", @readonly = true, @style = "resize:none;height:35px;width:300px;"})
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
 

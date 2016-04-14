@@ -372,6 +372,10 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                                             ListingEndDate: $scope.currentUserListings[i].EndDate,
                                             EventDate: new Date(d)
                                         }
+
+                                        if(event.ListingTitle.length > 25){
+                                            event.ListingTitle = event.ListingTitle.slice(0,24) + "...";
+                                        }
                                             
                                         upcomingEvents.push(event);
                                     }   

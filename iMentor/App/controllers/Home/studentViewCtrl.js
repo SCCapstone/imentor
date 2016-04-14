@@ -206,6 +206,10 @@
                                             Active: false
                                         }
 
+                                        if(event.ListingTitle.length > 70){
+                                            event.ListingTitle = event.ListingTitle.slice(0,69) + "...";
+                                        }
+
                                         //Change the color of the event if the hangout is active and the event day is today
                                         if ($scope.currentUserListings[i].HangoutUrl != null && event.EventDate.getDate() == today.getDate()) {
                                             event.Background = "#00bfa5";

@@ -72,22 +72,22 @@
                         <md-content>
                             <md-toolbar>
                                 <div class="md-toolbar-tools md-hue-2" ng-show="listing.Open && applied">
-                                    <div style="margin-left:85px;">
+                                    <div style="margin-left:65px;">
                                         You are applied to this listing
                                     </div>
                                 </div>
                                 <div class="md-toolbar-tools md-hue-1" ng-show="listing.Open && !applied">
-                                    <div style="margin-left:100px;">
+                                    <div style="margin-left:50px;">
                                         Apply for Listing
-                                        <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
+                                        <md-button class="md-default md-raised" ng-click="showConfirm($event)">
                                             Apply
                                         </md-button>
                                     </div>
                                 </div>
                                 <div class="md-toolbar-tools md-hue-3" ng-show="!listing.Open">
-                                    <div style="margin-left:100px;">
+                                    <div style="margin-left:60px;">
                                         Listing is Full
-                                        <md-button class="md-raised md-primary" disabled>Apply</md-button>
+                                        <md-button class="md-default md-raised" disabled>Apply</md-button>
                                     </div>
                                 </div>
                             </md-toolbar>
@@ -99,8 +99,8 @@
                         <md-content>
                             <md-toolbar>
                                 <div class="md-toolbar-tools md-hue-1" ng-show="listing.Open">
-                                    <div style="margin-left:85px;">
-                                        You are assigned to this listing.
+                                    <div style="margin-left:30px;">
+                                        You are assigned to this listing
                                     </div>
                                 </div>
                             </md-toolbar>
@@ -114,7 +114,7 @@
                         <md-content>
                             <md-toolbar>
                                 <div class="md-toolbar-tools" style="background:#1de9b6;color:#004d40;">
-                                    <div style="margin-left:100px;">
+                                    <div style="margin-left:80px;">
                                         Applicants
                                         <md-button class="md-raised" ng-click="viewApplicants()">View</md-button>
                                     </div>
@@ -155,10 +155,7 @@
                     <div class="col-sm-12">
                         <!------------------------->
                         <!-- Student/Mentor Hangout Button -->
-                        <div class="col-sm-4" >
-                            <div class="im-form-label" style="width:125px;font-size:16px">Join Hangout:</div>
-                        </div>
-                        <div class="col-sm-3" style="margin-bottom:6px;">
+                        <div class="col-sm-12" style="margin-bottom:6px;padding-left:30%;">
                             <button class="btn btn-default" ng-disabled="listing.HangoutUrl == null" ng-show="user.RoleId <= 2" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="joinHangout()">
                                 <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
                             </button>
@@ -180,7 +177,7 @@
                                 <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4) && areaEditMode  && !isNew" icon="glyphicon glyphicon-ok" style="width:30px;font-size:40px;float:right;color:green;" text="" on-click="saveArea"></div>
                             </div>
                             <div>
-                                <img ng-src="{{imagePath}}" ng-show="!areaEditMode" class="img-responsive" style="margin-left:30%;" alt="" />
+                                <img ng-src="{{imagePath}}" ng-show="!areaEditMode" class="img-responsive" style="margin-left:27%;" alt="" />
                             </div>
                         </div>
 

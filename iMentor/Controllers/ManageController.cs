@@ -583,9 +583,7 @@ namespace iMentor.Controllers
                 return Json(results, JsonRequestBehavior.AllowGet);
             }
         }
-
-
-
+        
 
         #region Helper Methods
 
@@ -618,9 +616,9 @@ namespace iMentor.Controllers
                 if (listing.HangoutUrl != null)
                 {
                     DateTime hangoutStart = listing.HangoutStart ?? DateTime.Now;
-                    DateTime expireTime = hangoutStart.AddMinutes(30);
+                    DateTime expireTime = hangoutStart.AddMinutes(1);
 
-                    if(currentDate.Minute > expireTime.Minute)
+                    if(currentDate > expireTime)
                     {
                         listing.HangoutUrl = null;
                         listing.HangoutStart = null;

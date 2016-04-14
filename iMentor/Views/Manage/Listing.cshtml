@@ -20,15 +20,16 @@
                         Create new listing
                     </md-button>
                 </md-content>
-                <md-content class="pull-right" ng-show="isNew">
-                    <md-button class="md-raised" style="background:green;color:white;" ng-click="createListing($event)">
-                        Submit new listing
-                    </md-button>
-                </md-content>
+                
 
-                <md-input-container ng-show="titleEditMode" class="md-block" style="width:90%;">
+                <md-input-container ng-show="titleEditMode" class="md-block" style="width:100%;">
                     <label>Listing Title</label>
                     <input class="thick" style="width:600px;font-size:36px;height:45px;" ng-model="listing.Title">
+                    <md-content class="pull-right" ng-show="isNew" style="background:#f2f2f2">
+                        <md-button class="md-raised" style="background:green;color:white;" ng-click="createListing($event)">
+                            Submit new listing
+                        </md-button>
+                    </md-content>
 
                     <md-content class="" ng-show="!isNew" style="background:#f2f2f2">
                         <md-button class="md-raised" style="background:white;color:black;" ng-click="saveTitle()">

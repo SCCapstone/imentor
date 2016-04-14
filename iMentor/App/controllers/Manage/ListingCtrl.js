@@ -113,12 +113,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 $scope.listings.push($scope.listing);
             }
 
-            if ($scope.user != null) {
-                $scope.listing.TeacherId = $scope.user.Id;
-            } else {
-                $scope.listing.TeacherId = 37;
-            }
-
             $scope.assignments = [];
 
             $scope.titleEditMode = true;
@@ -168,6 +162,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
 
                     if ($scope.currentUsers.length < 1) {
                         $scope.currentUsers.push(user);
+                    }
+
+                    if ($scope.isNew) {
+                        $scope.listing.TeacherId = $scope.user.Id;
                     }
                 },
                 function fail(reason){

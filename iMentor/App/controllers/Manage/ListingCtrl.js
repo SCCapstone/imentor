@@ -7,6 +7,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.titleEditMode = false;
         $scope.applied = null;
         $scope.assigned = false;
+        $scope.listing = null;
+        $scope.user = null;
         $scope.hangoutSaved = false;
         $scope.validListing = false;
 
@@ -66,9 +68,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                         {
                             $scope.validListing = true;
                             $scope.listing = listings[i];
-                            $scope.listings.push($scope.listing);                                
                             $scope.listing.StartDate = new Date(parseInt(listings[i].StartDate.substr(6)));
                             $scope.listing.EndDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+
+                            if($scope.listings.length < 1){
+                                $scope.listings.push($scope.listing);   
+                            }
+
                             $scope.imagePath = getImage();
                             getUsersByListing($scope.listingId);
                             getAssignments();
@@ -103,7 +109,9 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 Open: false
             };
 
-            $scope.listings.push($scope.listing);
+            if ($scope.listings.length < 1) {
+                $scope.listings.push($scope.listing);
+            }
 
             if ($scope.user != null) {
                 $scope.listing.TeacherId = $scope.user.Id;
@@ -157,7 +165,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getCurrentUser().then(
                 function success(user){
                     $scope.user = user;
-                    $scope.currentUsers.push(user);
+
+                    if ($scope.currentUsers.length < 1) {
+                        $scope.currentUsers.push(user);
+                    }
                 },
                 function fail(reason){
                     console.log("Unable to load current user: " + reason);
@@ -344,6 +355,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         $scope.editTitle = function () {
+            $scope.oldTitle = $scope.listing.Title;
             $scope.titleEditMode = true;
         }
 
@@ -354,7 +366,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         $scope.cancelTitle = function () {
-            getListings();
+            $scope.listing.Title = $scope.oldTitle;
             $scope.titleEditMode = false;
         }
 

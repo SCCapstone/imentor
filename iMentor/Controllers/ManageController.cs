@@ -611,22 +611,20 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         private void CheckForExpiredHangouts(List<ListingInfo> listings)
         {
-            TimeSpan expireTime = TimeSpan.Parse("60:00:00");
+            DateTime currentDate = DateTime.Now;
 
             foreach (ListingInfo listing in listings)
             {
-                if (listing.Open)
+                if (listing.HangoutUrl != null)
                 {
-                    DateTime listingStartDate = listing.StartDate ?? DateTime.Now;
-                    DateTime listingEndDate = listing.EndDate ?? DateTime.Now;
+                    DateTime hangoutStart = listing.HangoutStart ?? DateTime.Now;
+                    DateTime expireTime = hangoutStart.AddMinutes(30);
 
-                    TimeSpan diff = (listingStartDate - listingEndDate);
-
-
-                    //if (DateTime.Compare(currentDate, listingEndDate) > 0)
-                    //{
-                    //    listing.Open = false;
-                    //}
+                    if(currentDate.Minute > expireTime.Minute)
+                    {
+                        listing.HangoutUrl = null;
+                        listing.HangoutStart = null;
+                    }
                 }
             }
         }

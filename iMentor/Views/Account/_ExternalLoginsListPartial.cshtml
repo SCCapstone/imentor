@@ -2,6 +2,7 @@
 @using Microsoft.Owin.Security
 
 
+
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -9,7 +10,8 @@
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
         @Html.AntiForgeryToken()
         <div id="socialLoginList">
-            <p>
+            <h4>Log in using your Google account.</h4>
+            <p> 
                 @foreach (AuthenticationDescription p in loginProviders) {
                      <button 
                         type="submit" 
@@ -17,6 +19,7 @@
                         id="@p.AuthenticationType" 
                         name="provider" 
                         value="@p.AuthenticationType" 
+                        style="height:33px;"
                         title="Log in using your @p.Caption account">
                          <i class="fa fa-@p.AuthenticationType.ToLower()"></i>@p.AuthenticationType
                      </button>

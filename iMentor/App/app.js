@@ -21,10 +21,11 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
         $routeProvider
             .when('/', { templateUrl: 'home/home', controller: 'homeCtrl' })
             .when('/Login', { templateUrl: 'Account/login', controller: 'loginCtrl' })
+            .when('/ExternalLoginConfirmation', { templateUrl: 'Account/ExternalLoginConfirmation' })
+            .when('/ExternalLoginCallback', { templateUrl: 'Account/ExternalLoginCallback' })
             .when('/Calendar', { templateUrl: 'home/calendar', controller: 'calendarCtrl' })
             .when('/ManageUsers', { templateUrl: 'Manage/manageUsers', controller: 'manageUsersCtrl' })
             .when('/ManageListings', { templateUrl: 'Manage/manageListings', controller: 'manageListingsCtrl' })
-        
             .when('/Listing/:listingId', { templateUrl: 'Manage/Listing', controller: 'listingCtrl' })
             .when('/EditUser/:userId', { templateUrl: 'Manage/editUser', controller: 'editUserCtrl' })
             .when('/PageNotFound', { templateUrl: 'Home/pageNotFound', controller: 'pageNotFoundCtrl'})

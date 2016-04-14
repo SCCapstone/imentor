@@ -11,6 +11,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.user = null;
         $scope.hangoutSaved = false;
         $scope.validListing = false;
+        $scope.particpantsCollapsed = true;
+        $scope.applicantsCollapsed = true;
 
         $scope.listings = [];
         $scope.currentUsers = [];

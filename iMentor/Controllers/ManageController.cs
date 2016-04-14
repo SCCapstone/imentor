@@ -624,7 +624,8 @@ namespace iMentor.Controllers
                     double minuteDiff = listingEndDate.Minute - listingStartDate.Minute;
                     
                     DateTime hangoutStart = listing.HangoutStart ?? DateTime.Now;
-                    DateTime expireTime = hangoutStart.AddMinutes((hourDiff * 60) + minuteDiff);
+                    DateTime expireTime = hangoutStart.AddHours(hourDiff );
+                    expireTime = expireTime.AddMinutes(minuteDiff);
 
                     if(currentDate > expireTime)
                     {

@@ -11,7 +11,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.user = null;
         $scope.hangoutSaved = false;
         $scope.validListing = false;
-        $scope.particpantsCollapsed = true;
+        $scope.particpantsCollapsed = false;
         $scope.applicantsCollapsed = true;
 
         $scope.listings = [];
@@ -134,9 +134,15 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                         }
                     }
 
-                    $scope.tiles = buildGridModel({
+                    $scope.participantTiles = buildParticipantGridModel({
                         icon: "avatar:svg-",
-                        title: "Svg-",
+                        title: "",
+                        background: ""
+                    });
+
+                    $scope.applicantTiles = buildApplicantGridModel({
+                        icon: "avatar:svg-",
+                        title: "",
                         background: ""
                     });
                 },
@@ -411,12 +417,11 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         });
 
         function refreshParticipants() {
-            $scope.tiles = buildGridModel({
+            $scope.participantTiles = buildParticipantGridModel({
                 icon: "avatar:svg-",
                 title: "Svg-",
                 background: ""
             });
-            //getAssignments();
         }
 
         $scope.editParticipants = function () {
@@ -571,6 +576,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             window.open($scope.listing.HangoutUrl);
         }
 
+        $scope.toggleParticipantsCollapse = function () {
+            $scope.particpantsCollapsed = !$scope.particpantsCollapsed;
+        }
+
+        $scope.toggleApplicantsCollapse = function () {
+            $scope.applicantsCollapsed = !$scope.applicantsCollapsed
+        }
 
         // ---------------------------------------------------------------
         // Helper Methods
@@ -627,8 +639,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         // Grid list
         // ---------------------------------------------------------------
         
-
-        function buildGridModel(tileTmpl) {
+        //Participants
+        function buildParticipantGridModel(tileTmpl) {
             if ($scope.assignedUsers != undefined) {
 
                 //Sort participants by Teacher -> Mentor -> Student
@@ -667,6 +679,27 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                             it.span.row = it.span.col = 2;
                             break;
                     }
+
+                    results.push(it);
+                }
+
+                return results;
+            }
+        }
+
+        function buildApplicantGridModel(tileTmpl) {
+            if ($scope.applicants != undefined) {
+
+                var it, results = [];
+                for (var i = 0; i < $scope.applicants.length; i++) {
+
+                    it = angular.extend({}, tileTmpl);
+                    it.icon = it.icon + (($scope.applicants[i].Id % 16) + 1);
+                    it.title = $scope.applicants[i].UserName;
+                    it.span = { row: 1, col: 1 };
+
+                    it.background = "#00796b";
+                    //it.span.col = 2;
 
                     results.push(it);
                 }

@@ -221,10 +221,10 @@
 
                 <md-content style="padding-bottom:30px;padding-top:30px;background:#f2f2f2"><md-divider></md-divider></md-content>
 
-                <!-- Collapsible Users -->
+                <!-- Collapse Buttons -->
                 <div class="row" style="padding-left:70px;">
-                    <md-button class="md-raised" ng-click="particpantsCollapsed = !particpantsCollapsed">Participants</md-button>
-                    <md-button class="md-raised" ng-click="applicantsCollapsed = !applicantsCollapsed">Applicants</md-button>
+                    <md-button class="md-raised" ng-click="toggleParticipantsCollapse()">Participants</md-button>
+                    <md-button class="md-raised" ng-click="toggleApplicantsCollapse()">Applicants</md-button>
                 </div>
                 <!-- Participants -->
                 
@@ -245,7 +245,7 @@
                                           md-row-height-gt-md="1:1" md-row-height="4:3"
                                           md-gutter="8px" md-gutter-gt-sm="4px">
 
-                                <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
+                                <md-grid-tile ng-repeat="tile in participantTiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
                                     <md-icon md-svg-icon="{{tile.icon}}" style="width:75%;height:75%;"></md-icon>
                                     <md-grid-tile-footer><h3 style="padding-right:30px;">{{tile.title}}</h3></md-grid-tile-footer>
                                 </md-grid-tile>
@@ -263,13 +263,13 @@
                 <!-- Applicants -->
                 
                 <div uib-collapse="applicantsCollapsed">
-                    <div class="row" ng-show="!isNew">
+                    <div class="row" ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4) && !isNew">
                         <div class="col-md-11" style="margin-left:50px;margin-bottom:10px;text-align:center;">
 
                             <div class="im-form-label thick" style="width:50%;font-size:16px">Applicants</div>
 
                             <div class="pull-right" style="padding-right:10px;">
-                                <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4)" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="editParticipants"></div>
+                                <div im-btn ng-show="((user.RoleId == 3 && assigned) || user.RoleId == 4)" icon="glyphicon glyphicon-edit" style="width:30px;font-size:40px;float:right;color:black;" text="" on-click="viewApplicants"></div>
                             </div>
                         </div>
 
@@ -279,7 +279,7 @@
                                           md-row-height-gt-md="1:1" md-row-height="4:3"
                                           md-gutter="8px" md-gutter-gt-sm="4px">
 
-                                <md-grid-tile ng-repeat="tile in tiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
+                                <md-grid-tile ng-repeat="tile in applicantTiles" md-rowspan="{{tile.span.row}}" md-colspan="{{tile.span.col}}" md-colspan-sm="1" ng-style="{'background': tile.background}">
                                     <md-icon md-svg-icon="{{tile.icon}}" style="width:75%;height:75%;"></md-icon>
                                     <md-grid-tile-footer><h3 style="padding-right:30px;">{{tile.title}}</h3></md-grid-tile-footer>
                                 </md-grid-tile>

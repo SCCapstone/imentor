@@ -1,0 +1,76 @@
+﻿<md-content layout-padding style="background:#f2f2f2">
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="user.Id == null">
+        <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
+
+
+<div class="ngview-wrapper" ng-show="user.Id != null">
+
+    <div class="col-sm-12">
+        <div class="panel panel-default" style="margin-bottom:50px">
+            <div class="panel-heading" style="background:white;color:#999999;height:45px;">
+                <div class="header-title pull-left">User Profile</div>
+                <div class="" style="margin-left:150px;padding-top:5px;">{{user.FirstName}} {{user.LastName}}</div>
+            </div>
+
+            <div class="panel-body">
+                <div class="col-sm-8" style="margin-top:50px;">
+                    <form name="userForm">
+
+                        <div class="row col-sm-11" style="margin-left:28px;">
+                            <div class="pull-left">
+                                <div class="im-form-label thick" style="font-size:18px;">Role</div>
+                            </div>
+                            <div class="pull-right">
+                                <div class="im-form-label" style="font-size:16px;">{{user.Role}}</div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <md-content style="margin-top:20px;margin-bottom:20px;"><md-divider></md-divider></md-content>
+
+                        <div class="row col-sm-11" style="margin-left:28px;">
+                            <div class="pull-left" style="">
+                                <div class="im-form-label thick" style="font-size:18px;">Username</div>
+                            </div>
+                            <div class="pull-right">
+                                <div class="im-form-label" style="font-size:16px;">{{user.UserName}}</div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <md-content style="margin-top:20px;margin-bottom:20px;"><md-divider></md-divider></md-content>
+
+                        <div class="row col-sm-11" style="margin-left:28px;">
+                            <div class="pull-left" style="">
+                                <div class="im-form-label thick" style="font-size:18px;">Email</div>
+                            </div>
+                            <div class="pull-right">
+                                <div class="im-form-label" style="font-size:16px;">{{user.Email}}</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+
+                    <md-grid-list md-cols="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="2"
+                                  md-row-height-gt-md="1:1" md-row-height="4:3"
+                                  md-gutter="8px" md-gutter-gt-sm="4px">
+
+                        <md-grid-tile ng-repeat="tile in tiles"
+                                      md-rowspan="{{tile.span.row}}"
+                                      md-colspan="{{tile.span.col}}"
+                                      md-colspan-sm="1"
+                                      ng-style="{'background': tile.background}">
+                            <md-icon md-svg-icon="{{tile.icon}}" style="width:75%;height:75%;"></md-icon>
+                        </md-grid-tile>
+
+                    </md-grid-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

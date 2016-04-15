@@ -19,6 +19,12 @@ namespace iMentor.Entities
         public string UserName { get; set; }
 
         [DataMember]
+        public string FirstName { get; set; }
+
+        [DataMember]
+        public string LastName { get; set; }
+
+        [DataMember]
         public string Email { get; set; }
 
         [DataMember]
@@ -30,7 +36,10 @@ namespace iMentor.Entities
         [DataMember]
         public bool ShowOnlyAssignedListings { get; set; }
 
+        [DataMember]
+        public int IconIndex { get; set; }
 
+        
         [AllowAnonymous]
         public string GetRoleByUser(iMentorUser user)
         {

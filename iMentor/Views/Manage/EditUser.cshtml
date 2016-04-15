@@ -6,13 +6,13 @@
 
 
 <div class="ngview-wrapper" ng-class="cursorClass" ng-show="user.Id != null">
-    <div class="panel panel-default" style="width:500px;">
+    <div class="panel panel-default" style="width:950px;">
         <div class="panel-heading" style="background:white;color:#999999;height:45px;">
             <div class="header-title pull-left">User Details</div>
         </div>
 
         <div class="panel-body">
-            <div class="text-left col-sm-12" style="display:inline-block;">
+            <div class="text-left col-sm-8" style="display:inline-block;">
                 <form name="userForm" novalidate>
 
                     <div class="row" style="margin-left:28px;">
@@ -55,15 +55,71 @@
                         <input type="text" ng-model="user.UserName" required name="userName" class="form-control im-form-text" style="width:250px;margin-left:70px;" />
                     </div>
 
-                    <div class="text-right">
-                        <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="cancel()">
-                            Cancel
-                        </md-button>
-                        <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="save()">
-                            Save
-                        </md-button>
+                    <md-content style="padding-top:20px;padding-bottom:20px;"><md-divider></md-divider></md-content>
+
+                    <div class="row" style="">
+                        <div class="im-form-label" style="width:125px;font-size:18px;margin-right:150px;">First Name</div>
+                        <div class="im-form-label" style="width:125px;font-size:18px;">Last Name</div>
                     </div>
+                    <div class="row">
+                        <input type="text" ng-model="user.FirstName" name="firstName" class="form-control im-form-text" style="width:200px;margin-left:70px;" />
+                        <input type="text" ng-model="user.LastName" name="lastName" class="form-control im-form-text" style="width:200px;margin-left:70px;" />
+                    </div>
+
+
+                    
                 </form>
+            </div>
+
+            <!-- Icons -->
+            <div class="col-sm-4">
+                <div class="col-sm-3" style="">
+                    <md-radio-group ng-model="user.IconIndex">
+                        <md-radio-button ng-repeat="it in avatarData1"
+                                         ng-value="it.value"
+                                         aria-label="{{it.title}}">
+                            <md-icon md-svg-icon="{{it.id}}" style="width:30px;height:30px;"></md-icon>
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="col-sm-3">
+                    <md-radio-group ng-model="user.IconIndex">
+                        <md-radio-button ng-repeat="it in avatarData2"
+                                         ng-value="it.value"
+                                         aria-label="{{it.title}}">
+                            <md-icon md-svg-icon="{{it.id}}" style="width:30px;height:30px;"></md-icon>
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="col-sm-3">
+                    <md-radio-group ng-model="user.IconIndex">
+                        <md-radio-button ng-repeat="it in avatarData3"
+                                         ng-value="it.value"
+                                         aria-label="{{it.title}}">
+                            <md-icon md-svg-icon="{{it.id}}" style="width:30px;height:30px;"></md-icon>
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+                <div class="col-sm-3">
+                    <md-radio-group ng-model="user.IconIndex">
+                        <md-radio-button ng-repeat="it in avatarData4"
+                                         ng-value="it.value"
+                                         aria-label="{{it.title}}">
+                            <md-icon md-svg-icon="{{it.id}}" style="width:30px;height:30px;"></md-icon>
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+            <!---------->
+
+            
+            <div class="row col-sm-12 text-right">
+                <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="cancel()">
+                    Cancel
+                </md-button>
+                <md-button class="md-raised" style="background:#f2f2f2;color:black;" ng-click="save()">
+                    Save
+                </md-button>
             </div>
         </div>
     </div>

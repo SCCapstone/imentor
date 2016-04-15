@@ -45,21 +45,18 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
+        [AllowAnonymous]
+        public ActionResult ViewProfile()
+        {
+            return PartialView();
+        }
+
         public ActionResult Secure()
         {
             ViewBag.Message = "Secure page.";
             return View();
         }
         #endregion
-
-
-        private iMAST_dbEntities db = new iMAST_dbEntities();
-
-        [AllowAnonymous]
-        public JsonResult GetListings()
-        {
-            var result = db.ListingModels.ToList();
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
+        
     }
 }

@@ -28,9 +28,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.subjects = [
             { value: 1, text: 'Math', selected: false },
             { value: 2, text: 'Science', selected: false },
-            { value: 3, text: 'History', selected: false },
+            { value: 3, text: 'Social Studies', selected: false },
             { value: 4, text: 'Reading', selected: false },
-            { value: 5, text: 'Computer Science', selected: false }
+            { value: 5, text: 'Computer Applications', selected: false },
+            { value: 6, text: 'Foreign Language', selected: false },
+            { value: 7, text: 'Arts', selected: false },
+            { value: 8, text: 'Writing', selected: false },
+            { value: 9, text: 'Music', selected: false }
         ];
 
         $scope.listingId = $routeParams.listingId;
@@ -52,10 +56,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
 
-        // ---------------------------------------------------------------
-        // Hangouts
-        // ---------------------------------------------------------------
-
+    
        
         // ---------------------------------------------------------------
         // Service Calls
@@ -621,12 +622,16 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     return 'img/Math.png';
                 else if ($scope.listing.Area == 'Science')
                     return 'img/Science.png';
-                else if ($scope.listing.Area == 'History')
+                else if ($scope.listing.Area == 'Social Studies')
                     return 'img/World.png';
                 else if ($scope.listing.Area == 'Reading')
                     return 'img/Reading.png';
-                else if ($scope.listing.Area == 'Computer Science')
+                else if ($scope.listing.Area == 'Computer Applications')
                     return 'img/ComputerScience.png';
+                else if ($scope.listing.Area == 'Arts')
+                    return 'img/Art.png';
+                       else if ($scope.listing.Area == 'Music')
+                    return 'img/Music.png';
                 else
                     return 'img/Unknown.png';
             }

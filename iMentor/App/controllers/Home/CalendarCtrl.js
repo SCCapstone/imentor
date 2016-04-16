@@ -86,48 +86,15 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
         gapi_helper.when('calendarLoaded', $scope.loadSources);*/
       
      
-        $scope.getDateString = function GetDateString(myDate){
-            // GET CURRENT DATE
-            var date = new Date(myDate);
-		 
-            // GET YYYY, MM AND DD FROM THE DATE OBJECT
-            var yyyy = date.getFullYear().toString();
-            var mm = (date.getMonth()+1).toString();
-            var dd  = date.getDate().toString();
-		 
-            // CONVERT mm AND dd INTO chars
-            var mmChars = mm.split('');
-            var ddChars = dd.split('');
-		 
-            // CONCAT THE STRINGS IN YYYY-MM-DD FORMAT
-            var datestring = yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
-        
-            return datestring;
-        }
+       
 
-        $('#calendar').fullCalendar('addEventSource',
-              function (start, end, timezone, callback) {
-                  $scope.events = [];
-
-                  for (loop = start.toDate().getTime() ; loop <= end.toDate().getTime() ; loop = loop + (24 * 60 * 60 * 1000))
-                  {
-                      $scope.test_date = new Date(loop);
-                      getListings();
-
-                  }
-              })
-                 
+ 
 
                       
            
 
               
-                   
-   
-
-
-         
-
+           
 
          function getListings() {
              manageService.getListingsByCurrentUser()
@@ -141,6 +108,17 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
                         
                         var startDate = new Date(moment(new Date(parseInt(listings[i].StartDate.substr(6)))).format('YYYY/MM/DD'));
                         var endDate = new Date(moment(new Date(parseInt(listings[i].EndDate.substr(6)))).format('YYYY/MM/DD'));
+                        
+
+                  var weekday = new Array(7);
+                  weekday[0] = "U";
+                  weekday[1] = "M";
+                  weekday[2] = "T";
+                  weekday[3] = "W";
+                  weekday[4] = "R";
+                  weekday[5] = "F";
+                  weekday[6] = "S";
+
 
                         $scope.events.push({
                             id: listings[i].Id,

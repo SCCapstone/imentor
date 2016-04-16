@@ -18,9 +18,13 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         $scope.subjects = [
             { value: 1, text: 'Math', selected: false },
             { value: 2, text: 'Science', selected: false },
-            { value: 3, text: 'History', selected: false },
+            { value: 3, text: 'Social Studies', selected: false },
             { value: 4, text: 'Reading', selected: false },
-            { value: 5, text: 'Computer Science', selected: false }
+            { value: 5, text: 'Computer Applications', selected: false },
+            { value: 6, text: 'Foreign Language', selected: false },
+            { value: 7, text: 'Arts', selected: false },
+            { value: 8, text: 'Writing', selected: false },
+            { value: 9, text: 'Music', selected: false }
         ];
 
 

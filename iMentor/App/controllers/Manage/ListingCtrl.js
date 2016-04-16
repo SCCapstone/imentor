@@ -726,8 +726,12 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     return 'img/ComputerScience.png';
                 else if ($scope.listing.Area == 'Arts')
                     return 'img/Art.png';
-                       else if ($scope.listing.Area == 'Music')
+                else if ($scope.listing.Area == 'Foreign Language')
+                    return 'img/ForeignLanguage.png';
+                else if ($scope.listing.Area == 'Music')
                     return 'img/Music.png';
+                else if ($scope.listing.Area == 'Writing')
+                    return 'img/Writing.png';
                 else
                     return 'img/Unknown.png';
             }

@@ -31,6 +31,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
             .when('/PageNotFound', { templateUrl: 'Home/pageNotFound', controller: 'pageNotFoundCtrl'})
             .when('/About', { templateUrl: 'Home/about', controller: 'aboutCtrl'})
             .when('/StudentView', { templateUrl: 'Home/studentView', controller: 'studentViewCtrl'})
+            .when('/ViewProfile/:userId', { templateUrl: 'Home/viewProfile', controller: 'profileCtrl'})
 
             .otherwise({ redirectTo: '/' });
 
@@ -48,7 +49,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
 
         $mdThemingProvider.theme('default')
             .primaryPalette('teal')
-            .accentPalette('teal');
+            .accentPalette('cyan');
     }
 ]);
 

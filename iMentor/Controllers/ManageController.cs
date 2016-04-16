@@ -247,10 +247,13 @@ namespace iMentor.Controllers
                 {
                     user.Id = iMentorUser.Id;
                     user.UserName = iMentorUser.UserName;
+                    user.FirstName = iMentorUser.FirstName;
+                    user.LastName = iMentorUser.LastName;
                     user.Email = iMentorUser.Email;
                     user.RoleId = iMentorUser.RoleId;
                     user.Role = user.GetRoleByUser(iMentorUser);
                     user.ShowOnlyAssignedListings = iMentorUser.ShowOnlyAssignedListings;
+                    user.IconIndex = iMentorUser.IconIndex;
                 }
 
                 return Json(user, JsonRequestBehavior.AllowGet);
@@ -284,9 +287,12 @@ namespace iMentor.Controllers
                     { 
                         u.Id = user.Id;
                         u.UserName = user.UserName;
+                        u.FirstName = user.FirstName;
+                        u.LastName = user.LastName;
                         u.Email = user.Email;
                         u.RoleId = user.GetRoleIdByName(user.Role);
                         u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
+                        u.IconIndex = user.IconIndex;
 
                         db.SaveChanges();
                         return "User Updated";
@@ -359,10 +365,13 @@ namespace iMentor.Controllers
                             var u = new iMentorUserInfo();
                             u.Id = user.Id;
                             u.UserName = user.UserName;
+                            u.FirstName = user.FirstName;
+                            u.LastName = user.LastName;
                             u.Email = user.Email;
                             u.RoleId = user.RoleId;
                             u.Role = u.GetRoleByUser(user);
                             u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
+                            u.IconIndex = user.IconIndex;
 
                             users.Add(u);
                         }
@@ -439,10 +448,13 @@ namespace iMentor.Controllers
 
                     u.Id = user.Id;
                     u.UserName = user.UserName;
+                    u.FirstName = user.FirstName;
+                    u.LastName = user.LastName;
                     u.Email = user.Email;
                     u.RoleId = user.RoleId;
                     u.Role = u.GetRoleByUser(user);
                     u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
+                    u.IconIndex = user.IconIndex;
 
                     users.Add(u);
                 }
@@ -552,7 +564,7 @@ namespace iMentor.Controllers
             {
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
-                    var a = db.Applicants.Where(x => x.Id == appplicant.Id).FirstOrDefault();
+                    var a = db.Applicants.Where(x => x.UserId == appplicant.UserId && x.ListingId == appplicant.ListingId).FirstOrDefault();
 
                     if (a != null)
                     {

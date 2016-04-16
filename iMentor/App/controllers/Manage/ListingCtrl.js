@@ -11,8 +11,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.user = null;
         $scope.hangoutSaved = false;
         $scope.validListing = false;
-        $scope.particpantsCollapsed = false;
-        $scope.applicantsCollapsed = true;
+        $scope.particpantsCollapsed = true;
+        $scope.applicantsCollapsed = false;
 
         $scope.listings = [];
         $scope.currentUsers = [];
@@ -136,12 +136,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     }
 
                     $scope.participantTiles = buildParticipantGridModel({
-                        icon: "avatar:svg-",
-                        title: "",
-                        background: ""
-                    });
-
-                    $scope.applicantTiles = buildApplicantGridModel({
                         icon: "avatar:svg-",
                         title: "",
                         background: ""
@@ -291,6 +285,12 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     if ($scope.applicants.length == 0) {
                         $scope.applied = false;
                     }
+
+                    $scope.applicantTiles = buildApplicantGridModel({
+                        icon: "avatar:svg-",
+                        title: "",
+                        background: ""
+                    });
                 },
                 function error(error) {
                     console.log("Unable to load applicants: " + error);
@@ -309,10 +309,48 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             );
         }
 
+        function acceptApplicant(id){
+
+            manageService.getUsers().then(
+                function success(users){
+                    for(var i = 0; i < users.length; i++){
+                        if(users[i].Id == id){
+                            $scope.assignedUsers.push(users[i]);
+
+                            var assignment = {
+                                UserId: users[i].Id,
+                                ListingId: $scope.listing.Id
+                            }
+                            manageService.addParticipant(assignment);
+                            
+
+                            var a = $scope.assignedUsers;
+
+                            $rootScope.$broadcast('refreshParticipantsList', { assignments: a });
+                            
+
+                            var applicant = {
+                                UserId: users[i].Id,
+                                ListingId: $scope.listing.Id
+                            }
+                            removeApplicant(applicant);
+                        }
+                    }
+                }
+            )
+        }
+
         function removeApplicant(applicant) {
             manageService.removeApplicant(applicant).then(
                 function success(response) {
-                    getUsersByListing($scope.listingId);
+                    var a = [];
+                    for(var i = 0; i < $scope.applicants.length; i++){
+                        if($scope.applicants[i].Id == applicant.UserId){
+                            continue;
+                        }
+                        a.push($scope.applicants[i]);
+                    }
+                    $rootScope.$broadcast('refreshApplicantsList', { applicants: a });
                 },
                 function error(error) {
                     console.log("Unable to remove applicant: " + error)
@@ -425,6 +463,26 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             });
         }
 
+         $scope.$on('refreshApplicantsList', function (event, data) {
+         console.log("Before: " + $scope.applicants);
+            $scope.applicants = [];
+            
+            for (var i = 0; i < data.applicants.length; i++) {
+                $scope.applicants.push(data.applicants[i]);
+            }
+
+            console.log("After: " + $scope.applicants);
+            refreshApplicants();
+        });
+
+        function refreshApplicants() {
+            $scope.applicantTiles = buildApplicantGridModel({
+                icon: "avatar:svg-",
+                title: "Svg-",
+                background: ""
+            });
+        }
+
         $scope.editParticipants = function () {
             if($scope.students != null && $scope.listing != null){
                 manageService.getAssignments().then(
@@ -434,8 +492,6 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                                         $scope.listing, assignments);
                     }
                 )
-            
-                
             }
         }
 
@@ -577,6 +633,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             window.open($scope.listing.HangoutUrl);
         }
 
+        $scope.goToProfile = function(userId){
+            $location.path("/ViewProfile/" + userId);
+        }
+
         $scope.toggleParticipantsCollapse = function () {
             $scope.particpantsCollapsed = !$scope.particpantsCollapsed;
         }
@@ -584,6 +644,42 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         $scope.toggleApplicantsCollapse = function () {
             $scope.applicantsCollapsed = !$scope.applicantsCollapsed
         }
+
+        $scope.addApplicant = function (ev, tile) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Add Mentor')
+                  .textContent(tile.title)
+                  //.ariaLabel('')
+                  .targetEvent(ev)
+                  .ok('Okay')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                acceptApplicant(tile.id);
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
+
+        $scope.rejectApplicant = function (ev, tile) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Reject Mentor')
+                  .textContent(tile.title)
+                  //.ariaLabel('')
+                  .targetEvent(ev)
+                  .ok('Okay')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+            var applicant = {
+                                UserId: tile.id,
+                                ListingId: $scope.listing.Id
+                            }
+                removeApplicant(applicant);
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
 
         // ---------------------------------------------------------------
         // Helper Methods
@@ -663,9 +759,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 for (var i = 0; i < $scope.assignedUsers.length; i++) {
 
                     it = angular.extend({}, tileTmpl);
-                    it.icon = it.icon + (($scope.assignedUsers[i].Id % 16) + 1 );
+                    it.icon = it.icon + $scope.assignedUsers[i].IconIndex;
                     it.title = $scope.assignedUsers[i].UserName;
                     it.span = { row: 1, col: 1 };
+                    it.id = $scope.assignedUsers[i].Id;
 
                     switch ($scope.assignedUsers[i].RoleId) {
                         case 1: //Student
@@ -699,12 +796,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 for (var i = 0; i < $scope.applicants.length; i++) {
 
                     it = angular.extend({}, tileTmpl);
-                    it.icon = it.icon + (($scope.applicants[i].Id % 16) + 1);
+                    it.icon = it.icon + $scope.applicants[i].IconIndex;
                     it.title = $scope.applicants[i].UserName;
                     it.span = { row: 1, col: 1 };
+                    it.id = $scope.applicants[i].Id;
 
                     it.background = "#00796b";
-                    //it.span.col = 2;
+                    it.span.row = it.span.col = 2;
 
                     results.push(it);
                 }

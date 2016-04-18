@@ -30,23 +30,6 @@ app.factory('modalOptionService', function () {
                     }
                 }
             }
-        },
-
-        optionsForViewApplicants: function(applicants, assignments) {
-            return {
-                templateUrl: '/Templates/ViewApplicantsModal.html',
-                controller: 'viewApplicantsCtrl',
-                backdrop: true,
-                windowClass: 'viewApplicantsModal',
-                resolve: {
-                    applicants: function() {
-                        return applicants;
-                    },
-                    assignments: function() {
-                        return assignments;
-                    }
-                }
-            }
         }
 
     };

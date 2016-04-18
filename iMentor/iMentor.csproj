@@ -339,7 +339,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App\controllers\Home\Modals\CreateHangoutCtrl.js" />
-    <Content Include="App\controllers\Home\Modals\ViewApplicantsCtrl.js" />
     <Content Include="App\controllers\Home\ProfileCtrl.js" />
     <Content Include="App\controllers\Home\studentViewCtrl.js" />
     <Content Include="App\controllers\Manage\Hangout.js" />
@@ -2012,7 +2011,6 @@
     <Content Include="Templates\ListingCard.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\ViewApplicantsModal.html" />
     <Content Include="App\hangout.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

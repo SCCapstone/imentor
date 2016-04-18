@@ -19,15 +19,16 @@
                 <md-content style="background:#f2f2f2">
 
                     <form name="dateForm" ng-show="timeEditMode" style="text-align:left;">
-                        <md-datepicker class="col-sm-6" name="startDateField" ng-model="startDate" md-placeholder="Start date" style="background:#f2f2f2"
+                        <md-datepicker class="col-sm-5" name="startDateField" ng-model="startDate" md-placeholder="Start date" style="margin-right:10px;background:#f2f2f2"
                                        required md-min-date="minDate" md-max-date="maxDate" ng-change="changeDate()"></md-datepicker>
                         <md-datepicker class="col-sm-6" name="endDateField" ng-model="endDate" md-placeholder="End date" style="background:#f2f2f2"
                                        required md-min-date="startDate" md-max-date="maxDate" ng-change="changeDate()"></md-datepicker>
                     </form>
 
-                    <md-datepicker ng-show="!timeEditMode" ng-model="startDate" md-placeholder="Start date" style="background:#f2f2f2" disabled></md-datepicker>
-                    <md-datepicker ng-show="!timeEditMode" ng-model="endDate" md-placeholder="End date" style="background:#f2f2f2" disabled></md-datepicker>
-                </md-content>
+                    <form ng-show="!timeEditMode" style="text-align:left;">
+                        <md-datepicker class="col-sm-5" ng-model="startDate" md-placeholder="Start date" style="margin-right:10px;background:#f2f2f2" disabled></md-datepicker>
+                        <md-datepicker class="col-sm-6" ng-model="endDate" md-placeholder="End date" style="background:#f2f2f2" disabled></md-datepicker>
+                    </form>
             </div>
         </div>
     </div>

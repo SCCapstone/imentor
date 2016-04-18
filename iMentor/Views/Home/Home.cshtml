@@ -124,7 +124,7 @@
                         </div>
                     </div>
 
-                    <div dir-paginate="listing in listings | orderBy: sortListings | filter: areaFilter | filter: searchText | filter: ageGroupFilter | itemsPerPage: itemsPerPage" current-page="currentPage" listing-card listing="listing" ng-click="selectListing(listing)"></div>
+                    <div dir-paginate="listing in listings | orderBy: sortListings | filter: areaFilter | filter: searchText | itemsPerPage: itemsPerPage" current-page="currentPage" listing-card listing="listing" ng-click="selectListing(listing)"></div>
 
                     <div class="center" style="width:60%;border:0px;margin-left:auto;margin-right:auto">
                         <dir-pagination-controls boundary-links="false" on-page-change="pageChangeHandler(newPageNumber)" template-url="Templates/dirPagination.tpl.html"></dir-pagination-controls>

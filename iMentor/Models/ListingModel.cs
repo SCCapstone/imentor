@@ -27,6 +27,7 @@ namespace iMentor.Models
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Area { get; set; }
+        public string AgeGroup { get; set; }
         public string Frequency { get; set; }
         public string Description { get; set; }
         public string HangoutUrl { get; set; }

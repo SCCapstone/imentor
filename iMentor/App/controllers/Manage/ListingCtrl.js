@@ -37,6 +37,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             { value: 9, text: 'Music', selected: false }
         ];
 
+        $scope.ageGroups = [
+            { value: 1, text: '0-2', selected: false },
+            { value: 2, text: '3-5', selected: false },
+            { value: 3, text: '6-8', selected: false },
+            { value: 4, text: '9-12', selected: false }
+        ];
+
         $scope.listingId = $routeParams.listingId;
         var id = $scope.listingId;
       

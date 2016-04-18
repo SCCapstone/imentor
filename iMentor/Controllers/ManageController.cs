@@ -58,6 +58,7 @@ namespace iMentor.Controllers
                     l.StartDate = listing.StartDate;
                     l.EndDate = listing.EndDate;
                     l.Area = listing.Area;
+                    l.AgeGroup = listing.AgeGroup;
                     l.Frequency = listing.Frequency;
                     l.Description = listing.Description;
                     l.HangoutUrl = listing.HangoutUrl;
@@ -150,6 +151,7 @@ namespace iMentor.Controllers
                         l.StartDate = listing.StartDate;
                         l.EndDate = listing.EndDate;
                         l.Area = listing.Area;
+                        l.AgeGroup = listing.AgeGroup;
                         l.Frequency = listing.Frequency;
                         l.Description = listing.Description;
                         l.HangoutUrl = listing.HangoutUrl;
@@ -205,6 +207,7 @@ namespace iMentor.Controllers
                         l.StartDate = listing.StartDate;
                         l.EndDate = listing.EndDate;
                         l.Area = listing.Area;
+                        l.AgeGroup = listing.AgeGroup;
                         l.Frequency = listing.Frequency;
                         l.Description = listing.Description;
                         l.HangoutUrl = listing.HangoutUrl;

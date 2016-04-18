@@ -14,11 +14,12 @@
                 scope.imagePath = '';
                 scope.title = scope.listing.Title;
                 scope.area = scope.listing.Area;
-                scope.startDate = scope.listing.StartDate;
-                scope.endDate = scope.listing.EndDate;
                 scope.owner = scope.listing.OwnerUserName;
+                scope.ageGroup = scope.listing.AgeGroup;
                 scope.imagePath = getImage();
 
+                scope.startDate = (scope.listing.StartDate.getMonth() + 1) + "/" + scope.listing.StartDate.getDate() + "/" + scope.listing.StartDate.getFullYear();
+                scope.endDate = (scope.listing.EndDate.getMonth() + 1) + "/" + scope.listing.EndDate.getDate() + "/" + scope.listing.EndDate.getFullYear();
 
 
                 function getImage() {
@@ -44,6 +45,35 @@
                         else
                             return 'img/Unknown.png';
                     }
+                }
+
+                function parseTime(e) {
+                    var hours = "";
+                    var minutes = "";
+                    var ampm = "";
+
+                    if (e.getHours() == 0) {
+                        hours = "12";
+                        ampm = "AM";
+                    } else if (e.getHours() < 12) {
+                        hours = "" + e.getHours();
+                        ampm = "AM";
+                    } else if (e.getHours() == 12) {
+                        hours = "12";
+                        ampm = "PM";
+                    } else if (e.getHours() > 12) {
+                        hours = "" + (e.getHours() - 12);
+                        ampm = "PM";
+                    }
+
+                    if (e.getMinutes() < 10) {
+                        minutes = "0" + e.getMinutes();
+                    } else {
+                        minutes = "" + e.getMinutes();
+                    }
+
+                    var t = hours + ":" + minutes + " " + ampm;
+                    return t;
                 }
             }
         };

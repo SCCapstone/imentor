@@ -191,13 +191,32 @@
                             <div ng-show="!areaEditMode" style="margin-top:20px;">
                                 <div class="im-form-label thick" style="width:100%;font-size:16px;text-align:center;">{{listing.Area}}</div>
                             </div>
+                            <div ng-show="!areaEditMode">
+                                <div class="im-form-label thick" style="width:100%;font-size:14px;text-align:center;">Grades: {{listing.AgeGroup}}</div>
+                            </div>
 
                             <div ng-show="areaEditMode" style="padding-left:50px;margin-top:20px;">
                                 <fieldset class="standard">
                                     <div layout="row" layout-wrap flex>
-                                        <div flex="30" ng-repeat="subject in subjects">
+                                        <div flex="50" ng-repeat="subject in subjects">
                                             <md-radio-group ng-model="listing.Area">
                                                 <md-radio-button ng-value="subject.text">{{subject.text}}</md-radio-button>
+                                            </md-radio-group>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <md-content style="padding-bottom:10px;padding-top:10px;background:#f2f2f2" ng-show="areaEditMode"><md-divider></md-divider></md-content>
+
+                        <div flex="100" flex-gt-sm="100" layout="column">
+                            <div ng-show="areaEditMode" style="padding-left:50px;margin-top:20px;">
+                                <fieldset class="standard">
+                                    <div layout="row" layout-wrap flex>
+                                        <div flex="50" ng-repeat="ageGroup in ageGroups">
+                                            <md-radio-group ng-model="listing.AgeGroup">
+                                                <md-radio-button ng-value="ageGroup.text">Grades: {{ageGroup.text}}</md-radio-button>
                                             </md-radio-group>
                                         </div>
                                     </div>
@@ -222,14 +241,14 @@
                 <md-content style="padding-bottom:30px;padding-top:30px;background:#f2f2f2"><md-divider></md-divider></md-content>
 
                 <!-- Collapse Buttons -->
-                <div class="row" style="padding-left:20px;">
+                <div class="row" style="padding-left:20px;" ng-show="!isNew && ((user.RoleId == 3 && assigned) || user.RoleId == 4)">
                     <md-button class="md-raised" ng-click="toggleParticipantsCollapse()" style="height:30px;"><md-checkbox ng-model="particpantsCollapsed" arial-label="chkb1"> Participants </md-checkbox></md-button>
                     <md-button class="md-raised" ng-click="toggleApplicantsCollapse()" style="height:30px;"><md-checkbox ng-model="applicantsCollapsed" arial-label="chkb1"> Applicants </md-checkbox></md-button>
                 </div>
                 <!-- Participants -->
                 
                 <div uib-collapse="!particpantsCollapsed">
-                    <div class="row" ng-show="!isNew">
+                    <div class="row" ng-show="!isNew && user.RoleId >= 2">
                         <div class="col-md-11" style="margin-left:50px;margin-bottom:30px;text-align:center;">
 
                             <div class="im-form-label thick" style="width:50%;font-size:16px">Participants</div>

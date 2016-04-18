@@ -7,13 +7,16 @@
                 <md-card-title flex="initial">
                     <md-card-title-text>
                         <span class="md-headline">{{title}}</span>
-                        <span class="md-subhead" style="font-size:12px;padding-left:20px;">Created By: {{owner}}</span>
-                        <!--<span class="md-subhead" style="font-size:10px;">{{startDate}} - {{endDate}}</span>-->
+                        <span class="md-subhead" style="font-size:12px;padding-left:30px;">Created By: {{owner}}</span>
+                        <br />
+                        <br />
+                        <span class="" style="font-size:12px;padding-left:5px;">For Grades: {{ageGroup}}</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-md card-media" style="margin-right:15px;">
                             <img ng-src="{{imagePath}}" class="md-card-image" alt="{{area}}">
                         </div>
+                        <span class="md-subhead" style="font-size:12px;">{{startDate}} - {{endDate}}</span>
                     </md-card-title-media>
                 </md-card-title>
 

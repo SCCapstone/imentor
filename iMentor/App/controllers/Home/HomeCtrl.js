@@ -5,9 +5,10 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
     {
         $scope.listings = [];
         $scope.subjectsIncludes = [];
+        $scope.ageGroupIncludes = [];
         $scope.owners = [];
         $scope.selectAll = false;
-        $scope.sortListings = "Id";
+        $scope.sortListings = "-Id";
         $scope.openLength = 0;
         $scope.closedLength = 0;
         $scope.showOpen = true;
@@ -35,6 +36,13 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
             { value: 7, text: 'Arts', selected: false },
             { value: 8, text: 'Writing', selected: false },
             { value: 9, text: 'Music', selected: false }
+        ];
+
+        $scope.ageGroups = [
+            { value: 1, text: '0-2', selected: false },
+            { value: 2, text: '3-5', selected: false },
+            { value: 3, text: '6-8', selected: false },
+            { value: 4, text: '9-12', selected: false }
         ];
 
 
@@ -74,7 +82,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
 
         $scope.areaFilter = function (listings) {
             if ($scope.subjectsIncludes.length > 0) {
-                if ($.inArray(listings.Area, $scope.subjectsIncludes) < 0)
+                if ($.inArray(listings.Area, $scope.subjectsIncludes) < 0 && $.inArray(listings.AgeGroup, $scope.subjectsIncludes) < 0)
                     return;
             }
 
@@ -90,6 +98,20 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         // Sorting
         // ---------------------------------------------------------------
         $scope.sort = function (field) {
+            if (field.localeCompare("Id") == 0
+                && $scope.sortListings.localeCompare("Id") == 0) {
+                $scope.sortListings = "-Id";
+                return;
+            } else if (field.localeCompare("Id") == 0
+                && $scope.sortListings.localeCompare("-Id") == 0) {
+                $scope.sortListings = "Id";
+                return;
+            } else if (field.localeCompare("Id") == 0
+                && $scope.sortListings.localeCompare("Id") != 0) {
+                $scope.sortListings = "Id";
+                return;
+            }
+
             if (field.localeCompare("StartDate") == 0
                 && $scope.sortListings.localeCompare("StartDate") == 0) {
                 $scope.sortListings = "-StartDate";
@@ -145,6 +167,20 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                 $scope.sortListings = "Area";
                 return;
             }
+
+            if (field.localeCompare("AgeGroup") == 0
+                && $scope.sortListings.localeCompare("AgeGroup") == 0) {
+                $scope.sortListings = "-AgeGroup";
+                return;
+            } else if (field.localeCompare("AgeGroup") == 0
+                && $scope.sortListings.localeCompare("-AgeGroup") == 0) {
+                $scope.sortListings = "AgeGroup";
+                return;
+            } else if (field.localeCompare("AgeGroup") == 0
+                && $scope.sortListings.localeCompare("AgeGroup") != 0) {
+                $scope.sortListings = "AgeGroup";
+                return;
+            }
         }
 
         // ---------------------------------------------------------------
@@ -166,8 +202,9 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                                     Id: listings[i].Id,
                                     Title: listings[i].Title,
                                     Area: listings[i].Area,
+                                    AgeGroup: listings[i].AgeGroup,
                                     StartDate: new Date(parseInt(listings[i].StartDate.substr(6))),
-                                    EndDate: listings[i].EndDate,
+                                    EndDate: new Date(parseInt(listings[i].EndDate.substr(6))),
                                     OwnerId: listings[i].TeacherId,
                                     OwnerUserName: null,
                                     Open: listings[i].Open

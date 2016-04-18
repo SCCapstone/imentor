@@ -34,6 +34,9 @@ namespace iMentor.Entities
         public string Frequency { get; set; }
 
         [DataMember]
+        public string AgeGroup { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
       
         [DataMember]

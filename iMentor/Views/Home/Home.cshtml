@@ -82,6 +82,22 @@
                             </md-list>
                         </md-content>
                     </div>
+
+                    <md-content style="padding-bottom:5px;padding-top:5px;background:#f2f2f2"><md-divider></md-divider></md-content>
+
+                    <div>
+                        <md-content style="background:#f2f2f2">
+                            <md-list>
+                                <md-list-item style="width:100%;">
+                                    <div class="thick">Age Group </div>
+                                </md-list-item>
+                                <md-list-item ng-repeat="ageGroup in ageGroups" style="width:100%;">
+                                    <md-checkbox style="margin-left:25px;" ng-model="ageGroup.selected" ng-click="includeArea(ageGroup.text)" aria-label="{{ageGroup.value}}"></md-checkbox>
+                                    <div style=""> Grades {{ ageGroup.text }} </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </div>
                 </div>
 
                 <div class="col-sm-8" style="width:700px;">
@@ -94,21 +110,23 @@
                             </div>*@
                             
                             <div class="collapse navbar-collapse">
-                                <div style="float:right;">
+                                <div style="float:left;">
                                     <ul class="nav navbar-nav">
+                                        <li><a style="color:gray;" href="" ng-click="sort('Id')"><i class="glyphicon glyphicon-sort"></i> Creation Date </a></li>
                                         <li><a style="color:gray;" href="" ng-click="sort('StartDate')"><i class="glyphicon glyphicon-sort"></i> Start </a></li>
                                         <li><a style="color:gray;" href="" ng-click="sort('OwnerUserName')"><i class="glyphicon glyphicon-sort"></i> Teacher </a></li>
                                         <li><a style="color:gray;" href="" ng-click="sort('Title')"><i class="glyphicon glyphicon-sort"></i> Title </a></li>
                                         <li><a style="color:gray;" href="" ng-click="sort('Area')"><i class="glyphicon glyphicon-sort"></i> Subject </a></li>
+                                        <li><a style="color:gray;" href="" ng-click="sort('AgeGroup')"><i class="glyphicon glyphicon-sort"></i> Age Group </a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div dir-paginate="listing in listings | orderBy: sortListings | filter: areaFilter | filter: searchText | itemsPerPage: itemsPerPage" current-page="currentPage" listing-card listing="listing" ng-click="selectListing(listing)"></div>
+                    <div dir-paginate="listing in listings | orderBy: sortListings | filter: areaFilter | filter: searchText | filter: ageGroupFilter | itemsPerPage: itemsPerPage" current-page="currentPage" listing-card listing="listing" ng-click="selectListing(listing)"></div>
 
-                    <div class="col-sm-12" style="">
+                    <div class="center" style="width:60%;border:0px;margin-left:auto;margin-right:auto">
                         <dir-pagination-controls boundary-links="false" on-page-change="pageChangeHandler(newPageNumber)" template-url="Templates/dirPagination.tpl.html"></dir-pagination-controls>
                     </div>
                 </div>

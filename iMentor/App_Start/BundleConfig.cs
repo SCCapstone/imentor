@@ -47,7 +47,8 @@ namespace iMentor
                "~/Scripts/node-modules/textangular/dist/textAngular.min.js",
                "~/Scripts/angular-ui/bootstrap.min.js",
                "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
-               "~/Scripts/angular-ui-calendar/calendar.js"
+               "~/Scripts/angular-ui-calendar/calendar.js",
+               "~/Scripts/dirPagination.js"
                ));
 
 

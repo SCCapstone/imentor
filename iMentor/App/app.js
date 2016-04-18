@@ -12,7 +12,8 @@ var app = angular.module('app', [
     'textAngular',
     'ui.bootstrap',
     'ui.calendar',
-    'iMentor.directives'
+    'iMentor.directives',
+'angularUtils.directives.dirPagination'
 ])
 
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', '$mdThemingProvider',

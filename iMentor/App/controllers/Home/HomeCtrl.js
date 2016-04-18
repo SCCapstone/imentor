@@ -12,19 +12,13 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         $scope.closedLength = 0;
         $scope.showOpen = true;
 
-        $scope.totalItems = null;
-        $scope.currentPage = 1;
 
-        $scope.setPage = function (pageNo) {
-            $scope.currentPage = pageNo;
-        };
+        $scope.currentPage = 1;
+        $scope.itemsPerPage = 10;
 
         $scope.pageChanged = function() {
             $log.log('Page changed to: ' + $scope.currentPage);
         };
-
-        $scope.maxSize = 10;
-        $scope.bigCurrentPage = 1;
 
 
         getCurrentUser();

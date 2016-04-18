@@ -362,6 +362,7 @@
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\dirPagination.js" />
     <Content Include="Scripts\gapi-helper.js" />
     <Content Include="App\controllers\Home\HomeCtrl.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -2159,6 +2160,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\ViewProfile.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
+    <Content Include="Templates\dirPagination.tpl.html" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

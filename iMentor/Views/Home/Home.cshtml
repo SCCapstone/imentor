@@ -106,11 +106,11 @@
                         </div>
                     </div>
 
-                    <div ng-repeat="listing in listings | orderBy: sortListings | filter:areaFilter | filter: searchText"
-                         listing-card listing="listing" ng-click="selectListing(listing)">
-                    </div>
+                    <div dir-paginate="listing in listings | orderBy: sortListings | filter: areaFilter | filter: searchText | itemsPerPage: itemsPerPage" current-page="currentPage" listing-card listing="listing" ng-click="selectListing(listing)"></div>
 
-                    <uib-pagination total-items="totalItems" ng-model="listings" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></uib-pagination>
+                    <div class="col-sm-12" style="">
+                        <dir-pagination-controls boundary-links="false" on-page-change="pageChangeHandler(newPageNumber)" template-url="Templates/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>

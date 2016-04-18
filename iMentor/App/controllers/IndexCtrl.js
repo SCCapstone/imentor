@@ -59,6 +59,11 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
             $location.path("/About");
         }
 
+        $scope.goToHelp = function() 
+        {
+            $location.path("/Help");
+        }
+
         $scope.goToStudentView = function() 
         {
             $location.path("/StudentView");

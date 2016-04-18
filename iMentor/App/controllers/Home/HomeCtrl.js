@@ -11,6 +11,22 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         $scope.openLength = 0;
         $scope.closedLength = 0;
         $scope.showOpen = true;
+
+        $scope.totalItems = null;
+        $scope.currentPage = 1;
+
+        $scope.setPage = function (pageNo) {
+            $scope.currentPage = pageNo;
+        };
+
+        $scope.pageChanged = function() {
+            $log.log('Page changed to: ' + $scope.currentPage);
+        };
+
+        $scope.maxSize = 10;
+        $scope.bigCurrentPage = 1;
+
+
         getCurrentUser();
         getListings();
         getListingsByCurrentUser();
@@ -146,6 +162,8 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                     $scope.listings = [];
                     $scope.openLength = 0;
                     $scope.closedLength = 0;
+
+                    $scope.totalItems = listings.length;
 
                     manageService.getUsers().then(
                         function success(users) {

@@ -30,6 +30,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$mdIconProv
             .when('/EditUser/:userId', { templateUrl: 'Manage/editUser', controller: 'editUserCtrl' })
             .when('/PageNotFound', { templateUrl: 'Home/pageNotFound', controller: 'pageNotFoundCtrl'})
             .when('/About', { templateUrl: 'Home/about', controller: 'aboutCtrl'})
+            .when('/Help', { templateUrl: 'Home/help', controller: 'helpCtrl'})
             .when('/StudentView', { templateUrl: 'Home/studentView', controller: 'studentViewCtrl'})
             .when('/ViewProfile/:userId', { templateUrl: 'Home/viewProfile', controller: 'profileCtrl'})
 

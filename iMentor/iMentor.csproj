@@ -355,6 +355,7 @@
     <Content Include="Img\Art.png" />
     <Content Include="Img\ForeignLanguage.png" />
     <Content Include="Img\Music.png" />
+    <Content Include="Img\student-laptop.png" />
     <Content Include="Img\Writing.png" />
     <Content Include="Models\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

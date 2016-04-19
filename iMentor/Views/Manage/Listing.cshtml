@@ -12,7 +12,7 @@
 
         <div class="row content">
             <div class="col-sm-12" style="padding-bottom:10px;">
-                <md-content class="pull-right" ng-show="!titleEditMode && !isNew && user.RoleId >= 3" style="background:#f2f2f2">
+                <md-content class="pull-right" ng-show="!titleEditMode && !isNew && (user.RoleId == 3 || user.RoleId == 4)" style="background:#f2f2f2">
                     <md-button class="md-raised" style="background:white;color:black;" ng-click="editTitle()" ng-show="assigned || user.RoleId == 4">
                         Edit
                     </md-button>
@@ -133,7 +133,7 @@
                         @*<div class="col-sm-4" ng-show="user.RoleId == 3">
                         <div class="im-form-label" style="width:125px;font-size:16px">Start Hangout:</div>
                     </div>*@
-                        <div class="col-sm-12" ng-show="user.RoleId >= 3 && assigned && (!hangoutSaved || listing.HangoutUrl == null)">
+                        <div class="col-sm-12" ng-show="(user.RoleId == 3 || user.RoleId == 4) && assigned && (!hangoutSaved || listing.HangoutUrl == null)">
                             @*<div class="g-hangout" data-render="createhangout" ng-click="showUrlInput()"
                              data-initial_apps="[{ app_id : '1086641013362', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]">
                         </div>*@
@@ -142,14 +142,14 @@
                             </md-button>
                         </div>
                         <div class="col-sm-12" style="margin-bottom:6px;padding-left:30%;">
-                            <button class="btn btn-default" ng-show="user.RoleId >= 3 && listing.HangoutUrl != null  && hangoutSaved" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="joinHangout()">
+                            <button class="btn btn-default" ng-show="(user.RoleId == 3 || user.RoleId == 4) && listing.HangoutUrl != null  && hangoutSaved" style="width:150px;font-size:13px;background-color:#53a93f;color:white" ng-click="joinHangout()">
                                 <i class="glyphicon glyphicon-facetime-video" style="font-size:18px;"></i>&nbsp&nbsp&nbspJoin Hangout
                             </button>
                         </div>
                     </div>
 
                     <div class="col-sm-12" ng-show="listing.HangoutUrl != null && hangoutSaved">
-                        <div class="col-sm-12" ng-show="user.RoleId >= 3 && assigned">
+                        <div class="col-sm-12" ng-show="(user.RoleId == 3 || user.RoleId == 4) && assigned">
                             <md-button class="md-raised" style="margin-left:31%;background:red;" ng-click="closeHangout($event)">
                                 Close Hangout
                             </md-button>
@@ -248,7 +248,7 @@
                 <!-- Participants -->
                 
                 <div uib-collapse="!particpantsCollapsed">
-                    <div class="row" ng-show="!isNew && user.RoleId >= 2">
+                    <div class="row" ng-show="!isNew && (user.RoleId == 2 || user.RoleId == 3 || user.RoleId == 4)">
                         <div class="col-md-11" style="margin-left:50px;margin-bottom:30px;text-align:center;">
 
                             <div class="im-form-label thick" style="width:50%;font-size:16px">Participants</div>

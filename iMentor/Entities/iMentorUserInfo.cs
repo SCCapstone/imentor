@@ -16,6 +16,9 @@ namespace iMentor.Entities
         public int Id { get; set; }
 
         [DataMember]
+        public string UrlId { get; set; }
+
+        [DataMember]
         public string UserName { get; set; }
 
         [DataMember]
@@ -41,27 +44,30 @@ namespace iMentor.Entities
 
         
         [AllowAnonymous]
-        public string GetRoleByUser(iMentorUser user)
+        public int GetRoleIdByUser(iMentorUser user)
         {
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
-                var userRole = db.iMentorRoles.Where(x => x.Id == user.RoleId).FirstOrDefault();
-                var result = userRole.RoleName;
+                var userRole = db.iMentorUserRoles.Where(x => x.UserId == user.Id).FirstOrDefault();
+
+                var result = userRole.RoleId;
 
                 return result;
             }
         }
 
         [AllowAnonymous]
-        public int GetRoleIdByName(string roleName)
+        public string GetRoleName(iMentorUser user)
         {
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
-                var role = db.iMentorRoles.Where(x => x.RoleName.Equals(roleName)).FirstOrDefault();
-                var result = role.Id;
+                var userRole = db.iMentorUserRoles.Where(x => x.UserId == user.Id).FirstOrDefault();
+                var role = db.iMentorRoles.Where(x => x.Id == userRole.RoleId).FirstOrDefault();
+
+                var result = role.RoleName;
 
                 return result;
             }
-        }
+        } 
     }
 }

@@ -52,6 +52,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
             manageService.getUsers().then(
                 function success(users) {
                     $scope.users = users;
+                    console.log(users);
                 },
                 function error (error) {
                     $scope.status = 'Unable to load listing data: ' + error.message;

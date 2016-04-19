@@ -14,25 +14,25 @@ namespace iMentor.Controllers
     public class ManageController : Controller
     {
         #region Views
-        [System.Web.Mvc.AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult ManageUsers()
         {
             return PartialView();
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult ManageListings()
         {
             return PartialView();
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult Listing()
         {
             return PartialView();
         }
 
-        [System.Web.Mvc.AllowAnonymous]
+        [Authorize(Roles = "Administrator")]
         public ActionResult EditUser()
         {
             return PartialView();

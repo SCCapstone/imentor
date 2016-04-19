@@ -44,7 +44,10 @@ namespace iMentor.Models.Security
 
         public override string[] GetAllRoles()
         {
-            throw new NotImplementedException();
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                return db.iMentorRoles.Select(x => x.RoleName).ToArray();
+            }
         }
 
         public override string[] GetRolesForUser(string username)
@@ -71,7 +74,19 @@ namespace iMentor.Models.Security
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new NotImplementedException();
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                iMentorUser user = db.iMentorUsers.FirstOrDefault(u => u.UserName.Equals(username, StringComparison.CurrentCultureIgnoreCase) || u.Email.Equals(username, StringComparison.CurrentCultureIgnoreCase));
+
+                var roles = from ur in user.iMentorUserRoles
+                            from r in db.iMentorRoles
+                            where ur.RoleId == r.Id
+                            select r.RoleName;
+                if (user != null)
+                    return roles.Any(r => r.Equals(roleName, StringComparison.CurrentCultureIgnoreCase));
+                else
+                    return false;
+            }
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)

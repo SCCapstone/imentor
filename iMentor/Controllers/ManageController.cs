@@ -238,29 +238,31 @@ namespace iMentor.Controllers
         public JsonResult GetCurrentUser()
         {
             var currentUserName = User.Identity.GetUserName(); //Get current User's username
+            var user = new iMentorUserInfo();
 
-           
-            using (iMAST_dbEntities db = new iMAST_dbEntities())
-            {
-                var iMentorUser = db.iMentorUsers.Where(x => x.UserName.Equals(currentUserName)).FirstOrDefault();
-                
-                var user = new iMentorUserInfo();
-
-                if (iMentorUser != null)
+            if (!currentUserName.Equals("")) { 
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {
-                    user.Id = iMentorUser.Id;
-                    user.UserName = iMentorUser.UserName;
-                    user.FirstName = iMentorUser.FirstName;
-                    user.LastName = iMentorUser.LastName;
-                    user.Email = iMentorUser.Email;
-                    user.RoleId = iMentorUser.RoleId;
-                    user.Role = user.GetRoleByUser(iMentorUser);
-                    user.ShowOnlyAssignedListings = iMentorUser.ShowOnlyAssignedListings;
-                    user.IconIndex = iMentorUser.IconIndex;
-                }
+                    var iMentorUser = db.iMentorUsers.Where(x => x.UserName.Equals(currentUserName)).FirstOrDefault();
 
-                return Json(user, JsonRequestBehavior.AllowGet);
+                    if (iMentorUser != null)
+                    {
+                        user.Id = iMentorUser.Id;
+                        user.UserName = iMentorUser.UserName;
+                        user.FirstName = iMentorUser.FirstName;
+                        user.LastName = iMentorUser.LastName;
+                        user.Email = iMentorUser.Email;
+                        user.RoleId = user.GetRoleIdByUser(iMentorUser);
+                        user.Role = user.GetRoleName(iMentorUser);
+                        user.ShowOnlyAssignedListings = iMentorUser.ShowOnlyAssignedListings;
+                        user.IconIndex = iMentorUser.IconIndex;
+                    }
+
+
+                }
             }
+
+            return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]
@@ -289,13 +291,17 @@ namespace iMentor.Controllers
                     if (u != null)
                     { 
                         u.Id = user.Id;
+                        u.UrlId = user.UrlId;
                         u.UserName = user.UserName;
                         u.FirstName = user.FirstName;
                         u.LastName = user.LastName;
                         u.Email = user.Email;
-                        u.RoleId = user.GetRoleIdByName(user.Role);
                         u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
                         u.IconIndex = user.IconIndex;
+
+                        var role = db.iMentorRoles.Where(x => x.RoleName.Equals(user.Role)).FirstOrDefault();
+                        var userRole = db.iMentorUserRoles.Where(x => x.UserId == user.Id).FirstOrDefault();
+                        userRole.RoleId = role.Id;
 
                         db.SaveChanges();
                         return "User Updated";
@@ -371,8 +377,8 @@ namespace iMentor.Controllers
                             u.FirstName = user.FirstName;
                             u.LastName = user.LastName;
                             u.Email = user.Email;
-                            u.RoleId = user.RoleId;
-                            u.Role = u.GetRoleByUser(user);
+                            u.RoleId = u.GetRoleIdByUser(user);
+                            u.Role = u.GetRoleName(user);
                             u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
                             u.IconIndex = user.IconIndex;
 
@@ -436,35 +442,7 @@ namespace iMentor.Controllers
             return Json(teachers, JsonRequestBehavior.AllowGet);
         }
 
-        [AllowAnonymous]
-        public List<iMentorUserInfo> GetAllUsers()
-        {
-            using (iMAST_dbEntities db = new iMAST_dbEntities())
-            {
-                var iMentorUsers = db.iMentorUsers.ToList();
-
-                List<iMentorUserInfo> users = new List<iMentorUserInfo>();
-
-                foreach (iMentorUser user in iMentorUsers)
-                {
-                    var u = new iMentorUserInfo();
-
-                    u.Id = user.Id;
-                    u.UserName = user.UserName;
-                    u.FirstName = user.FirstName;
-                    u.LastName = user.LastName;
-                    u.Email = user.Email;
-                    u.RoleId = user.RoleId;
-                    u.Role = u.GetRoleByUser(user);
-                    u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
-                    u.IconIndex = user.IconIndex;
-
-                    users.Add(u);
-                }
-
-                return users;
-            }
-        }
+        
 
         [AllowAnonymous]
         public string AddParticipant(AssignedListing assignment)
@@ -598,9 +576,39 @@ namespace iMentor.Controllers
                 return Json(results, JsonRequestBehavior.AllowGet);
             }
         }
-        
+
 
         #region Helper Methods
+
+        [AllowAnonymous]
+        public List<iMentorUserInfo> GetAllUsers()
+        {
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                var iMentorUsers = db.iMentorUsers.ToList();
+
+                List<iMentorUserInfo> users = new List<iMentorUserInfo>();
+
+                foreach (iMentorUser user in iMentorUsers)
+                {
+                    var u = new iMentorUserInfo();
+
+                    u.Id = user.Id;
+                    u.UserName = user.UserName;
+                    u.FirstName = user.FirstName;
+                    u.LastName = user.LastName;
+                    u.Email = user.Email;
+                    u.RoleId = u.GetRoleIdByUser(user);
+                    u.Role = u.GetRoleName(user);
+                    u.ShowOnlyAssignedListings = user.ShowOnlyAssignedListings;
+                    u.IconIndex = user.IconIndex;
+
+                    users.Add(u);
+                }
+
+                return users;
+            }
+        }
 
         [AllowAnonymous]
         private void CheckForExpiredListings(List<ListingInfo> listings)

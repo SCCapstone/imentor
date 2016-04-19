@@ -35,6 +35,7 @@ namespace iMentor.Models
         public virtual DbSet<AssignedListing> AssignedListings { get; set; }
         public virtual DbSet<iMentorRole> iMentorRoles { get; set; }
         public virtual DbSet<iMentorUser> iMentorUsers { get; set; }
+        public virtual DbSet<iMentorUserRole> iMentorUserRoles { get; set; }
         public virtual DbSet<ListingModel> ListingModels { get; set; }
     }
 }

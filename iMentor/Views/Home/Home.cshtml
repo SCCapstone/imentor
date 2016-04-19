@@ -43,7 +43,7 @@
             <div class="row content">
                 <div class="col-sm-12" style="padding-bottom:10px;">
                     <md-content class="pull-right" style="background:#f2f2f2">
-                        <md-button class="md-raised" style="background:green;color:white;" ng-show="user.RoleId >= 3" ng-click="createNewListing()">
+                        <md-button class="md-raised" style="background:green;color:white;" ng-show="user.RoleId == 3 || user.RoleId == 4" ng-click="createNewListing()">
                             Create new listing
                         </md-button>
                     </md-content>
@@ -58,7 +58,7 @@
                         <input class="thick" style="width:95%;font-size:16px;height:34px;" ng-model="searchText">
                     </md-input-container>
 
-                    <div class="row" style="padding-left:30px;" ng-show="user.RoleId >= 3">
+                    <div class="row" style="padding-left:30px;" ng-show="user.RoleId == 3 || user.RoleId == 4">
                         <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:black;font-size:14px;"><i class="glyphicon glyphicon-eye-open"></i> {{openLength}} Open </a>
                         <a class="navbar-brand" href="" ng-click="toggleShowOpen()" style="color:gray;font-size:14px;"><i class="glyphicon glyphicon-eye-close"></i> {{closedLength}} Closed  </a>
                     </div>

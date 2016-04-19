@@ -382,7 +382,6 @@ namespace iMentor.Controllers
                     //Create the iMentorUser entry
                     using (iMAST_dbEntities db = new iMAST_dbEntities())
                     {
-                        var imUser = new iMentorUser();
                         bool userExists = false;
 
                         foreach (iMentorUser u in db.iMentorUsers.ToList())
@@ -393,13 +392,23 @@ namespace iMentor.Controllers
                             }
                         }
 
+                        //Create the user
                         if (!userExists)
-                        { 
+                        {
+                            var imUser = new iMentorUser();
                             imUser.UserName = user.UserName;
                             imUser.Email = user.Email;
-                            imUser.RoleId = 1;
-
+                            
                             db.iMentorUsers.Add(imUser);
+                            db.SaveChanges();
+
+
+                            //Create the Role
+                            var imUserRole = new iMentorUserRole();
+                            imUserRole.UserId = imUser.Id;
+                            imUserRole.RoleId = db.iMentorRoles.Where(x => x.RoleName.Equals("Read Only")).FirstOrDefault().Id; //Default role is "Read Only"
+                            
+                            db.iMentorUserRoles.Add(imUserRole);
                             db.SaveChanges();
                         }
                     }

@@ -23,6 +23,7 @@
                             <div class="radio" style="margin-left:70px;">
                                 <label><input type="radio" ng-model="user.Role" value="Student" name="role" ng-change="roleChanged()">Student</label>
                                 <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Mentor" name="role" ng-change="roleChanged()">Mentor</label>
+                                <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Read Only" name="role" ng-change="roleChanged()">Read Only</label>
                             </div>
 
                             <div class="radio" style="margin-left:70px;">
@@ -65,9 +66,6 @@
                         <input type="text" ng-model="user.FirstName" name="firstName" class="form-control im-form-text" style="width:200px;margin-left:70px;" />
                         <input type="text" ng-model="user.LastName" name="lastName" class="form-control im-form-text" style="width:200px;margin-left:70px;" />
                     </div>
-
-
-                    
                 </form>
             </div>
 

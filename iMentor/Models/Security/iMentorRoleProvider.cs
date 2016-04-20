@@ -55,15 +55,15 @@ namespace iMentor.Models.Security
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
                 iMentorUser user = db.iMentorUsers.FirstOrDefault(u => u.UserName.Equals(username, StringComparison.CurrentCultureIgnoreCase) || u.Email.Equals(username, StringComparison.CurrentCultureIgnoreCase));
+                
+                iMentorUserRole userRole = db.iMentorUserRoles.FirstOrDefault(x => x.UserId == user.Id);
+                iMentorRole role = db.iMentorRoles.FirstOrDefault(x => x.Id == userRole.RoleId);
+                var roles = new string[] { role.RoleName };
 
-                var roles = from ur in user.iMentorUserRoles
-                            from r in db.iMentorRoles
-                            where ur.RoleId == r.Id
-                            select r.RoleName;
                 if (roles != null)
-                    return roles.ToArray();
+                    return roles;
                 else
-                    return new string[] { }; ;
+                    return new string[] { };
             }
         }
 
@@ -78,10 +78,10 @@ namespace iMentor.Models.Security
             {
                 iMentorUser user = db.iMentorUsers.FirstOrDefault(u => u.UserName.Equals(username, StringComparison.CurrentCultureIgnoreCase) || u.Email.Equals(username, StringComparison.CurrentCultureIgnoreCase));
 
-                var roles = from ur in user.iMentorUserRoles
-                            from r in db.iMentorRoles
-                            where ur.RoleId == r.Id
-                            select r.RoleName;
+                iMentorUserRole userRole = db.iMentorUserRoles.FirstOrDefault(x => x.UserId == user.Id);
+                iMentorRole role = db.iMentorRoles.FirstOrDefault(x => x.Id == userRole.RoleId);
+                var roles = new string[] { role.RoleName };
+
                 if (user != null)
                     return roles.Any(r => r.Equals(roleName, StringComparison.CurrentCultureIgnoreCase));
                 else

@@ -14,13 +14,13 @@ namespace iMentor.Controllers
     public class ManageController : Controller
     {
         #region Views
-        [AllowAnonymous]
+        [Authorize(Roles = "Teacher, Administrator")]
         public ActionResult ManageUsers()
         {
             return PartialView();
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Teacher, Administrator")]
         public ActionResult ManageListings()
         {
             return PartialView();
@@ -32,7 +32,7 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Teacher, Administrator")]
         public ActionResult EditUser()
         {
             return PartialView();
@@ -178,8 +178,15 @@ namespace iMentor.Controllers
         {
             var currentUserName = User.Identity.GetUserName();
             List<ListingInfo> listings = new List<ListingInfo>();
+            var userInDatabase = false;
 
-            if (!currentUserName.Equals(""))
+            //Check if the current user is in the database
+            using (iMAST_dbEntities db = new iMAST_dbEntities())
+            {
+                userInDatabase = db.iMentorUsers.Where(x => x.UserName.Equals(currentUserName)).FirstOrDefault() != null;
+            }
+
+            if (userInDatabase)
             {
                 using (iMAST_dbEntities db = new iMAST_dbEntities())
                 {

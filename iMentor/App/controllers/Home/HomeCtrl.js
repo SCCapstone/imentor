@@ -249,6 +249,9 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
             manageService.getCurrentUser().then(
                 function success(user) {
                     $scope.user = user;
+                    if(user.RoleId == 1){
+                        $scope.goToStudentView();
+                    }
                 },
                 function fail(reason) {
                     console.log("Unable to load current user: " + reason);
@@ -300,6 +303,10 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
 
         $scope.goToListing = function (id) {
             $location.path("/Listing/" + id);
+        }
+
+        $scope.goToStudentView = function (id) {
+            $location.path("/StudentView/");
         }
 
         // ---------------------------------------------------------------

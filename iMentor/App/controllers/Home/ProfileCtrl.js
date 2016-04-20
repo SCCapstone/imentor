@@ -18,6 +18,9 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
                         if(users[i].Id == $scope.userId)
                         {
                             $scope.user = users[i];
+                            if($scope.user.RoleId == 1){
+                                $scope.goToStudentView();
+                            }
                         }
                     }
 
@@ -31,6 +34,14 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
                     $scope.status = 'Unable to load user data: ' + error.message;
                 }
             );
+        }
+
+
+        // ---------------------------------------------------------------
+        // Navigation
+        // ---------------------------------------------------------------
+        $scope.goToStudentView = function (id) {
+            $location.path("/StudentView/");
         }
 
 

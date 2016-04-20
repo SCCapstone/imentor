@@ -18,6 +18,12 @@ namespace iMentor.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        [AllowAnonymous]
+        public ActionResult Denied()
+        {
+            return View();
+        }
+
         public AccountController()
         {
         }
@@ -340,7 +346,7 @@ namespace iMentor.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -417,14 +423,16 @@ namespace iMentor.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 AddErrors(result);
             }
 
-            ViewBag.ReturnUrl = returnUrl;
-            return View(model);
+            //ViewBag.ReturnUrl = returnUrl;
+
+            //return View(model);
+            return RedirectToAction("Index", "Home");
         }
 
         //

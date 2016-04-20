@@ -143,6 +143,9 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
             manageService.getCurrentUser().then(
                 function success(user){
                     $scope.user = user;
+                    if($scope.user.RoleId == 1){
+                                $scope.goToStudentView();
+                            }
                 },
                 function fail(reason){
                     console.log("Unable to load current user: " + reason);
@@ -164,9 +167,12 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
 
        
 
-        //
-        //
-        //
+        // ---------------------------------------------------------------
+        // Navigation
+        // ---------------------------------------------------------------
+        $scope.goToStudentView = function (id) {
+            $location.path("/StudentView/");
+        }
       
     }
 ]);

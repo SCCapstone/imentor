@@ -87,6 +87,9 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
             manageService.getCurrentUser().then(
                 function success(user) {
                     $scope.user = user;
+                    if($scope.user.RoleId == 1){
+                        $scope.goToStudentView();
+                    }
                 },
                 function fail(reason) {
                     console.log("Unable to load current user: " + reason);
@@ -163,6 +166,10 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
         $scope.showInactiveListings = function()
         {
             console.log("Show Inactive Listings");
+        }
+
+        $scope.goToStudentView = function (id) {
+            $location.path("/StudentView/");
         }
     }
 ]);

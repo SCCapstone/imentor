@@ -6,6 +6,7 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
         $scope.userId = $routeParams.userId;
         $scope.showOnlyAssignedListings = false;
         getUsers();
+        getCurrentUser();   
 
 
         $scope.avatarData1 = [{
@@ -91,12 +92,27 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
                         if(users[i].Id == $scope.userId)
                         {
                             $scope.user = users[i];
+                            
                             $scope.showOnlyAssignedListings = $scope.user.ShowOnlyAssignedListings;
                         }
                     }
                 },
                 function error (error) {
                     $scope.status = 'Unable to load user data: ' + error.message;
+                }
+            );
+        }
+
+        function getCurrentUser() {
+            manageService.getCurrentUser().then(
+                function success(user) {
+                    $scope.currentUser = user;
+                    if($scope.currentUser.RoleId == 1){
+                        $scope.goToStudentView();
+                    }
+                },
+                function fail(reason) {
+                    console.log("Unable to load current user: " + reason);
                 }
             );
         }
@@ -126,6 +142,13 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
 
         $scope.roleChanged = function (){
             $scope.showOnlyAssignedListings = false;
+        }
+
+        // ---------------------------------------------------------------
+        // Navigation
+        // ---------------------------------------------------------------
+        $scope.goToStudentView = function (id) {
+            $location.path("/StudentView/");
         }
     }
 ]);

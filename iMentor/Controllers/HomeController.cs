@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using iMentor.Models;
 using System.Web.Mvc;
+using iMentor.Models.Security;
 
 namespace iMentor.Controllers
 {
@@ -21,37 +22,38 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
-        [AllowAnonymous]
+        [AccessDeniedAuthorize(Roles = "Read Only, Mentor, Teacher, Administrator")]
         public ActionResult Calendar()
         {
             return PartialView();
         }
 
         [AllowAnonymous]
+        [ActionName("404")]
         public ActionResult PageNotFound()
         {
             return PartialView();
         }
 
-        [AllowAnonymous]
+        [AccessDeniedAuthorize(Roles = "Read Only, Mentor, Teacher, Administrator")]
         public ActionResult About()
         {
             return PartialView();
         }
 
-        [AllowAnonymous]
+        [AccessDeniedAuthorize(Roles = "Read Only, Mentor, Teacher, Administrator")]
         public ActionResult Help()
         {
             return PartialView();
         }
 
-        [Authorize(Roles = "Student")]
+        [AccessDeniedAuthorize(Roles = "Student")]
         public ActionResult StudentView()
         {
             return PartialView();
         }
 
-        [AllowAnonymous]
+        [AccessDeniedAuthorize(Roles = "Mentor, Teacher, Administrator")]
         public ActionResult ViewProfile()
         {
             return PartialView();

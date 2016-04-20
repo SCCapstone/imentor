@@ -5,11 +5,11 @@
     </div>
 </md-content>
 
-<div class="ngview-wrapper">
+<div class="ngview-wrapper" ng-hide="user.RoleId == 1">
     <div class="ngview-body" style="width:1000px;margin-left:0;margin-right:0;padding-left:0;padding-right:0;background:#f2f2f2">
         <div class="container-fluid" style="" ng-show="listings.length > 0">
 
-            <div class="row content" ng-show="user.RoleId == 1 && user.RoleId == 2" style="background:#f2f2f2">
+            <div class="row content" ng-show="user.RoleId == 2" style="background:#f2f2f2">
                 <div class="im-form-label thick" style="font-size:16px;">Upcoming Events</div>
             </div>
             

@@ -158,6 +158,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getUsers().then(
                 function success(users) {
                     $scope.users = users;
+                    
                 },
                 function error(error) {
                     console.log("Unable to load users: " + error)
@@ -169,6 +170,10 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             manageService.getCurrentUser().then(
                 function success(user){
                     $scope.user = user;
+
+                    if($scope.user.RoleId == 1){
+                        $scope.goToStudentView();
+                    }
 
                     if ($scope.currentUsers.length < 1) {
                         $scope.currentUsers.push(user);
@@ -744,6 +749,13 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             }
         }
 
+
+        // ---------------------------------------------------------------
+        // Navigation
+        // ---------------------------------------------------------------
+        $scope.goToStudentView = function (id) {
+            $location.path("/StudentView/");
+        }
    
 
 

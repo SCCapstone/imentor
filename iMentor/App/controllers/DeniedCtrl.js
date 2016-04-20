@@ -1,13 +1,8 @@
 ﻿
 
-app.controller('aboutCtrl', ['$scope', '$location', 'manageService',
-    function aboutCtrl($scope, $location, manageService) 
+app.controller('deniedCtrl', ['$scope', '$location', 'manageService',
+    function deniedCtrl($scope, $location, manageService)
     {
-        $scope.yt = {
-          width: 600, 
-          height: 480, 
-          videoid: "eCkjTaqIJpc",
-        };
 
         getCurrentUser();
 
@@ -24,12 +19,17 @@ app.controller('aboutCtrl', ['$scope', '$location', 'manageService',
                 }
             );
         }
-
-        // ---------------------------------------------------------------
+        //---------------------------------------------------
         // Navigation
-        // ---------------------------------------------------------------
+        //---------------------------------------------------
+
+        $scope.goToHome = function ()
+        {
+            $location.path('/');
+        };
+
         $scope.goToStudentView = function (id) {
             $location.path("/StudentView/");
         }
     }
-])
+]);

@@ -4,6 +4,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
     {
         $scope.users = [];
         getUsers();
+        getCurrentUser();
 
         // ---------------------------------------------------------------
         // Grid
@@ -60,6 +61,21 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
             );
         }
 
+        function getCurrentUser() {
+            manageService.getCurrentUser().then(
+                function success(user) {
+                    $scope.user = user;
+                    if($scope.user.RoleId == 1){
+                        $scope.goToStudentView();
+                    }
+                },
+                function fail(reason) {
+                    console.log("Unable to load current user: " + reason);
+                }
+            );
+        }
+
+
 
         $scope.refreshUsers = function () {
             getUsers();
@@ -76,6 +92,10 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
         $scope.showInactiveUsers = function()
         {
             console.log("Show Inactive Listings");
+        }
+
+        $scope.goToStudentView = function (id) {
+            $location.path("/StudentView/");
         }
     }
 ]);

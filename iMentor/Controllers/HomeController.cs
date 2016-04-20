@@ -45,7 +45,7 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Student")]
         public ActionResult StudentView()
         {
             return PartialView();
@@ -56,7 +56,7 @@ namespace iMentor.Controllers
         {
             return PartialView();
         }
-
+        
         public ActionResult Secure()
         {
             ViewBag.Message = "Secure page.";

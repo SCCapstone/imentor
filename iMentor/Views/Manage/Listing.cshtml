@@ -60,7 +60,7 @@
 
                     <div class="panel-body">
                         <div ng-show="descriptionEditMode" text-angular style="width:515px;" ng-model="listing.Description"></div>
-                        <div ng-show="!descriptionEditMode" style="font-size:14px;width:515px;" ng-bind-html="listing.Description"></div>
+                        <div ta-bind ng-show="!descriptionEditMode" style="font-size:14px;width:515px;" ng-model="listing.Description"  placeholder="test placeholder" required></div>
                     </div>
                 </div>
             </div>

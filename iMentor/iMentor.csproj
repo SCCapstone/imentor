@@ -354,8 +354,12 @@
     </Content>
     <Content Include="Img\Art.png" />
     <Content Include="Img\ForeignLanguage.png" />
+    <Content Include="Img\GitHub-Mark-120px-plus.png" />
+    <Content Include="Img\GitHub-Mark.png" />
     <Content Include="Img\Music.png" />
     <Content Include="Img\student-laptop.png" />
+    <Content Include="Img\University_of_South_Carolina-Columbia_221066.png" />
+    <Content Include="Img\usc-logo.png" />
     <Content Include="Img\Writing.png" />
     <Content Include="Models\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

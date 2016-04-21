@@ -1,7 +1,7 @@
 ﻿
 
-app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService', 'modalOptionService',
-    function HomeCtrl($scope, $uibModal, $location, manageService, modalOptionService)
+app.controller('homeCtrl', ['$scope', '$location', 'manageService',
+    function HomeCtrl($scope, $location, manageService)
     {
         $scope.listings = [];
         $scope.subjectsIncludes = [];
@@ -24,7 +24,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
 
         getCurrentUser();
         getListings();
-        getListingsByCurrentUser();
+        
 
         $scope.subjects = [
             { value: 1, text: 'Math', selected: false },
@@ -229,8 +229,6 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                                     $scope.listings.push(temp);
                                 }
                             }
-
-                            
                         },
                         function error(error) {
                             console.log("Unable to load users (homeCtrl)");
@@ -251,6 +249,8 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                     $scope.user = user;
                     if(user.RoleId == 1){
                         $scope.goToStudentView();
+                    } else if (user.RoleId == 2) {
+                        getListingsByCurrentUser();
                     }
                 },
                 function fail(reason) {
@@ -272,6 +272,7 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                             StartDate: new Date(parseInt(listings[i].StartDate.substr(6))),
                             EndDate: new Date(parseInt(listings[i].EndDate.substr(6))),
                             Frequency: listings[i].Frequency,
+                            HangoutUrl: listings[i].HangoutUrl,
                             OwnerId: listings[i].TeacherId,
                             OwnerUserName: null,
                             Open: listings[i].Open
@@ -367,7 +368,6 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
         // Grid list
         // ---------------------------------------------------------------
         
-
         function buildGridModel(tileTmpl) {
             var weekday = new Array(7);
             weekday[0]=  "U";
@@ -436,6 +436,18 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                                         if(event.ListingTitle.length > 25){
                                             event.ListingTitle = event.ListingTitle.slice(0,24) + "...";
                                         }
+
+                                        //Change the color of the event if the hangout is active and the event day is today
+                                        if ($scope.currentUserListings[i].HangoutUrl != null && event.EventDate.getDate() == today.getDate()) {
+                                            event.Background = "#00bfa5";
+                                            event.Active = true;
+                                        } else if ($scope.currentUserListings[i].HangoutUrl == null && event.EventDate.getDate() == today.getDate()) {
+                                            event.Background = "yellow";
+                                            event.Active = false;
+                                        } else {
+                                            event.Background = "grey";
+                                            event.Active = false;
+                                        }
                                             
                                         upcomingEvents.push(event);
                                     }   
@@ -458,10 +470,12 @@ app.controller('homeCtrl', ['$scope', '$uibModal', '$location', 'manageService',
                     it = angular.extend({}, tileTmpl);
                     it.icon = it.icon + (i + 1);
                     it.title = upcomingEvents[i].ListingTitle;
-                    it.startDate = (upcomingEvents[i].EventDate.getMonth() + 1)  + "/" + upcomingEvents[i].EventDate.getDate() + "/" + upcomingEvents[i].EventDate.getFullYear();
+                    it.startDate = (upcomingEvents[i].EventDate.getMonth() + 1) + "/" + upcomingEvents[i].EventDate.getDate() + "/" + upcomingEvents[i].EventDate.getFullYear();
                     it.startTime = parseTime(upcomingEvents[i].ListingStartDate);
-                    it.span = { row: 1, col: 1 };
+
                     it.id = upcomingEvents[i].ListingId;
+                    it.background = upcomingEvents[i].Background;
+                    it.eventDate = upcomingEvents[i].EventDate;
 
                     results.push(it);
                 }

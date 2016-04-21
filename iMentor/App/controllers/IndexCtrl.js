@@ -59,10 +59,5 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
         {
             $location.path("/Help");
         }
-
-        $scope.goToStudentView = function() 
-        {
-            $location.path("/StudentView");
-        }
     }
 ]);

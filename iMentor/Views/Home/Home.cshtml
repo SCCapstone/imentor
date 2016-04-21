@@ -14,7 +14,7 @@
             </div>
             
             <!-- Upcoming Events -->
-            <div class="row content" ng-show="user.RoleId < 3">
+            <div class="row content" ng-show="user.RoleId == 2">
                 <div class="col-sm-12" style="padding-bottom:10px;">
                     
                     <md-grid-list md-cols="1" md-cols-sm="10" md-cols-md="10" md-cols-gt-md="10"
@@ -26,7 +26,8 @@
                                       md-rowspan="{{tile.span.row}}" 
                                       md-colspan="{{tile.span.col}}" 
                                       md-colspan-sm="1" 
-                                      ng-click="goToListing(tile.id)">
+                                      ng-click="goToListing(tile.id)"
+                                      ng-style="{'background': tile.background}">
                             
                             <div class="thick"style="text-align:center;">
                                 {{tile.title}}

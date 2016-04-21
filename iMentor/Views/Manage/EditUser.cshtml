@@ -19,36 +19,26 @@
                         <div class="im-form-label" style="width:25px;font-size:18px;">Role</div>
                     </div>
                     <div class="row">
-                        <div class="form-group">
+                        <div class="form-group" ng-show="currentUser.Id != user.Id">
                             <div class="radio" style="margin-left:70px;">
-                                <label><input type="radio" ng-model="user.Role" value="Student" name="role" ng-change="roleChanged()">Student</label>
+                                <label><input type="radio" ng-model="user.Role" value="Read Only" name="role" ng-change="roleChanged()">Read Only</label>
+                                <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Student" name="role" ng-change="roleChanged()">Student</label>
                                 <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Mentor" name="role" ng-change="roleChanged()">Mentor</label>
-                                <label style="margin-left:34px;"><input type="radio" ng-model="user.Role" value="Read Only" name="role" ng-change="roleChanged()">Read Only</label>
+                                
                             </div>
 
-                            <div class="radio" style="margin-left:70px;">
+                            <div class="radio" style="margin-left:70px;" ng-show="currentUser.RoleId == 4">
                                 <label><input type="radio" ng-model="user.Role" value="Teacher" name="role" ng-change="roleChanged()">Teacher</label>
                                 <label style="margin-left:30px;"><input type="radio" ng-model="user.Role" value="Administrator" name="role" ng-change="roleChanged()">Administrator</label>
                             </div>
                         </div>
                     </div>
 
+                    <div class="row" style="margin-left:60px;padding-bottom:20px;">
+                        <div class="im-form-label" style="font-size:14px;color:red;" ng-show="currentUser.Id == user.Id">You cannot change your own account privileges</div>
+                    </div>
+
                     <md-content style="padding-bottom:20px;"><md-divider></md-divider></md-content>
-
-
-                    @*<div class="row" style="margin-left:28px;" ng-show="!user.Role.localeCompare('Student')">
-                        <div class="im-form-label" style="font-size:18px;">Student Limitations</div>
-                    </div>
-                    <div class="row" ng-show="!user.Role.localeCompare('Student')">
-                        <md-list>
-                            <md-list-item style="width:100%;">
-                                <md-checkbox style="margin-left:70px;" ng-model="showOnlyAssignedListings" aria-label="{{userId}}"></md-checkbox>
-                                <div style=""> Only show assigned listings </div>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-
-                    <md-content style="padding-top:20px;padding-bottom:20px;" ng-show="!user.Role.localeCompare('Student')"><md-divider></md-divider></md-content>*@
 
                     <div class="row" style="">
                         <div class="im-form-label" style="width:125px;font-size:18px;">Username</div>

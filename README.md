@@ -30,5 +30,3 @@ To login to an admin account, this account is provided:
 username: masttest2016@gmail.com
 
 password: Mast2016!
-
-**Some access hasn't been restricted yet due to ease of testing. The teachers are also able to create a hangout on any listing, this will not be the case for the final release

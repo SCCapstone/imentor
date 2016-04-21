@@ -1,9 +1,11 @@
 ﻿app.controller('studentViewCtrl', ['$scope', '$mdToast', 'manageService',
     function studentViewCtrl($scope, $mdToast, manageService) 
     {
-
+        
         getCurrentUser();
-        getListingsByCurrentUser();
+        reload();
+        
+        
 
 
         $scope.showOpenError = function () {
@@ -14,7 +16,14 @@
                 .hideDelay(2000)
             );
         };
-        
+
+        function reload() {
+            getListingsByCurrentUser();
+
+            console.log("Reload");
+            setTimeout(reload, 5000);
+        }
+
         // ---------------------------------------------------------------
         // Service Calls
         // ---------------------------------------------------------------
@@ -57,6 +66,8 @@
                         title: "Svg-",
                         background: ""
                     });
+
+                    
                 }
             )
         }

@@ -11,10 +11,6 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
             manageService.getCurrentUser().then(
                 function success(user){
                     $scope.user = user;
-
-                    if (user.ShowOnlyAssignedListings) {
-                        $scope.goToStudentView();
-                    }
                 },
                 function fail(reason){
                     console.log("Unable to load current user: " + reason);

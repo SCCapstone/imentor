@@ -35,13 +35,13 @@ namespace iMentor.Controllers
             return PartialView();
         }
 
-        [AccessDeniedAuthorize(Roles = "Read Only, Mentor, Teacher, Administrator")]
+        [AllowAnonymous]
         public ActionResult About()
         {
             return PartialView();
         }
 
-        [AccessDeniedAuthorize(Roles = "Read Only, Mentor, Teacher, Administrator")]
+        [AllowAnonymous]
         public ActionResult Help()
         {
             return PartialView();

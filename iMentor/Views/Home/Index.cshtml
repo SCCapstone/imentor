@@ -70,11 +70,9 @@
                                 @Html.AntiForgeryToken()
 
                                 <ul class="nav navbar-nav" ng-show="user != null">
-                                    <li><a href="" ng-click="goToEditUser()">Welcome: {{user.UserName}}</a></li>
 
-                                    <!--Uncomment this to prevent Students/Mentors from clicking their username-->
-                                    @*<li><a href="" ng-click="goToEditUser()" ng-show="user.RoleId >= 3">Welcome: {{user.UserName}}</a></li>
-                                        <li><a ng-show="user.RoleId < 3">Welcome: {{user.UserName}}</a></li>*@
+                                    <li><a href="" ng-click="goToEditUser()" ng-show="user.RoleId == 3 || user.RoleId == 4">Welcome: {{user.UserName}}</a></li>
+                                        <li><a ng-show="user.RoleId < 3">Welcome: {{user.UserName}}</a></li>
 
                                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                                 </ul>
@@ -103,8 +101,8 @@
                 <md-content style="padding-bottom:20px;background:#f2f2f2"><md-divider></md-divider></md-content>
                 <div class="row" style="padding-left:50px;">
                     <p>iMentor 2016 
-                    <a href="" ng-click="goToAbout()" style="padding-left:20px;" ng-show="!user.ShowOnlyAssignedListings"> About </a>
-                        <a href="" ng-click="goToHelp()" style="padding-left:20px;" ng-show="!user.ShowOnlyAssignedListings"> Help </a>
+                    <a href="" ng-click="goToAbout()" style="padding-left:20px;" ng-hide="user.RoleId == 1"> About </a>
+                        <a href="" ng-click="goToHelp()" style="padding-left:20px;" ng-hide="user.RoleId == 1"> Help </a>
                     </p>
                     
                 </div>

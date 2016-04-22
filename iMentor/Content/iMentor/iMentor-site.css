@@ -34,6 +34,14 @@ textarea {
     font-weight: bold;
 }
 
+.italic{
+    font-style: italic;
+}
+
+.georgia {
+    font-family: Georgia, serif;
+}
+
 .underline{
     text-decoration: underline;
 }
@@ -47,9 +55,11 @@ textarea {
 }
 
 .center {
+    border-color: lightgray;
+    border-style:dotted;
+    border-width:2px;
     margin: auto;
-    width: 60%;
-    border: 3px solid #73AD21;
+    width: 100%;
     padding: 10px;
 }
 

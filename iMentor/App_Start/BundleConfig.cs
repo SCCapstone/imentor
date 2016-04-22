@@ -27,7 +27,7 @@ namespace iMentor
                 "~/Content/iMentor/iMentor-site.css"
                 ));
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-              "~/Scripts/jquery-2.2.0.min.js")
+              "~/Scripts/jquery-2.2.3.min.js")
               );
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                "~/Scripts/angular.js",

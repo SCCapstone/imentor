@@ -13,6 +13,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
             data: "users",
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
+            { field: 'UrlId', displayName: 'UrlId', visible: false },
             { field: 'UserName', displayName: 'User Name', width: '35%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Email', displayName: 'Email', width:'35%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'RoleId', displayName: 'RoleId', visible: false },
@@ -83,9 +84,9 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
         // ---------------------------------------------------------------
         // Navigation
         // ---------------------------------------------------------------
-        $scope.editUser = function (userId)
+        $scope.editUser = function (userUrlId)
         {
-            $location.path("/EditUser/" + userId);
+            $location.path("/EditUser/" + userUrlId);
         }
 
         $scope.showInactiveUsers = function()

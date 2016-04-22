@@ -32,6 +32,7 @@ namespace iMentor.BL
                     if (iMentorUser != null)
                     {
                         user.Id = iMentorUser.Id;
+                        user.UrlId = iMentorUser.UrlId;
                         user.UserName = iMentorUser.UserName;
                         user.FirstName = iMentorUser.FirstName;
                         user.LastName = iMentorUser.LastName;
@@ -41,8 +42,6 @@ namespace iMentor.BL
                         user.ShowOnlyAssignedListings = iMentorUser.ShowOnlyAssignedListings;
                         user.IconIndex = iMentorUser.IconIndex;
                     }
-
-
                 }
             }
 
@@ -159,6 +158,7 @@ namespace iMentor.BL
 
                             var u = new iMentorUserInfo();
                             u.Id = user.Id;
+                            u.UrlId = user.UrlId;
                             u.UserName = user.UserName;
                             u.FirstName = user.FirstName;
                             u.LastName = user.LastName;
@@ -245,6 +245,7 @@ namespace iMentor.BL
                     var u = new iMentorUserInfo();
 
                     u.Id = user.Id;
+                    u.UrlId = user.UrlId;
                     u.UserName = user.UserName;
                     u.FirstName = user.FirstName;
                     u.LastName = user.LastName;

@@ -30,6 +30,11 @@ textarea {
     background-image: url("~/img/spatiul-cosmic.png");
 }
 
+.no-animate {
+   -webkit-transition: none !important;
+   transition: none !important;
+}
+
 .thick {
     font-weight: bold;
 }

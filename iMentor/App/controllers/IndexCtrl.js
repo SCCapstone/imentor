@@ -47,7 +47,7 @@ app.controller('indexCtrl', [ '$scope', '$location', 'manageService',
 
         $scope.goToEditUser = function()
         {
-            $location.path("/EditUser/" + $scope.user.Id);
+            $location.path("/EditUser/" + $scope.user.UrlId);
         }
 
         $scope.goToAbout = function() 

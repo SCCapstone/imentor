@@ -89,7 +89,7 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
                 function success(users) {
                     for (var i = 0; i < users.length; i++)
                     {
-                        if(users[i].Id == $scope.userId)
+                        if(users[i].UrlId.localeCompare($scope.userId) == 0)
                         {
                             $scope.user = users[i];
                             

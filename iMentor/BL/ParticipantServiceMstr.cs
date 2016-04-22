@@ -1,4 +1,5 @@
-﻿using iMentor.Models;
+﻿using iMentor.Entities;
+using iMentor.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,36 @@ namespace iMentor.BL
             using (iMAST_dbEntities db = new iMAST_dbEntities())
             {
                 return db.AssignedListings.ToList();
+            }
+        }
+
+        [AllowAnonymous]
+        public string RemoveUserAssignments(iMentorUserInfo user)
+        {
+            if (user != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    var assignments = db.AssignedListings.Where(x => x.UserId == user.Id).ToList();
+
+                    if (assignments != null || assignments.Count == 0)
+                    {
+                        foreach(AssignedListing assignment in assignments)
+                        {
+                            db.AssignedListings.Remove(assignment);
+                            db.SaveChanges();
+                        }
+                        return "Assignment Removed";
+                    }
+                    else
+                    {
+                        return "No assignment found";
+                    }
+                }
+            }
+            else
+            {
+                return "Invalid Assignment";
             }
         }
     }

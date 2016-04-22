@@ -44,6 +44,10 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
             $location.path("/StudentView/");
         }
 
+        $scope.goToEditUser = function(){
+            $location.path("/EditUser/" + $scope.user.UrlId);
+        }
+
 
         // ---------------------------------------------------------------
         // Grid List

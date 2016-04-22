@@ -71,7 +71,7 @@
 
                                 <ul class="nav navbar-nav" ng-show="user != null">
 
-                                    <li><a href="" ng-click="goToEditUser()" ng-show="user.RoleId == 3 || user.RoleId == 4">Welcome: {{user.UserName}}</a></li>
+                                    <li><a href="" ng-click="goToProfile()" ng-show="user.RoleId == 3 || user.RoleId == 4">Welcome: {{user.UserName}}</a></li>
                                         <li><a ng-show="user.RoleId < 3">Welcome: {{user.UserName}}</a></li>
 
                                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>

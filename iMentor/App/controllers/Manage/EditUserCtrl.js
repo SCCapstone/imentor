@@ -144,6 +144,20 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
             $scope.showOnlyAssignedListings = false;
         }
 
+        $scope.deleteUser = function(){
+            console.log("Deleting user");
+
+            manageService.deleteUser($scope.user);
+
+            //Delete assigned listings
+            //Delete applications
+            //Delete user role
+            //Delete ASP user
+            //Delete iMentor user
+
+            $location.path("/ManageUsers");
+        }
+
         // ---------------------------------------------------------------
         // Navigation
         // ---------------------------------------------------------------

@@ -258,7 +258,7 @@
     <Compile Include="App_Start\WebApiConfig2.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="BL\AssignmentServiceMstr.cs" />
+    <Compile Include="BL\ApplicantServiceMstr.cs" />
     <Compile Include="BL\iMentorUserServiceMstr.cs" />
     <Compile Include="BL\ListingServiceMstr.cs" />
     <Compile Include="BL\ParticipantServiceMstr.cs" />

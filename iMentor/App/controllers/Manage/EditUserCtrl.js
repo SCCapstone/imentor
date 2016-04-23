@@ -1,6 +1,6 @@
 ﻿
-app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageService',
-    function EditUserCtrl($scope, $routeParams, $location, manageService) 
+app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', '$mdDialog', 'manageService',
+    function EditUserCtrl($scope, $routeParams, $location, $mdDialog, manageService) 
     {
         $scope.user = {};
         $scope.userId = $routeParams.userId;
@@ -145,18 +145,28 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
         }
 
         $scope.deleteUser = function(){
-            console.log("Deleting user");
-
-            manageService.deleteUser($scope.user);
-
-            //Delete assigned listings
-            //Delete applications
-            //Delete user role
-            //Delete ASP user
-            //Delete iMentor user
-
-            $location.path("/ManageUsers");
+            manageService.deleteUser($scope.user).then(
+                function success(response){
+                    $location.path("/ManageUsers");
+                }
+            )
         }
+
+        $scope.deleteUserAlert = function (ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Delete this user?')
+                  .textContent($scope.user.UserName)
+                  //.ariaLabel('')
+                  .targetEvent(ev)
+                  .ok('Delete')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                $scope.deleteUser();
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
 
         // ---------------------------------------------------------------
         // Navigation

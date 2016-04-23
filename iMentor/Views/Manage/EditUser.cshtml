@@ -10,7 +10,7 @@
         <div class="panel-heading" style="background:white;color:#999999;height:60px;">
             <div class="header-title pull-left" style="margin:10px;">User Details</div>
             <div class="pull-right">
-                <md-button class="md-raised" style="background:red;color:black;margin:0px;" ng-click="deleteUser()" ng-show="currentUser.Id != user.Id && (currentUser.RoleId == 3 || currentUser.RoleId == 4)">
+                <md-button class="md-raised" style="background:red;color:black;margin:0px;" ng-click="deleteUserAlert($event)" ng-show="currentUser.Id != user.Id && (currentUser.RoleId == 3 || currentUser.RoleId == 4)">
                     Delete User
                 </md-button>
             </div>

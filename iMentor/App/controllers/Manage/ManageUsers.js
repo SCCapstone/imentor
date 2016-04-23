@@ -51,6 +51,7 @@ app.controller('manageUsersCtrl', ['$scope', '$rootScope', '$location', 'manageS
         // Manage Users
         // ---------------------------------------------------------------
         function getUsers() {
+            $scope.users = [];
             manageService.getUsers().then(
                 function success(users) {
                     $scope.users = users;

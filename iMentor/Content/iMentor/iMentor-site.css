@@ -30,8 +30,21 @@ textarea {
     background-image: url("~/img/spatiul-cosmic.png");
 }
 
+.no-animate {
+   -webkit-transition: none !important;
+   transition: none !important;
+}
+
 .thick {
     font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.georgia {
+    font-family: Georgia, serif;
 }
 
 .underline{
@@ -47,9 +60,11 @@ textarea {
 }
 
 .center {
+    border-color: lightgray;
+    border-style:dotted;
+    border-width:2px;
     margin: auto;
-    width: 60%;
-    border: 3px solid #73AD21;
+    width: 100%;
     padding: 10px;
 }
 

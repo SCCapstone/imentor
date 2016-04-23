@@ -1,11 +1,12 @@
-﻿using iMentor.Models;
+﻿using iMentor.Entities;
+using iMentor.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace iMentor.BL
 {
-    public class AssignmentServiceMstr
+    public class ApplicantServiceMstr
     {
         [AllowAnonymous]
         public List<Applicant> GetApplicants()
@@ -53,6 +54,36 @@ namespace iMentor.BL
                     else
                     {
                         return "Invalid Applicant";
+                    }
+                }
+            }
+            else
+            {
+                return "Invalid Applicant";
+            }
+        }
+
+        [AllowAnonymous]
+        public string RemoveUserApplications(iMentorUserInfo user)
+        {
+            if (user != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    var applications = db.Applicants.Where(x => x.UserId == user.Id).ToList();
+
+                    if (applications != null || applications.Count == 0)
+                    {
+                        foreach(Applicant applicant in applications)
+                        {
+                            db.Applicants.Remove(applicant);
+                            db.SaveChanges();
+                        }
+                        return "Applicant Removed";
+                    }
+                    else
+                    {
+                        return "No application found";
                     }
                 }
             }

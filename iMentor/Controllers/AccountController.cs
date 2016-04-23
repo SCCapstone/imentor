@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using iMentor.Models;
+using iMentor.BL;
+using System.Collections.Generic;
+using iMentor.Entities;
 
 namespace iMentor.Controllers
 {
@@ -404,6 +407,7 @@ namespace iMentor.Controllers
                             var imUser = new iMentorUser();
                             imUser.UserName = user.UserName;
                             imUser.Email = user.Email;
+                            imUser.UrlId = GetNewUrlId();
                             
                             db.iMentorUsers.Add(imUser);
                             db.SaveChanges();
@@ -529,6 +533,39 @@ namespace iMentor.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+        }
+
+        private string GetNewUrlId()
+        {
+            const string chars = "0123456789abcdefghjkmnpqrstvwxyz";
+            var random = new Random();
+            var urlId = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+
+
+            if (UrlIdExists(urlId)){
+                var newUrlId = GetNewUrlId();
+                return newUrlId;
+            }
+            else
+            {
+                return urlId;
+            }
+        }
+
+        private bool UrlIdExists(string urlId)
+        {
+            iMentorUserServiceMstr userService = new iMentorUserServiceMstr();
+            List<iMentorUserInfo> users = userService.GetUsers();
+
+            foreach(iMentorUserInfo user in users)
+            {
+                if(user.UrlId.Equals(urlId, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         #endregion
     }

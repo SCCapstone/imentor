@@ -9,9 +9,15 @@
 
     <div class="col-sm-12">
         <div class="panel panel-default" style="margin-bottom:50px">
-            <div class="panel-heading" style="background:white;color:#999999;height:45px;">
-                <div class="header-title pull-left">User Profile</div>
-                <div class="" style="margin-left:150px;padding-top:5px;">{{user.FirstName}} {{user.LastName}}</div>
+            <div class="panel-heading" style="background:white;color:#999999;height:60px;">
+                <div class="header-title pull-left" style="margin:10px;">User Profile</div>
+                <div class="pull-right">
+                    <md-button class="md-raised" style="background:white;color:black;margin:0px;" ng-click="goToEditUser()" ng-show="user.RoleId == 3 || user.RoleId == 4">
+                        Edit
+                    </md-button>
+                </div>
+                <div class="" style="margin-top:10px;margin-left:150px;padding-top:5px;">{{user.FirstName}} {{user.LastName}}</div>
+                
             </div>
 
             <div class="panel-body">

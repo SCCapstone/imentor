@@ -32,6 +32,7 @@ namespace iMentor.BL
                     if (iMentorUser != null)
                     {
                         user.Id = iMentorUser.Id;
+                        user.UrlId = iMentorUser.UrlId;
                         user.UserName = iMentorUser.UserName;
                         user.FirstName = iMentorUser.FirstName;
                         user.LastName = iMentorUser.LastName;
@@ -41,8 +42,6 @@ namespace iMentor.BL
                         user.ShowOnlyAssignedListings = iMentorUser.ShowOnlyAssignedListings;
                         user.IconIndex = iMentorUser.IconIndex;
                     }
-
-
                 }
             }
 
@@ -159,6 +158,7 @@ namespace iMentor.BL
 
                             var u = new iMentorUserInfo();
                             u.Id = user.Id;
+                            u.UrlId = user.UrlId;
                             u.UserName = user.UserName;
                             u.FirstName = user.FirstName;
                             u.LastName = user.LastName;
@@ -232,6 +232,68 @@ namespace iMentor.BL
         }
 
         [AllowAnonymous]
+        [HttpPost]
+        public string DeleteUser(iMentorUserInfo user)
+        {
+            if (user != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    var u = db.iMentorUsers.Where(x => x.Email.Equals(user.Email)).FirstOrDefault();
+
+                    if (u != null)
+                    {
+                        db.iMentorUsers.Remove(u);
+                        db.SaveChanges();
+
+                        DeleteAspUser(user);
+
+                        return "User Deleted";
+                    }
+                    else
+                    {
+                        return "Invalid User";
+                    }
+
+                }
+            }
+            else
+            {
+                return "Invalid User";
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public string DeleteAspUser(iMentorUserInfo user)
+        {
+            if (user != null)
+            {
+                using (iMAST_dbEntities db = new iMAST_dbEntities())
+                {
+                    var aspUser = db.AspNetUsers.Where(x => x.Email.Equals(user.Email)).FirstOrDefault();
+
+                    if (aspUser != null)
+                    {
+                        db.AspNetUsers.Remove(aspUser);
+                        db.SaveChanges();
+
+                        return "Asp User Deleted";
+                    }
+                    else
+                    {
+                        return "Invalid Asp User";
+                    }
+
+                }
+            }
+            else
+            {
+                return "Invalid Asp User";
+            }
+        }
+
+        [AllowAnonymous]
         public List<iMentorUserInfo> GetAllUsers()
         {
             using (iMAST_dbEntities db = new iMAST_dbEntities())
@@ -245,6 +307,7 @@ namespace iMentor.BL
                     var u = new iMentorUserInfo();
 
                     u.Id = user.Id;
+                    u.UrlId = user.UrlId;
                     u.UserName = user.UserName;
                     u.FirstName = user.FirstName;
                     u.LastName = user.LastName;

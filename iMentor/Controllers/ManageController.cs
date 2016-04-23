@@ -42,7 +42,7 @@ namespace iMentor.Controllers
         private iMentorUserServiceMstr iMentorUserService = new iMentorUserServiceMstr();
         private ListingServiceMstr listingService = new ListingServiceMstr();
         private ParticipantServiceMstr participantService = new ParticipantServiceMstr();
-        private AssignmentServiceMstr assignmentService = new AssignmentServiceMstr();
+        private ApplicantServiceMstr applicantService = new ApplicantServiceMstr();
         private RoleServiceMstr roleService = new RoleServiceMstr();
 
 
@@ -109,6 +109,17 @@ namespace iMentor.Controllers
         }
 
         [AllowAnonymous]
+        public string DeleteUser(iMentorUserInfo user)
+        {
+            string applicantResponse = applicantService.RemoveUserApplications(user);
+            string particpantResponse = participantService.RemoveUserAssignments(user);
+            string roleResponse = roleService.RemoveUserRole(user);
+            string iMentorUserResponse = iMentorUserService.DeleteUser(user);
+
+            return applicantResponse + " " + particpantResponse + " " + roleResponse + " " + iMentorUserResponse;
+        }
+
+        [AllowAnonymous]
         public JsonResult GetUsersByListing(string data)
         {
             var toReturn = iMentorUserService.GetUsersByListing(data);
@@ -162,20 +173,20 @@ namespace iMentor.Controllers
         [AllowAnonymous]
         public JsonResult GetApplicants()
         {
-            var toReturn = assignmentService.GetApplicants();
+            var toReturn = applicantService.GetApplicants();
             return Json(toReturn, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]
         public string AddApplicant(Applicant applicant)
         {
-            return assignmentService.AddApplicant(applicant);
+            return applicantService.AddApplicant(applicant);
         }
 
         [AllowAnonymous]
         public string RemoveApplicant(Applicant applicant)
         {
-            return assignmentService.RemoveApplicant(applicant);
+            return applicantService.RemoveApplicant(applicant);
         }
 
 

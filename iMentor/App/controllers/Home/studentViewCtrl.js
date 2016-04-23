@@ -241,8 +241,8 @@
                                 sortByDate(upcomingEvents);
                             
 
-                                //If the array is larger than 12, remove the last elements
-                                while(upcomingEvents.length > 12){
+                                //If the array is larger than 16, remove the last elements
+                                while(upcomingEvents.length > 16){
                                     upcomingEvents.pop();
                                 }
                             }

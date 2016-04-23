@@ -26,7 +26,7 @@
                                       md-rowspan="{{tile.span.row}}" 
                                       md-colspan="{{tile.span.col}}" 
                                       md-colspan-sm="1" 
-                                      ng-click="goToListing(tile.id)"
+                                      ng-click="goToListing(tile.urlId)"
                                       ng-style="{'background': tile.background}">
                             
                             <div class="thick"style="text-align:center;">
@@ -105,10 +105,6 @@
                     <!--Listings-->
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background:white">
-
-                            @*<div class="" ng-show="user.RoleId >= 3">
-                                <a class="navbar-brand" style="color:black;font-size:14px;"> Open Listings </a>
-                            </div>*@
                             
                             <div class="collapse navbar-collapse">
                                 <div style="float:left;">
@@ -125,9 +121,17 @@
                         </div>
                     </div>
 
-                    <div dir-paginate="listing in listings | orderBy: sortListings | filter: areaFilter | filter: searchText | itemsPerPage: itemsPerPage" current-page="currentPage" listing-card listing="listing" ng-click="selectListing(listing)"></div>
+                    <div dir-paginate="listing in listings | orderBy: sortListings | filter: areaFilter | filter: searchText | itemsPerPage: itemsPerPage" 
+                         current-page="currentPage" 
+                         listing-card listing="listing" 
+                         ng-click="selectListing(listing)"></div>
+                    <div ng-show="(listings | filter: areaFilter | filter: searchText).length == 0">
+                        <div class="col-sm-12 center">
+                            <div class="thick italic georgia" style="font-size:35px;text-align:center;height:300px;padding:90px;">We were unable to find any listings</div>
+                        </div>
+                    </div>
 
-                    <div class="center" style="width:60%;border:0px;margin-left:auto;margin-right:auto">
+                    <div class="center" style="width:60%;border:0px;margin-left:auto;margin-right:auto;">
                         <dir-pagination-controls boundary-links="false" on-page-change="pageChangeHandler(newPageNumber)" template-url="Templates/dirPagination.tpl.html"></dir-pagination-controls>
                     </div>
                 </div>

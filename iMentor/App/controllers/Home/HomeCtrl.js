@@ -200,6 +200,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
                             for (var i = 0; i < listings.length; i++) {
                                 var temp = {
                                     Id: listings[i].Id,
+                                    UrlId: listings[i].UrlId,
                                     Title: listings[i].Title,
                                     Area: listings[i].Area,
                                     AgeGroup: listings[i].AgeGroup,
@@ -263,10 +264,10 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
             manageService.getListingsByCurrentUser().then(
                 function success(listings) {
                     $scope.currentUserListings = [];
-
                     for (var i = 0; i < listings.length; i++) {
                         var temp = {
                             Id: listings[i].Id,
+                            UrlId: listings[i].UrlId,
                             Title: listings[i].Title,
                             Area: listings[i].Area,
                             StartDate: new Date(parseInt(listings[i].StartDate.substr(6))),
@@ -295,15 +296,16 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
         // ---------------------------------------------------------------
         $scope.createNewListing = function()
         {
-            $location.path("/Listing/" + 0);
+            $location.path("/Listing/" + "new");
         }
 
         $scope.selectListing = function (listing) {
-             $location.path("/Listing/" + listing.Id);
+            $location.path("/Listing/" + listing.UrlId);
         };
 
-        $scope.goToListing = function (id) {
-            $location.path("/Listing/" + id);
+        $scope.goToListing = function (urlId) {
+            
+            $location.path("/Listing/" + urlId);
         }
 
         $scope.goToStudentView = function (id) {
@@ -427,6 +429,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
 
                                         var event = {
                                             ListingId: $scope.currentUserListings[i].Id,
+                                            ListingUrlId: $scope.currentUserListings[i].UrlId,
                                             ListingTitle: $scope.currentUserListings[i].Title,
                                             ListingStartDate: $scope.currentUserListings[i].StartDate,
                                             ListingEndDate: $scope.currentUserListings[i].EndDate,
@@ -474,6 +477,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
                     it.startTime = parseTime(upcomingEvents[i].ListingStartDate);
 
                     it.id = upcomingEvents[i].ListingId;
+                    it.urlId = upcomingEvents[i].ListingUrlId;
                     it.background = upcomingEvents[i].Background;
                     it.eventDate = upcomingEvents[i].EventDate;
 

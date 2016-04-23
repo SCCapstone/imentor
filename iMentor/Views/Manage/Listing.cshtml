@@ -269,7 +269,7 @@
                                               md-colspan="{{tile.span.col}}" 
                                               md-colspan-sm="1" 
                                               ng-style="{'background': tile.background}">
-                                    <md-icon md-svg-icon="{{tile.icon}}" style="width:75%;height:75%;cursor:pointer;" ng-click="goToProfile(tile.id)"></md-icon>
+                                    <md-icon md-svg-icon="{{tile.icon}}" style="width:75%;height:75%;cursor:pointer;" ng-click="goToProfile(tile.urlId)"></md-icon>
                                     <md-grid-tile-footer style="height:35px;"><h3 style="padding-right:30px;">{{tile.title}}</h3></md-grid-tile-footer>
                                 </md-grid-tile>
 
@@ -313,7 +313,7 @@
                                             <i class="glyphicon glyphicon-remove-circle"></i> Reject
                                         </md-button>
                                     </div>
-                                    <md-icon md-svg-icon="{{tile.icon}}" style="width:75%;height:75%;cursor:pointer;" ng-click="goToProfile(tile.id)"></md-icon>
+                                    <md-icon md-svg-icon="{{tile.icon}}" style="width:75%;height:75%;cursor:pointer;" ng-click="goToProfile(tile.urlId)"></md-icon>
                                     <md-grid-tile-footer style="height:35px;"><h3 style="padding-right:30px;">{{tile.title}}</h3></md-grid-tile-footer>
                                 </md-grid-tile>
 

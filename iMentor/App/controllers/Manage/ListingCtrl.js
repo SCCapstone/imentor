@@ -54,7 +54,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         getStudents();
         getTeachers();
         getUsers();
-        $scope.isNew = ($scope.listingId < 1);
+        $scope.isNew = ($scope.listingId.localeCompare("new") == 0);
         if (!$scope.isNew) {
             getListings();
         }
@@ -74,7 +74,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                 {
                     for (var i = 0; i < listings.length; i++)
                     {
-                        if (listings[i].Id == id)
+                        if (listings[i].UrlId.localeCompare($scope.listingId) == 0)
                         {
                             $scope.validListing = true;
                             $scope.listing = listings[i];
@@ -86,7 +86,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                             }
 
                             $scope.imagePath = getImage();
-                            getUsersByListing($scope.listingId);
+                            getUsersByListing(listings[i].Id);
                             getAssignments();
 
                             if (listings[i].HangoutUrl != null) {
@@ -108,6 +108,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
 
         function newListing(){
             $scope.listing = {
+                UrlId: "",
                 Title: "",
                 StartDate: new Date(),
                 EndDate: new Date(),
@@ -408,7 +409,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
         }
 
         $scope.createNewListing = function () {
-            $location.path("/Listing/" + 0);
+            $location.path("/Listing/" + "new");
         }
 
         $scope.editTitle = function () {
@@ -616,10 +617,11 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
 
         $scope.$on('createNewListing', function (event, data)  {
             $scope.listing.Open = true;
+            $scope.listing.UrlId = getNewUrlId();
             manageService.addListing($scope.listing).then(
                 function success(listing) {
                     addTeacher(listing.Id);
-                    $location.path("/Listing/" + listing.Id);
+                    $location.path("/Listing/" + listing.UrlId);
                 },
                 function error(response) {
                     console.log("Unable to create listing");
@@ -645,8 +647,8 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             window.open($scope.listing.HangoutUrl);
         }
 
-        $scope.goToProfile = function(userId){
-            $location.path("/ViewProfile/" + userId);
+        $scope.goToProfile = function(userUrlId){
+            $location.path("/ViewProfile/" + userUrlId);
         }
 
         $scope.toggleParticipantsCollapse = function () {
@@ -749,6 +751,41 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
             }
         }
 
+        function getNewUrlId() {
+            var key = {
+                'i': 'w',
+                'l': 'x',
+                'o': 'y',
+                'u': 'z'
+            };
+            var randomInt = Math.floor(Math.random() * 1e9);
+
+            var urlId = randomInt.toString(32).replace(/[ilou]/, function (a) {
+                return key[a];
+            });
+
+            if (urlIdExists(urlId)) {
+                getNewUrlId();
+            } else {
+                return urlId;
+            }
+        }
+
+        function urlIdExists(urlId) {
+            manageService.getListings().then(
+                function success(listings) {
+
+                    for (var i = 0; i < listings.length; i++) {
+                        if (listings[i].UrlId.localeCompare(urlId) == 0) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+            )
+        }
+
 
         // ---------------------------------------------------------------
         // Navigation
@@ -786,6 +823,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     it.title = $scope.assignedUsers[i].UserName;
                     it.span = { row: 1, col: 1 };
                     it.id = $scope.assignedUsers[i].Id;
+                    it.urlId = $scope.assignedUsers[i].UrlId;
 
                     switch ($scope.assignedUsers[i].RoleId) {
                         case 1: //Student
@@ -823,6 +861,7 @@ app.controller('listingCtrl', ['$scope', '$rootScope', '$q', '$routeParams', '$l
                     it.title = $scope.applicants[i].UserName;
                     it.span = { row: 1, col: 1 };
                     it.id = $scope.applicants[i].Id;
+                    it.urlId = $scope.assignedUsers[i].UrlId;
 
                     it.background = "#00796b";
                     it.span.row = it.span.col = 2;

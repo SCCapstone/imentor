@@ -1,6 +1,6 @@
 ﻿
-app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageService',
-    function EditUserCtrl($scope, $routeParams, $location, manageService) 
+app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', '$mdDialog', 'manageService',
+    function EditUserCtrl($scope, $routeParams, $location, $mdDialog, manageService) 
     {
         $scope.user = {};
         $scope.userId = $routeParams.userId;
@@ -89,7 +89,7 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
                 function success(users) {
                     for (var i = 0; i < users.length; i++)
                     {
-                        if(users[i].Id == $scope.userId)
+                        if(users[i].UrlId.localeCompare($scope.userId) == 0)
                         {
                             $scope.user = users[i];
                             
@@ -143,6 +143,30 @@ app.controller('editUserCtrl', ['$scope', '$routeParams', '$location', 'manageSe
         $scope.roleChanged = function (){
             $scope.showOnlyAssignedListings = false;
         }
+
+        $scope.deleteUser = function(){
+            manageService.deleteUser($scope.user).then(
+                function success(response){
+                    $location.path("/ManageUsers");
+                }
+            )
+        }
+
+        $scope.deleteUserAlert = function (ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Delete this user?')
+                  .textContent($scope.user.UserName)
+                  //.ariaLabel('')
+                  .targetEvent(ev)
+                  .ok('Delete')
+                  .cancel('Cancel');
+            $mdDialog.show(confirm).then(function () {
+                $scope.deleteUser();
+            }, function () {
+                $scope.status = 'Canceled';
+            });
+        };
 
         // ---------------------------------------------------------------
         // Navigation

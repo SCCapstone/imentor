@@ -15,7 +15,7 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
                 function success(users) {
                     for (var i = 0; i < users.length; i++)
                     {
-                        if(users[i].Id == $scope.userId)
+                        if(users[i].UrlId.localeCompare($scope.userId) == 0)
                         {
                             $scope.user = users[i];
                             if($scope.user.RoleId == 1){
@@ -42,6 +42,10 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
         // ---------------------------------------------------------------
         $scope.goToStudentView = function (id) {
             $location.path("/StudentView/");
+        }
+
+        $scope.goToEditUser = function(){
+            $location.path("/EditUser/" + $scope.user.UrlId);
         }
 
 

@@ -19,8 +19,6 @@
 
         function reload() {
             getListingsByCurrentUser();
-
-            console.log("Reload");
             setTimeout(reload, 5000);
         }
 
@@ -183,7 +181,7 @@
 
                         //Create array of selected days of the week
                         if($scope.currentUserListings[i].Frequency != null){
-                            var days =  $scope.currentUserListings[i].Frequency.split("");
+                            var days = $scope.currentUserListings[i].Frequency.split("");
 
                             //Step through each day, create a new event when the day matches
                             for(var x = 0; x < diffDays; x++){
@@ -192,19 +190,19 @@
                                 d.setDate(d.getDate() + x);
 
                                 //If the new date is older than today, ignore it
-                                if(today.getDate() > d.getDate()){
+                                if (today.getDate() > d.getDate() && today.getMonth() >= d.getMonth() && today.getYear() >= d.getYear()) {
                                     continue;
                                 }
 
                                 //If the new date is more than a week away, ignore it
-                                if(nextWeek.getDate() <= d.getDate() ){
+                                if(nextWeek.getDate() <= d.getDate() && nextWeek.getMonth() <= d.getMonth() && nextWeek.getYear() <= d.getYear()){
                                     //Break because every day after this will be to large too
                                     break;
                                 }
 
                                 //Find the days that match the frequency
                                 for(var y = 0; y < days.length; y++){
-                                    if(days[y].localeCompare(weekday[d.getDay()]) == 0){
+                                    if (days[y].localeCompare(weekday[d.getDay()]) == 0) {
                                         //Create new event
 
                                         var event = {
@@ -278,7 +276,6 @@
                     results.push(it);
                 }
 
-                
 
                 return results;
 

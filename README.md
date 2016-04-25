@@ -27,6 +27,4 @@ Here's a brief overview of what we have set out to accomplish:
 
 To login to an admin account, this account is provided:
 
-username: masttest2016@gmail.com
 
-password: Mast2016!

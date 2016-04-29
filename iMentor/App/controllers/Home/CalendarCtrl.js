@@ -28,144 +28,106 @@ app.controller('calendarCtrl', ['$scope','$rootScope',  '$routeParams','$locatio
                     left: 'today,prev, next',
                     center: 'title',
                     right: 'month,basicWeek,basicDay'
-
                 },
         
             }
         };
 
 
-      
-        // ---------------------------------------------------------------
-        // Retrieves listings from database, populates calendar, on
-        // event click redirects to listing detail page.
-        // ---------------------------------------------------------------  
-        // load calendars from google and pass them as event sources to fullcalendar
-        /*$scope.loadSources = function () {
-            EventSourceFactory.getEventSources().then(function (result) {
-               
-                $scope.events = result;
-               
-                
-                angular.forEach(result, function (source) {
-                    $scope.myCalendar.fullCalendar('addEventSource', source);
-                    $scope.eventSources = [$scope.events];
-                });
-            });
-        };
+        function getListings() {
+            manageService.getListingsByCurrentUser().then(
+                function success(listings) {
 
-        // request Google authorization from the user
-        $scope.requestAuth = function () {
-            gapi_helper.requestAuth();
-        };
+                    var listingEvents = getListingEvents(listings);
 
-        // configure gapi-helper
-       
-        gapi_helper.configure({
-            clientId: '1086641013362-rj0u1ckimo3hs369gc8q40bvqs2d1rau.apps.googleusercontent.com',
-            apiKey: 'AIzaSyAbFYYKc7cdZwPTYhi9wK-C_hwZku3lVaE',
-            scopes: 'https://www.googleapis.com/auth/calendar',
-            services: {
-                calendar: 'v3'
-            }
-        });
-
-        // set authNeeded to appropriate value on auth events
-        gapi_helper.when('authorized', function () {
-           
-            $scope.authNeeded = false;
-           
-        });
-        gapi_helper.when('authFailed', function () {
-          
-            $scope.authNeeded = true;
-          
-        });
-
-        // load the event sources when the calendar api is loaded
-        gapi_helper.when('calendarLoaded', $scope.loadSources);*/
-      
-     
-       
-
- 
-
-                      
-           
-
-              
-           
-
-         function getListings() {
-             manageService.getListingsByCurrentUser()
-                .then(function success(listings) {
-
-
-                   
-                    for(var i = 0; i < listings.length; i++)
+                    for (var i = 0; i < listingEvents.length; i++)
                     {
-                        
-                        
-                        var startDate = new Date(moment(new Date(parseInt(listings[i].StartDate.substr(6)))).format('YYYY/MM/DD'));
-                        var endDate = new Date(moment(new Date(parseInt(listings[i].EndDate.substr(6)))).format('YYYY/MM/DD'));
-                        
-
-                  var weekday = new Array(7);
-                  weekday[0] = "U";
-                  weekday[1] = "M";
-                  weekday[2] = "T";
-                  weekday[3] = "W";
-                  weekday[4] = "R";
-                  weekday[5] = "F";
-                  weekday[6] = "S";
-
-
                         $scope.events.push({
-                            id: listings[i].Id,
-                            title: listings[i].Title,
-                            start: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()),
-                            end: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
-                            url: "/#!/Listing/" + listings[i].Id,
-                            frequency: listings[i].Frequency,
+                            id: listingEvents[i].ListingId,
+                            title: listingEvents[i].Title,
+                            start: new Date(listingEvents[i].EventDate.getFullYear(), listingEvents[i].EventDate.getMonth(), listingEvents[i].EventDate.getDate()),
+                            end: new Date(listingEvents[i].EventDate.getFullYear(), listingEvents[i].EventDate.getMonth(), listingEvents[i].EventDate.getDate()),
+                            url: "/#!/Listing/" + listingEvents[i].ListingUrlId,
+                            frequency: listingEvents[i].Frequency,
                             allDay: false,
                             stick: true
-
-                     
                         });
                     }
 
                     $scope.eventSources = [$scope.events];
-                })
-              
+                }
+            )
         }
 
-          function getCurrentUser(){
-            manageService.getCurrentUser().then(
-                function success(user){
-                    $scope.user = user;
-                    if($scope.user.RoleId == 1){
-                                $scope.goToStudentView();
+        function getListingEvents(listings) {
+            var listingEvents = [];
+
+            var weekday = new Array(7);
+            weekday[0] = "U";
+            weekday[1] = "M";
+            weekday[2] = "T";
+            weekday[3] = "W";
+            weekday[4] = "R";
+            weekday[5] = "F";
+            weekday[6] = "S";
+
+            for (var i = 0; i < listings.length; i++) {
+                var startDate = new Date(parseInt(listings[i].StartDate.substr(6)));
+                var endDate = new Date(parseInt(listings[i].EndDate.substr(6)));
+
+                // Get the total number of days in the listing
+                var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+
+                //Create array of selected days of the week
+                if (listings[i].Frequency != null) {
+                    var days = listings[i].Frequency.split("");
+
+                    //Step through each day, create a new event when the day matches
+                    for (var x = 0; x < diffDays; x++) {
+                        //Create a new date for the day
+                        var d = new Date(startDate);
+                        d.setDate(d.getDate() + x);
+
+                        //Find the days that match the frequency
+                        for (var y = 0; y < days.length; y++) {
+                            if (days[y].localeCompare(weekday[d.getDay()]) == 0) {
+                                //Create new event
+                                var event = {
+                                    Title: listings[i].Title,
+                                    ListingId: listings[i].Id,
+                                    ListingUrlId: listings[i].UrlId,
+                                    ListingStartDate: listings[i].StartDate,
+                                    ListingEndDate: listings[i].EndDate,
+                                    EventDate: new Date(d)
+                                }
+
+                                listingEvents.push(event);
                             }
-                },
-                function fail(reason){
-                    console.log("Unable to load current user: " + reason);
+                        }
+
+                        //Sort new array by date
+                        sortByDate(listingEvents);
+                    }
                 }
-            );
-          }
+            }
 
-          function getUsersByListing() {
-              manageService.getUsersByListing().then(
-                  function success(user) {
-                      $scope.user = user
-                    
-                  },
-                  function fail(reason) {
-                      console.log("Cannot find user: " + reason);
-                  }
-              );
-          }
+            return listingEvents;
+        }
 
-       
+
+        function sortByDate(a) {
+            for (var x = a.length - 1; x >= 0; x--) {
+                for (var y = 1; y <= x; y++) {
+                    if (a[y - 1].EventDate > a[y].EventDate) {
+                        var temp = a[y - 1];
+                        a[y - 1] = a[y];
+                        a[y] = temp;
+                    }
+                }
+            }
+        }
 
         // ---------------------------------------------------------------
         // Navigation

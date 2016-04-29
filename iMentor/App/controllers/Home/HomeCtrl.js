@@ -412,12 +412,12 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
                                 d.setDate(d.getDate() + x);
 
                                 //If the new date is older than today, ignore it
-                                if(today.getDate() > d.getDate()){
+                                if (today.getDate() > d.getDate() && today.getMonth() >= d.getMonth() && today.getYear() >= d.getYear()) {
                                     continue;
                                 }
 
                                 //If the new date is more than a week away, ignore it
-                                if(nextWeek.getDate() <= d.getDate() ){
+                                if (nextWeek.getDate() <= d.getDate() && nextWeek.getMonth() <= d.getMonth() && nextWeek.getYear() <= d.getYear()) {
                                     //Break because every day after this will be to large too
                                     break;
                                 }
@@ -484,10 +484,7 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
                     results.push(it);
                 }
 
-                
-
                 return results;
-
             }
         }
     }

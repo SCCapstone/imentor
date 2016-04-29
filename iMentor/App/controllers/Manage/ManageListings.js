@@ -15,6 +15,7 @@ app.controller('manageListingsCtrl', ['$scope', '$rootScope', '$location', 'mana
             data: "listings",
             columnDefs: [
             { field: 'Id', displayName: 'Id', visible: false },
+            { field: 'UrlId', displayName: 'UrlId', visible: false },
             { field: 'Title', displayName: 'Title', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'Area', displayName: 'Area', width: '12%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },
             { field: 'StartDate', displayName: 'Start', width: '20%', cellClass: 'gridCellLeft', headerClass: 'gridHeaderLeft' },

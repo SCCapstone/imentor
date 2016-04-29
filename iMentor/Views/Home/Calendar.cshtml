@@ -1,14 +1,17 @@
-﻿
-<div class="ngview-wrapper">
+﻿<md-content layout-padding style="background:#f2f2f2">
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="events == null">
+        <md-progress-circular md-diameter="150" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
+
+<div class="ngview-wrapper" ng-show="events != null">
     <div class="ngview-body" style="padding-top:25px;">
-        <!-- For testing purposes -->
+
         <div ng-repeat="l in userListings">
             {{l.Title}}
         </div>
        
-       
-        <div ui-calendar="uiConfig.calendar"  ng-model="eventSources" calendar="myCalendar" config="uiConfig.calendar"ng-if="eventSources.length > 0"> </div>
-
+        <div ui-calendar="uiConfig.calendar"  ng-model="eventSources" calendar="myCalendar" config="uiConfig.calendar" ng-if="eventSources.length > 0"> </div>
 
     </div>
 </div>

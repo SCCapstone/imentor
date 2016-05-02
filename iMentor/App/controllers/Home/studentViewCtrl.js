@@ -62,8 +62,6 @@
                             Open: listings[i].Open
                         }
 
-                        //Stupid time hack :|
-                        temp.StartDate.setHours(temp.StartDate.getHours() - 4);
 
                         $scope.currentUserListings.push(temp);
                     }

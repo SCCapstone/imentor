@@ -71,8 +71,6 @@
                     var sameLists = compareLists(oldListings, $scope.currentUserListings);
 
                     if(!sameLists){
-                        console.log("Update");
-
                         $scope.tiles = buildGridModel({
                             icon: "avatar:svg-",
                             title: "Svg-",
@@ -88,18 +86,15 @@
 
         function compareLists(oldListings, currentListings){
             var toReturn = true;
-            var diff = "no differences";
 
             //If the arrays are different sizes,
             if(oldListings.length != currentListings.length){
                 toReturn = false;
-                diff = "length";
             }
 
             //If one of the arrays is null
             else if(oldListings == null || currentListings == null){
                 toReturn = false;
-                diff = "null";
             }
 
             //Loop through the arrays and compare values
@@ -121,32 +116,25 @@
                     //If currentListing is still null, arrays are different
                     if (currentListing == null) {
                         toReturn = false;
-                        diff = "null list";
                     }
                         //Else, compare the elements
                     else {
                         //Compare Titles
                         if (oldListing.Title.localeCompare(currentListing.Title) != 0) {
                             toReturn = false;
-                            diff = "titles";
                         }
                             //Compare Times
                         else if (oldListing.StartDate > currentListing.StartDate || oldListing.StartDate < currentListing.StartDate) {
-                            console.log(oldListing.StartDate);
-                            console.log(currentListing.StartDate);
                             toReturn = false;
-                            diff = "start date";
                         }
                             //Compare Hangout Urls
                         else if (!compareHangoutUrls(oldListing.HangoutUrl, currentListing.HangoutUrl)) {
                             toReturn = false;
-                            diff = "hangout url";
                         }
                     }
                 }
             }
 
-            console.log(diff);
             return toReturn;
         }
 

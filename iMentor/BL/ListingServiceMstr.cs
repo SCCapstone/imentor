@@ -222,6 +222,19 @@ namespace iMentor.BL
                         UpdateListing(listing);
                     }
                 }
+                else
+                {
+                    DateTime listingEndDate = listing.EndDate ?? DateTime.Now;
+
+                    if (DateTime.Compare(currentDate, listingEndDate) < 0)
+                    {
+                        listing.Open = true;
+
+                        UpdateListing(listing);
+                    }
+                }
+
+                
             }
         }
 

@@ -1,13 +1,10 @@
 ﻿app.controller('studentViewCtrl', ['$scope', '$mdToast', 'manageService',
     function studentViewCtrl($scope, $mdToast, manageService) 
     {
-        
+        $scope.currentUserListings = [];
         getCurrentUser();
         reload();
         
-        
-
-
         $scope.showOpenError = function () {
             $mdToast.show(
               $mdToast.simple()
@@ -38,6 +35,15 @@
         }
 
         function getListingsByCurrentUser() {
+
+            //Copy old listings into a new array for comparing.
+            var oldListings = [];
+            if($scope.currentUserListings != null){
+                for(var i = 0; i < $scope.currentUserListings.length; i++){
+                    oldListings.push($scope.currentUserListings[i]);
+                }
+            }
+
             manageService.getListingsByCurrentUser().then(
                 function success(listings) {
                     $scope.currentUserListings = [];
@@ -56,18 +62,107 @@
                             Open: listings[i].Open
                         }
 
+                        //Stupid time hack :|
+                        temp.StartDate.setHours(temp.StartDate.getHours() - 4);
+
                         $scope.currentUserListings.push(temp);
                     }
 
-                    $scope.tiles = buildGridModel({
-                        icon: "avatar:svg-",
-                        title: "Svg-",
-                        background: ""
-                    });
+                    var sameLists = compareLists(oldListings, $scope.currentUserListings);
+
+                    if(!sameLists){
+                        console.log("Update");
+
+                        $scope.tiles = buildGridModel({
+                            icon: "avatar:svg-",
+                            title: "Svg-",
+                            background: ""
+                        });
+                    }
 
                     
                 }
             )
+        }
+
+
+        function compareLists(oldListings, currentListings){
+            var toReturn = true;
+            var diff = "no differences";
+
+            //If the arrays are different sizes,
+            if(oldListings.length != currentListings.length){
+                toReturn = false;
+                diff = "length";
+            }
+
+            //If one of the arrays is null
+            else if(oldListings == null || currentListings == null){
+                toReturn = false;
+                diff = "null";
+            }
+
+            //Loop through the arrays and compare values
+            else{
+                var oldListing = null;
+                var currentListing = null;
+
+                for(var i = 0; i < oldListings.length; i++){
+                    oldListing = oldListings[i];
+
+                    //Loop through the second array to find the same listing
+                    for(var j = 0; j < currentListings.length; j++){
+                        //ignore different listings
+                        if(oldListings[i].Id == currentListings[j].Id){
+                            currentListing = currentListings[j];
+                        }
+                    }
+
+                    //If currentListing is still null, arrays are different
+                    if (currentListing == null) {
+                        toReturn = false;
+                        diff = "null list";
+                    }
+                        //Else, compare the elements
+                    else {
+                        //Compare Titles
+                        if (oldListing.Title.localeCompare(currentListing.Title) != 0) {
+                            toReturn = false;
+                            diff = "titles";
+                        }
+                            //Compare Times
+                        else if (oldListing.StartDate > currentListing.StartDate || oldListing.StartDate < currentListing.StartDate) {
+                            console.log(oldListing.StartDate);
+                            console.log(currentListing.StartDate);
+                            toReturn = false;
+                            diff = "start date";
+                        }
+                            //Compare Hangout Urls
+                        else if (!compareHangoutUrls(oldListing.HangoutUrl, currentListing.HangoutUrl)) {
+                            toReturn = false;
+                            diff = "hangout url";
+                        }
+                    }
+                }
+            }
+
+            console.log(diff);
+            return toReturn;
+        }
+
+
+        function compareHangoutUrls(oldUrl, currentUrl) {
+            var toReturn = true;
+
+            if(oldUrl == null && currentUrl == null){
+                toReturn = true;
+            } else if ((oldUrl == null && currentUrl != null) || (oldUrl != null && currentUrl == null)) {
+                toReturn = false;
+            } else if (oldUrl.localeCompare(currentUrl) != 0) {
+                toReturn = false;
+            }
+
+            return toReturn;
         }
 
         // ---------------------------------------------------------------
@@ -149,8 +244,25 @@
         
 
         function buildGridModel(tileTmpl) {
+
+        //ignoring leap years because I don't get paid enough.
+            var months = [
+                { value: 0, text: 'January', numberOfDays: 31 },
+                { value: 1, text: 'February', numberOfDays: 28 },
+                { value: 2, text: 'March', numberOfDays: 31 },
+                { value: 3, text: 'April', numberOfDays: 30 },
+                { value: 4, text: 'May', numberOfDays: 31 },
+                { value: 5, text: 'June', numberOfDays: 30 },
+                { value: 6, text: 'July', numberOfDays: 31 },
+                { value: 7, text: 'August', numberOfDays: 31 },
+                { value: 8, text: 'September', numberOfDays: 30 },
+                { value: 9, text: 'October', numberOfDays: 31 },
+                { value: 10, text: 'November', numberOfDays: 30 },
+                { value: 11, text: 'December', numberOfDays: 31 }
+            ];
+
             var weekday = new Array(7);
-            weekday[0]=  "U";
+            weekday[0] = "U";
             weekday[1] = "M";
             weekday[2] = "T";
             weekday[3] = "W";
@@ -177,7 +289,7 @@
                         
                         // Get the total number of days in the listing
                         var timeDiff = Math.abs($scope.currentUserListings[i].EndDate.getTime() - $scope.currentUserListings[i].StartDate.getTime());
-                        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+                        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
                         //Create array of selected days of the week
                         if($scope.currentUserListings[i].Frequency != null){
@@ -190,15 +302,10 @@
                                 d.setDate(d.getDate() + x);
 
                                 //If the new date is older than today, ignore it
-                                if (today.getDate() > d.getDate() && today.getMonth() >= d.getMonth() && today.getYear() >= d.getYear()) {
+                                if((today.getMonth() == d.getMonth() && today.getDate() > d.getDate()) || today.getMonth() > d.getMonth() || today.getYear() > d.getYear()){
                                     continue;
                                 }
-
-                                //If the new date is more than a week away, ignore it
-                                if(nextWeek.getDate() <= d.getDate() && nextWeek.getMonth() <= d.getMonth() && nextWeek.getYear() <= d.getYear()){
-                                    //Break because every day after this will be to large too
-                                    break;
-                                }
+                                
 
                                 //Find the days that match the frequency
                                 for(var y = 0; y < days.length; y++){
@@ -239,8 +346,8 @@
                                 sortByDate(upcomingEvents);
                             
 
-                                //If the array is larger than 16, remove the last elements
-                                while(upcomingEvents.length > 16){
+                                //If the array is larger than 20, remove the last elements
+                                while(upcomingEvents.length > 20){
                                     upcomingEvents.pop();
                                 }
                             }

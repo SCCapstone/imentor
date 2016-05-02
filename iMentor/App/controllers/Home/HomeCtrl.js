@@ -279,6 +279,9 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
                             Open: listings[i].Open
                         }
 
+                        //Stupid time hack :|
+                        temp.StartDate.setHours(temp.StartDate.getHours() - 4);
+
                         $scope.currentUserListings.push(temp);
                     }
 
@@ -412,14 +415,8 @@ app.controller('homeCtrl', ['$scope', '$location', 'manageService',
                                 d.setDate(d.getDate() + x);
 
                                 //If the new date is older than today, ignore it
-                                if (today.getDate() > d.getDate() && today.getMonth() >= d.getMonth() && today.getYear() >= d.getYear()) {
+                                if((today.getMonth() == d.getMonth() && today.getDate() > d.getDate()) || today.getMonth() > d.getMonth() || today.getYear() > d.getYear()){
                                     continue;
-                                }
-
-                                //If the new date is more than a week away, ignore it
-                                if (nextWeek.getDate() <= d.getDate() && nextWeek.getMonth() <= d.getMonth() && nextWeek.getYear() <= d.getYear()) {
-                                    //Break because every day after this will be to large too
-                                    break;
                                 }
 
                                 //Find the days that match the frequency

@@ -5,6 +5,7 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
         $scope.user = {};
         $scope.userId = $routeParams.userId;
         getUsers();
+        getCurrentUser();
 
 
         // ---------------------------------------------------------------
@@ -18,9 +19,6 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
                         if(users[i].UrlId.localeCompare($scope.userId) == 0)
                         {
                             $scope.user = users[i];
-                            if($scope.user.RoleId == 1){
-                                $scope.goToStudentView();
-                            }
                         }
                     }
 
@@ -32,6 +30,20 @@ app.controller('profileCtrl', ['$scope', '$rootScope', '$routeParams', '$locatio
                 },
                 function error (error) {
                     $scope.status = 'Unable to load user data: ' + error.message;
+                }
+            );
+        }
+
+        function getCurrentUser() {
+            manageService.getCurrentUser().then(
+                function success(user) {
+                    $scope.currentUser = user;
+                    if (user.RoleId == 1) {
+                        $scope.goToStudentView();
+                    }
+                },
+                function fail(reason) {
+                    console.log("Unable to load current user: " + reason);
                 }
             );
         }
